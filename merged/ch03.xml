@@ -1,0 +1,2483 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<chapter id="_a_tour_of_the_dart_libraries">
+  <title>A Tour of the Dart Libraries</title>
+
+  <simpara>This chapter shows you how to use the major features in Dart’s
+  libraries. It’s just an overview, and by no means comprehensive. Whenever
+  you need more details about a class, consult the <ulink
+  url="http://api.dartlang.org/">Dart API reference.</ulink></simpara>
+
+  <warning>
+    <simpara>Expect major changes to the Dart libraries before Dart’s first
+    production release.</simpara>
+  </warning>
+
+  <sect1 id="ch03-dartcore---strings-collections-and-more">
+    <title>dart:core - Numbers, collections, strings, and more</title>
+
+    <simpara>The Dart core library provides a small but critical set of
+    built-in functionality. This library is automatically imported into every
+    Dart program.</simpara>
+
+    <sect2>
+      <title>Numbers</title>
+
+      <para>The dart:core library defines the num, int, and double classes,
+      which have some basic utilities for working with numbers.</para>
+
+      <simpara>You can convert a string into an integer or double with the
+      parse() methods of int and double, respectively.</simpara>
+
+      <screen>assert(int.parse('42') == 42);
+assert(double.parse('0.50') == 0.5);</screen>
+
+      <simpara>Use the toString() method (defined by <ulink
+      url="http://api.dartlang.org/dart_core/Object.html">Object</ulink>) to
+      convert an int or double to a string. To specify the number of digits to
+      the right of the decimal, use toStringAsFixed() (defined by num). To
+      specify the number of significant digits in the string, use
+      toStringAsPrecision() (also in num).</simpara>
+
+      <screen>// Convert an int to a string.
+assert(42.toString() == '42');
+
+// Convert a double to a string.
+assert(123.456.toString() == '123.456');
+
+// Specify the number of digits after the decimal.
+assert(123.456.toStringAsFixed(2) == '123.46');
+
+// Specify the number of significant figures.
+assert(123.456.toStringAsPrecision(2) == '1.2e+2');
+assert(double.parse('1.2e+2') == 120.0);</screen>
+
+      <para>For more information, see the API documentation for <ulink
+      url="http://api.dartlang.org/dart_core/int.html">int,</ulink> <ulink
+      url="http://api.dartlang.org/dart_core/double.html">double,</ulink> and
+      <ulink url="http://api.dartlang.org/dart_core/num.html">num</ulink>.
+      Also see <xref lang="" linkend="ch03-dart-math" xrefstyle="" />.</para>
+    </sect2>
+
+    <sect2 id="ch03-strings-and-regular-expressions">
+      <title>Strings and regular expressions</title>
+
+      <simpara>A string in Dart is an immutable sequence of UTF-16 code units.
+      The language tour has more information about strings <xref
+      linkend="strings" xrefstyle="select:page" />. You can use regular
+      expressions (RegExp objects) to search within strings and to replace
+      parts of strings.</simpara>
+
+      <simpara>The String class defines such methods as split(), contains(),
+      startsWith(), endsWith(), and more.</simpara>
+
+      <sect3 id="ch03-searching-inside-a-string">
+        <title>Searching inside a string</title>
+
+        <simpara>You can find particular locations within a string, as well as
+        check whether a string begins with or ends with a particular
+        pattern.</simpara>
+
+        <screen>// Check whether a string contains another string.
+assert('Never odd or even'.contains('odd'));
+
+// Does a string start with another string?
+assert('Never odd or even'.startsWith('Never'));
+
+// Does a string end with another string?
+assert('Never odd or even'.endsWith('even'));
+
+// Find the location of a string inside a string.
+assert('Never odd or even'.indexOf('odd') == 6);</screen>
+      </sect3>
+
+      <sect3 id="ch03-extracting-data-from-a-string">
+        <title>Extracting data from a string</title>
+
+        <simpara>You can get the individual characters or character codes from
+        a string as Strings or ints, respectively.</simpara>
+
+        <simpara>You can also extract a substring or split a string into a
+        list of substrings.</simpara>
+
+        <screen>// Grab a substring.
+assert('Never odd or even'.substring(6, 9) == 'odd');
+
+// Split a string using a string pattern.
+var parts = 'structured web apps'.split(' ');
+assert(parts.length == 3);
+assert(parts[0] == 'structured');
+
+// Get the character (as a string) by index.
+assert('Never odd or even'[0] == 'N');
+
+// Use splitChars() to get a list of all characters (as Strings);
+// good for iterating.
+for (var char in 'hello'.splitChars()) {
+  print(char);
+}
+
+// Get the char code at an index.
+assert('Never odd or even'.charCodeAt(0) == 78);
+
+// Get all the char codes as a list of integers.
+var charCodes = 'Never odd or even'.charCodes();
+assert(charCodes.length == 17);
+assert(charCodes[0] == 78);</screen>
+      </sect3>
+
+      <sect3 id="ch03-converting-to-uppercase-or-lowercase">
+        <title>Converting to uppercase or lowercase</title>
+
+        <simpara>You can easily convert strings to their uppercase and
+        lowercase variants.</simpara>
+
+        <screen>// Convert to uppercase.
+assert('structured web apps'.toUpperCase() == 'STRUCTURED WEB APPS');
+
+// Convert to lowercase.
+assert('STRUCTURED WEB APPS'.toLowerCase() == 'structured web apps');</screen>
+      </sect3>
+
+      <sect3 id="ch03-trimming-and-empty-strings">
+        <title>Trimming and empty strings</title>
+
+        <simpara>Remove all leading and trailing white space with trim(). To
+        check whether a string is empty (length is zero), use
+        isEmpty().</simpara>
+
+        <screen>// Trim a string.
+assert('  hello  '.trim() == 'hello');
+
+// Check whether a string is empty.
+assert(''.isEmpty());
+
+// Strings with only white space are not empty.
+assert(!'  '.isEmpty());</screen>
+      </sect3>
+
+      <sect3 id="_replacing_part_of_a_string">
+        <title>Replacing part of a string</title>
+
+        <simpara>Strings are immutable objects, which means you can create
+        them but you can’t change them. If you look closely at the <ulink
+        url="http://api.dartlang.org/dart_core/String.html">String API
+        docs</ulink>, you’ll notice that none of the methods actually changes
+        the state of a String. For example, the method replaceAll() returns a
+        new String without changing the original String.</simpara>
+
+        <screen>var greetingTemplate = 'Hello, NAME!';
+var greeting = greetingTemplate.replaceAll(new RegExp('NAME'), 'Bob');
+
+assert(greeting != greetingTemplate); // greetingTemplate didn't change.</screen>
+      </sect3>
+
+      <sect3 id="_building_a_string">
+        <title>Building a string</title>
+
+        <simpara>To programmatically generate a string, you can use
+        StringBuffer. A StringBuffer doesn’t generate a new String object
+        until toString() is called.</simpara>
+
+        <screen>var sb = new StringBuffer();
+
+sb.add('Use a StringBuffer ');
+sb.addAll(['for ', 'efficient ', 'string ', 'creation ']);
+sb.add('if you are ').add('building lots of strings.');
+
+var fullString = sb.toString();
+
+assert(fullString ==
+    'Use a StringBuffer for efficient string creation '
+    'if you are building lots of strings.');
+
+sb.clear();  // All gone!
+assert(sb.toString() == '');</screen>
+      </sect3>
+
+      <sect3 id="ch03-regular-expressions">
+        <title>Regular expressions</title>
+
+        <simpara>The RegExp class provides the same capabilities as JavaScript
+        regular expressions. Use regular expressions for efficient searching
+        and pattern matching of strings.</simpara>
+
+        <screen>// A regular expression for one or more digits
+var numbers = const RegExp(r'\d+');
+
+var allCharacters = 'llamas live fifteen to twenty years';
+var someDigits = 'llamas live 15 to 20 years';
+
+// Contains() can use a regular expression.
+assert(!allCharacters.contains(numbers));
+assert(someDigits.contains(numbers));
+
+// Replace every match with another string.
+var exedOut = someDigits.replaceAll(numbers, 'XX');
+assert(exedOut == 'llamas live XX to XX years');</screen>
+
+        <simpara>You can work directly with the RegExp class, too. The Match
+        class provides access to a regular expression match.</simpara>
+
+        <screen>var numbers = const RegExp(r'\d+');
+var someDigits = 'llamas live 15 to 20 years';
+
+// Check whether the reg exp has a match in a string.
+assert(numbers.hasMatch(someDigits));
+
+// Loop through all matches.
+for (var match in numbers.allMatches(someDigits)) {
+  print(match.group(0)); // 15, then 20
+}</screen>
+      </sect3>
+
+      <sect3 id="ch03-more-information-8">
+        <title>More information</title>
+
+        <simpara>Refer to the <ulink
+        url="http://api.dartlang.org/dart_core/String.html">String API
+        docs</ulink> for a full list of methods. Also see the API docs for
+        <ulink
+        url="http://api.dartlang.org/dart_core/StringBuffer.html">StringBuffer,</ulink>
+        <ulink
+        url="http://api.dartlang.org/dart_core/Pattern.html">Pattern,</ulink>
+        <ulink
+        url="http://api.dartlang.org/dart_core/RegExp.html">RegExp,</ulink>
+        and <ulink
+        url="http://api.dartlang.org/dart_core/Match.html">Match.</ulink></simpara>
+      </sect3>
+    </sect2>
+
+    <sect2 id="ch03-collections">
+      <title>Collections</title>
+
+      <simpara>Dart ships with a core collections API, which includes classes
+      for lists, sets, and maps.</simpara>
+
+      <sect3 id="ch03-lists">
+        <title>Lists</title>
+
+        <simpara>As the language tour shows <xref linkend="lists"
+        xrefstyle="select:page" />, you can use literals to create and
+        initialize lists. Alternatively, use one of the List constructors. The
+        List class also defines several methods for adding items to and
+        removing items from lists.</simpara>
+
+        <screen>// Use a List constructor.
+var vegetables = new List();
+
+// Or simply use a list literal.
+var fruits = ['apples', 'oranges'];
+
+// Add to a list.
+fruits.add('kiwis');
+
+// Add multiple items to a list.
+fruits.addAll(['grapes', 'bananas']);
+
+// Get the list length.
+assert(fruits.length == 5);
+
+// Remove a single item.
+var appleIndex = fruits.indexOf('apples');
+fruits.removeAt(appleIndex);
+assert(fruits.length == 4);
+
+// Remove all elements from a list.
+fruits.clear();
+assert(fruits.length == 0);</screen>
+
+        <simpara>Use indexOf() to find the index of an object in a
+        list.</simpara>
+
+        <screen>var fruits = ['apples', 'oranges'];
+
+// Access a list item by index.
+assert(fruits[0] == 'apples');
+
+// Find an item in a list.
+assert(fruits.indexOf('apples') == 0);</screen>
+
+        <simpara>Sort a list using the sort() method. You must provide a
+        sorting function that compares two objects. This sorting function must
+        return &lt; 0 for <emphasis>smaller</emphasis>, 0 for the
+        <emphasis>same</emphasis>, and &gt; 0 for <emphasis>bigger</emphasis>.
+        The following example uses compareTo(), which is defined by <ulink
+        url="http://api.dartlang.org/dart_core/Comparable.html">Comparable</ulink>
+        and implemented by String.</simpara>
+
+        <screen>var fruits = ['bananas', 'apples', 'oranges'];
+
+// Sort a list.
+fruits.sort((a, b) =&gt; a.compareTo(b));
+assert(fruits[0] == 'apples');</screen>
+
+        <simpara>Lists are parameterized types, so you can specify the type
+        that a list should contain.</simpara>
+
+        <screen>// This list should contain only strings.
+var fruits = new List&lt;String&gt;();
+
+fruits.add('apples');
+var fruit = fruits[0];
+assert(fruit is String);
+
+// Generates static analysis warning, num is not a string.
+fruits.add(5);  // BAD: Throws exception in checked mode.</screen>
+
+        <simpara>Refer to the <ulink
+        url="http://api.dartlang.org/dart_core/List.html">List API
+        docs</ulink> for a full list of methods.</simpara>
+      </sect3>
+
+      <sect3 id="ch03-sets">
+        <title>Sets</title>
+
+        <simpara>A set in Dart is an unordered collection of unique items.
+        Because a set is unordered, you can’t get a set’s items by index
+        (position).</simpara>
+
+        <screen>var ingredients = new Set();
+ingredients.addAll(['gold', 'titanium', 'xenon']);
+assert(ingredients.length == 3);
+
+// Adding a duplicate item has no effect.
+ingredients.add('gold');
+assert(ingredients.length == 3);
+
+// Remove an item from a set.
+ingredients.remove('gold');
+assert(ingredients.length == 2);</screen>
+
+        <simpara>Use contains() and containsAll() to check whether one or more
+        objects are in a set.</simpara>
+
+        <screen>var ingredients = new Set();
+ingredients.addAll(['gold', 'titanium', 'xenon']);
+
+// Check whether an item is in the set.
+assert(ingredients.contains('titanium'));
+
+// Check whether all the items are in the set.
+assert(ingredients.containsAll(['titanium', 'xenon']));</screen>
+
+        <simpara>An intersection is a set whose items are in two other sets. A
+        subset has all of its items included in another, potentially larger,
+        collection.</simpara>
+
+        <screen>var ingredients = new Set();
+ingredients.addAll(['gold', 'titanium', 'xenon']);
+
+// Create the intersection of two sets.
+var nobleGases = new Set.from(['xenon', 'argon']);
+var intersection = ingredients.intersection(nobleGases);
+assert(intersection.length == 1);
+assert(intersection.contains('xenon'));
+
+// Check whether this set is a subset of another collection.
+// That is, does another collection contains all the items of this set?
+var allElements = ['hydrogen', 'helium', 'lithium', 'beryllium',
+                   'gold', 'titanium', 'xenon' /* all the rest */];
+assert(ingredients.isSubsetOf(allElements));</screen>
+
+        <simpara>Refer to the <ulink
+        url="http://api.dartlang.org/dart_core/Set.html">Set API docs</ulink>
+        for a full list of methods.</simpara>
+      </sect3>
+
+      <sect3 id="ch03-common-collection-methods">
+        <title>Common collection methods</title>
+
+        <simpara>Both List and Set extend the Collection class. As such, they
+        share common functionality found in all collections. The following
+        examples work with any object that implements Collection.</simpara>
+
+        <simpara>Use isEmpty() to check whether a collection has no
+        items.</simpara>
+
+        <screen>var teas = ['green', 'black', 'chamomile', 'earl grey'];
+assert(!teas.isEmpty());</screen>
+
+        <simpara>To apply a function to each item in a collection, you can use
+        forEach(). Or use map() if you want a new collection that contains the
+        results.</simpara>
+
+        <screen>var teas = ['green', 'black', 'chamomile', 'earl grey'];
+
+teas.forEach((tea) =&gt; print('I drink $tea'));
+
+var loudTeas = teas.map((tea) =&gt; tea.toUpperCase());
+assert(loudTeas.some((tea) =&gt; tea == 'GREEN'));</screen>
+
+        <simpara>Use some() and every() to check whether some or all items in
+        a collection match a condition.</simpara>
+
+        <screen>var teas = ['green', 'black', 'chamomile', 'earl grey'];
+
+// Chamomile is not caffeinated.
+isDecaffeinated(String teaName) =&gt; teaName == 'chamomile';
+
+// Use filter() to create a new collection with only the items
+// that return true from the provided function.
+var decaffeinatedTeas = teas.filter((tea) =&gt; isDecaffeinated(tea));
+// or teas.filter(isDecaffeinated)
+
+// Use some() to check whether at least one item in the collection
+// satisfies a condition.
+assert(teas.some(isDecaffeinated));
+
+// Use every() to check whether all the items in a collection
+// satisfy a condition.
+assert(!teas.every(isDecaffeinated));</screen>
+
+        <simpara>Refer to the <ulink
+        url="http://api.dartlang.org/dart_core/Collection.html">Collection API
+        docs</ulink> for a full list of methods.</simpara>
+      </sect3>
+
+      <sect3 id="ch03-maps-aka-dictionaries-or-hashes">
+        <title>Maps</title>
+
+        <simpara>A map, commonly known as a <emphasis>dictionary</emphasis> or
+        <emphasis>hash</emphasis>, is an unordered collection of key-value
+        pairs. Maps associate a key to some value for easy retrieval. Unlike
+        in JavaScript, Dart objects are not maps.</simpara>
+
+        <note>
+          <simpara>The Map class does not itself extend Collection. You can,
+          however, get a collection of a map’s keys or its values.</simpara>
+        </note>
+
+        <simpara>You can declare a map using a terse literal syntax, or you
+        can use a traditional constructor.</simpara>
+
+        <screen>// Map literals use strings as keys.
+var hawaiianBeaches = {
+  'oahu' : ['waikiki', 'kailua', 'waimanalo'],
+  'big island' : ['wailea bay', 'pololu beach'],
+  'kauai' : ['hanalei', 'poipu']
+};
+
+// Maps can be built from a constructor.
+var searchTerms = new Map();
+
+// Maps are parameterized types; you can specify what types
+// the key and value should be.
+var nobleGases = new Map&lt;int, String&gt;();</screen>
+
+        <simpara>You add, get, and set map items using the bracket syntax. Use
+        remove() to remove a key and its value from a map.</simpara>
+
+        <screen>var nobleGases = new Map&lt;int, String&gt;();
+
+// Maps from constructors can use any object as a key.
+// Integers and strings are common key types.
+nobleGases[54] = 'xenon';
+
+// Retrieve a value with a key.
+assert(nobleGases[54] == 'xenon');
+
+// Check whether a map contains a key.
+assert(nobleGases.containsKey(54));
+
+// Remove a key and its value.
+nobleGases.remove(54);
+assert(!nobleGases.containsKey(54));</screen>
+
+        <simpara>You can retrieve all the values or all the keys from a
+        map.</simpara>
+
+        <screen>var hawaiianBeaches = {
+  'oahu' : ['waikiki', 'kailua', 'waimanalo'],
+  'big island' : ['wailea bay', 'pololu beach'],
+  'kauai' : ['hanalei', 'poipu']
+};
+
+// Get all the keys as an unordered collection (a list).
+var keys = hawaiianBeaches.getKeys();
+
+assert(keys.length == 3);
+assert(new Set.from(keys).contains('oahu'));
+
+// Get all the values as an unordered collection (a list of lists).
+var values = hawaiianBeaches.getValues();
+assert(values.length == 3);
+assert(values.some((v) =&gt; v.indexOf('waikiki') != -1));</screen>
+
+        <simpara>You can also iterate through the key-value pairs.</simpara>
+
+        <screen>// NOTE: Do not depend on iteration order.
+hawaiianBeaches.forEach((k,v) {
+  print('I want to visit $k and swim at $v');
+  // I want to visit oahu and swim at [waikiki, kailua, waimanalo], etc.
+});</screen>
+
+        <simpara>To check whether a map contains a key, use containsKey().
+        Because map values can be null, you cannot rely on simply getting the
+        value for the key and checking for null to determine the existence of
+        a key.</simpara>
+
+        <screen>var hawaiianBeaches = {
+  'oahu' : ['waikiki', 'kailua', 'waimanalo'],
+  'big island' : ['wailea bay', 'pololu beach'],
+  'kauai' : ['hanalei', 'poipu']
+};
+
+assert(hawaiianBeaches.containsKey('oahu'));
+assert(!hawaiianBeaches.containsKey('florida'));</screen>
+
+        <simpara>Use the putIfAbsent() method when you want to assign a value
+        to a key if and only if the key does not already exist in a map. You
+        must provide a function that returns the value.</simpara>
+
+        <screen>var teamAssignments = {};
+teamAssignments.putIfAbsent('Catcher', () =&gt; pickToughestKid());
+assert(teamAssignments['Catcher'] != null);</screen>
+
+        <simpara>Refer to the <ulink
+        url="http://api.dartlang.org/dart_core/Map.html">Map API docs</ulink>
+        for a full list of methods.</simpara>
+      </sect3>
+    </sect2>
+
+    <sect2 id="ch03-dates-and-times">
+      <title>Dates and times</title>
+
+      <simpara>A Date object is a point in time. The time zone is either UTC
+      or the local time zone.</simpara>
+
+      <simpara>You can create Date objects using several
+      constructors.</simpara>
+
+      <screen>// Get the current date and time.
+var now = new Date.now();
+
+// Create a new Date with the local time zone.
+var y2k = new Date(2000, 1, 1, 0, 0, 0, 0);
+
+// You can also use named parameters.
+y2k = new Date(2000, month: 1, day: 1, hour: 0, minute: 0, second: 0,
+               millisecond: 0);
+
+// Specify all the parts of a date as a UTC time.
+y2k = new Date(2000, 1, 1, 0, 0, 0, 0, isUtc: true);
+
+// Specify a UTC date and time in milliseconds since the Unix epoch.
+y2k = new Date.fromMillisecondsSinceEpoch(946684800000, isUtc: true);
+
+// Parse an ISO 8601 date.
+y2k = new Date.fromString('2000-01-01T00:00:00Z');</screen>
+
+      <simpara>The <literal>millisecondsSinceEpoch</literal> property of a
+      date returns the number of milliseconds since the epoch.</simpara>
+
+      <screen>var y2k = new Date.fromString('2000-01-01T00:00:00Z');
+assert(y2k.millisecondsSinceEpoch == 946684800000);</screen>
+
+      <simpara>Use the Duration class to calculate the difference between two
+      dates and to shift a date’s time forward or backwards.</simpara>
+
+      <screen>var y2k = new Date.fromString('2000-01-01T00:00:00Z');
+
+// Add one year.
+var y2001 = y2k.add(const Duration(days: 366));
+assert(y2001.year == 2001);
+
+// Subtract 30 days.
+var december2000 = y2001.subtract(const Duration(days: 30));
+assert(december2000.year == 2000);
+assert(december2000.month == 12);
+
+// Calculate the difference between two dates.
+// Returns a Duration object.
+var duration = y2001.difference(y2k);
+assert(duration.inDays == 366); // y2k was a leap year.</screen>
+
+      <simpara>Refer to the API docs for <ulink
+      url="http://api.dartlang.org/dart_core/Date.html">Date</ulink> and
+      <ulink
+      url="http://api.dartlang.org/dart_core/Duration.html">Duration</ulink>
+      for a full list of methods.</simpara>
+    </sect2>
+
+    <sect2 id="ch03-utility-interfaces">
+      <title>Utility classes</title>
+
+      <simpara>The core library contains various utility classes, useful for
+      sorting, mapping values, and iterating.</simpara>
+
+      <sect3 id="ch03-comparing-objects">
+        <title>Comparing objects</title>
+
+        <simpara>Implement the <ulink
+        url="http://api.dartlang.org/dart_core/Comparable.html">Comparable</ulink>
+        interface to indicate that an object can be compared to another
+        object, usually for sorting. The compareTo() method returns &lt; 0 for
+        <emphasis>smaller</emphasis>, 0 for the <emphasis>same</emphasis>, and
+        &gt; 0 for <emphasis>bigger</emphasis>.</simpara>
+
+        <screen>class Line implements Comparable {
+  final length;
+  const Line(this.length);
+  int compareTo(Line other) =&gt; length - other.length;
+}
+
+main() {
+  var short = const Line(1);
+  var long = const Line(100);
+  assert(short.compareTo(long) &lt; 0);
+}</screen>
+      </sect3>
+
+      <sect3 id="ch03-implementing-map-keys">
+        <title>Implementing map keys</title>
+
+        <simpara>Each object in Dart automatically provides an integer hash
+        code, and thus can be used as a key in a map. However, you can
+        override the hashCode() method to generate a custom hash code. If you
+        do, be sure to override the <literal>==</literal> operator, as well.
+        Objects that are equal (via <literal>==</literal>) must have identical
+        hash codes. A hash code doesn’t have to be unique, but it should be
+        well distributed.</simpara>
+
+        <remark>Note: There's disagreement over whether to include identical()
+        in the == implementation. Gilad says yes; Mads says no. It might
+        improve speed. They don't do identical() automatically because, by
+        convention, NaN != NaN.</remark>
+
+        <screen>class Person {
+  String firstName, lastName;
+
+  Person(this.firstName, this.lastName);
+
+  // Override hashCode using strategy from Effective Java, Chapter 11.
+  int hashCode() {
+    int result = 17;
+    result = 37 * result + firstName.hashCode();
+    result = 37 * result + lastName.hashCode();
+    return result;
+  }
+
+  // Always implement operator== if you override hashCode.
+  bool operator==(other) {
+    if (identical(other, this)) return true;
+    return (other.firstName == firstName &amp;&amp; other.lastName == lastName);
+  }
+}
+
+main() {
+  var p1 = new Person('bob', 'smith');
+  var p2 = new Person('bob', 'smith');
+  assert(p1.hashCode() == p2.hashCode());
+}</screen>
+      </sect3>
+
+      <sect3 id="ch03-iteration">
+        <title>Iteration</title>
+
+        <simpara>The <ulink
+        url="http://api.dartlang.org/dart_core/Iterable.html">Iterable</ulink>
+        and <ulink
+        url="http://api.dartlang.org/dart_core/Iterator.html">Iterator</ulink>
+        classes support for-in loops. Implement Iterable to signal that an
+        object can provide an Iterator, and thus be used by for-in loops.
+        Implement Iterator to define the actual iteration ability.</simpara>
+
+        <screen>class Process {
+  // Represents a process...
+}
+
+class ProcessIterator implements Iterator&lt;Process&gt; {
+  Process next() {
+    // Return the next process if possible; but if not:
+    throw new NoMoreElementsException();
+  }
+  bool hasNext() {
+    // True if calling next() would return a process
+    return false;
+  }
+}
+
+// A mythical class that lets you iterate through all processes.
+class Processes implements Iterable&lt;Process&gt; {
+  Iterator&lt;Process&gt; iterator() {
+    return new ProcessIterator();
+  }
+}
+
+main() {
+  // Objects that implement Iterable can be used with for-in.
+  for (var process in new Processes()) {
+    // Do something with the process.
+  }
+}</screen>
+      </sect3>
+    </sect2>
+
+    <sect2 id="ch03-asynchronous-programming">
+      <title>Asynchronous programming</title>
+
+      <simpara>Asynchronous programming often uses callback functions, but
+      Dart provides an alternative: <ulink
+      url="http://api.dartlang.org/dart_core/Future.html">Future</ulink>
+      objects. A Future is like a promise for a result to be provided sometime
+      in the future.</simpara>
+
+      <simpara>You have the option of using a <ulink
+      url="http://api.dartlang.org/dart_core/Completer.html">Completer</ulink>
+      to produce a Future and, later, to supply a value to the
+      Future.</simpara>
+
+      <screen>Future&lt;bool&gt; longExpensiveSearch() {
+  var completer = new Completer();
+  // Perform exhaustive search.
+  // ...
+  // Sometime later,
+  // found it!!
+  completer.complete(true);
+  return completer.future;
+}
+
+main() {
+  var result = longExpensiveSearch(); // Returns immediately.
+
+  // result.then() returns immediately.
+  result.then((success) {
+    // The following code executes when the operation is complete.
+    print('The item was found: $success');
+  });
+}</screen>
+
+      <sect3 id="ch03-chaining-multiple-async-methods">
+        <title>Chaining multiple asynchronous methods</title>
+
+        <simpara>The Future class specifies a chain() method, which is a
+        useful way to specify that multiple asynchronous methods run in a
+        certain order.</simpara>
+
+        <screen>Future result = costlyQuery();
+result.handleException((exception) =&gt; print('DOH!'));
+
+result.chain((value) =&gt; expensiveWork())
+      .chain((value) =&gt; lengthyComputation())
+      .then((value)  =&gt; print('done!'));</screen>
+
+        <simpara>In the above example, the methods run in the following
+        order:</simpara>
+
+        <orderedlist numeration="arabic">
+          <listitem>
+            <simpara>costlyQuery()</simpara>
+          </listitem>
+
+          <listitem>
+            <simpara>expensiveWork()</simpara>
+          </listitem>
+
+          <listitem>
+            <simpara>lengthyComputation()</simpara>
+          </listitem>
+        </orderedlist>
+      </sect3>
+
+      <sect3 id="ch03-waiting-for-multiple-futures">
+        <title>Waiting for multiple futures</title>
+
+        <simpara>Sometimes your algorithm needs to initiate many asynchronous
+        methods and wait for each one to complete before continuing. Use the
+        <ulink
+        url="http://api.dartlang.org/dart_core/Futures.html">Futures</ulink>
+        class to manage multiple Futures and wait for them all to
+        complete.</simpara>
+
+        <screen>Future deleteDone = deleteLotsOfFiles();
+Future copyDone = copyLotsOfFiles();
+Future checksumDone = checksumLotsOfOtherFiles();
+
+Futures.wait([deleteDone, copyDone, checksumDone]).then((List values) {
+  print('Done with all the long steps');
+});</screen>
+      </sect3>
+
+      <sect3 id="ch03-more-information-9">
+        <title>More information</title>
+
+        <simpara>For examples of using Future, see <xref
+        linkend="ch03-dartio---file-and-socket-io-for-command-line-apps" />.</simpara>
+      </sect3>
+    </sect2>
+
+    <sect2 id="ch03-exceptions">
+      <title>Exceptions</title>
+
+      <simpara>The Dart core library defines many common exceptions and
+      errors. Exceptions are considered conditions that you can plan ahead for
+      and catch. Errors are conditions that you don’t expect or plan
+      for.</simpara>
+
+      <simpara>Some of the most common exceptions and errors
+      include:</simpara>
+
+      <variablelist>
+        <varlistentry>
+          <term><ulink
+          url="http://api.dartlang.org/dart_core/NoSuchMethodError.html">NoSuchMethodError</ulink></term>
+
+          <listitem>
+            <simpara>Thrown when a receiving object does not implement a
+            method.</simpara>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><ulink
+          url="http://api.dartlang.org/dart_core/NullPointerException.html">NullPointerException</ulink></term>
+
+          <listitem>
+            <simpara>Thrown when the program tries to call a method or access
+            a field of a null object.</simpara>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><ulink
+          url="http://api.dartlang.org/dart_core/ArgumentError.html">ArgumentError</ulink></term>
+
+          <listitem>
+            <simpara>Can be thrown by a method that encounters an unexpected
+            argument.</simpara>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <simpara>Throwing an application-specific exception is a common way to
+      indicate that an error has occurred. You can define a custom exception
+      by implementing the Exception interface.</simpara>
+
+      <screen>class FooException implements Exception {
+  final String msg;
+  const FooException([this.msg]);
+  String toString() =&gt; msg == null ? 'FooException' : msg;
+}</screen>
+
+      <simpara>For more information, see <xref linkend="exceptions" /> and the
+      <ulink url="http://api.dartlang.org/dart_core/Exception.html">Exception
+      API docs.</ulink></simpara>
+    </sect2>
+  </sect1>
+
+  <sect1 id="ch03-dart-math">
+    <title>dart:math - Math and random</title>
+
+    <simpara>The Math library provides common functionality such as sine and
+    cosine, maximum and minimum, and constants such as <emphasis>pi</emphasis>
+    and <emphasis>e</emphasis>. Most of the functionality in the Math library
+    is implemented as top-level functions.</simpara>
+
+    <simpara>To use the Math library in your app, import
+    <literal>dart:math</literal>. The following examples use the prefix
+    <literal>Math</literal> to make clear which top-level functions and
+    constants are from the Math library.</simpara>
+
+    <screen>import 'dart:math' as math;</screen>
+
+    <sect2 id="ch03-trigonometry">
+      <title>Trigonometry</title>
+
+      <simpara>The Math library provides basic trigonometric
+      functions.</simpara>
+
+      <note>
+        <simpara>These methods use radians, not degrees!</simpara>
+      </note>
+
+      <screen>// Cosine
+assert(math.cos(math.PI) == -1.0);
+
+// Sine
+var degrees = 30;
+var radians = degrees * (math.PI / 180);
+// radians is now 0.52359.
+var sinOf30degrees = math.sin(radians);
+
+// Truncate the decimal places to 2.
+assert(double.parse(sinOf30degrees.toStringAsPrecision(2)) == 0.5);</screen>
+    </sect2>
+
+    <sect2 id="ch03-maximum-and-mininum">
+      <title>Maximum and mininum</title>
+
+      <simpara>The Math library provides optimized max() and min()
+      methods.</simpara>
+
+      <screen>assert(math.max(1, 1000) == 1000);
+assert(math.min(1, -1000) == -1000);</screen>
+    </sect2>
+
+    <sect2 id="ch03-math-constants">
+      <title>Math constants</title>
+
+      <simpara>Find your favorite constants—<emphasis>pi</emphasis>,
+      <emphasis>e</emphasis>, and more—in the Math library.</simpara>
+
+      <screen>// See the Math library for additional constants.
+print(math.E);     // 2.718281828459045
+print(math.PI);    // 3.141592653589793
+print(math.SQRT2); // 1.4142135623730951</screen>
+    </sect2>
+
+    <sect2 id="ch03-random-numbers">
+      <title>Random numbers</title>
+
+      <simpara>Generate random numbers with the <ulink
+      url="http://api.dartlang.org/dart_math/Random.html">Random</ulink>
+      class. You can optionally provide a seed to the Random
+      constructor.</simpara>
+
+      <screen>var random = new math.Random();
+random.nextDouble(); // Between 0.0 and 1.0: [0, 1)
+random.nextInt(10);  // Between 0 and 9.</screen>
+
+      <simpara>You can even generate random booleans.</simpara>
+
+      <screen>var random = new math.Random();
+random.nextBool();  // true or false</screen>
+    </sect2>
+
+    <sect2 id="ch03-more-information-7">
+      <title>More information</title>
+
+      <simpara>Refer to the <ulink
+      url="http://api.dartlang.org/dart_math/index.html">Math API docs</ulink>
+      for a full list of methods. Also see the API docs for <ulink
+      url="http://api.dartlang.org/dart_core/num.html">num,</ulink> <ulink
+      url="http://api.dartlang.org/dart_core/int.html">int,</ulink> and <ulink
+      url="http://api.dartlang.org/dart_core/double.html">double.</ulink></simpara>
+    </sect2>
+  </sect1>
+
+  <sect1 id="ch03-dart-html-using-html5-apis">
+    <title>dart:html - Browser-based apps</title>
+
+    <note>
+      <simpara>Only web apps can use dart:html, not command-line
+      apps.</simpara>
+    </note>
+
+    <simpara>Use the <ulink
+    url="http://api.dartlang.org/dart_html.html">dart:html library</ulink> to
+    program the browser, manipulate objects and elements in the DOM, and
+    access HTML5 APIs. <glossterm>DOM</glossterm> stands for
+    <emphasis>Document Object Model</emphasis>, which describes the hierarchy
+    of an HTML page.</simpara>
+
+    <simpara>Other common uses of dart:html are manipulating styles
+    (<emphasis>CSS</emphasis>), getting data using HTTP requests, and
+    exchanging data using WebSockets <xref linkend="ch03-websockets"
+    xrefstyle="select:page" />.</simpara>
+
+    <note>
+      <simpara>HTML5 (and dart:html) has many additional APIs that this
+      section doesn’t cover.</simpara>
+    </note>
+
+    <simpara>To use the HTML library in your web app, import
+    <literal>dart:html</literal>.</simpara>
+
+    <programlisting>import 'dart:html';</programlisting>
+
+    <sect2 id="ch03-manipulating-the-dom">
+      <title>Manipulating the DOM</title>
+
+      <simpara>To use the DOM, you need to know about
+      <emphasis>windows</emphasis>, <emphasis>documents</emphasis>,
+      <emphasis>elements</emphasis>, and <emphasis>nodes</emphasis>.</simpara>
+
+      <simpara>A <ulink
+      url="http://api.dartlang.org/html/Window.html">Window</ulink> object
+      represents the actual window of the web browser. Each Window has a
+      <literal>document</literal> property (a Document object), which points
+      to the document currently loaded. The Window object also has accessors
+      to various APIs such as IndexedDB (for storing data),
+      requestAnimationFrame() (for animations), and more. In tabbed browsers,
+      each tab has its own Window object.</simpara>
+
+      <simpara>With the <ulink
+      url="http://api.dartlang.org/html/Document.html"> Document</ulink>
+      object, you can create and manipulate <ulink
+      url="http://api.dartlang.org/html/Element.html">Elements</ulink> within
+      the document. Note that the document itself is an element and can be
+      manipulated.</simpara>
+
+      <simpara>The DOM models a tree of <ulink
+      url="http://api.dartlang.org/html/Node.html">Nodes.</ulink> These nodes
+      are often elements, but they can also be attributes, text, comments, and
+      other DOM types. Except for the root node, which has no parent, each
+      node in the DOM has one parent and might have many children.</simpara>
+
+      <sect3 id="ch03-finding-elements">
+        <title>Finding elements</title>
+
+        <simpara>To manipulate an element, you first need an object that
+        represents it. You can get this object using a query.</simpara>
+
+        <simpara>Find one or more elements using the top-level functions
+        query() and queryAll(). You can query by ID, class, tag, name, or any
+        combination of these. The <ulink
+        url="http://www.w3.org/TR/css3-selectors/">CSS Selector
+        Specification</ulink> guide defines the formats of the selectors such
+        as using a # prefix to specify IDs and a period (.) for
+        classes.</simpara>
+
+        <simpara>The query() function returns the first element that matches
+        the selector, while queryAll() returns a collection of elements that
+        match the selector.</simpara>
+
+        <screen>Element elem1 = query('#an-id');           // Find an element by id (an-id).
+Element elem2 = query('.a-class');         // Find an element by class (a-class).
+List&lt;Element&gt; elems1 = queryAll('div');    // Find all elements by tag (&lt;div&gt;).
+List&lt;Element&gt; elems2 = queryAll('input[type="text"]'); // Find all text inputs.
+
+// Find all elements with the CSS class 'class' inside of a &lt;p&gt;
+// that is inside an element with the ID 'id'.
+List&lt;Element&gt; elems3 = queryAll('#id p .class');</screen>
+      </sect3>
+
+      <sect3 id="ch03-manipulating-elements">
+        <title>Manipulating elements</title>
+
+        <simpara>You can use properties to change the state of an element.
+        Node and its subtype Element define the properties that all elements
+        have. For example, all elements have <literal>classes</literal>,
+        <literal>hidden</literal>, <literal>id</literal>,
+        <literal>innerHTML</literal>, <literal>style</literal>,
+        <literal>text</literal>, and <literal>title</literal> properties.
+        Subclasses of Element define additional properties, such as the
+        <literal>href</literal> property of <ulink
+        url="http://api.dartlang.org/html/AnchorElement.html">AnchorElement.</ulink></simpara>
+
+        <simpara>Consider this example of specifying an anchor element in
+        HTML:</simpara>
+
+        <screen>&lt;a id='example' href='http://example.com'&gt;linktext&lt;/a&gt;</screen>
+
+        <simpara>This &lt;a&gt; tag specifies an element with an
+        <literal>href</literal> attribute and a text node (accessible via a
+        <literal>text</literal> property) that contains the string “linktext”.
+        To change the URL that the link goes to, you can use AnchorElement’s
+        <literal>href</literal> property:</simpara>
+
+        <screen>query('#example').href = 'http://dartlang.org';</screen>
+
+        <simpara>Often you need to set properties on multiple elements. For
+        example, the following code sets the <literal>hidden</literal>
+        property of all elements that have a class of “mac”, “win”, or
+        “linux”. Setting the <literal>hidden</literal> property to true has
+        the same effect as adding <literal>display:none</literal> to the
+        CSS.</simpara>
+
+        <screen>
+&lt;!-- Some HTML --&gt;
+&lt;p&gt;
+  &lt;a href="/downloads/linux" class="os linux"&gt;Download for Linux&lt;/a&gt;
+  &lt;a href="/downloads/mac" class="os mac"&gt;Download for Mac&lt;/a&gt;
+  &lt;a href="/downloads/win" class="os win"&gt;Download for Windows&lt;/a&gt;
+&lt;/p&gt;
+
+// Some Dart.
+
+final osList = ['mac', 'win', 'linux'];
+
+main() {
+  var userOs = determineUserOs();
+
+  for (var os in osList) {            // For each possible OS...
+    bool shouldShow = (os == userOs); // Does this OS match the user's OS?
+    for (var elem in queryAll('.$os')) { // Find all elements for this OS.
+      elem.hidden = !shouldShow;      // Show or hide each element.
+    }
+  }
+}
+</screen>
+
+        <simpara>When the right property isn’t available or convenient, you
+        can use Element’s <literal>attributes</literal> property. This
+        property has the type <ulink
+        url="http://api.dartlang.org/html/AttributeMap.html">AttributeMap,</ulink>
+        which implements a map <xref
+        linkend="ch03-maps-aka-dictionaries-or-hashes"
+        xrefstyle="select:page" /> with keys that are strings (attribute
+        names) and values that it automatically converts to strings. For a
+        list of attribute names and their meanings, see the <ulink
+        url="https://developer.mozilla.org/en/HTML/Attributes"> MDN Attributes
+        page.</ulink> Here’s an example of setting an attribute’s
+        value.</simpara>
+
+        <screen>elem.attributes['someAttribute'] = 'someValue';</screen>
+      </sect3>
+
+      <sect3 id="ch03-creating-elements">
+        <title>Creating elements</title>
+
+        <simpara>You can add to existing HTML pages by creating new elements
+        and attaching them to the DOM. Here’s an example of creating a
+        paragraph (&lt;p&gt;) element:</simpara>
+
+        <screen>var elem = new ParagraphElement();
+elem.text = 'Creating is easy!';</screen>
+
+        <simpara>You can also create an element by parsing HTML text. Any
+        child elements are also parsed and created.</simpara>
+
+        <screen>var elem = new Element.html('&lt;p&gt;Creating &lt;em&gt;is&lt;/em&gt; easy!&lt;/p&gt;');</screen>
+
+        <simpara>Note that elem is a ParagraphElement in the above
+        example.</simpara>
+
+        <simpara>Attach the newly created element to the document by assigning
+        a parent to the element. You can add an element to any existing
+        element’s children. In the following example, <literal>body</literal>
+        is an element, and its child elements are accessible (as a
+        List&lt;Element&gt;) from the <literal>elements</literal>
+        property.</simpara>
+
+        <screen>var elem = new ParagraphElement();
+elem.text = "Don't forget to feed the llamas!";
+document.body.elements.add(elem);</screen>
+      </sect3>
+
+      <sect3 id="ch03-adding-replacing-and-removing-nodes">
+        <title>Adding, replacing, and removing nodes</title>
+
+        <simpara>Recall that elements are just a kind of node. You can find
+        all the children of a node using the <literal>nodes</literal> property
+        of Node, which returns a List&lt;Node&gt;. Once you have this list,
+        you can use the usual List methods and operators to manipulate the
+        children of the node.</simpara>
+
+        <simpara>To add a node as the last child of its parent, use the List
+        add() method.</simpara>
+
+        <screen>// Find the parent by ID, and add elem as its last child.
+query('#inputs').nodes.add(elem);</screen>
+
+        <simpara>To replace a node, use the Node replaceWith()
+        method.</simpara>
+
+        <screen>// Find a node by ID, and replace it in the DOM.
+query('#status').replaceWith(elem);</screen>
+
+        <simpara>To remove a node, use the Node remove() method.</simpara>
+
+        <screen>// Find a node by ID, and remove it from the DOM.
+query('#example').remove();</screen>
+      </sect3>
+
+      <sect3 id="ch03-manipulating-styles">
+        <title>Manipulating CSS styles</title>
+
+        <simpara>CSS, or <emphasis>cascading style sheets</emphasis>, is used
+        to define the presentation styles of DOM elements. You can change the
+        appearance of an element by attaching ID and class attributes to
+        it.</simpara>
+
+        <simpara>Each element has a <literal>classes</literal> field, which is
+        a list. Add and remove CSS classes simply by adding and removing
+        strings from this collection. For example, the following sample adds
+        the <literal>warning</literal> class to an element.</simpara>
+
+        <screen>var element = query('#message');
+element.classes.add('warning');</screen>
+
+        <simpara>It’s often very efficient to find an element by ID. You can
+        dynamically set an element ID with the <literal>id</literal>
+        property.</simpara>
+
+        <screen>var message = new DivElement();
+message.id = 'message';
+message.text = 'Please subscribe to the Dart mailing list.';</screen>
+
+        <simpara>You can reduce the redundant text in this example by using
+        method cascades:</simpara>
+
+        <screen>var message = new DivElement()
+    ..id = 'message'
+    ..text = 'Please subscribe to the Dart mailing list.';</screen>
+
+        <simpara>While using IDs and classes to associate an element with a
+        set of styles is best practice, sometimes you want to attach a
+        specific style directly to the element.</simpara>
+
+        <screen>message.style
+    ..fontWeight = 'bold'
+    ..fontSize = '3em';</screen>
+      </sect3>
+
+      <sect3 id="ch03-handling-events">
+        <title>Handling events</title>
+
+        <simpara>To respond to external events such as clicks, changes of
+        focus, and selections, add an event listener. You can add an event
+        listener to any element on the page. Event dispatch and propagation is
+        a complicated subject; <ulink
+        url="http://www.w3.org/TR/DOM-Level-3-Events/#dom-event- architecture">research
+        the details</ulink> if you’re new to web programming.</simpara>
+
+        <simpara>Add an event handler using
+        <literal>element.on.<replaceable>event</replaceable>.add(<replaceable>function</replaceable>)</literal>,
+        where <literal><replaceable>event</replaceable></literal> is the event
+        name and <literal><replaceable>function</replaceable></literal> is the
+        event handler.</simpara>
+
+        <simpara>For example, here’s how you can handle clicks on a
+        button.</simpara>
+
+        <screen>// Find a button by ID and add an event handler.
+query('#submitInfo').on.click.add((e) {
+  // When the button is clicked, it runs this code.
+  submitData();
+});</screen>
+
+        <simpara>Events can propagate up and down through the DOM tree. To
+        discover which element originally fired the event, use
+        <literal>e.target</literal>.</simpara>
+
+        <screen>document.body.on.click.add((e) {
+  var clickedElem = e.target;
+  print('You clicked the ${clickedElem.id} element.');
+});</screen>
+
+        <simpara>To see all the events for which you can register an event
+        listener, consult the API docs for <ulink
+        url="http://api.dartlang.org/html/ElementEvents.html">ElementEvents</ulink>
+        and its subclasses. Some common events include:</simpara>
+
+        <itemizedlist>
+          <listitem>
+            <simpara>change</simpara>
+          </listitem>
+
+          <listitem>
+            <simpara>blur</simpara>
+          </listitem>
+
+          <listitem>
+            <simpara>keyDown</simpara>
+          </listitem>
+
+          <listitem>
+            <simpara>keyUp</simpara>
+          </listitem>
+
+          <listitem>
+            <simpara>mouseDown</simpara>
+          </listitem>
+
+          <listitem>
+            <simpara>mouseUp</simpara>
+          </listitem>
+        </itemizedlist>
+      </sect3>
+    </sect2>
+
+    <sect2 id="ch03-httprequest">
+      <title>Using HTTP resources with HttpRequest</title>
+
+      <simpara>Formerly known as XMLHttpRequest, the <emphasis><ulink
+      url="http://api.dartlang.org/dart_html/HttpRequest.html">HttpRequest</ulink></emphasis>
+      class gives you access to HTTP resources from within your browser-based
+      app. Traditionally, AJAX-style apps make heavy use of HttpRequest. Use
+      HttpRequest to dynamically load JSON data or any other resource from a
+      web server. You can also dynamically send data to a web
+      server.</simpara>
+
+      <simpara>The following examples assume all resources are served from the
+      same web server that hosts the script itself. Due to security
+      restrictions in the browser, the HttpRequest class can’t easily use
+      resources that are hosted on an origin that is different from the origin
+      of the app. If you need to access resources that live on a different web
+      server, you need to either use a technique called JSONP or enable CORS
+      headers on the remote resources.</simpara>
+
+      <sect3 id="_getting_data_from_the_server">
+        <title>Getting data from the server</title>
+
+        <simpara>The <literal>HttpRequest.get()</literal> constructor is an
+        easy way to get data from a web server.</simpara>
+
+        <screen>import 'dart:html';
+import 'dart:json';
+
+onSuccess(HttpRequest request) {
+  Map response = JSON.parse(request.responseText);
+  String name = response['name'];
+  String license = response['license'];
+  print('The $name project uses the $license license.');
+}
+
+main() {
+  // Request the data at 'data.json', a file in the same location as this page.
+  var httpRequest = new HttpRequest.get('data.json', onSuccess);
+}</screen>
+
+        <simpara>The onSuccess() function runs when the data at the specified
+        URI is successfully retrieved. In this case, we are dynamically
+        loading a JSON file, whose contents are delivered in
+        <literal>request.responseText</literal>. Information about the JSON
+        API is in <xref linkend="ch03-json" />.</simpara>
+
+        <simpara>The <literal>HttpRequest.get()</literal> constructor is great
+        for simple cases, but you can also use the full API to handle more
+        interesting cases. For example, you can capture errors and set
+        arbitrary headers.</simpara>
+
+        <simpara>The general flow for using the full API of HttpRequest is as
+        follows:</simpara>
+
+        <orderedlist numeration="arabic">
+          <listitem>
+            <simpara>Create the HttpRequest object.</simpara>
+          </listitem>
+
+          <listitem>
+            <simpara>Open the URL with either <literal>GET</literal> or
+            <literal>POST</literal>.</simpara>
+          </listitem>
+
+          <listitem>
+            <simpara>Attach event handlers.</simpara>
+          </listitem>
+
+          <listitem>
+            <simpara>Send the request.</simpara>
+          </listitem>
+        </orderedlist>
+
+        <simpara>A full example of handling errors follows:</simpara>
+
+        <screen>import 'dart:html';
+import 'dart:json';
+
+loadEnd(HttpRequest request) {
+  if (request.status != 200) {
+    print('Uh oh, there was an error of ${request.status}');
+    return;
+  }
+
+  Map response = JSON.parse(request.responseText);
+  String name = response['name'];
+  String license = response['license'];
+  print('The $name project uses the $license license.');
+}
+
+main() {
+  var dataUrl = 'data.json';
+  var httpRequest = new HttpRequest();
+  httpRequest.open('GET', dataUrl);
+  httpRequest.on.loadEnd.add((e) =&gt; loadEnd(httpRequest));
+  httpRequest.send();
+}</screen>
+      </sect3>
+
+      <sect3 id="_sending_data_to_the_server">
+        <title>Sending data to the server</title>
+
+        <simpara>HttpRequest can also send data to the server, using the HTTP
+        method POST. For example, you might want to dynamically submit data to
+        a form handler. Sending JSON data to a RESTful web service is another
+        common example.</simpara>
+
+        <simpara>Submitting data to a form handler requires you to provide
+        name-value pairs as URI-encoded strings. (Information about the URI
+        API is in <xref linkend="ch03-uri" />.) You must also set the
+        <literal>Content-type</literal> header to
+        <literal>application/x-www-form-urlencode</literal> if you wish to
+        send data to a form handler.</simpara>
+
+        <screen>import 'dart:html';
+import 'dart:json';
+import 'dart:uri';
+
+String encodeMap(Map data) {
+  return Strings.join(data.getKeys().map((k) {
+    return '${encodeUriComponent(k)}=${encodeUriComponent(data[k])}';
+  }), '&amp;');
+}
+
+loadEnd(HttpRequest request) {
+  if (request.status != 200) {
+    print('Uh oh, there was an error of ${request.status}');
+    return;
+  } else {
+    print('Data has been posted');
+  }
+}
+
+main() {
+  var dataUrl = '/registrations/create';
+  var data = {'dart': 'fun', 'editor': 'productive'};
+  var encodedData = encodeMap(data);
+
+  var httpRequest = new HttpRequest();
+  httpRequest.open('POST', dataUrl);
+  httpRequest.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+  httpRequest.on.loadEnd.add((e) =&gt; loadEnd(httpRequest));
+  httpRequest.send(encodedData);
+}</screen>
+      </sect3>
+    </sect2>
+
+    <sect2 id="ch03-websockets">
+      <title>Sending and receiving real-time data with WebSockets</title>
+
+      <simpara>A WebSocket allows your web app to exchange data with a server
+      interactively—no polling necessary. A server creates the WebSocket and
+      listens for requests on a URL that starts with <emphasis
+      role="strong">ws://</emphasis>—for example, ws://127.0.0.1:1337/ws. The
+      data transmitted over a WebSocket can be a string, a blob, or an <ulink
+      url="http://api.dartlang.org/html/ArrayBuffer.html">ArrayBuffer.</ulink>
+      Often, the data is a JSON-formatted string.</simpara>
+
+      <simpara>To use a WebSocket in your web app, first create a <ulink
+      url="http://api.dartlang.org/html/WebSocket.html">WebSocket</ulink>
+      object, passing the WebSocket URL as an argument.</simpara>
+
+      <screen>var webSocket = new WebSocket('ws://127.0.0.1:1337/ws');</screen>
+
+      <sect3 id="ch03-sending-data">
+        <title>Sending data</title>
+
+        <simpara>To send string data on the WebSocket, use the send()
+        method.</simpara>
+
+        <screen>sendMessage(String data) {
+  if (webSocket.readyState == WebSocket.OPEN) {
+    webSocket.send(data);
+  } else {
+    throw 'WebSocket not connected, message $data not sent';
+  }
+}</screen>
+      </sect3>
+
+      <sect3 id="ch03-receiving-data">
+        <title>Receiving data</title>
+
+        <simpara>To receive data on the WebSocket, register a listener for
+        message events.</simpara>
+
+        <screen>webSocket.on.message.add((e) {
+  receivedMessage((e as MessageEvent).data);
+});</screen>
+
+        <simpara>The message event handler receives a <ulink
+        url="http://api.dartlang.org/html/MessageEvent.html">MessageEvent</ulink>
+        object. This object’s <literal>data</literal> field has the data from
+        the server. Here’s an example of decoding a JSON string sent on a
+        WebSocket, where the JSON string has two fields, “from” and
+        “content”.</simpara>
+
+        <screen>// Called from the message listener like this: receivedMessage(e.data)
+receivedMessage(String data) {
+  Map message = JSON.parse(data);
+  if (message['from'] != null) {
+    print('Message from ${message['from']}: ${message['content']}');
+  }
+}</screen>
+      </sect3>
+
+      <sect3 id="ch03-handling-websocket-events">
+        <title>Handling WebSocket events</title>
+
+        <simpara><ulink
+        url="http://api.dartlang.org/html/WebSocketEvents.html">WebSocketEvents</ulink>
+        defines the WebSocket events your app can handle: open, close, error,
+        and (as shown above) message. Here’s an example of a method that
+        creates a WebSocket object and handles message, open, close, and error
+        events.</simpara>
+
+        <screen>connectToWebSocket([int retrySeconds = 2]) {
+  bool reconnectScheduled = false;
+  webSocket = new WebSocket(url);
+  
+  scheduleReconnect() {
+    print('web socket closed, retrying in $retrySeconds seconds');
+    if (!reconnectScheduled) {
+      window.setTimeout(() =&gt; connectToWebSocket(retrySeconds*2), 1000*retrySeconds);
+    }
+    reconnectScheduled = true;
+  }
+  
+  webSocket.on.open.add((e) {
+    print('Connected');
+  });
+  
+  webSocket.on.close.add((e) =&gt; scheduleReconnect());
+  webSocket.on.error.add((e) =&gt; scheduleReconnect());
+  
+  webSocket.on.message.add((MessageEvent e) {
+    _receivedEncodedMessage(e.data);
+  });
+}</screen>
+
+        <para>For an example of using WebSockets, see <xref lang=""
+        linkend="ch05" />.</para>
+      </sect3>
+    </sect2>
+  </sect1>
+
+  <sect1 id="ch03-dartisolate---concurrency-with-isolates">
+    <title>dart:isolate - Concurrency with isolates</title>
+
+    <simpara>Dart has no shared-memory threads. Instead, all Dart code runs in
+    isolates, which communicate via message passing. Messages are copied
+    before they are received, ensuring that no two isolates can manipulate the
+    same object instance. Because state is managed by individual isolates, no
+    locks or mutexes are needed, greatly simplifying concurrent
+    programming.</simpara>
+
+    <sect2 id="ch03-isolate-concepts">
+      <title>Isolate concepts</title>
+
+      <simpara>To use isolates, you should understand the following
+      concepts:</simpara>
+
+      <itemizedlist>
+        <listitem>
+          <simpara>No two isolates ever share the same thread at the same
+          time. Within an isolate, callbacks execute one at a time, making the
+          code more predictable.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>All values in memory, including globals, are available only
+          to their isolate. No isolate can see or manipulate values owned by
+          another isolate.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>The only way isolates can communicate with each other is by
+          passing messages.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>Isolates send messages using SendPorts, and receive them
+          using ReceivePorts.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>The content of a message can be any of the
+          following:</simpara>
+
+          <itemizedlist>
+            <listitem>
+              <simpara>A primitive value (null, num, bool, double,
+              String)</simpara>
+            </listitem>
+
+            <listitem>
+              <simpara>An instance of SendPort</simpara>
+            </listitem>
+
+            <listitem>
+              <simpara>A list or map whose elements are any of the above,
+              including other lists and maps</simpara>
+            </listitem>
+
+            <listitem>
+              <simpara>In special circumstances <xref
+              linkend="ch03-sending-any-type-of-object"
+              xrefstyle="select: page" />, an object of any type</simpara>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+
+        <listitem>
+          <simpara>Each isolate has a ReceivePort, which is available as the
+          <literal>port</literal> variable. Because all Dart code runs inside
+          an isolate, even main() has access to a port object.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>When a web application is compiled to JavaScript, its
+          isolates can be implemented as Web workers. When running in Dartium,
+          isolates run in the VM.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>In the standalone VM, the main() function runs in the first
+          isolate (also known as the <emphasis>root isolate</emphasis>). When
+          the root isolate terminates, it terminates the whole VM, regardless
+          of whether other isolates are still running. For more information,
+          see <xref
+          linkend="ch03-keeping-the-root-isolate-alive" />.</simpara>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+
+    <sect2 id="ch03-using-isolates">
+      <title>Using isolates</title>
+
+      <simpara>To use an isolate, you import the
+      <literal>dart:isolate</literal> library, spawn a new isolate, and then
+      send and receive messages.</simpara>
+
+      <sect3 id="ch03-spawning-isolates">
+        <title>Spawning isolates</title>
+
+        <simpara>Any top-level function or static method<footnote>
+            <simpara>The dart2js compiler and the Dart VM do not yet support
+            static methods as isolate entry points. For details, see <ulink
+            url="http://dartbug.com/3011"></ulink>.</simpara>
+          </footnote> is a valid entry point for an isolate. The entry point
+        should not expect arguments and should return void. It is illegal to
+        use a function closure as an entry point to an isolate. Pass the entry
+        point to spawnFunction().</simpara>
+
+        <screen>import 'dart:isolate';
+
+runInIsolate() {
+  print('hello from an isolate!');
+}
+
+main() {
+  spawnFunction(runInIsolate);
+
+  // Note: incomplete.
+  // Use a ReceivePort (details below) to keep the root isolate alive
+  // long enough for runInIsolate() to perform its work.
+}</screen>
+
+        <simpara>We plan to support spawning an isolate from code at a
+        URI.</simpara>
+      </sect3>
+
+      <sect3 id="ch03-sending-messages">
+        <title>Sending messages</title>
+
+        <simpara>Send a message to an isolate via a SendPort. The
+        spawnFunction() method returns a handle to the newly created isolate’s
+        SendPort.</simpara>
+
+        <simpara>To simply send a message, use send().</simpara>
+
+        <screen>import 'dart:isolate';
+
+echo() {
+  // Receive messages here. (See the next section.)
+}
+
+main() {
+  var sendPort = spawnFunction(echo);
+  sendPort.send('Hello from main');
+
+  // Note: incomplete.
+  // Use a ReceivePort (details below) to keep the root isolate alive
+  // long enough for echo() to perform its work.
+}</screen>
+      </sect3>
+
+      <sect3 id="ch03-sending-any-type-of-object">
+        <title>Sending any type of object</title>
+
+        <simpara>In special circumstances (such as when using spawnFunction()
+        inside the Dart VM), it is possible to send any type of object to an
+        isolate.<footnote>
+            <para>Support for sending an arbitrary object to an isolate is not
+            yet available when compiling to JavaScript.</para>
+          </footnote> The object message is copied when sent.</simpara>
+      </sect3>
+
+      <sect3 id="ch03-receiving-messages">
+        <title>Receiving messages</title>
+
+        <simpara>Use a ReceivePort to receive messages sent to an isolate.
+        Obtain a handle to the default ReceivePort from the top-level
+        <literal>port</literal> property. You can also create new instances of
+        ReceivePort, if you want to route messages to different ports and
+        callbacks.</simpara>
+
+        <simpara>Handle an incoming message with a callback function passed to
+        the receive() method.</simpara>
+
+        <screen>import 'dart:isolate';
+
+echo() {
+  port.receive((msg, reply) {
+    print('I received: $msg');
+  });
+}
+
+main() {
+  var sendPort = spawnFunction(echo);
+  sendPort.send('Hello from main');
+
+  // Note: incomplete.
+  // Use a ReceivePort (details below) to keep the root isolate alive
+  // long enough for echo() to perform its work.
+}</screen>
+      </sect3>
+
+      <sect3 id="ch03-receiving-replies">
+        <title>Receiving replies</title>
+
+        <simpara>Use the call() method on SendPort as a simple way to send a
+        message and receive a reply. The call() method returns a Future for
+        the reply.</simpara>
+
+        <screen>import 'dart:isolate';
+
+echo() {
+  port.receive((msg, reply) {
+    reply.send('I received: $msg');
+  });
+}
+
+main() {
+  var sendPort = spawnFunction(echo);
+  sendPort.call('Hello from main').then((reply) {
+    print(reply);    // I received: Hello from main
+  });
+}</screen>
+
+        <simpara>Under the covers, the call() method creates and manages a
+        SendPort and a ReceivePort, which are necessary for a
+        call-and-response message exchange.</simpara>
+      </sect3>
+
+      <sect3 id="ch03-keeping-the-root-isolate-alive">
+        <title>Keeping the root isolate alive</title>
+
+        <simpara>In the VM, an isolate continues to run as long as it has an
+        open ReceivePort inside the isolate. If the main() function only
+        starts other isolates, doing no work itself, you must keep the root
+        isolate alive to keep the program alive.</simpara>
+
+        <simpara>To keep a root isolate alive, open a ReceivePort in the root
+        isolate. When all the child isolates have finished their work, you can
+        send a message to the root isolate to close its ReceivePort, thus
+        stopping the program.</simpara>
+
+        <simpara>You can coordinate isolates with message passing, sending a
+        message to inform the root isolate when a child isolate finishes. Here
+        is an example:</simpara>
+
+        <screen>import 'dart:isolate';
+
+childIsolate() {
+  port.receive((msg, replyTo) {
+    print('doing some work');
+    if (replyTo != null) replyTo.send('shutdown');
+  });
+}
+
+main() {
+  var sender = spawnFunction(childIsolate);
+  var receiver = new ReceivePort();
+  receiver.receive((msg, _) {
+    if (msg == 'shutdown') {
+      print('shutting down');
+      receiver.close();
+    }
+  });
+  sender.send('do work please', receiver.toSendPort());
+}</screen>
+
+        <simpara>In the above example, the child isolate runs to completion
+        because the root isolate keeps a ReceivePort open. The root isolate
+        creates a ReceivePort to wait for a shutdown message. The term
+        shutdown is arbitrary; the ReceivePort simply needs to wait for some
+        signal.</simpara>
+
+        <simpara>Once the root isolate receives a shutdown message, it closes
+        the ReceivePort. With the ReceivePort closed and nothing else to do,
+        the root isolate terminates, causing the app to exit.</simpara>
+      </sect3>
+    </sect2>
+
+    <sect2 id="ch03-more-information-11">
+      <title>More information</title>
+
+      <simpara>See the API docs for the <ulink
+      url="http://api.dartlang.org/dart_isolate.html">dart:isolate
+      library,</ulink> as well as for <ulink
+      url="http://api.dartlang.org/dart_isolate/SendPort.html">SendPort</ulink>
+      and <ulink
+      url="http://api.dartlang.org/dart_isolate/ReceivePort.html">ReceivePort.</ulink></simpara>
+    </sect2>
+  </sect1>
+
+  <sect1 id="ch03-dartio---file-and-socket-io-for-command-line-apps">
+    <title>dart:io - I/O for command-line apps</title>
+
+    <simpara>The <ulink url="http://api.dartlang.org/io.html">dart:io
+    library</ulink> provides APIs to deal with files, directories, processes,
+    sockets, and HTTP connections. Only command-line apps can use dart:io—not
+    web apps.</simpara>
+
+    <simpara>In general, the dart:io library implements and promotes an
+    asynchronous API. Synchronous methods can easily block the event loop,
+    making it difficult to scale server applications. Therefore, most
+    operations return results via callbacks or Future objects, a pattern
+    common with modern server platforms such as Node.js.</simpara>
+
+    <simpara>The few synchronous methods in the dart:io library are clearly
+    marked with a Sync suffix on the method name. We don’t cover them
+    here.</simpara>
+
+    <note>
+      <simpara>Only command-line apps can import and use
+      <literal>dart:io</literal>.</simpara>
+    </note>
+
+    <sect2 id="ch03-files-and-directories">
+      <title>Files and directories</title>
+
+      <simpara>The I/O library enables command-line apps to read and write
+      files and browse directories. You have two choices for reading the
+      contents of a file: all at once, or streaming. Reading a file all at
+      once requires enough memory to store all the contents of the file. If
+      the file is very large or you want to process it while reading it, you
+      should use an InputStream, as described in <xref
+      linkend="ch03-streaming-file-contents" />.</simpara>
+
+      <sect3 id="ch03-reading-a-file-as-text">
+        <title>Reading a file as text</title>
+
+        <simpara>When reading a text file, you can read the entire file
+        contents with readAsText(). When the individual lines are important,
+        you can use readAsLines(). In both cases, a Future object is returned
+        that provides the contents of the file as one or more
+        strings.</simpara>
+
+        <screen>import 'dart:io';
+
+main() {
+  var config = new File('config.txt');
+
+  // Put the whole file in a single string.
+  config.readAsText(Encoding.UTF_8).then((String contents) {
+    print('The entire file is ${contents.length} characters long');
+  });
+
+  // Put each line of the file into its own string.
+  config.readAsLines(Encoding.UTF_8).then((List&lt;String&gt; lines) {
+    print('The entire file is ${lines.length} lines long');
+  });
+}</screen>
+      </sect3>
+
+      <sect3 id="ch03-reading-a-file-as-binary">
+        <title>Reading a file as binary</title>
+
+        <simpara>The following code reads an entire file as bytes into a list
+        of ints. The call to readAsBytes() returns a Future, which provides
+        the result when it’s available.</simpara>
+
+        <screen>import 'dart:io';
+
+main() {
+  var config = new File('config.txt');
+
+  config.readAsBytes().then((List&lt;int&gt; contents) {
+    print('The entire file is ${contents.length} bytes long');
+  });
+}</screen>
+      </sect3>
+
+      <sect3 id="ch03-handling-errors">
+        <title>Handling errors</title>
+
+        <simpara>Errors are thrown as exceptions if you do not register an
+        explicit handler. If you want to capture an error, you can register a
+        <literal>handleException</literal> handler with the Future
+        object.</simpara>
+
+        <screen>import 'dart:io';
+
+main() {
+  var config = new File('config.txt');
+  Future readFile = config.readAsText();
+  readFile.handleException((e) {
+    print(e);
+    // ...Other error handling goes here...
+    return true; // We've handled the exception; no need to propagate it.
+  });
+  readFile.then((text) =&gt; print(text));
+}</screen>
+      </sect3>
+
+      <sect3 id="ch03-streaming-file-contents">
+        <title>Streaming file contents</title>
+
+        <simpara>Use an InputStream to read a file, a little at a time. The
+        <literal>onData</literal> callback runs when data is ready to be read.
+        When the InputStream is finished reading the file, the
+        <literal>onClosed</literal> callback executes.</simpara>
+
+        <screen>import 'dart:io';
+
+main() {
+  var config = new File('config.txt');
+  var inputStream = config.openInputStream();
+
+  inputStream.onError = (e) =&gt; print(e);
+  inputStream.onClosed = () =&gt; print('file is now closed');
+  inputStream.onData = () {
+    List&lt;int&gt; bytes = inputStream.read();
+    print('Read ${bytes.length} bytes from stream');
+  };
+}</screen>
+
+        <simpara>To decode an input stream from bytes into characters, wrap
+        the InputStream with a <ulink
+        url="http://api.dartlang.org/io/StringInputStream.html">StringInputStream</ulink>.
+        You can read the strings either as data becomes available or a line at
+        a time.</simpara>
+      </sect3>
+
+      <sect3 id="ch03-writing-file-contents">
+        <title>Writing file contents</title>
+
+        <simpara>Use an OutputStream to write data to a file. Open a file for
+        writing with openOutputStream() and declare a mode. Use
+        <literal>FileMode.WRITE</literal> to completely overwrite existing
+        data in the file, and <literal>FileMode.APPEND</literal> to add to the
+        end.</simpara>
+
+        <screen>import 'dart:io';
+
+main() {
+  var logFile = new File('log.txt');
+  var out = logFile.openOutputStream(FileMode.WRITE);
+  out.writeString('FILE ACCESSED ${new Date.now()}');
+  out.close();
+}</screen>
+
+        <simpara>To write binary data, use <literal>write(List&lt;int&gt;
+        buffer)</literal>.</simpara>
+      </sect3>
+
+      <sect3 id="ch03-listing-files-in-a-directory">
+        <title>Listing files in a directory</title>
+
+        <simpara>Finding all files and subdirectories for a directory is an
+        asynchronous operation. The list() method returns a DirectoryLister,
+        on which you can register callback handlers to be notified when a file
+        is encountered (using <literal>onFile</literal>) or when a directory
+        is encountered (using <literal>onDir</literal>).</simpara>
+
+        <screen>import 'dart:io';
+
+main() {
+  var dir = new Directory('/tmp');
+
+  DirectoryLister lister = dir.list(recursive:true); // Returns immediately.
+  lister.onError = (e) =&gt; print(e);
+  lister.onFile = (String name) =&gt; print('Found file $name');
+  lister.onDir = (String name) =&gt; print('Found dir $name');
+}</screen>
+      </sect3>
+
+      <sect3 id="ch03-other-common-functionality">
+        <title>Other common functionality</title>
+
+        <simpara>The File and Directory classes contain other functionality,
+        including but not limited to:</simpara>
+
+        <itemizedlist>
+          <listitem>
+            <simpara>Creating a file or directory: create() in File and
+            Directory</simpara>
+          </listitem>
+
+          <listitem>
+            <simpara>Deleting a file or directory: delete() in File and
+            Directory</simpara>
+          </listitem>
+
+          <listitem>
+            <simpara>Getting the length of a file: length() in File</simpara>
+          </listitem>
+
+          <listitem>
+            <simpara>Getting random access to a file: open() in File</simpara>
+          </listitem>
+        </itemizedlist>
+
+        <simpara>Refer to the API docs for <ulink
+        url="http://api.dartlang.org/io/File.html">File,</ulink> <ulink
+        url="http://api.dartlang.org/io/Directory.html">Directory,</ulink> and
+        <ulink
+        url="http://api.dartlang.org/io/DirectoryLister.html">DirectoryLister</ulink>
+        for a full list of methods. Also see <ulink
+        url="http://api.dartlang.org/io/InputStream.html">InputStream</ulink>,
+        <ulink
+        url="http://api.dartlang.org/io/StringInputStream.html">StringInputStream</ulink>,
+        and <ulink
+        url="http://api.dartlang.org/io/OutputStream.html">OutputStream.</ulink></simpara>
+
+        <simpara>Besides the APIs discussed in this section, the dart:io
+        library also provides APIs for <ulink
+        url="http://api.dartlang.org/io/Process.html">processes</ulink>,
+        <ulink url="http://api.dartlang.org/io/Socket.html">sockets</ulink>,
+        and <ulink url="http://api.dartlang.org/io/WebSocket.html">web
+        sockets</ulink>.</simpara>
+
+        <para>For more examples of using dart:io, see <xref lang=""
+        linkend="ch05" />.</para>
+      </sect3>
+    </sect2>
+
+    <sect2 id="ch03-io-http">
+      <title>HTTP clients and servers</title>
+
+      <simpara>The dart:io library provides classes that command-line apps can
+      use for accessing HTTP resources, as well as running HTTP
+      servers.</simpara>
+
+      <sect3 id="_http_server">
+        <title>HTTP server</title>
+
+        <simpara>The <ulink
+        url="http://api.dartlang.org/dart_io/HttpServer.html">HttpServer</ulink>
+        class provides the low-level functionality for building web servers.
+        You can match request handlers, set headers, stream data, and
+        more.</simpara>
+
+        <simpara>Because Dart is single threaded and has an event loop, the
+        API design of HttpServer favors callbacks for handling
+        events.</simpara>
+
+        <simpara>The following sample web server can return only simple text
+        information. This server listens on port 8888 and address 127.0.0.1
+        (localhost), responding to requests for the path
+        <literal>/languages/dart</literal>. All other requests are handled by
+        the default request handler, which returns a response code of 404 (not
+        found).</simpara>
+
+        <screen>import 'dart:io';
+
+main() {
+  dartHandler(HttpRequest request, HttpResponse response) {
+    print('New request');
+    response.outputStream.writeString('Dart is optionally typed');
+    response.outputStream.close();
+  };
+
+  var httpServer = new HttpServer();
+  httpServer.addRequestHandler(
+      (req) =&gt; req.path == '/languages/dart',
+      dartHandler);
+
+  httpServer.listen('127.0.0.1', 8888);
+}</screen>
+
+        <para>You can see a more comprehensive HTTP server in <xref
+        linkend="ch05-server" />.</para>
+      </sect3>
+
+      <sect3 id="_http_client">
+        <title>HTTP client</title>
+
+        <simpara>The <ulink
+        url="http://api.dartlang.org/dart_io/HttpClient.html">HttpClient</ulink>
+        class helps you connect to HTTP resources from your Dart command-line
+        or server-side application. You can set headers, use HTTP methods, and
+        read and write data.</simpara>
+
+        <note>
+          <simpara>The HttpClient class does not work in browser-based apps.
+          When programming in the browser, use the HttpRequest class <xref
+          linkend="ch03-httprequest" xrefstyle="select:page" />.</simpara>
+        </note>
+
+        <simpara>The HttpClient API, like the HttpServer API, is callback
+        oriented. The general flow of events is as follows:</simpara>
+
+        <orderedlist numeration="arabic">
+          <listitem>
+            <simpara>Create a new HttpClient.</simpara>
+          </listitem>
+
+          <listitem>
+            <simpara>Get the URL.</simpara>
+          </listitem>
+
+          <listitem>
+            <simpara>Register the onResponse() callback on the
+            HttpClientConnection.</simpara>
+          </listitem>
+
+          <listitem>
+            <simpara>Register the onData() callback on the input
+            stream.</simpara>
+          </listitem>
+
+          <listitem>
+            <simpara>Register the onClosed() callback on the
+            HttpClientConnection.</simpara>
+          </listitem>
+
+          <listitem>
+            <simpara>Read data when available.</simpara>
+          </listitem>
+
+          <listitem>
+            <simpara>Shut down the HttpClient when you no longer want to
+            create connections using it.</simpara>
+          </listitem>
+        </orderedlist>
+
+        <screen>import 'dart:io';
+import 'dart:uri';
+
+main() {
+  var httpClient = new HttpClient();
+  var conn = httpClient.getUrl(new Uri('http://127.0.0.1:8888/languages/dart'));
+  conn.onResponse = (HttpClientResponse resp) {
+    var input = resp.inputStream;
+    input.onData = () {
+      var data = input.read();
+      var text = new String.fromCharCodes(data);
+      print(text);
+    };
+    input.onClosed = () =&gt; httpClient.shutdown();
+  };
+}</screen>
+      </sect3>
+    </sect2>
+  </sect1>
+
+  <sect1 id="ch03-json">
+    <title>dart:json - Encoding and decoding objects</title>
+
+    <simpara><ulink url="http://www.json.org/">JSON</ulink> is a simple text
+    format for representing structured objects and collections. The <ulink
+    url="http://api.dartlang.org/json.html">JSON library</ulink> decodes
+    JSON-formatted strings into Dart objects, and encodes objects into
+    JSON-formatted strings.</simpara>
+
+    <simpara>The Dart JSON library works in both web apps and command-line
+    apps. To use the JSON library, import
+    <literal>dart:json</literal>.</simpara>
+
+    <sect2 id="ch03-json-decoding">
+      <title>Decoding JSON</title>
+
+      <simpara>Decode a JSON-encoded string into a Dart object with
+      JSON.parse().</simpara>
+
+      <screen>import 'dart:json';
+
+main() {
+  // NOTE: Be sure to use double quotes ("), not single quotes ('),
+  // inside the JSON string. This string is JSON, not Dart.
+  var jsonString = '''
+  [
+    {"score": 40},
+    {"score": 80}
+  ]
+  ''';
+
+  var scores = JSON.parse(jsonString);
+  assert(scores is List);
+
+  var firstScore = scores[0];
+  assert(firstScore is Map);
+  assert(firstScore['score'] == 40);
+}</screen>
+    </sect2>
+
+    <sect2 id="ch03-json-encoding">
+      <title>Encoding JSON</title>
+
+      <simpara>Encode a supported Dart object into a JSON-formatted string
+      with JSON.stringify().</simpara>
+
+      <simpara>Only objects of type int, double, String, bool, null, List, or
+      Map can be encoded into JSON. List and Map objects are encoded
+      recursively.</simpara>
+
+      <simpara>If any object that isn’t an int, double, String, bool, null,
+      List, or Map is passed to stringify(), the object’s toJson() method is
+      called. If toJson() returns an encodable value, that value is encoded in
+      the object’s place.</simpara>
+
+      <screen>import 'dart:json';
+
+main() {
+  var scores = [
+    {'score': 40},
+    {'score': 80},
+    {'score': 100, 'overtime': true, 'special_guest': null}
+  ];
+
+  var jsonText = JSON.stringify(scores);
+  assert(jsonText == '[{"score":40},{"score":80},'
+                     '{"score":100,"overtime":true,'
+                     '"special_guest":null}]');
+}</screen>
+    </sect2>
+  </sect1>
+
+  <sect1 id="ch03-uri">
+    <title>dart:uri - Manipulating URIs</title>
+
+    <simpara>The <ulink url="http://api.dartlang.org/uri.html">URI
+    library</ulink> provides functions to encode and decode strings for use in
+    URIs (which you might know as <emphasis>URLs</emphasis>). These functions
+    handle characters that are special for URIs, such as
+    <literal>&amp;</literal> and <literal>=</literal>.</simpara>
+
+    <simpara>Another part of the URI library is the Uri class, which parses
+    and exposes the components of a URI—domain, port, scheme, and so
+    on.</simpara>
+
+    <simpara>The URI library works in both web apps and command-line apps. To
+    use it, import <literal>dart:uri</literal>.</simpara>
+
+    <sect2 id="ch03-uri-fully-qualified">
+      <title>Encoding and decoding fully qualified URIs</title>
+
+      <simpara>To encode and decode characters <emphasis>except</emphasis>
+      those with special meaning in a URI (such as <literal>/</literal>,
+      <literal>:</literal>, <literal>&amp;</literal>, <literal>#</literal>),
+      use the top-level encodeUri() and decodeUri() functions. These functions
+      are good for encoding or decoding a fully qualified URI, leaving intact
+      special URI characters.</simpara>
+
+      <screen>import 'dart:uri';
+
+main() {
+  var uri = 'http://example.org/api?foo=some message';
+  var encoded = encodeUri(uri);
+  assert(encoded == 'http://example.org/api?foo=some%20message');
+
+  var decoded = decodeUri(encoded);
+  assert(uri == decoded);
+}</screen>
+
+      <simpara>Notice how only the space between <literal>some</literal> and
+      <literal>message</literal> was encoded.</simpara>
+    </sect2>
+
+    <sect2 id="ch03-uri-components">
+      <title>Encoding and decoding URI components</title>
+
+      <simpara>To encode and decode all of a string’s characters that have
+      special meaning in a URI, including (but not limited to)
+      <literal>/</literal>, <literal>&amp;</literal>, and
+      <literal>:</literal>, use the top-level encodeUriComponent() and
+      decodeUriComponent() functions.</simpara>
+
+      <screen>import 'dart:uri';
+
+main() {
+  var uri = 'http://example.org/api?foo=some message';
+  var encoded = encodeUriComponent(uri);
+  assert(encoded == 'http%3A%2F%2Fexample.org%2Fapi%3Ffoo%3Dsome%20message');
+
+  var decoded = decodeUriComponent(encoded);
+  assert(uri == decoded);
+}</screen>
+
+      <simpara>Notice how every special character is encoded. For example,
+      <literal>/</literal> is encoded to <literal>%2F</literal>.</simpara>
+    </sect2>
+
+    <sect2 id="ch03-uri-parsing">
+      <title>Parsing URIs</title>
+
+      <simpara>You can parse a URI into its parts with the Uri()
+      constructor.</simpara>
+
+      <screen>import 'dart:uri';
+
+main() {
+  var uri = new Uri('http://example.org:8080/foo/bar#frag');
+
+  assert(uri.scheme == 'http');
+  assert(uri.domain == 'example.org');
+  assert(uri.path == '/foo/bar');
+  assert(uri.fragment == 'frag');
+  assert(uri.origin == 'http://example.org:8080');
+}</screen>
+
+      <simpara>See the <ulink url="http://api.dartlang.org/uri/Uri.html">Uri
+      API docs</ulink> for more URI components that you can get.</simpara>
+    </sect2>
+
+    <sect2 id="ch03-uri-building">
+      <title>Building URIs</title>
+
+      <simpara>You can build up a URI from individual parts using the
+      Uri.fromComponents() constructor.</simpara>
+
+      <screen>import 'dart:uri';
+
+main() {
+  var uri = new Uri.fromComponents(scheme: 'http', domain: 'example.org', path: '/foo/bar',
+                                   fragment: 'frag');
+  assert(uri.toString() == 'http://example.org/foo/bar#frag');
+}</screen>
+    </sect2>
+  </sect1>
+
+  <sect1 id="ch03-utf">
+    <title>dart:utf - Strings and Unicode</title>
+
+    <simpara>The UTF library helps bridge the gap between strings and
+    UTF-8/UTF-16/UTF-32 encodings.</simpara>
+
+    <simpara>The UTF library works in both web apps and command-line apps. To
+    use the UTF library, import <literal>dart:utf</literal>.</simpara>
+
+    <sect2 id="ch03-utf-decode-utf8">
+      <title>Decoding UTF-8 characters</title>
+
+      <simpara>Use decodeUtf8() to decode UTF8-encoded bytes to a Dart
+      string.</simpara>
+
+      <screen>import 'dart:utf';
+
+main() {
+  var string = decodeUtf8([0xc3, 0x8e, 0xc3, 0xb1, 0xc5, 0xa3, 0xc3, 0xa9,
+                           0x72, 0xc3, 0xb1, 0xc3, 0xa5, 0xc5, 0xa3, 0xc3,
+                           0xae, 0xc3, 0xb6, 0xc3, 0xb1, 0xc3, 0xa5, 0xc4,
+                           0xbc, 0xc3, 0xae, 0xc5, 0xbe, 0xc3, 0xa5, 0xc5,
+                           0xa3, 0xc3, 0xae, 0xe1, 0xbb, 0x9d, 0xc3, 0xb1]);
+  print(string); // 'Îñţérñåţîöñåļîžåţîờñ'
+}</screen>
+    </sect2>
+
+    <sect2 id="ch03-utf-encode-utf8">
+      <title>Encoding strings to UTF-8 bytes</title>
+
+      <simpara>Use encodeUtf8() to encode a Dart string as a list of
+      UTF8-encoded bytes.</simpara>
+
+      <screen>import 'dart:utf';
+
+main() {
+  List&lt;int&gt; expected = [0xc3, 0x8e, 0xc3, 0xb1, 0xc5, 0xa3, 0xc3, 0xa9, 0x72,
+                        0xc3, 0xb1, 0xc3, 0xa5, 0xc5, 0xa3, 0xc3, 0xae, 0xc3,
+                        0xb6, 0xc3, 0xb1, 0xc3, 0xa5, 0xc4, 0xbc, 0xc3, 0xae,
+                        0xc5, 0xbe, 0xc3, 0xa5, 0xc5, 0xa3, 0xc3, 0xae, 0xe1,
+                        0xbb, 0x9d, 0xc3, 0xb1];
+
+  List&lt;int&gt; encoded = encodeUtf8('Îñţérñåţîöñåļîžåţîờñ');
+
+  assert(() {
+    if (encoded.length != expected.length) return false;
+    for (int i = 0; i &lt; encoded.length; i++) {
+      if (encoded[i] != expected[i]) return false;
+    }
+    return true;
+  });
+}</screen>
+    </sect2>
+
+    <sect2 id="ch03-utf-other">
+      <title>Other functionality</title>
+
+      <simpara>The UTF library can decode and encode UTF-16 and UTF-32 bytes.
+      The library can also convert directly to and from Unicode code points
+      and UTF8-encoded bytes. For details, see the <ulink
+      url="http://api.dartlang.org/utf.html">API docs for the UTF
+      library.</ulink></simpara>
+    </sect2>
+  </sect1>
+
+  <sect1 id="ch03-crypto">
+    <title>dart:crypto - Hash codes and more</title>
+
+    <simpara>The <ulink url="http://api.dartlang.org/crypto.html">Dart crypto
+    library</ulink> contains functions useful for cryptographic applications,
+    such as creating cryptographic hashes and generating hash-based message
+    authentication codes.</simpara>
+
+    <simpara>The crypto library works in both web apps and command-line apps.
+    To use the crypto library, import
+    <literal>dart:crypto</literal>.</simpara>
+
+    <sect2 id="ch03-crypto-hash">
+      <title>Generating cryptographic hashes</title>
+
+      <simpara>With the crypto library, you can use <ulink
+      url="http://api.dartlang.org/crypto/SHA256.html">SHA256,</ulink> <ulink
+      url="http://api.dartlang.org/crypto/SHA1.html">SHA1,</ulink> or <ulink
+      url="http://api.dartlang.org/crypto/MD5.html">MD5</ulink> objects to
+      generate hashes (also known as <emphasis>digests</emphasis> or
+      <emphasis>message digests</emphasis>). We recommend using SHA256, but we
+      have included SHA1 and MD5 for compatibility with older systems. All
+      these types inherit from <ulink
+      url="http://api.dartlang.org/crypto/Hash.html">Hash,</ulink> which
+      defines the Dart interface for <ulink
+      url="http://en.wikipedia.org/wiki/Cryptographic_hash_function">cryptographic
+      hash functions.</ulink></simpara>
+
+      <screen>import 'dart:crypto';
+
+main() {
+  var sha256 = new SHA256();
+  var digest = sha256.update('message'.charCodes()).digest();
+  var hexString = CryptoUtils.bytesToHex(digest);
+  assert(hexString ==
+      'ab530a13e45914982b79f9b7e3fba994cfd1f3fb22f71cea1afbf02b460c6d1d');
+}</screen>
+
+      <simpara>If the message content changes, the digest value also changes
+      (with a very high probability).</simpara>
+    </sect2>
+
+    <sect2 id="ch03-crypto-authentication">
+      <title>Generating message authentication codes</title>
+
+      <simpara>Use a hash-based message authentication code (<ulink
+      url="http://en.wikipedia.org/wiki/HMAC">HMAC</ulink>) to combine a
+      cryptographic hash function with a secret key.</simpara>
+
+      <screen>import 'dart:crypto';
+main() {
+  var hmac = new HMAC(new SHA256(), 'secretkey'.charCodes());
+  var hmacDigest = hmac.update('message'.charCodes()).digest();
+  var hmacHex = CryptoUtils.bytesToHex(hmacDigest);
+  assert(hmacHex ==
+      '5c3e2f56de9411068f675ef32ffa12735210b9cbfee2ba521367a3955334a343');
+}</screen>
+
+      <simpara>If either the message contents or key changes, the digest value
+      also changes (with a very high probability).</simpara>
+    </sect2>
+
+    <sect2 id="ch03-crypto-base64">
+      <title>Generating Base64 strings</title>
+
+      <simpara>You can represent binary data as a character string by using
+      the <ulink url="http://en.wikipedia.org/wiki/Base64">Base64</ulink>
+      encoding scheme. Use the CryptoUtils.bytesToBase64() utility method to
+      convert a list of bytes into a Base64-encoded string.</simpara>
+
+      <screen>import 'dart:crypto';
+import 'dart:io';
+
+main() {
+  var file = new File('icon.ico');
+  var bytes = file.readAsBytesSync();
+  var base64 = CryptoUtils.bytesToBase64(bytes);
+  assert(base64 ==
+    'iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38G'
+    'IAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==');
+}</screen>
+    </sect2>
+  </sect1>
+
+  <sect1>
+    <title>Summary</title>
+
+    <para>This chapter introduced you to the most commonly used functionality
+    in Dart’s built-in libraries. You can use the pub tool, discussed in the
+    next chapter, to install additional Dart libraries.</para>
+  </sect1>
+</chapter>

@@ -1,0 +1,1128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<chapter>
+  <title>Tools</title>
+
+  <para>Dart provides several tools to help you write and deploy your web and
+  command-line apps.</para>
+
+  <variablelist>
+    <varlistentry>
+      <term>pub: The Dart package manager</term>
+
+      <listitem>
+        <para>Download and install packages of libraries.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Dart Editor <xref linkend="ch04-tools-editor"
+      xrefstyle="select: page" /></term>
+
+      <listitem>
+        <para>Edit, run, and debug web and command-line apps.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Dartium: Chromium with the Dart VM <xref
+      linkend="ch04-tools-dartium" xrefstyle="select: page" /></term>
+
+      <listitem>
+        <para>Run Dart web apps. This is a special build of Chromium (the
+        project behind Google Chrome).</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>dart2js: The Dart-to-JavaScript compiler <xref
+      linkend="ch04-tools-dart2js" xrefstyle="select: page" /></term>
+
+      <listitem>
+        <para>Convert your web app to JavaScript, so it can run in non-Dartium
+        browsers.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>dart: The standalone Dart VM <xref linkend="ch04-tools-dart-vm"
+      xrefstyle="select: page" /></term>
+
+      <listitem>
+        <para>Run your command-line apps—server-side scripts, programs,
+        servers, and any other apps that don’t run in a browser.</para>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+
+  <para>All of these tools are in the Dart Editor bundle, since the editor
+  uses Dartium and the other tools. You can also download Dartium separately,
+  and you can download an SDK that includes dart2js, dart, and pub. See the
+  <ulink url="http://www.dartlang.org/downloads.html">Downloads page</ulink>
+  for links and details.</para>
+
+  <sect1 id="ch04-tools-pub">
+    <title>pub: The Dart package manager</title>
+
+    <para>You can use use the <emphasis>pub</emphasis> tool
+    (<literal><replaceable>$DART_SDK</replaceable>/bin/pub</literal>) to
+    manage Dart packages. A Dart package is simply a directory containing any
+    number of Dart libraries and a list of the library dependencies. A package
+    can also contain resources for its libraries, such as documentation,
+    tests, and images. If your app uses one or more packages, then your app
+    itself must be a package.</para>
+
+    <para>A package can live anywhere. Some packages are distributed in the
+    Dart SDK, under the <literal>pkg</literal> directory. Others are on
+    GitHub. We plan to publish packages at <ulink
+    url="http://pub.dartlang.org">pub.dartlang.org</ulink>, and we hope you
+    will, too.</para>
+
+    <para>To use a library that’s in a Dart package, you need to do the
+    following:</para>
+
+    <orderedlist>
+      <listitem>
+        <para>Create a pubspec (a file that lists package
+        dependencies).</para>
+      </listitem>
+
+      <listitem>
+        <para>Use pub to install the package.</para>
+      </listitem>
+
+      <listitem>
+        <para>Import the library.</para>
+      </listitem>
+    </orderedlist>
+
+    <note>
+      <para>Step 1 might not be necessary by the time you read this. See
+      <ulink url="http://dartbug.com/5188"></ulink> for the latest
+      status.</para>
+    </note>
+
+    <sect2 id="ch04-tools-pub-pubspec">
+      <title>Creating a pubspec</title>
+
+      <para>To use a package, your application must define a pubspec that
+      lists dependencies and their download locations. The pubspec is a file
+      named <literal>pubspec.yaml</literal>, and it must be in the top
+      directory of your application.</para>
+
+      <para>Here is an example of a pubspec that specifies the locations of
+      two packages. First, it points to the js package that’s hosted on
+      pub.dartlang.org, and then it points to the intl package in the Dart
+      SDK.</para>
+
+      <programlisting>name: my_app
+dependencies:
+  js:
+    hosted: js
+  intl:
+    sdk: intl
+</programlisting>
+
+      <para>For details, see the <ulink
+      url="http://www.dartlang.org/docs/pub-package-manager/pubspec.html">pubspec
+      documentation</ulink> and the documentation for the packages you’re
+      interested in using.</para>
+    </sect2>
+
+    <sect2 id="ch04-tools-pub-install">
+      <title>Installing packages</title>
+
+      <para>Once you have a pubspec, you can run <literal>pub
+      install</literal> from the top directory of your application.</para>
+
+      <screen>cd <replaceable>my/app</replaceable>
+<replaceable>$DART_SDK</replaceable>/bin/pub install  </screen>
+
+      <para>This command determines which packages that your app depends on,
+      and puts them in a central cache. For git dependencies, pub clones the
+      git repository. For hosted dependencies, pub downloads the package from
+      pub.dartlang.org. Transitive dependencies are included, too. For
+      example, if the js package is dependent on the unittest package, the pub
+      tool grabs both the js package and the unittest package.</para>
+
+      <para>Finally, pub creates a <literal>packages</literal> directory
+      (under your app’s top directory) that has links to the packages that
+      your app depends on.</para>
+    </sect2>
+
+    <sect2 id="ch04-tools-pub-import">
+      <title>Importing libraries from packages</title>
+
+      <para>To import libraries found in packages, use the
+      <literal>package:</literal> prefix.</para>
+
+      <programlisting>import 'package:js/js.dart' as js;
+import 'package:intl/intl.dart';</programlisting>
+
+      <para>The Dart runtime takes everything after
+      <literal>package:</literal> and looks it up within the
+      <literal>packages</literal> directory for your app.</para>
+    </sect2>
+
+    <sect2 id="ch04-tools-pub-more-options">
+      <title>More information</title>
+
+      <para>Run <literal><replaceable>$DART_SDK</replaceable>/bin/pub
+      --help</literal> for a list of commands. For more information about pub,
+      see the <ulink
+      url="http://www.dartlang.org/docs/pub-package-manager/">pub
+      documentation.</ulink></para>
+    </sect2>
+  </sect1>
+
+  <sect1 id="ch04-tools-editor">
+    <title>Dart Editor</title>
+
+    <para>We already introduced Dart Editor in <xref linkend="ch01-editor" />.
+    Here are some more tips on using Dart Editor, with information such as
+    specifying a browser <xref linkend="ch04-editor-run-non-dartium"
+    xrefstyle="select: page" /> and compiling to JavaScript <xref
+    linkend="ch04-editor-dart2js" xrefstyle="select: page" />. If you run into
+    a problem, see <ulink
+    url="http://www.dartlang.org/docs/editor/troubleshoot.html">Troubleshooting
+    Dart Editor.</ulink></para>
+
+    <note>
+      <para>Dart Editor is updated frequently, so it probably looks different
+      from what you see here. For the latest information, see the <ulink
+      url="http://www.dartlang.org/editor">Dart Editor
+      documentation.</ulink></para>
+    </note>
+
+    <sect2 id="ch04-editor-view-samples">
+      <title>Viewing samples</title>
+
+      <para>The Welcome page of Dart Editor (<xref
+      linkend="DartEditor-initial" />) displays a few samples. To open a
+      sample and look at its source code, click the sample’s image.</para>
+
+      <para>If you don’t see the Welcome page, you probably closed it. Get it
+      back with <emphasis role="bold">Tools &gt; Welcome
+      Page</emphasis>.</para>
+    </sect2>
+
+    <sect2 id="ch04-editor-apps">
+      <title>Managing the Files view</title>
+
+      <para>The Files view shows the files that implement the libraries
+      included in Dart, as well as all the apps that you create or
+      open.</para>
+
+      <sect3 id="ch04-editor-apps-open">
+        <title>Adding apps</title>
+
+        <para>Here’s how to open an app, which makes it appear in your Files
+        view:</para>
+
+        <orderedlist>
+          <listitem>
+            <para>Go to the <emphasis role="bold">File</emphasis> menu, and
+            choose <emphasis role="bold">Open Folder...</emphasis>. Or use the
+            keyboard shortcut (<emphasis role="bold">Ctrl+O</emphasis> or, on
+            Mac, <emphasis role="bold">Cmd+O</emphasis>).</para>
+          </listitem>
+
+          <listitem>
+            <para>Select the directory that contains the app’s files, and
+            click <emphasis role="bold">Open</emphasis>.</para>
+          </listitem>
+        </orderedlist>
+
+        <para>The directory and all its files appear in the Files view.</para>
+      </sect3>
+
+      <sect3 id="ch04-editor-apps-remove">
+        <title>Removing apps</title>
+
+        <para>You can remove an app from the Files view, either with or
+        without deleting its files.</para>
+
+        <para>Right-click (or Ctrl+click) the directory and choose <emphasis
+        role="bold">Delete</emphasis>. If you want to delete the app’s files
+        permanently, then in the dialog that comes up, choose <emphasis
+        role="bold">Delete projects on disk</emphasis>.</para>
+      </sect3>
+    </sect2>
+
+    <sect2 id="ch04-editor-create-app">
+      <title>Creating apps</title>
+
+      <para>It’s easy to create a simple web or command-line app from
+      scratch:</para>
+
+      <orderedlist>
+        <listitem>
+          <para>Click the New Application button <inlinemediaobject>
+              <imageobject>
+                <imagedata fileref="../figs/incoming/newapp.png"
+                           width="0.12in" />
+              </imageobject>
+            </inlinemediaobject> (at the upper left of Dart Editor).
+          Alternatively, choose <emphasis role="bold">File &gt; New
+          Application...</emphasis> from the Dart Editor menu. A dialog
+          appears.</para>
+        </listitem>
+
+        <listitem>
+          <para>Type in a name for your application—for example,
+          <code>HelloWeb</code>. If you don’t like the default directory, type
+          in a new location or browse to choose the location.</para>
+        </listitem>
+
+        <listitem>
+          <para>If you’re creating a web app, select <emphasis
+          role="bold">Generate content for a basic web app</emphasis>. If you
+          want to use the pub package manager, select <emphasis
+          role="bold">Add pub support</emphasis>. Then click <emphasis
+          role="bold">Finish</emphasis> to create a directory with initial
+          files for the app.</para>
+
+          <para>A default Dart file appears in the Edit view, and its
+          directory appears in the Files view. Your Dart Editor window should
+          look something like <xref linkend="DartEditor-helloweb" />.</para>
+
+          <figure id="DartEditor-helloweb">
+            <title>A new app, pre-filled with basic, runnable code</title>
+
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="../figs/incoming/0401_DartEditor-helloweb.png"
+                           format="PNG" scale="50" />
+              </imageobject>
+            </mediaobject>
+          </figure>
+        </listitem>
+      </orderedlist>
+    </sect2>
+
+    <sect2 id="ch04-editor-edit">
+      <title>Editing apps</title>
+
+      <para>Dart Editor provides the basic editing functionality you’d expect,
+      plus features such as Dart code completion, API browsing, support for
+      refactoring, and the ability to search multiple files.</para>
+
+      <sect3 id="ch04-editor-edit-autocomplete">
+        <title>Using autocomplete</title>
+
+        <figure id="helloweb-dotcomplete">
+          <title>Autocomplete suggestions</title>
+
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="../figs/incoming/0402_helloweb-dotcomplete.png"
+                         format="PNG" scale="50" />
+            </imageobject>
+          </mediaobject>
+        </figure>
+
+        <para>Autocomplete suggestions look something like <xref
+        linkend="helloweb-dotcomplete" />. They appear when you either:</para>
+
+        <itemizedlist>
+          <listitem>
+            <para>Type a class or variable name, and then type a
+            period.</para>
+
+            <para>For example, type <code>document.</code> or
+            <code>Date.</code> and pause a moment. Once the suggestions
+            appear, continue typing to pare down the list.</para>
+          </listitem>
+
+          <listitem>
+            <para>Type <emphasis role="bold">Ctrl+Space</emphasis>.</para>
+
+            <para>For example, type <code>Dat</code>, then Ctrl+Space to see a
+            list of classes that start with <quote>Dat</quote>.</para>
+          </listitem>
+        </itemizedlist>
+
+        <para>When the suggestions come up, you can click, type, or use the
+        arrow keys to select the one you want. Press Enter or Return to choose
+        a suggestion, or Esc to dismiss the panel.</para>
+      </sect3>
+
+      <sect3 id="ch04-editor-edit-browse-apis">
+        <title>Browsing APIs</title>
+
+        <para>With Dart Editor you can easily find where APIs are declared.
+        You can also outline the contents of a Dart file.</para>
+
+        <sect4 id="browse-api-declaration">
+          <title>Finding where an API is declared</title>
+
+          <para>Use this feature to go to the declaration of an API
+          item—variable, method, type, library, and so on—either within the
+          same .dart file or in another file.</para>
+
+          <orderedlist>
+            <listitem>
+              <para>In the Edit view of a Dart file, hold down the <emphasis
+              role="bold">Control</emphasis> key (<emphasis
+              role="bold">Command</emphasis> key on Mac) and move the mouse
+              over the source code. As <xref linkend="sunflower-hover" />
+              shows, any API item under your cursor is underlined.</para>
+
+              <figure id="sunflower-hover">
+                <title>Control or Command while hovering over API
+                items</title>
+
+                <mediaobject>
+                  <imageobject>
+                    <imagedata fileref="../figs/incoming/0403_sunflower-hover.png"
+                               format="PNG" scale="50" />
+                  </imageobject>
+                </mediaobject>
+              </figure>
+            </listitem>
+
+            <listitem>
+              <para>Continuing to press Control or Command, hover over an
+              underlined string, and click.</para>
+
+              <para>The editor displays the file that declares the item. For
+              example, if you Command-click cos, the file that declares the
+              cos() function appears.</para>
+            </listitem>
+          </orderedlist>
+        </sect4>
+
+        <sect4 id="browse-api-outline">
+          <title>Outlining a file’s contents</title>
+
+          <para>Either press <emphasis role="bold">Alt+O</emphasis> (<emphasis
+          role="bold">Option+O</emphasis> on Mac) or right-click and choose
+          <emphasis role="bold">Quick Outline</emphasis>.</para>
+
+          <para>A panel comes up displaying the classes, methods, and fields
+          declared in the current Dart file. For example, the outline for the
+          Sunflower sample’s <code>sunflower.dart</code> file looks something
+          like <xref linkend="sunflower-outline" />.</para>
+
+          <figure id="sunflower-outline">
+            <title>The Outline panel for the Sunflower sample</title>
+
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="../figs/incoming/0404_sunflower-outline.png"
+                           format="PNG" scale="50" />
+              </imageobject>
+            </mediaobject>
+          </figure>
+
+          <para>You can reduce the size of the list by typing one or more
+          characters. For example, if you type <emphasis
+          role="bold">c</emphasis>, only the <emphasis
+          role="bold">center</emphasis> variables appear.</para>
+
+          <para>If you choose an item from the list—for example, <emphasis
+          role="bold">centerX</emphasis>— the editor scrolls to its
+          declaration.</para>
+
+          <para>Alternatively, add a more permanent outline view by choosing
+          <emphasis role="bold">Tools &gt; Outline</emphasis>.</para>
+        </sect4>
+
+        <sect4 id="callers-view">
+          <title>Finding where an API is used</title>
+
+          <para>Use the Callers view to find where an API item—such as a
+          function—is used. To bring up the view, click the item’s name,
+          right-click, and choose <emphasis role="bold">Find
+          Callers</emphasis> (or type Ctrl+Alt+H).</para>
+
+          <para>To see how a caller itself is called, click its arrow in the
+          Callers view. For example, <xref linkend="clock-callers" /> shows
+          that two functions call the updateTime() method.</para>
+
+          <figure id="clock-callers">
+            <title>The Callers view</title>
+
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="../figs/incoming/0405_clock-callers.png"
+                           format="PNG" scale="50" />
+              </imageobject>
+            </mediaobject>
+          </figure>
+
+          <para>Once the Callers view is visible, you can click the Show
+          Callee Hierarchy button <inlinemediaobject>
+              <imageobject>
+                <imagedata fileref="../figs/incoming/callees.gif"
+                           width="0.12in" />
+              </imageobject>
+            </inlinemediaobject> to make the view show
+          <emphasis>callees</emphasis>—the functions called by the function
+          you’re inspecting.</para>
+        </sect4>
+      </sect3>
+
+      <sect3 id="ch04-editor-edit-refactor">
+        <title>Refactoring</title>
+
+        <para>To change the name of an item throughout your code, put the
+        cursor within (or double-click) the item’s name in the Edit view, and
+        choose <emphasis role="bold">Edit &gt; Rename...</emphasis> or
+        right-click and choose <emphasis
+        role="bold">Rename...</emphasis>.</para>
+
+        <para>You can rename almost anything—local variables, function
+        parameters, fields, methods, types, top-level functions, library
+        prefixes, top-level compilation units, and more. An example of
+        renaming a top-level compilation unit is changing the name of a file
+        that’s sourced by a library.</para>
+      </sect3>
+
+      <sect3 id="ch04-editor-edit-searching">
+        <title>Searching</title>
+
+        <para>The search field at the upper right of the Dart Editor window is
+        an easy way to go directly to:</para>
+
+        <itemizedlist>
+          <listitem>
+            <simpara>Types</simpara>
+          </listitem>
+
+          <listitem>
+            <simpara>Files</simpara>
+          </listitem>
+
+          <listitem>
+            <simpara>Text inside of files</simpara>
+          </listitem>
+        </itemizedlist>
+
+        <para>The scope of a text search is every file in your Files view.
+        Results for text searches come up in a Search view. Within that view,
+        double-click a file to see it in the Edit view. All occurrences of the
+        search string in the Edit view are highlighted.</para>
+      </sect3>
+    </sect2>
+
+    <sect2 id="ch04-editor-run">
+      <title>Running apps</title>
+
+      <para>To run any Dart app, click Dart Editor’s Run button
+      <inlinemediaobject>
+          <imageobject>
+            <imagedata fileref="../figs/incoming/run.png" width="0.12in" />
+          </imageobject>
+        </inlinemediaobject> while any file in that app is selected. If you’re
+      working on a web app, Dart Editor brings up a browser window that
+      displays the app’s HTML page, with the app’s code running inside
+      it.</para>
+
+      <para>When you run a web application using Dart Editor, by default the
+      app uses the copy of Dartium that’s included in the Dart Editor
+      download, with the Dart code executing directly in the browser. If your
+      launch configuration specifies a browser, then Dart Editor uses dart2js
+      <xref linkend="ch04-tools-dart2js" xrefstyle="select: page" /> to
+      compile the Dart code to JavaScript that executes in the browser.</para>
+
+      <sect3 id="ch04-editor-run-manage-launch">
+        <title>Specifying launch configurations</title>
+
+        <para>Use <emphasis role="bold">Run &gt; Manage Launches</emphasis> to
+        specify as many launch configurations as you like.</para>
+
+        <para>For web apps, you can specify the following:</para>
+
+        <itemizedlist>
+          <listitem>
+            <simpara>HTML file or URL to open</simpara>
+          </listitem>
+
+          <listitem>
+            <simpara>browser (JavaScript only)</simpara>
+          </listitem>
+
+          <listitem>
+            <simpara>arguments to pass to the browser; for example,
+            <literal>--allow-file-access-from-files</literal></simpara>
+          </listitem>
+
+          <listitem>
+            <simpara>debugging enabled (Dartium only)</simpara>
+          </listitem>
+
+          <listitem>
+            <simpara>checked mode (Dartium only)</simpara>
+          </listitem>
+
+          <listitem>
+            <simpara>whether to show the browser’s stdout and stderr output
+            (Dartium only; useful for diagnosing Dartium crashes)</simpara>
+          </listitem>
+        </itemizedlist>
+
+        <para>For example, a web app might have a launch configuration for
+        Dartium and several more configurations corresponding to additional
+        browsers you want to test.</para>
+
+        <para>You can specify the following for command-line apps:</para>
+
+        <itemizedlist>
+          <listitem>
+            <simpara>.dart file to execute</simpara>
+          </listitem>
+
+          <listitem>
+            <simpara>arguments to pass to the app</simpara>
+          </listitem>
+
+          <listitem>
+            <simpara>checked mode</simpara>
+          </listitem>
+
+          <listitem>
+            <simpara>heap size</simpara>
+          </listitem>
+        </itemizedlist>
+      </sect3>
+
+      <sect3 id="ch04-editor-run-production-mode">
+        <title>Running in production mode</title>
+
+        <para>By default, apps run in checked mode. To run in production mode
+        instead, disable checked mode in your app’s launch
+        configuration:</para>
+
+        <orderedlist>
+          <listitem>
+            <para>Run your app at least once, so that it has a launch
+            configuration.</para>
+          </listitem>
+
+          <listitem>
+            <para>Choose <emphasis role="bold">Run &gt; Manage
+            Launches</emphasis>, or click the little arrow to the right of the
+            Run button <inlinemediaobject>
+                <imageobject>
+                  <imagedata fileref="../figs/incoming/run.png" width="0.12in" />
+                </imageobject>
+              </inlinemediaobject>.</para>
+          </listitem>
+
+          <listitem>
+            <para>In the Manage Launches dialog, find a launch configuration
+            for your app. Click it if it isn’t already selected.</para>
+          </listitem>
+
+          <listitem>
+            <para>Unselect <emphasis role="bold">Run in checked
+            mode</emphasis> (see <xref linkend="production-mode" />). <figure
+                id="production-mode">
+                <title>To run in production mode, unselect checked
+                mode</title>
+
+                <mediaobject>
+                  <imageobject>
+                    <imagedata fileref="../figs/incoming/0406_production-mode.png"
+                               format="PNG" />
+                  </imageobject>
+                </mediaobject>
+              </figure></para>
+          </listitem>
+
+          <listitem>
+            <para>Click <emphasis role="bold">Apply</emphasis> to save your
+            change, or <emphasis role="bold">Run</emphasis> to save it and run
+            your app.</para>
+          </listitem>
+        </orderedlist>
+
+        <para>For details about checked mode and production mode, see <xref
+        linkend="ch02-runtime-modes" />.</para>
+      </sect3>
+
+      <sect3 id="ch04-editor-run-non-dartium">
+        <title>Specifying a browser</title>
+
+        <para>To specify the browser in which the your app runs:</para>
+
+        <orderedlist>
+          <listitem>
+            <para>Choose <emphasis role="bold">Run &gt; Manage
+            Launches</emphasis>, or click the little arrow to the right of the
+            Run button <inlinemediaobject>
+                <imageobject>
+                  <imagedata fileref="../figs/incoming/run.png" width="0.12in" />
+                </imageobject>
+              </inlinemediaobject>. The Manage Launches dialog appears (see
+            <xref linkend="manage-launches" />). On the left side of the
+            dialog is a list of all launch configurations that you’ve created
+            or that were automatically created for you. On the right is
+            information about the currently selected launch configuration.
+            <figure id="manage-launches">
+                <title>The Manage Launches dialog</title>
+
+                <mediaobject>
+                  <imageobject>
+                    <imagedata fileref="../figs/incoming/0407_manage-launches.png"
+                               format="PNG" scale="50" />
+                  </imageobject>
+                </mediaobject>
+              </figure></para>
+          </listitem>
+
+          <listitem>
+            <para>In the Manage Launches dialog, click the Create new launch
+            button <inlinemediaobject>
+                <imageobject>
+                  <imagedata fileref="../figs/incoming/run-create.png"
+                             width="0.12in" />
+                </imageobject>
+              </inlinemediaobject>, and choose <emphasis role="bold">New web
+            launch: JavaScript</emphasis>. <figure id="new-web-launch-menu">
+                <title>Creating a new web launch</title>
+
+                <mediaobject>
+                  <imageobject>
+                    <imagedata fileref="../figs/incoming/0408_new-web-launch-menu.png"
+                               format="PNG" scale="50" />
+                  </imageobject>
+                </mediaobject>
+              </figure></para>
+          </listitem>
+
+          <listitem>
+            <para>Enter configuration information:</para>
+
+            <itemizedlist>
+              <listitem>
+                <para>Give the configuration a name that identifies the app,
+                the browser, and anything else important.
+                <emphasis>Example:</emphasis> HelloWeb.html in Firefox</para>
+              </listitem>
+
+              <listitem>
+                <para>Specify the HTML file or URL to open.
+                <emphasis>Example:</emphasis> /HelloWeb/HelloWeb.html</para>
+              </listitem>
+
+              <listitem>
+                <para>Unless you want to use the default system browser,
+                unselect <emphasis role="bold">Use default system
+                browser</emphasis> and specify the location of the browser you
+                want to use. <emphasis>Example:</emphasis>
+                /Applications/Firefox.app</para>
+              </listitem>
+            </itemizedlist>
+          </listitem>
+
+          <listitem>
+            <para>Click <emphasis role="bold">Apply</emphasis> to save your
+            changes, or <emphasis role="bold">Run</emphasis> to save your
+            changes and launch the app.</para>
+          </listitem>
+        </orderedlist>
+
+        <para>Now that you’ve set up the launch, you can choose it any time
+        from the Run button <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="../figs/incoming/run.png" width="0.12in" />
+            </imageobject>
+          </inlinemediaobject>. Your app will be automatically compiled to
+        JavaScript each time you run it.</para>
+      </sect3>
+    </sect2>
+
+    <sect2 id="ch04-editor-debug">
+      <title>Debugging apps</title>
+
+      <para>You can debug both command-line and web apps with Dart Editor.
+      Debugging must be enabled in your launch configuration (which it is, by
+      default).</para>
+
+      <para>Some tips for debugging:</para>
+
+      <itemizedlist>
+        <listitem>
+          <simpara>Set breakpoints by double-clicking in the left margin of
+          the Edit view.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>Use the Debugger view to view your app’s state and control
+          its execution. By default, the Debugger view is to the right of the
+          Edit view.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>To see the values of variables, mouse over the variable or
+          look in the Debugging view’s Call Stack.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>Because everything in Dart is an object and operators are
+          really methods, you’ll probably use Step Return (F7) more than you’d
+          expect to climb out of Dart libraries.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>To debug web apps, you use Dart Editor with Dartium (<xref
+          linkend="debugger" />). While you’re debugging, Dart Editor takes
+          the place of the Dartium console. For example, Dart Editor displays
+          the output of print() statements.</simpara>
+        </listitem>
+      </itemizedlist>
+
+      <figure id="debugger">
+        <title>Using Dart Editor to debug the Sunflower sample app</title>
+
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="../figs/incoming/0409_debugger.png"
+                       format="PNG" scale="50" />
+          </imageobject>
+        </mediaobject>
+      </figure>
+    </sect2>
+
+    <sect2 id="ch04-editor-dart2js">
+      <title>Compiling to JavaScript</title>
+
+      <para>You might not need to do anything to compile your code to
+      JavaScript. When you run an app using a launch configuration that
+      specifies a browser <xref linkend="ch04-editor-run-non-dartium"
+      xrefstyle="select: page" />, Dart Editor automatically compiles the app
+      to JavaScript before executing it in the browser.</para>
+
+      <para>However, you can also compile Dart code to JavaScript without
+      running the app. Just choose <emphasis role="bold">Tools &gt; Generate
+      JavaScript</emphasis>. Another option is using dart2js from the command
+      line (see <xref linkend="ch04-tools-dart2js" />).</para>
+    </sect2>
+
+    <sect2 id="ch04-editor-more">
+      <title>Other features</title>
+
+      <para>Dart Editor has many additional features, including doc
+      generation, customization, and keyboard alternatives.</para>
+
+      <sect3 id="ch04-editor-more-dartdoc">
+        <title>Generating documentation with dartdoc</title>
+
+        <para>Use the <emphasis role="bold">Tools &gt; Generate
+        Dartdoc</emphasis> command to generate HTML documentation from Dart
+        code. For information on supplying text for the documentation, see
+        <xref linkend="comments-doc" />.</para>
+      </sect3>
+
+      <sect3 id="ch04-editor-more-preferences">
+        <title>Customizing Dart Editor</title>
+
+        <para>You can customize the editor’s font, margins, key bindings, and
+        more using the Preferences dialog. To bring up the dialog, choose
+        <emphasis role="bold">Tools &gt; Preferences</emphasis> (on Mac:
+        <emphasis role="bold">Dart Editor &gt; Preferences</emphasis>).</para>
+
+        <para>You can also customize which views you see in Dart Editor, as
+        well as their size and position. To add views, use the <emphasis
+        role="bold">Tools</emphasis> menu. To remove a view, click its
+        <emphasis role="bold">X</emphasis>. To move a view, drag its tab to a
+        different position, either within or outside of the Dart Editor
+        window. To resize a view, drag its edges.</para>
+      </sect3>
+
+      <sect3 id="ch04-editor-more-keys">
+        <title>Keyboard alternatives</title>
+
+        <para>To get a list of all keyboard alternatives, choose <emphasis
+        role="bold">Help &gt; Key Assist</emphasis> (<xref
+        linkend="key-assist" />).</para>
+
+        <figure id="key-assist">
+          <title>Help &gt; Key Assist</title>
+
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="../figs/incoming/0410_key-assist.png"
+                         format="PNG" scale="50" />
+            </imageobject>
+          </mediaobject>
+        </figure>
+      </sect3>
+    </sect2>
+  </sect1>
+
+  <sect1 id="ch04-tools-dartium">
+    <title>Dartium: Chromium with the Dart VM</title>
+
+    <para>This section tells you how to get and use Dartium, a Chromium-based
+    browser that includes the Dart VM. This browser can execute Dart web apps
+    directly, so you don’t have to compile your code to JavaScript until
+    you’re ready to test on other browsers.</para>
+
+    <warning>
+      <para>This browser is a technical preview, and it might have security
+      and stability issues. <emphasis role="bold">Do not use Dartium as your
+      primary browser!</emphasis></para>
+    </warning>
+
+    <sect2 id="ch04-dartium-download">
+      <title>Downloading and installing the browser</title>
+
+      <para>If you have an up-to-date version of Dart Editor, you already have
+      Dartium.</para>
+
+      <para>If you don’t have Dart Editor or want a different version of
+      Dartium, you can get it separately from the <ulink
+      url="http://www.dartlang.org/downloads.html">Downloads
+      page.</ulink></para>
+
+      <note>
+        <para>The Dartium binary expires after a while. When that happens,
+        you’ll need to download a new copy if you want to continue using
+        Dartium.</para>
+      </note>
+
+      <para>You don’t usually need to do anything special to install Dartium:
+      just unarchive the ZIP file. If you want Dart Editor to launch a
+      particular copy of Dartium, then put that copy inside the
+      <literal>dart-sdk</literal> directory of your Dart installation
+      directory (see <xref linkend="ch01-editor-download" />), replacing the
+      original copy of Chromium.</para>
+    </sect2>
+
+    <sect2 id="ch04-dartium-launch">
+      <title>Launching the browser</title>
+
+      <para>To launch Dartium, navigate to its directory in your finder, and
+      double-click the Chromium executable file. Or use Dart Editor (as
+      described in <xref linkend="ch04-editor-run" />) or the command line (as
+      described in <xref linkend="ch04-dartium-command" />).</para>
+
+      <para>If launching fails and you’re using 64-bit Linux, you probably
+      need to install 32-bit libraries. See <ulink
+      url="http://dartbug.com/2052"></ulink> for details and tips.</para>
+
+      <warning>
+        <para><emphasis>If you already use Chromium:</emphasis> If another
+        version of Chromium is open, then you could have a profile conflict.
+        To avoid this, you can open Dartium or Chromium from the command line
+        with the <ulink
+        url="http://www.chromium.org/user-experience/user-data-directory">--user-data-dir
+        flag.</ulink></para>
+      </warning>
+    </sect2>
+
+    <sect2 id="ch04-dartium-bug">
+      <title>Filing bugs</title>
+
+      <para>If you find a bug in Dartium, create an issue in the Dart project
+      and use the <ulink
+      url="http://code.google.com/p/dart/issues/entry?template=Defect%20report%20for%20Dartium">Dartium
+      bug template.</ulink></para>
+    </sect2>
+
+    <sect2 id="ch04-dartium-linking">
+      <title>Linking to Dart source</title>
+
+      <para>Use a script tag with a type <literal>application/dart</literal>
+      to link to your Dart source file. Example:</para>
+
+      <programlisting>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;body&gt;
+    &lt;script type="application/dart" src="app.dart"&gt;&lt;/script&gt;
+
+    &lt;!-- bootstraps the Dart VM and handles non-Dart browsers --&gt;
+    &lt;script type="text/javascript"
+      src="http://dart.googlecode.com/svn/trunk/dart/client/dart.js"&gt;
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</programlisting>
+
+      <note>
+        <para>Dart Editor automatically adds both the
+        <literal>application/dart</literal> script tag and the bootstrap
+        JavaScript tag into the project’s main HTML file.</para>
+      </note>
+    </sect2>
+
+    <sect2 id="ch04-dartium-detect">
+      <title>Detecting Dart support</title>
+
+      <para>The above example uses a bootstrap script that takes care of
+      turning on the Dart VM, as well as compatibility with non-Dart browsers.
+      Instead of using the <literal>dart.js</literal> script, you can manually
+      include the necessary JavaScript code.</para>
+
+      <para>To start the Dart VM, use the JavaScript function
+      <literal>navigator.webkitStartDart()</literal>. For example:</para>
+
+      <programlisting>// In JavaScript code:
+if (!navigator.webkitStartDart) {
+  // No native Dart support.
+  window.addEventListener("DOMContentLoaded", function (e) {
+      // ...Fall back to compiled JS...
+    }
+  }, false);
+} else {
+  navigator.webkitStartDart();
+}
+</programlisting>
+    </sect2>
+
+    <sect2 id="ch04-dartium-command">
+      <title>Launching from the command line</title>
+
+      <para>Because Dartium is based on Chromium, all <ulink
+      url="http://www.chromium.org/developers/how-tos/run-chromium-with-flags">Chromium
+      flags</ulink> should work. In some cases, you might want to specify
+      Dart-specific flags so that you can tweak the embedded Dart VM’s
+      behavior. For example, while developing your web app, you might want the
+      VM to perform as many checks as possible. To achieve that, you can
+      enable checked mode (the VM’s --enable-type-checks flag) and assertion
+      checks (--enable-asserts flag).</para>
+
+      <para>On Linux, you can specify flags by starting Dartium as
+      follows:</para>
+
+      <screen>DART_FLAGS='--enable-type-checks --enable-asserts' <replaceable>path</replaceable>/chrome
+</screen>
+
+      <para>On Mac:</para>
+
+      <screen>DART_FLAGS='--enable-type-checks --enable-asserts'              \
+  <replaceable>path</replaceable>/Chromium.app/Contents/MacOS/Chromium
+</screen>
+
+      <para>Or (also on Mac):</para>
+
+      <screen>DART_FLAGS='--enable-type-checks --enable-asserts'              \
+   open <replaceable>path</replaceable>/Chromium.app
+</screen>
+
+      <note>
+        <para>You can see the command-line flags and executable path of your
+        current Chromium-based browser by going to
+        <literal>chrome://version</literal>.</para>
+      </note>
+    </sect2>
+  </sect1>
+
+  <sect1 id="ch04-tools-dart2js">
+    <title>dart2js: The Dart-to-JavaScript compiler</title>
+
+    <para>You can use the <emphasis>dart2js</emphasis> tool to compile Dart
+    code to JavaScript. Dart Editor uses dart2js behind the scenes whenever
+    Dart Editor compiles to JavaScript <xref linkend="ch04-editor-dart2js"
+    xrefstyle="select: page" />.</para>
+
+    <sect2 id="ch04-tools-dart2js-basic-usage">
+      <title>Basic usage</title>
+
+      <para>Here’s an example of compiling a Dart file to JavaScript:</para>
+
+      <screen><replaceable>$DART_SDK</replaceable>/bin/dart2js <replaceable>test.dart</replaceable></screen>
+
+      <para>This command produces a <literal>.js</literal> file that contains
+      the JavaScript equivalent of your Dart code.</para>
+    </sect2>
+
+    <sect2 id="ch04-tools-dart2js-options">
+      <title>Options</title>
+
+      <para>Common command-line options for dart2js include:</para>
+
+      <variablelist>
+        <varlistentry>
+          <term role="plain"><literal>
+          -o<replaceable>&lt;file&gt;</replaceable> </literal></term>
+
+          <listitem>
+            <para>Generate the output into
+            <replaceable>&lt;file&gt;</replaceable>.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term role="plain"><literal> -c </literal></term>
+
+          <listitem>
+            <para>Insert runtime type checks, and enable assertions (checked
+            mode).</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term role="plain"><literal> -h </literal></term>
+
+          <listitem>
+            <para>Display help (add <literal>-v</literal> for information
+            about all options).</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </sect2>
+  </sect1>
+
+  <sect1 id="ch04-tools-dart-vm">
+    <title>dart: The standalone VM</title>
+
+    <para>You can use the <emphasis>dart</emphasis> tool
+    (<literal>bin/dart</literal>) to run Dart command-line apps such as
+    server-side scripts, programs, and servers. During development, you also
+    have the option to run command-line apps using Dart Editor <xref
+    linkend="ch04-editor-run" xrefstyle="select: page" />.</para>
+
+    <sect2 id="ch04-tools-dart-vm-basic-usage">
+      <title>Basic usage</title>
+
+      <para>Here’s an example of running a Dart file on the command
+      line:</para>
+
+      <screen><replaceable>$DART_SDK</replaceable>/bin/dart <replaceable>test.dart</replaceable></screen>
+    </sect2>
+
+    <sect2 id="ch04-tools-dart-vm-type-checks">
+      <title>Enabling checked mode</title>
+
+      <para>Dart programs run in one of two modes: checked or production. By
+      default, the Dart VM runs in production mode. We recommend that you
+      enable checked mode for development and testing.</para>
+
+      <para>In checked mode, assignments are dynamically checked, and certain
+      violations of the type system raise exceptions at run time. In
+      production mode, static type annotations have no effect.</para>
+
+      <para>Assert statements are also enabled in checked mode. An assert
+      statement <xref linkend="assert" xrefstyle="select: page" /> checks a
+      boolean condition, raising an exception if the condition is false.
+      Assertions do not run in production mode.</para>
+
+      <para>You can run the VM in checked mode with a command-line
+      flag:</para>
+
+      <screen><replaceable>$DART_SDK</replaceable>/bin/dart --checked <replaceable>test.dart</replaceable></screen>
+    </sect2>
+
+    <sect2 id="ch04-tools-dart-vm-more-options">
+      <title>Additional options</title>
+
+      <para>Print all the command-line options with
+      <literal>--print-flags</literal>:</para>
+
+      <screen><replaceable>$DART_SDK</replaceable>/bin/dart --print-flags</screen>
+    </sect2>
+  </sect1>
+
+  <sect1>
+    <title>Summary</title>
+
+    <para>This chapter covered the most commonly used Dart tools. All of them
+    are available in the Dart Editor download, but you can also download
+    Dartium or the SDK separately.</para>
+  </sect1>
+</chapter>
