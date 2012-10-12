@@ -1,13 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE preface PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
 "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
-<preface id="preface">
+<preface id="preface" xml:base="merged/ch00.xml">
   <title>Preface</title>
 
-  <para>{PENDING: Brief intro here. Refer people to www.dartlang.org, somehow?
-  Point to location of code samples, once we know where they’ll be.
-  <remark>NOTE: It’s not practical to just copy-paste the code from the PDF.
-  You often get gibberish.</remark>}</para>
+  <para>You don’t need to be an expert web developer to build web apps. With
+  Dart, you can be productive as you build high-performance apps for the
+  modern web.</para>
+
+  <para>Our aim for this book is to be a useful introduction to the Dart
+  language, libraries, and tools. Because this book is short and Dart is
+  young, you might also need to refer to the Dart website at <ulink
+  url="http://dartlang.org"></ulink>—both for details and for updates. For the
+  latest news, keep an eye on <ulink url="http://news.dartlang.org"></ulink>
+  and the <ulink url="http://plus.google.com/109866369054280216564">Dart
+  page</ulink> on Google+.</para>
+
+  <para>Another important website is this book’s <ulink
+  url="https://github.com/dart-lang/dart-up-and-running-book">GitHub
+  project.</ulink> The text for this work is available there under the <ulink
+  url="http://creativecommons.org/licenses/by-nc-nd/3.0/us/">Creative Commons
+  Attribution-Noncommercial-No Derivative Works 3.0 United States
+  License.</ulink> Source code files for this book’s samples are also there,
+  in the <ulink
+  url="https://github.com/dart-lang/dart-up-and-running-book/tree/master/code"><literal>code/</literal>
+  subdirectory</ulink>.</para>
+
+  <tip>
+    <para>Downloading the sample code from GitHub is much easier than copying
+    it from the book.</para>
+  </tip>
+
+  <para>If you find an error in the sample code or text, please <ulink
+  url="https://github.com/dart-lang/dart-up-and-running-book/issues/new">create
+  an issue.</ulink></para>
 
   <sect1>
     <title>Conventions used in this book</title>
@@ -26,7 +52,7 @@
       </varlistentry>
 
       <varlistentry>
-        <term><literal>Constant width</literal></term>
+        <term><literal moreinfo="none">Constant width</literal></term>
 
         <listitem>
           <para>Used for program listings, as well as within paragraphs to
@@ -37,7 +63,8 @@
       </varlistentry>
 
       <varlistentry>
-        <term><userinput>Constant width bold</userinput></term>
+        <term><userinput moreinfo="none">Constant width
+        bold</userinput></term>
 
         <listitem>
           <para>Shows commands or other text that should be typed literally by
@@ -98,11 +125,13 @@
       role="orm:hideurl"
       url="http://www.safaribooksonline.com/content">content</ulink> in both
       book and video form from the world’s leading authors in technology and
-      business. Technology professionals, software developers, web designers,
-      and business and creative professionals use Safari Books Online as their
-      primary resource for research, problem solving, learning, and
-      certification training.</para>
+      business.</para>
     </note>
+
+    <para>Technology professionals, software developers, web designers, and
+    business and creative professionals use Safari Books Online as their
+    primary resource for research, problem solving, learning, and
+    certification training.</para>
 
     <para>Safari Books Online offers a range of <ulink role="orm:hideurl"
     url="http://www.safaribooksonline.com/subscriptions">product mixes</ulink>
@@ -147,21 +176,13 @@
     </simplelist>
 
     <para>We have a web page for this book, where we list errata, examples,
-    and any additional information. You can access this page at:</para>
-
-    <simplelist type="vert">
-      <member><ulink
-      url="http://www.oreilly.com/catalog/&lt;catalog page&gt;"></ulink></member>
-    </simplelist>
+    and any additional information. You can access this page at <ulink
+    url="http://www.oreilly.com/catalog/&lt;catalog page&gt;"></ulink>.</para>
 
     <remark>Don’t forget to update the &lt;url&gt; attribute, too.</remark>
 
-    <para>To comment or ask technical questions about this book, send email
-    to:</para>
-
-    <simplelist type="vert">
-      <member><email>bookquestions@oreilly.com</email></member>
-    </simplelist>
+    <para>To comment or ask technical questions about this book, send email to
+    <email>bookquestions@oreilly.com</email>.</para>
 
     <para>For more information about our books, courses, conferences, and
     news, see our website at <ulink
@@ -209,9 +230,13 @@
       <listitem>
         <para>Mary Campione, whose stream-of-consciousness review of the
         entire book, performed while she was first learning the language,
-        helped us find and fix many confusing spots, as well as some errors.
-        Phil Quitslund, who did a big-picture review of the book and gave us
-        guidance and encouragement.</para>
+        helped us find and fix many confusing spots, as well as some
+        errors.</para>
+      </listitem>
+
+      <listitem>
+        <para>Phil Quitslund, who did a big-picture review of the book and
+        gave us guidance and encouragement.</para>
       </listitem>
 
       <listitem>
@@ -224,7 +249,7 @@
         <para>Gilad Bracha, the language spec writer whose reviews of the
         language chapter (our longest one) were invaluable for getting
         language details right. We couldn’t cover everything, so we look
-        forward to his future work on making the nuances of the language
+        forward to his future work on making all the corners of the language
         understandable to all Dart programmers.</para>
       </listitem>
     </itemizedlist>
@@ -237,7 +262,7 @@
     <para>The people at O’Reilly were extremely helpful. Meghan Blanchette,
     our editor, kept everything going smoothly, monitoring our progress in the
     nicest possible way. We’d also like to thank the good people who manage
-    the author workflow and make working on an O'Reilly book such a pleasure.
+    the author workflow and make working on an O’Reilly book such a pleasure.
     We personally worked with Sarah Schneider and Jessica Hosman.</para>
 
     <para>Finally, we thank Lars Bak and Kasper Lund for writing the foreword,
