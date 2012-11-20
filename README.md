@@ -12,6 +12,9 @@ but we plan to keep this version (more or less) in sync with that.
 If we change http://www.dartlang.org/docs/dart-up-and-running/,
 then we also need to update the Subversion repo (and eventually this one).
 
+The files in the Subversion repo have production changes that we should
+apply to these ones. Ugh.
+
 Project Structure
 -----------------
 
