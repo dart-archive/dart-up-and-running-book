@@ -2,7 +2,7 @@ main() {
   // BEGIN(empty_string)
   // Check for an empty string.
   var fullName = '';
-  assert(fullName.isEmpty());
+  assert(fullName.isEmpty);
 
   // Check for zero.
   var hitPoints = 0;
@@ -14,6 +14,6 @@ main() {
 
   // Check for NaN.
   var iMeantToDoThis = 0/0;
-  assert(iMeantToDoThis.isNaN());
+  assert(iMeantToDoThis.isNaN);
   // END(empty_string)
 }
