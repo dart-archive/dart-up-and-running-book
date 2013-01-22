@@ -4,4 +4,6 @@ main() {
           " works even over line breaks.";
   assert(s == 'String concatenation works even over line breaks.');
   // END(adjacent_string_literals)
+  
+  print(s); // String concatenation works even over line breaks.
 }
