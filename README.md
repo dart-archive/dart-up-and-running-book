@@ -7,13 +7,11 @@ More info: http://shop.oreilly.com/product/0636920025719.do
 An HTML version of this book is online at
 http://www.dartlang.org/docs/dart-up-and-running/.
 
-The most up-to-date copy of the book is in an O'Reilly Subversion repo,
-but we plan to keep this version (more or less) in sync with that.
-If we change http://www.dartlang.org/docs/dart-up-and-running/,
-then we also need to update the Subversion repo (and eventually this one).
+The .xml files are old (pre-copyedit, and not updated for changes since
+then). We plan to update the XML soon or point to a new repo, if
+necessary.
 
-The files in the Subversion repo have production changes that we should
-apply to these ones. Ugh.
+The code/ directory is up-to-date but incomplete.
 
 Project Structure
 -----------------
