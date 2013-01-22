@@ -74,3 +74,9 @@ Now, just run make from your SVN directory:
 
 Watch the output carefully for errors. Unfortunately, there are cases where it
 will print an error but not stop processing.
+
+
+Updating the dartlang.org copy of this book
+------------------
+Basically, you get the dartlang.org project, and you run `make book`.
+See https://github.com/dart-lang/dartlang.org#readme for details.
