@@ -2,6 +2,8 @@
 <!DOCTYPE preface PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
 "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
 <preface id="preface" xml:base="merged/ch00.xml">
+  <?dbhtml stop-chunking?>
+
   <title>Preface</title>
 
   <para>You don’t need to be an expert web developer to build web apps. With
@@ -12,9 +14,8 @@
   language, libraries, and tools. Because this book is short and Dart is
   young, you might also need to refer to the Dart website at <ulink
   url="http://dartlang.org"></ulink>—both for details and for updates. For the
-  latest news, keep an eye on <ulink url="http://news.dartlang.org"></ulink>
-  and the <ulink url="http://plus.google.com/109866369054280216564">Dart
-  page</ulink> on Google+.</para>
+  latest news, keep an eye on the <ulink
+  url="http://google.com/+dartlang">Dart page</ulink> on Google+.</para>
 
   <para>Another important website is this book’s <ulink
   url="https://github.com/dart-lang/dart-up-and-running-book">GitHub
@@ -24,19 +25,15 @@
   License.</ulink> Source code files for this book’s samples are also there,
   in the <ulink
   url="https://github.com/dart-lang/dart-up-and-running-book/tree/master/code"><literal>code/</literal>
-  subdirectory</ulink>.</para>
-
-  <tip>
-    <para>Downloading the sample code from GitHub is much easier than copying
-    it from the book.</para>
-  </tip>
+  subdirectory. Downloading the sample code from GitHub is much easier than
+  copying it from the book.</ulink></para>
 
   <para>If you find an error in the sample code or text, please <ulink
   url="https://github.com/dart-lang/dart-up-and-running-book/issues/new">create
   an issue.</ulink></para>
 
-  <sect1>
-    <title>Conventions used in this book</title>
+  <sect1 id="preface-conventions">
+    <title>Conventions Used in This Book</title>
 
     <para>The following typographical conventions are used in this
     book:</para>
@@ -91,8 +88,8 @@
     </caution>
   </sect1>
 
-  <sect1>
-    <title>Using code examples</title>
+  <sect1 id="preface-examples">
+    <title>Using Code Examples</title>
 
     <para>This book is here to help you get your job done. In general, you may
     use the code in this book in your programs and documentation. You do not
@@ -106,16 +103,17 @@
     permission.</para>
 
     <para>We appreciate, but do not require, attribution. An attribution
-    usually includes the title, author, publisher, and ISBN. For example:
-    “<emphasis>Book Title</emphasis> by Some Author (O’Reilly). Copyright 2012
-    Some Copyright Holder, 978-0-596-xxxx-x.”</para>
+    usually includes the <phrase role="keep-together">title, author,</phrase>
+    publisher, and ISBN. For example: “<emphasis>Dart:Up and
+    Running</emphasis> by Kathy Walrath and Seth Ladd (O’Reilly). Copyright
+    2013 Kathy Walrath and Seth Ladd, 978-1-449-33089-7.”</para>
 
     <para>If you feel your use of code examples falls outside fair use or the
     permission given above, feel free to contact us at
     <email>permissions@oreilly.com</email>.</para>
   </sect1>
 
-  <sect1>
+  <sect1 id="preface-safari">
     <title>Safari® Books Online</title>
 
     <note role="safarienabled">
@@ -155,8 +153,8 @@
     url="http://www.safaribooksonline.com/">online</ulink>.</para>
   </sect1>
 
-  <sect1>
-    <title>How to contact us</title>
+  <sect1 id="preface-contact">
+    <title>How to Contact Us</title>
 
     <para>Please address comments and questions concerning this book to the
     publisher:</para>
@@ -177,9 +175,7 @@
 
     <para>We have a web page for this book, where we list errata, examples,
     and any additional information. You can access this page at <ulink
-    url="http://www.oreilly.com/catalog/&lt;catalog page&gt;"></ulink>.</para>
-
-    <remark>Don’t forget to update the &lt;url&gt; attribute, too.</remark>
+    url="http://oreil.ly/Dart_Up_and_Running"></ulink>.</para>
 
     <para>To comment or ask technical questions about this book, send email to
     <email>bookquestions@oreilly.com</email>.</para>
@@ -198,7 +194,87 @@
     url="http://www.youtube.com/oreillymedia"></ulink></para>
   </sect1>
 
-  <sect1>
+  <sect1 id="preface-updates">
+    <title>Content Updates</title>
+
+    <para>We’ve updated the content to reflect the following changes:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>Using <literal>part of</literal> in additional library files is
+        now <emphasis>required</emphasis>, not optional.</para>
+      </listitem>
+
+      <listitem>
+        <para>In the dart:html library, the <literal>elements</literal>
+        property of Element is now called <literal>children</literal>.</para>
+      </listitem>
+
+      <listitem>
+        <para>The <literal>charCodes()</literal> method of String is now a
+        getter, so we removed the parentheses from all references to
+        <literal>charCodes</literal>.</para>
+      </listitem>
+
+      <listitem>
+        <para>The <literal>readAsText()</literal> method of File is now called
+        <literal>readAsString()</literal>.</para>
+      </listitem>
+
+      <listitem>
+        <para>The recommended way for web apps to use
+        <literal>dart.js</literal> is now to have a local copy, preferably one
+        downloaded using the <literal>browser</literal> pub package.</para>
+      </listitem>
+
+      <listitem>
+        <para>Constructors for the Date class have changed.</para>
+      </listitem>
+
+      <listitem>
+        <para>NullPointerException no longer exists.</para>
+      </listitem>
+
+      <listitem>
+        <para>The core libraries were revised in M3. Changes include:</para>
+
+        <itemizedlist>
+          <listitem>
+            <para>Some methods have changed to fields or getters. This meant
+            we had to remove the <literal>()</literal> after
+            <literal>hashCode</literal>, <literal>isEmpty</literal> and
+            <literal>isNan</literal>. We also changed
+            <literal>getKeys()</literal> to <literal>keys</literal>, and
+            <literal>getValues()</literal> to <literal>values</literal>.
+            <remark> {PENDING: any more to add here?}</remark></para>
+          </listitem>
+
+          <listitem>
+            <para>The Iterable class has been beefed up, affecting all
+            Collections such as Lists and Sets. The former Collection methods
+            <literal>filter()</literal> and <literal>map()</literal> are now
+            in Iterable and named <literal>where()</literal> and
+            <literal>mappedBy()</literal>. The <literal>some()</literal>
+            method is now named <literal>any()</literal>. Many values returned
+            by Iterables are now lazily filled Iterables; you can use
+            <literal>toList()</literal> or <literal>toSet()</literal> to force
+            evaluation. More details will be in an <ulink
+            url="http://www.dartlang.org/articles/">article</ulink>.
+            <remark>{PENDING: update URL}</remark>.</para>
+          </listitem>
+
+          <listitem>
+            <para>The Iterator interface has changed from
+            <literal>next()</literal> and <literal>hasNext()</literal> to
+            <literal>current</literal> and
+            <literal>moveNext()</literal>.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </sect1>
+
+  <sect1 id="preface-acknowledgments">
     <title>Acknowledgments</title>
 
     <para>We’d like to thank the many people who contributed to this book. We
@@ -223,7 +299,7 @@
       </listitem>
 
       <listitem>
-        <para>Shailen Tuli, who helped test our examples, although he doesn’t
+        <para>Shailen Tuli, who helped test our examples although he didn’t
         even work for Google.</para>
       </listitem>
 
@@ -261,9 +337,11 @@
 
     <para>The people at O’Reilly were extremely helpful. Meghan Blanchette,
     our editor, kept everything going smoothly, monitoring our progress in the
-    nicest possible way. We’d also like to thank the good people who manage
-    the author workflow and make working on an O’Reilly book such a pleasure.
-    We personally worked with Sarah Schneider and Jessica Hosman.</para>
+    nicest possible way. Christopher Hearse checked our work and helped us
+    make some last-minute fixes that improved the final result. We’d also like
+    to thank the good people who manage the author workflow and make working
+    on an O’Reilly book such a pleasure. We personally worked with Sarah
+    Schneider and Jessica Hosman.</para>
 
     <para>Finally, we thank Lars Bak and Kasper Lund for writing the foreword,
     and most of all for creating Dart.</para>

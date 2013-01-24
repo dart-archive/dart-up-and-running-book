@@ -1,7 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE preface PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
 "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
-<preface id="foreword">
+<preface id="foreword" role="keep-together" xml:base="merged/foreword.xml">
+  <prefaceinfo>
+    <?dbfo keep-together="always"?>
+
+    <author>
+      <firstname>Lars</firstname>
+
+      <surname>Bak</surname>
+    </author>
+
+    <author>
+      <firstname>Kasper</firstname>
+
+      <surname>Lund</surname>
+    </author>
+
+    <affiliation>
+      <jobtitle>Designers of the Dart programming language, October
+      2012</jobtitle>
+    </affiliation>
+
+    <date>October 2012</date>
+  </prefaceinfo>
+
   <title>Foreword</title>
 
   <para>When we joined Google and entered the fascinating world of web browser
@@ -15,13 +38,12 @@
   impact our work seems to have had on the entire browser industry.</para>
 
   <para>Even though recent performance gains in web browsers have shattered
-  most limits on how large and complex web apps can be, building
-  large, high-performance web apps remains hard. Without good abstraction
-  mechanisms and clean semantics, developers often end up with complex and
-  convoluted code. Naturally, this problem gets exacerbated as the codebase
-  grows. We designed the Dart programming language to solve this exact
-  problem, and we hope that programmers will be more productive as a
-  result.</para>
+  most limits on how large and complex web apps can be, building large,
+  high-performance web apps remains hard. Without good abstraction mechanisms
+  and clean semantics, developers often end up with complex and convoluted
+  code. Naturally, this problem gets exacerbated as the codebase grows. We
+  designed the Dart programming language to solve this exact problem, and we
+  hope that programmers will be more productive as a result.</para>
 
   <para>Over the past year, we have read and written a lot of Dart code, and
   it is very satisfying to see how Dart inspires programmers to strive for
@@ -34,9 +56,4 @@
   <para><citetitle>Dart: Up and Running</citetitle> is a practical guide that
   introduces the Dart programming language and teaches you how to build Dart
   applications. We hope you will enjoy the book and Dart.</para>
-
-  <para>Lars Bak and Kasper Lund, designers of the Dart programming
-  language</para>
-
-  <para>October 2012</para>
 </preface>

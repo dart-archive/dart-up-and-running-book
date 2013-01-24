@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!DOCTYPE bookinfo PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<bookinfo>
+
+  <othercredit role="proofreader">
+    <firstname>Christopher</firstname>
+    <surname>Hearse</surname>
+  </othercredit>
+  <othercredit role="interiordesigner">
+    <firstname>David</firstname>
+    <surname>Futato</surname>
+  </othercredit>
+  <othercredit role="illustrator">
+    <firstname>Rebecca</firstname>
+    <surname>Demarest</surname>
+  </othercredit>
+  <othercredit role="coverdesigner">
+    <firstname>Randy</firstname>
+    <surname>Comer</surname>
+  </othercredit>
+
+  <!-- All rights reserved. -->
+  <publisher>
+    <publishername>O’Reilly Media, Inc.    </publishername>
+    <address format="linespecific">
+      <street>1005 Gravenstein Highway North</street>
+      <city>Sebastopol</city>
+      <state>CA</state>
+      <postcode>95472</postcode>
+    </address>
+  </publisher>
+
+  <legalnotice role="printlocation">
+    <para>Printed in the United States of America.</para>
+  </legalnotice>
+
+  <legalnotice role="printer">
+    <para>[LSI]</para>
+  </legalnotice>
+
+  <legalnotice role="use">
+    <para>O’Reilly books may be purchased for educational, business, or sales promotional use. Online editions are also available for most 
+          titles (<ulink role="orm:hideurl:ital" url="http://my.safaribooksonline.com/?portal=oreilly">http://my.safaribooksonline.com</ulink>). For more information, contact our corporate/institutional sales department:
+          800-998-9938 or <email>corporate@oreilly.com</email>.  </para>
+  </legalnotice>
+
+  <legalnotice role="trademarks">
+    <para>Nutshell Handbook, the Nutshell Handbook logo, and the O’Reilly logo are registered
+      trademarks of O’Reilly Media, Inc. <emphasis>Dart: Up and Running</emphasis>, the image of a
+      greater roadrunner, and related trade dress are trademarks of O’Reilly Media, Inc. </para>
+    <para>This text of this work is available at this book’s <ulink
+        url="https://github.com/dart-lang/dart-up-and-running-book">GitHub project</ulink> under the
+        <ulink url="http://creativecommons.org/licenses/by-nc-nd/3.0/us/">Creative Commons
+        Attribution-Noncommercial-No Derivative Works 3.0 United States License.</ulink></para>
+    <para>Many of the designations used by manufacturers and sellers to distinguish
+          their products are claimed as trademarks. Where those designations appear
+          in this book, and O’Reilly Media, Inc., was aware of a trademark claim,
+          the designations have been printed in caps or initial caps.    </para>
+  </legalnotice>
+
+  <legalnotice role="damages">
+    <para>While every precaution has been taken in the preparation of this book,
+        the publisher and authors assume no responsibility for errors or omissions, 
+        or for damages resulting from the use of the information contained herein.</para>
+  </legalnotice>
+<isbn>9781449330897</isbn><edition>1</edition><author><firstname>Kathy</firstname><surname>Walrath</surname><authorblurb><para>Kathy is a technical writer who’s worked on docs for Chrome and other developer APIs at Google
+        since 2006. Before that, she worked at Sun, NeXT, and HP. Back when the Web was young, she
+        wrote the first doc to help developers write Java applets. She also co-created <emphasis>The
+          Java Tutorial</emphasis> and maintained it for a very long time.</para></authorblurb></author><author><firstname>Seth</firstname><surname>Ladd</surname><authorblurb><para>Seth is a Developer Advocate with the Chrome team. He is a conference organizer <phrase
+          role="keep-together">(Aloha on Rails</phrase>, New Game) and author (<emphasis>Expert
+          Spring MVC</emphasis> [Apress]), helped publish Angry Birds for the Web, and is a big fan
+        of HTML5 and the modern Web.</para></authorblurb></author><editor><firstname>Meghan</firstname><surname>Blanchette</surname></editor><copyright>
+    <year>2013</year>
+    <holder>Kathy Walrath, Seth Ladd</holder>
+  </copyright><editor role="production"><firstname>Christopher</firstname><surname>Hearse</surname></editor><printhistory><formalpara><title>First Edition</title><para>October, 2012</para></formalpara></printhistory><revhistory><revision><date>2012-10-24</date><revremark>First release</revremark></revision></revhistory><legalnotice role="perfect"><para/></legalnotice></bookinfo>

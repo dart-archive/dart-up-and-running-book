@@ -5,7 +5,6 @@ class Process {
 class ProcessIterator implements Iterator<Process> {
   Process current;
   bool moveNext() {
-    // True if calling next() would return a process
     return false;
   }
 }

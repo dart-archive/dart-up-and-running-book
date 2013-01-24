@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
 "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
-<chapter>
+<chapter id="ch01" xml:base="merged/ch01.xml">
+  <?dbhtml stop-chunking?>
+
   <title>Quick Start</title>
 
   <para>Welcome to Dart, an open-source, batteries-included developer platform
@@ -21,7 +23,7 @@
   </warning>
 
   <sect1 id="ch01-why-dart">
-    <title>Why Google created Dart</title>
+    <title>Why Google Created Dart</title>
 
     <para>Google cares a lot about helping to make the web great. We write a
     lot of web apps, many of them quite sophisticated—think Gmail, Google
@@ -37,23 +39,20 @@
     since Chrome’s introduction in 2008.</para>
 
     <note>
-      <para>The JavaScript engine known as <glossterm>V8</glossterm> is
+      <para>The JavaScript engine known as <firstterm>V8</firstterm> is
       responsible for much of Chrome’s speed. Many of the V8 engineers are now
       working on the Dart project.</para>
     </note>
 
-    <figure id="BrowserChart">
+    <figure float="0" id="BrowserChart">
       <title>Browser speed</title>
 
       <mediaobject>
-        <imageobject>
-          <imagedata fileref="../figs/incoming/0101_BrowserChart.png" />
+        <imageobject role="web">
+          <imagedata fileref="figs/web/daur_0101.png" format="PNG" />
         </imageobject>
       </mediaobject>
     </figure>
-
-    <para><remark>{NOTE to O’REILLY: Please redraw this figure to match
-    O’Reilly’s style. Let me know if you need exact numbers.}</remark></para>
 
     <para>The number of new features in browsers has also increased, with APIs
     such as WebGL, FileSystem, Web workers, and WebSockets. Browsers now have
@@ -66,44 +65,57 @@
     easier to build larger, more complex web apps. It’s taken far too long for
     productive tools to emerge, and they still don’t match the capabilities
     offered by other developer platforms. You shouldn’t have to be intimately
-    familiar with web programming to start building awesome apps for the
-    modern web. And even though JavaScript engines are getting faster, web
-    apps still start up much too slowly.</para>
-
-    <para>We hope that Dart helps developers from many different backgrounds
-    build more awesome apps for the modern web.</para>
+    familiar with web programming to start building great apps for the modern
+    web. And even though JavaScript engines are getting faster, web apps still
+    start up much too slowly.</para>
 
     <para>We expect Dart to help in two main ways:</para>
 
     <itemizedlist>
       <listitem>
-        <simpara><emphasis>Better performance:</emphasis> As VM engineers, the
+        <para><emphasis>Better performance:</emphasis> As VM engineers, the
         designers of Dart know how to build a language for performance. A more
         structured language is easier to optimize, and a fresh VM enables
-        improvements such as faster startup.</simpara>
+        improvements such as faster startup.</para>
       </listitem>
 
       <listitem>
-        <simpara><emphasis>Better productivity:</emphasis> Support for
-        libraries and packages helps you work with other developers and easily
-        reuse code from other projects. Types can make APIs clearer and easier
-        to use. Tools help you refactor, navigate, and debug code.</simpara>
+        <para><emphasis>Better productivity:</emphasis> Support for libraries
+        and packages helps you work with other developers and easily reuse
+        code from other projects. Types can make APIs clearer and easier to
+        use. Tools help you refactor, navigate, and debug code.</para>
       </listitem>
     </itemizedlist>
   </sect1>
 
-  <sect1>
-    <title>A quick look at the Dart language</title>
+  <sect1 id="ch01-quick-look">
+    <title>A Quick Look at the Dart Language</title>
 
     <para>It’s hard to talk about a language without seeing it. Here’s a peek
     at a small Dart program:</para>
 
-    <programlisting>(MERGE(simple_point))</programlisting>
+    <programlisting format="linespecific">import 'dart:math';
+
+class Point {
+  num x, y;
+  Point(this.x, this.y);
+  num distanceTo(Point other) {
+    var dx = x - other.x;
+    var dy = y - other.y;
+    return sqrt(dx * dx + dy * dy);
+  }
+}
+
+main() {
+  var p = new Point(2, 3);
+  var q = new Point(3, 4);
+  print('distance from p to q = ${p.distanceTo(q)}');
+}</programlisting>
 
     <para>Of course, Dart’s main use case is building modern web apps.
     Programming the browser is easy:</para>
 
-    <programlisting>import 'dart:html';
+    <programlisting format="linespecific">import 'dart:html';
 
 main() {
   var button = new ButtonElement();
@@ -111,15 +123,16 @@ main() {
         ..text = 'Click to Confirm'
         ..classes.add('important')
         ..on.click.add((e) =&gt; window.alert('Confirmed!'));
-  query('#registration').elements.add(button);
+  query('#registration').children.add(button);
 }</programlisting>
 
-    <para>You’ll learn about the Dart language and libraries in Chapters 2 and
-    3, respectively.</para>
+    <para>You’ll learn about the Dart language and libraries in Chapters <xref
+    linkend="ch02" xrefstyle="select: labelnumber" /> and <xref linkend="ch03"
+    xrefstyle="select: labelnumber" /> respectively.</para>
   </sect1>
 
   <sect1 id="ch01-whats-cool">
-    <title>What’s cool about Dart</title>
+    <title>What’s Cool About Dart</title>
 
     <para>Dart may look familiar, but don’t let that fool you. Dart has lots
     of cool features to help give you a productive and fun experience building
@@ -175,7 +188,8 @@ main() {
     such as collections, dates, and regular expressions. Web apps can use the
     HTML library—think DOM programming, but optimized for Dart. Command-line
     apps can use the I/O library to work with files, directories, sockets, and
-    servers. Other libraries include URI, UTF, Crypto, Math, Unit test.</para>
+    servers. Other libraries include URI, UTF, Crypto, Math, and Unit
+    test.</para>
 
     <para><emphasis>Dart supports safe, simple concurrency with
     isolates.</emphasis> Traditional shared-memory threads are difficult to
@@ -199,7 +213,7 @@ main() {
   </sect1>
 
   <sect1 id="ch01-editor">
-    <title>Up and running</title>
+    <title>Up and Running</title>
 
     <para>Now that you know something about Dart, get ready to code! These
     instructions feature the open-source Dart Editor tool. When you download
@@ -215,12 +229,14 @@ main() {
     </note>
 
     <sect2 id="ch01-editor-download">
-      <title>Step 1: Download and install the software</title>
+      <title>Step 1: Download and Install the Software</title>
 
       <para>In this step, you’ll install Dart Editor and, if necessary, a Java
-      runtime environment.</para>
+      runtime environment. (To avoid having to modify the PATH environment
+      variable, you can install the JRE under your Dart installation
+      directory, in a subdirectory named <code>jre</code>.)</para>
 
-      <orderedlist>
+      <orderedlist continuation="restarts" inheritnum="ignore">
         <listitem>
           <para>Download the Dart Editor ZIP file for your platform from
           <ulink url="http://www.dartlang.org/downloads.html"></ulink>.</para>
@@ -236,24 +252,18 @@ main() {
         <listitem>
           <para>If you don’t already have a Java runtime, download and install
           it. Dart Editor requires Java version 6 or higher.</para>
-
-          <note>
-            <para>To avoid having to modify the PATH environment variable, you
-            can install the JRE under your Dart installation directory, in a
-            subdirectory named <code>jre</code>.</para>
-          </note>
         </listitem>
       </orderedlist>
     </sect2>
 
     <sect2 id="ch01-editor-launch">
-      <title>Step 2: Launch the editor</title>
+      <title>Step 2: Launch the Editor</title>
 
       <para>Go to your Dart installation directory, and double-click the
       <emphasis role="bold">DartEditor</emphasis> executable file
       <inlinemediaobject>
           <imageobject>
-            <imagedata fileref="../figs/incoming/Dart_Logo_21.png" format="PNG"
+            <imagedata fileref="figs/web/Dart_Logo_21.pdf" format="PNG"
                        width="0.12in" />
           </imageobject>
         </inlinemediaobject>.</para>
@@ -261,46 +271,34 @@ main() {
       <para>You should see the Dart Editor application window appear, looking
       something like <xref linkend="DartEditor-initial" />.</para>
 
-      <figure id="DartEditor-initial">
+      <figure float="0" id="DartEditor-initial">
         <title>Dart Editor and its Welcome page</title>
 
         <mediaobject>
-          <imageobject>
-            <imagedata fileref="../figs/incoming/0102_DartEditor-initial.png"
-                       format="PNG" scale="50" />
+          <imageobject role="web">
+            <imagedata fileref="figs/web/daur_0102.png" format="PNG" />
           </imageobject>
         </mediaobject>
       </figure>
     </sect2>
 
     <sect2 id="ch01-editor-code">
-      <title>Step 3: Create and run an app</title>
+      <title>Step 3: Create and Run an App</title>
 
       <para>It’s easy to create a simple web or command-line app from scratch.
       This step walks you through creating and running a command-line
       app.</para>
 
-      <orderedlist>
+      <orderedlist continuation="restarts" inheritnum="ignore">
         <listitem>
           <para>Click the New Application button <inlinemediaobject>
               <imageobject>
-                <imagedata fileref="../figs/incoming/newapp.png" width="0.12in" />
+                <imagedata fileref="figs/web/newapp.png" width="0.12in" />
               </imageobject>
             </inlinemediaobject> (at the upper left of Dart Editor).
           Alternatively, choose <emphasis role="bold">File &gt; New
           Application...</emphasis> from the Dart Editor menu. A dialog
           appears (see <xref linkend="DartEditor-newapp" />).</para>
-
-          <figure id="DartEditor-newapp">
-            <title>Create command-line or web apps with Dart Editor</title>
-
-            <mediaobject>
-              <imageobject>
-                <imagedata fileref="../figs/incoming/0103_DartEditor-newapp.png"
-                           format="PNG" scale="50" />
-              </imageobject>
-            </mediaobject>
-          </figure>
         </listitem>
 
         <listitem>
@@ -316,17 +314,26 @@ main() {
           role="bold">Finish</emphasis> to create the initial files for the
           app.</para>
 
+          <figure float="0" id="DartEditor-newapp">
+            <title>Create command-line or web apps with Dart Editor</title>
+
+            <mediaobject>
+              <imageobject role="web">
+                <imagedata fileref="figs/web/daur_0103.png" format="PNG" />
+              </imageobject>
+            </mediaobject>
+          </figure>
+
           <para>A default Dart file appears in the Edit view, and its
           directory appears in the Files view. Your Dart Editor window should
           look something like <xref linkend="DartEditor-helloworld" />.</para>
 
-          <figure id="DartEditor-helloworld">
+          <figure float="0" id="DartEditor-helloworld">
             <title>Dart Editor displaying a new app’s files</title>
 
             <mediaobject>
-              <imageobject>
-                <imagedata fileref="../figs/incoming/0104_DartEditor-helloworld.png"
-                           format="PNG" scale="50" />
+              <imageobject role="web">
+                <imagedata fileref="figs/web/daur_0104.png" format="PNG" />
               </imageobject>
             </mediaobject>
           </figure>
@@ -335,23 +342,24 @@ main() {
         <listitem>
           <para>Click the Run button <inlinemediaobject>
               <imageobject>
-                <imagedata fileref="../figs/incoming/run.png" width="0.12in" />
+                <imagedata fileref="figs/web/run.png" width="0.12in" />
               </imageobject>
             </inlinemediaobject> to run your new app.</para>
 
-          <para>For command-line apps, the output of print() appears at the
-          bottom right, in a new tab next to the Problems tab.</para>
+          <para>For command-line apps, the output of
+          <literal>print()</literal> appears at the bottom right, in a new tab
+          next to the Problems tab.</para>
         </listitem>
       </orderedlist>
     </sect2>
 
     <sect2 id="ch01-editor-sample">
-      <title>Step 4: Open and run a sample</title>
+      <title>Step 4: Open and Run a Sample</title>
 
       <para>The Dart Editor bundle comes with several samples. In this step,
       you’ll open a sample web app and run it in Dartium.</para>
 
-      <orderedlist>
+      <orderedlist continuation="restarts" inheritnum="ignore">
         <listitem>
           <para>Click the <emphasis role="bold">Welcome</emphasis> tab. Or
           choose <emphasis role="bold">Welcome Page</emphasis> from the
@@ -368,7 +376,7 @@ main() {
         <listitem>
           <para>Click the Run button <inlinemediaobject>
               <imageobject>
-                <imagedata fileref="../figs/incoming/run.png" width="0.12in" />
+                <imagedata fileref="figs/web/run.png" width="0.12in" />
               </imageobject>
             </inlinemediaobject>. Dart Editor launches Dartium, which displays
           sunflower.html.</para>
@@ -387,13 +395,12 @@ main() {
           url="http://www.dartlang.org/samples/sunflower/">Sunflower Code
           Walkthrough.</ulink></para>
 
-          <figure id="sunflower">
+          <figure float="none" id="sunflower">
             <title>The Sunflower sample running in Dartium</title>
 
             <mediaobject>
-              <imageobject>
-                <imagedata fileref="../figs/incoming/0105_sunflower.png"
-                           format="PNG" scale="50" />
+              <imageobject role="web">
+                <imagedata fileref="figs/web/daur_0105.png" format="PNG" />
               </imageobject>
             </mediaobject>
           </figure>
@@ -402,7 +409,7 @@ main() {
     </sect2>
 
     <sect2 id="ch01-editor-next">
-      <title>What next?</title>
+      <title>What Next?</title>
 
       <para>Now that you know the basics, you can learn more about Dart Editor
       and help improve it.</para>
@@ -410,9 +417,9 @@ main() {
       <sect3 id="ch01-editor-learn-more">
         <title>Become a power user</title>
 
-        <para>See the <ulink url="http://www.dartlang.org/editor/">Dart
-        Editor homepage</ulink> for help on using Dart Editor’s expanding
-        feature set.</para>
+        <para>See the <ulink url="http://www.dartlang.org/editor/">Dart Editor
+        homepage</ulink> for help on using Dart Editor’s expanding feature
+        set.</para>
       </sect3>
 
       <sect3 id="ch01-editor-feedback">
