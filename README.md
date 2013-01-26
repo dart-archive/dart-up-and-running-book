@@ -34,7 +34,7 @@ Project structure
 	Book contents. **book.xml** is the entry point for the book, from an
 	XML point of view.
 
-Additional info about the **old** Branch
+Additional info about the **old** branch
 ---------------------
 
 **Makefile:**
