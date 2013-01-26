@@ -16,7 +16,7 @@ Updating the dartlang.org copy of this book
 Basically, you get the dartlang.org project, and you run `make book`.
 See https://github.com/dart-lang/dartlang.org#readme for details.
 
-Project Structure
+Project structure
 ---------------------
 
 **code/:**
@@ -34,7 +34,7 @@ Project Structure
 	Book contents. **book.xml** is the entry point for the book, from an
 	XML point of view.
 
-Additional Files in the **old** Branch
+Additional info about the **old** Branch
 ---------------------
 
 **Makefile:**
