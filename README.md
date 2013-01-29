@@ -7,29 +7,38 @@ More info: http://shop.oreilly.com/product/0636920025719.do
 An HTML version of this book is online at
 http://www.dartlang.org/docs/dart-up-and-running/.
 
-The .xml files are old (pre-copyedit, and not updated for changes since
-then). We plan to update the XML soon or point to a new repo, if
-necessary.
+The .xml files are not yet updated automatically from the O'Reilly repo, but they're fairly up-to-date.
 
 The code/ directory is up-to-date but incomplete.
 
-Project Structure
------------------
+Updating the dartlang.org copy of this book
+------------------
+Basically, you get the dartlang.org project, and you run `make book`.
+See https://github.com/dart-lang/dartlang.org#readme for details.
 
-**Makefile:**
-	Use this to run doc-code-merge and to test the code.
+Project structure
+---------------------
+
+**code/:**
+	Code samples used in the book. We want this to be automatically checked
+	against or included in the XML files, but we're not there yet. We also
+	want this code to be automatically tested.
+
+**figs/:**
+	Figures and images.
 
 **README.md:**
 	This file.
 
-**book.xml:**
-	This is the entry point for the book, from an XML point of view.
+**\*.xml:** 
+	Book contents. **book.xml** is the entry point for the book, from an
+	XML point of view.
 
-**code/:**
-	Code should be pulled out of the XML files and put here.
+Additional info about the **old** branch
+---------------------
 
-**figs/:**
-	Figures and images.
+**Makefile:**
+	Used to run doc-code-merge and to test the code.
 
 **merged/:**
 	doc-code-merge merges the documentation in xml/ and the code in code/
@@ -39,7 +48,7 @@ Project Structure
 	The DocBook source for the book.
 
 
-Using the Makefile
+OLD: Using the Makefile
 ------------------
 
 Install the Dart Editor (or Dart SDK).
@@ -72,9 +81,3 @@ Now, just run make from your SVN directory:
 
 Watch the output carefully for errors. Unfortunately, there are cases where it
 will print an error but not stop processing.
-
-
-Updating the dartlang.org copy of this book
-------------------
-Basically, you get the dartlang.org project, and you run `make book`.
-See https://github.com/dart-lang/dartlang.org#readme for details.
