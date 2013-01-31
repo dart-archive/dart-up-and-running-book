@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
 "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
-<chapter id="ch02" xml:base="merged/ch02.xml">
+<chapter id="ch02">
   <?dbhtml stop-chunking?>
 
   <title>A Tour of the Dart Language</title>
@@ -2001,7 +2001,7 @@ assert(urlString.startsWith('https')); // Make sure this is an HTTPS URL.</progr
     either <emphasis><replaceable>ClassName</replaceable></emphasis> or
     <replaceable>ClassName.identifier</replaceable>.</para>
 
-    <programlisting format="linespecific">var jsonData = JSON.parse('{"x":1, "y":2}');
+    <programlisting format="linespecific">var jsonData = json.parse('{"x":1, "y":2}');
 
 var p1 = new Point(2,2);               // Create a Point using Point().
 var p2 = new Point.fromJson(jsonData); // Create a Point using Point.fromJson().</programlisting>

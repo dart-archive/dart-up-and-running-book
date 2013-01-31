@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE preface PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
 "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
-<preface id="preface" xml:base="merged/ch00.xml">
+<preface id="preface">
   <?dbhtml stop-chunking?>
 
   <title>Preface</title>
@@ -24,9 +24,9 @@
   Attribution-Noncommercial-No Derivative Works 3.0 United States
   License.</ulink> Source code files for this book’s samples are also there,
   in the <ulink
-  url="https://github.com/dart-lang/dart-up-and-running-book/tree/master/code"><literal>code/</literal>
+  url="https://github.com/dart-lang/dart-up-and-running-book/tree/master/code"><literal>code/</literal></ulink>
   subdirectory. Downloading the sample code from GitHub is much easier than
-  copying it from the book.</ulink></para>
+  copying it from the book.</para>
 
   <para>If you find an error in the sample code or text, please <ulink
   url="https://github.com/dart-lang/dart-up-and-running-book/issues/new">create
@@ -206,33 +206,51 @@
       </listitem>
 
       <listitem>
-        <para>In the dart:html library, the <literal>elements</literal>
-        property of Element is now called <literal>children</literal>.</para>
-      </listitem>
+        <para>Between M1 and M3, several APIs changed:</para>
 
-      <listitem>
-        <para>The <literal>charCodes()</literal> method of String is now a
-        getter, so we removed the parentheses from all references to
-        <literal>charCodes</literal>.</para>
-      </listitem>
+        <itemizedlist>
+          <listitem>
+            <para>In the dart:html library, the <literal>elements</literal>
+            property of Element is now called
+            <literal>children</literal>.</para>
+          </listitem>
 
-      <listitem>
-        <para>The <literal>readAsText()</literal> method of File is now called
-        <literal>readAsString()</literal>.</para>
+          <listitem>
+            <para>The <literal>charCodes()</literal> method of String is now a
+            getter, so we removed the parentheses from all references to
+            <literal>charCodes</literal>.</para>
+          </listitem>
+
+          <listitem>
+            <para>The <literal>readAsText()</literal> method of File is now
+            called <literal>readAsString()</literal>.</para>
+          </listitem>
+
+          <listitem>
+            <para>Constructors for the Date class have changed.</para>
+          </listitem>
+
+          <listitem>
+            <para>NullPointerException no longer exists.</para>
+          </listitem>
+
+          <listitem>
+            <para>RegExp no longer has a const constructor.</para>
+          </listitem>
+
+          <listitem>
+            <para>The return type of StringBuffer's <literal>add()</literal>
+            method changed to void. Code that used to chain calls to
+            <literal>add()</literal> should now use method cascades
+            instead.</para>
+          </listitem>
+        </itemizedlist>
       </listitem>
 
       <listitem>
         <para>The recommended way for web apps to use
         <literal>dart.js</literal> is now to have a local copy, preferably one
         downloaded using the <literal>browser</literal> pub package.</para>
-      </listitem>
-
-      <listitem>
-        <para>Constructors for the Date class have changed.</para>
-      </listitem>
-
-      <listitem>
-        <para>NullPointerException no longer exists.</para>
       </listitem>
 
       <listitem>
@@ -258,9 +276,10 @@
             method is now named <literal>any()</literal>. Many values returned
             by Iterables are now lazily filled Iterables; you can use
             <literal>toList()</literal> or <literal>toSet()</literal> to force
-            evaluation. More details will be in an <ulink
-            url="http://www.dartlang.org/articles/">article</ulink>.
-            <remark>{PENDING: update URL}</remark>.</para>
+            evaluation. We recommend <emphasis>extending</emphasis> Iterable
+            rather than just implementing it, so you can take advantage of
+            added functionality. More details are in an article, <ulink
+            url="http://www.dartlang.org/articles/m3-whats-new/iterables.html">Iterables</ulink>.</para>
           </listitem>
 
           <listitem>
@@ -268,6 +287,18 @@
             <literal>next()</literal> and <literal>hasNext()</literal> to
             <literal>current</literal> and
             <literal>moveNext()</literal>.</para>
+          </listitem>
+
+          <listitem>
+            <para>The dart:json library no longer has a JSON class. Former
+            JSON static methods such as <literal>parse()</literal> and
+            <literal>stringify()</literal> are now top-level functions.</para>
+          </listitem>
+
+          <listitem>
+            <para>Date is now named DateTime, and the
+            <literal>fromString()</literal> constructor is now a static method
+            named <literal>parse()</literal>.</para>
           </listitem>
         </itemizedlist>
       </listitem>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
 "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
-<chapter id="ch03" xml:base="merged/ch03.xml">
+<chapter id="ch03">
   <?dbhtml stop-chunking?>
 
   <title>A Tour of the Dart Libraries</title>
@@ -29,7 +29,8 @@
       <literal>parse()</literal> methods of int and double,
       respectively.</para>
 
-      <screen format="linespecific">assert(int.parse('42') == 42);
+      <screen format="linespecific"><remark>ch03/number-tests.dart
+</remark>assert(int.parse('42') == 42);
 assert(double.parse('0.50') == 0.5);</screen>
 
       <para>Use the toString() method (defined by <ulink
@@ -40,7 +41,8 @@ assert(double.parse('0.50') == 0.5);</screen>
       string, use <literal>toStringAsPrecision()</literal> (also in
       num).</para>
 
-      <screen format="linespecific">// Convert an int to a string.
+      <screen format="linespecific"><remark>ch03/number-tests.dart
+</remark>// Convert an int to a string.
 assert(42.toString() == '42');
 
 // Convert a double to a string.
@@ -82,7 +84,8 @@ assert(double.parse('1.2e+2') == 120.0);</screen>
         check whether a string begins with or ends with a particular
         pattern.</para>
 
-        <screen format="linespecific">// Check whether a string contains another string.
+        <screen format="linespecific"><remark>ch03/string-tests.dart
+</remark>// Check whether a string contains another string.
 assert('Never odd or even'.contains('odd'));
 
 // Does a string start with another string?
@@ -104,7 +107,8 @@ assert('Never odd or even'.indexOf('odd') == 6);</screen>
         <para>You can also extract a substring or split a string into a list
         of substrings.</para>
 
-        <screen format="linespecific">// Grab a substring.
+        <screen format="linespecific"><remark>ch03/string-tests.dart
+</remark>// Grab a substring.
 assert('Never odd or even'.substring(6, 9) == 'odd');
 
 // Split a string using a string pattern.
@@ -136,7 +140,8 @@ assert(charCodes[0] == 78);</screen>
         <para>You can easily convert strings to their uppercase and lowercase
         variants.</para>
 
-        <screen format="linespecific">// Convert to uppercase.
+        <screen format="linespecific"><remark>ch03/string-tests.dart
+</remark>// Convert to uppercase.
 assert('structured web apps'.toUpperCase() == 'STRUCTURED WEB APPS');
 
 // Convert to lowercase.
@@ -150,7 +155,8 @@ assert('STRUCTURED WEB APPS'.toLowerCase() == 'structured web apps');</screen>
         <literal>trim()</literal>. To check whether a string is empty (length
         is zero), use <literal>isEmpty</literal>.</para>
 
-        <screen format="linespecific">// Trim a string.
+        <screen format="linespecific"><remark>ch03/string-tests.dart
+</remark>// Trim a string.
 assert('  hello  '.trim() == 'hello');
 
 // Check whether a string is empty.
@@ -171,7 +177,8 @@ assert(!'  '.isEmpty);</screen>
         <literal>replaceAll()</literal> returns a new String without changing
         the original String.</para>
 
-        <screen format="linespecific">var greetingTemplate = 'Hello, NAME!';
+        <screen format="linespecific"><remark>ch03/string-tests.dart
+</remark>var greetingTemplate = 'Hello, NAME!';
 var greeting = greetingTemplate.replaceAll(new RegExp('NAME'), 'Bob');
 
 assert(greeting != greetingTemplate); // greetingTemplate didn't change.</screen>
@@ -184,11 +191,13 @@ assert(greeting != greetingTemplate); // greetingTemplate didn't change.</screen
         A StringBuffer doesn’t generate a new String object until
         <literal>toString()</literal> is called.</para>
 
-        <screen format="linespecific">var sb = new StringBuffer();
+        <screen format="linespecific"><remark>ch03/string-tests.dart
+</remark>var sb = new StringBuffer();
 
-sb.add('Use a StringBuffer ');
-sb.addAll(['for ', 'efficient ', 'string ', 'creation ']);
-sb.add('if you are ').add('building lots of strings.');
+sb..add('Use a StringBuffer ')
+  ..addAll(['for ', 'efficient ', 'string ', 'creation '])
+  ..add('if you are ')
+  ..add('building lots of strings.');
 
 var fullString = sb.toString();
 
@@ -207,8 +216,9 @@ assert(sb.toString() == '');</screen>
         regular expressions. Use regular expressions for efficient searching
         and pattern matching of strings.</para>
 
-        <screen format="linespecific">// A regular expression for one or more digits
-var numbers = const RegExp(r'\d+');
+        <screen format="linespecific"><remark>ch03/string-tests.dart
+</remark>// A regular expression for one or more digits
+var numbers = new RegExp(r'\d+');
 
 var allCharacters = 'llamas live fifteen to twenty years';
 var someDigits = 'llamas live 15 to 20 years';
@@ -224,7 +234,8 @@ assert(exedOut == 'llamas live XX to XX years');</screen>
         <para>You can work directly with the RegExp class, too. The Match
         class provides access to a regular expression match.</para>
 
-        <screen format="linespecific">var numbers = const RegExp(r'\d+');
+        <screen format="linespecific"><remark>ch03/string-tests.dart
+</remark>var numbers = new RegExp(r'\d+');
 var someDigits = 'llamas live 15 to 20 years';
 
 // Check whether the reg exp has a match in a string.
@@ -267,7 +278,8 @@ for (var match in numbers.allMatches(someDigits)) {
         of the List constructors. The List class also defines several methods
         for adding items to and removing items from lists.</para>
 
-        <screen format="linespecific">// Use a List constructor.
+        <screen format="linespecific"><remark>ch03/list-tests.dart
+</remark>// Use a List constructor.
 var vegetables = new List();
 
 // Or simply use a list literal.
@@ -294,7 +306,8 @@ assert(fruits.length == 0);</screen>
         <para>Use <literal>indexOf()</literal> to find the index of an object
         in a list.</para>
 
-        <screen format="linespecific">var fruits = ['apples', 'oranges'];
+        <screen format="linespecific"><remark>ch03/list-tests.dart
+</remark>var fruits = ['apples', 'oranges'];
 
 // Access a list item by index.
 assert(fruits[0] == 'apples');
@@ -311,7 +324,8 @@ assert(fruits.indexOf('apples') == 0);</screen>
         url="http://api.dartlang.org/dart_core/Comparable.html">Comparable</ulink>
         and implemented by String.</para>
 
-        <screen format="linespecific">var fruits = ['bananas', 'apples', 'oranges'];
+        <screen format="linespecific"><remark>ch03/list-tests.dart
+</remark>var fruits = ['bananas', 'apples', 'oranges'];
 
 // Sort a list.
 fruits.sort((a, b) =&gt; a.compareTo(b));
@@ -320,7 +334,8 @@ assert(fruits[0] == 'apples');</screen>
         <para>Lists are parameterized types, so you can specify the type that
         a list should contain.</para>
 
-        <screen format="linespecific">// This list should contain only strings.
+        <screen format="linespecific"><remark>ch03/list-tests.dart
+</remark>// This list should contain only strings.
 var fruits = new List&lt;String&gt;();
 
 fruits.add('apples');
@@ -342,7 +357,8 @@ fruits.add(5);  // BAD: Throws exception in checked mode.</screen>
         Because a set is unordered, you can’t get a set’s items by index
         (position).</para>
 
-        <screen format="linespecific">var ingredients = new Set();
+        <screen format="linespecific"><remark>ch03/set-tests.dart
+</remark>var ingredients = new Set();
 ingredients.addAll(['gold', 'titanium', 'xenon']);
 assert(ingredients.length == 3);
 
@@ -358,7 +374,8 @@ assert(ingredients.length == 2);</screen>
         <literal>containsAll()</literal> to check whether one or more objects
         are in a set.</para>
 
-        <screen format="linespecific">var ingredients = new Set();
+        <screen format="linespecific"><remark>ch03/set-tests.dart
+</remark>var ingredients = new Set();
 ingredients.addAll(['gold', 'titanium', 'xenon']);
 
 // Check whether an item is in the set.
@@ -371,7 +388,8 @@ assert(ingredients.containsAll(['titanium', 'xenon']));</screen>
         subset has all of its items included in another, potentially larger,
         collection.</para>
 
-        <screen format="linespecific">var ingredients = new Set();
+        <screen format="linespecific"><remark>ch03/set-tests.dart
+</remark>var ingredients = new Set();
 ingredients.addAll(['gold', 'titanium', 'xenon']);
 
 // Create the intersection of two sets.
@@ -401,7 +419,8 @@ assert(ingredients.isSubsetOf(allElements));</screen>
         <para>Use <literal>isEmpty</literal> to check whether a collection has
         no items.</para>
 
-        <screen format="linespecific">var teas = ['green', 'black', 'chamomile', 'earl grey'];
+        <screen format="linespecific"><remark>ch03/collection-isEmpty.dart
+</remark>var teas = ['green', 'black', 'chamomile', 'earl grey'];
 assert(!teas.isEmpty);</screen>
 
         <para>To apply a function to each item in a collection, you can use
@@ -409,7 +428,8 @@ assert(!teas.isEmpty);</screen>
         <literal>mappedBy().toList()</literal> if you want an object that
         contains the results.</para>
 
-        <screen format="linespecific">var teas = ['green', 'black', 'chamomile', 'earl grey'];
+        <screen format="linespecific"><remark>ch03/collection-isEmpty.dart
+</remark>var teas = ['green', 'black', 'chamomile', 'earl grey'];
 
 teas.forEach((tea) =&gt; print('I drink $tea'));
 
@@ -424,13 +444,13 @@ assert(loudTeas.any((tea) =&gt; tea == 'GREEN'));</screen>
           <literal>toList()</literal> or <literal>toSet()</literal>.</para>
         </note>
 
-        <para>Use <literal>where()</literal> to
-        get all the items in a collection that match a condition.
-        Use <literal>any()</literal>
-        and <literal>every()</literal> to check whether some or all items in a
+        <para>Use <literal>where()</literal> to get all the items in a
+        collection that match a condition. Use <literal>any()</literal> and
+        <literal>every()</literal> to check whether some or all items in a
         collection match a condition.</para>
 
-        <screen format="linespecific">var teas = ['green', 'black', 'chamomile', 'earl grey'];
+        <screen format="linespecific"><remark>ch03/collection-isEmpty.dart
+</remark>var teas = ['green', 'black', 'chamomile', 'earl grey'];
 
 // Chamomile is not caffeinated.
 bool isDecaffeinated(String teaName) =&gt; teaName == 'chamomile';
@@ -469,7 +489,8 @@ assert(!teas.every(isDecaffeinated));</screen>
         <para>You can declare a map using a terse literal syntax, or you can
         use a traditional constructor.</para>
 
-        <screen format="linespecific">// Map literals use strings as keys.
+        <screen format="linespecific"><remark>ch03/map-1.dart
+</remark>// Map literals use strings as keys.
 var hawaiianBeaches = {
   'oahu' : ['waikiki', 'kailua', 'waimanalo'],
   'big island' : ['wailea bay', 'pololu beach'],
@@ -487,7 +508,8 @@ var nobleGases = new Map&lt;int, String&gt;();</screen>
         <literal>remove()</literal> to remove a key and its value from a
         map.</para>
 
-        <screen format="linespecific">var nobleGases = new Map&lt;int, String&gt;();
+        <screen format="linespecific"><remark>ch03/map-1.dart
+</remark>var nobleGases = new Map&lt;int, String&gt;();
 
 // Maps from constructors can use any object as a key.
 // Integers and strings are common key types.
@@ -506,7 +528,8 @@ assert(!nobleGases.containsKey(54));</screen>
         <para>You can retrieve all the values or all the keys from a
         map.</para>
 
-        <screen format="linespecific">var hawaiianBeaches = {
+        <screen format="linespecific"><remark>ch03/map-1.dart
+</remark>var hawaiianBeaches = {
   'oahu' : ['waikiki', 'kailua', 'waimanalo'],
   'big island' : ['wailea bay', 'pololu beach'],
   'kauai' : ['hanalei', 'poipu']
@@ -521,11 +544,12 @@ assert(new Set.from(keys).contains('oahu'));
 // Get all the values as an unordered collection (a list of lists).
 var values = hawaiianBeaches.values;
 assert(values.length == 3);
-assert(values.some((v) =&gt; v.indexOf('waikiki') != -1));</screen>
+assert(values.any((v) =&gt; v.indexOf('waikiki') != -1));</screen>
 
         <para>You can also iterate through the key-value pairs.</para>
 
-        <screen format="linespecific">// NOTE: Do not depend on iteration order.
+        <screen format="linespecific"><remark>ch03/map-1.dart
+</remark>// NOTE: Do not depend on iteration order.
 hawaiianBeaches.forEach((k,v) {
   print('I want to visit $k and swim at $v');
   // I want to visit oahu and swim at [waikiki, kailua, waimanalo], etc.
@@ -536,7 +560,8 @@ hawaiianBeaches.forEach((k,v) {
         cannot rely on simply getting the value for the key and checking for
         null to determine the existence of a key.</para>
 
-        <screen format="linespecific">var hawaiianBeaches = {
+        <screen format="linespecific"><remark>ch03/map-1.dart
+</remark>var hawaiianBeaches = {
   'oahu' : ['waikiki', 'kailua', 'waimanalo'],
   'big island' : ['wailea bay', 'pololu beach'],
   'kauai' : ['hanalei', 'poipu']
@@ -549,7 +574,8 @@ assert(!hawaiianBeaches.containsKey('florida'));</screen>
         assign a value to a key if and only if the key does not already exist
         in a map. You must provide a function that returns the value.</para>
 
-        <screen format="linespecific">var teamAssignments = {};
+        <screen format="linespecific"><remark>ch03/map-1.dart
+</remark>var teamAssignments = {};
 teamAssignments.putIfAbsent('Catcher', () =&gt; pickToughestKid());
 assert(teamAssignments['Catcher'] != null);</screen>
 
@@ -562,41 +588,46 @@ assert(teamAssignments['Catcher'] != null);</screen>
     <sect2 id="ch03-dates-and-times">
       <title>Dates and Times</title>
 
-      <para>A Date object is a point in time. The time zone is either UTC or
-      the local time zone.</para>
+      <para>A DateTime object is a point in time. The time zone is either UTC
+      or the local time zone.</para>
 
-      <para>You can create Date objects using several constructors.</para>
+      <para>You can create DateTime objects using several constructors.</para>
 
-      <screen format="linespecific">// Get the current date and time.
-var now = new Date.now();
+      <screen format="linespecific"><remark>ch03/date.dart
+</remark>// Get the current date and time.
+var now = new DateTime.now();
 
-// Create a new Date with the local time zone.
-var y2k = new Date(2000);   // January 1, 2000
+// Create a new DateTime with the local time zone.
+var y2k = new DateTime(2000);   // January 1, 2000
 
 // Specify the month and day.
-y2k = new Date(2000, 1, 2); // January 2, 2000
+y2k = new DateTime(2000, 1, 2); // January 2, 2000
 
 // Specify the date as a UTC time.
-y2k = new Date.utc(2000);   // January 1, 2000, UTC
+y2k = new DateTime.utc(2000);   // January 1, 2000, UTC
 
 // Specify a date and time in milliseconds since the Unix epoch.
-y2k = new Date.fromMillisecondsSinceEpoch(946684800000, isUtc: true);
+y2k = new DateTime.fromMillisecondsSinceEpoch(946684800000, isUtc: true);
 
 // Parse an ISO 8601 date.
-y2k = new Date.fromString('2000-01-01T00:00:00Z');
+y2k = DateTime.parse('2000-01-01T00:00:00Z');
 </screen>
 
       <para>The <literal moreinfo="none">millisecondsSinceEpoch</literal>
-      property of a date returns the number of milliseconds since the
-      epoch.</para>
+      property of a date returns the number of milliseconds since the “Unix
+      epoch”—January 1, 1970, UTC.</para>
 
-      <screen format="linespecific">var y2k = new Date.fromString('2000-01-01T00:00:00Z');
-assert(y2k.millisecondsSinceEpoch == 946684800000);</screen>
+      <screen format="linespecific"><remark>ch03/date.dart
+</remark>var y2k = new DateTime.utc(2000);           // 1/1/2000, UTC
+assert(y2k.millisecondsSinceEpoch == 946684800000);
+var unixEpoch = new DateTime.utc(1970); // 1/1/1970, UTC
+assert(unixEpoch.millisecondsSinceEpoch == 0);</screen>
 
       <para>Use the Duration class to calculate the difference between two
       dates and to shift a date’s time forward or backwards.</para>
 
-      <screen format="linespecific">var y2k = new Date.fromString('2000-01-01T00:00:00Z');
+      <screen format="linespecific"><remark>ch03/date.dart
+</remark>var y2k = new DateTime.utc(2000);
 
 // Add one year.
 var y2001 = y2k.add(const Duration(days: 366));
@@ -613,8 +644,8 @@ var duration = y2001.difference(y2k);
 assert(duration.inDays == 366); // y2k was a leap year.</screen>
 
       <para>Refer to the API docs for <ulink
-      url="http://api.dartlang.org/dart_core/Date.html">Date</ulink> and
-      <ulink
+      url="http://api.dartlang.org/dart_core/DateTime.html">DateTime</ulink>
+      and <ulink
       url="http://api.dartlang.org/dart_core/Duration.html">Duration</ulink>
       for a full list of methods.</para>
     </sect2>
@@ -636,7 +667,8 @@ assert(duration.inDays == 366); // y2k was a leap year.</screen>
         <emphasis>same</emphasis>, and &gt; 0 for
         <emphasis>bigger</emphasis>.</para>
 
-        <screen format="linespecific">class Line implements Comparable {
+        <screen format="linespecific"><remark>ch03/comparable.dart
+</remark>class Line implements Comparable {
   final length;
   const Line(this.length);
   int compareTo(Line other) =&gt; length - other.length;
@@ -654,19 +686,19 @@ main() {
 
         <para>Each object in Dart automatically provides an integer hash code,
         and thus can be used as a key in a map. However, you can override the
-        <literal>hashCode</literal> getter to generate a custom hash code.
-        If you do, be sure to override the <literal
-        moreinfo="none">==</literal> operator, as well. Objects that are equal
-        (via <literal moreinfo="none">==</literal>) must have identical hash
-        codes. A hash code doesn’t have to be unique, but it should be well
+        <literal>hashCode</literal> getter to generate a custom hash code. If
+        you do, be sure to override the <literal moreinfo="none">==</literal>
+        operator, as well. Objects that are equal (via <literal
+        moreinfo="none">==</literal>) must have identical hash codes. A hash
+        code doesn’t have to be unique, but it should be well
         distributed.</para>
 
         <remark>Note: There’s disagreement over whether to include identical()
-        in the == implementation. Gilad says yes; Mads says no. It might
-        improve speed. They don’t do identical() automatically because, by
-        convention, NaN != NaN.</remark>
+        in the == implementation. It might improve speed. They don’t do
+        identical() automatically because, by convention, NaN != NaN.</remark>
 
-        <screen format="linespecific">class Person {
+        <screen format="linespecific"><remark>ch03/map-keys.dart
+</remark>class Person {
   String firstName, lastName;
 
   Person(this.firstName, this.lastName);
@@ -700,11 +732,13 @@ main() {
         url="http://api.dartlang.org/dart_core/Iterable.html">Iterable</ulink>
         and <ulink
         url="http://api.dartlang.org/dart_core/Iterator.html">Iterator</ulink>
-        classes support for-in loops. Implement Iterable to signal that an
-        object can provide an Iterator, and thus be used by for-in loops.
-        Implement Iterator to define the actual iteration ability.</para>
+        classes support for-in loops. Extend (if possible) or implement
+        Iterable whenever you create a class that can provide Iterators for
+        use in for-in loops. Implement Iterator to define the actual iteration
+        ability.</para>
 
-        <screen format="linespecific">class Process {
+        <screen format="linespecific"><remark>ch03/iterator.dart
+</remark>class Process {
   // Represents a process...
 }
 
@@ -721,7 +755,7 @@ class Processes extends Iterable&lt;Process&gt; {
 }
 
 main() {
-  // Objects that implement Iterable can be used with for-in.
+  // Iterable objects can be used with for-in.
   for (var process in new Processes()) {
     // Do something with the process.
   }
@@ -1313,10 +1347,10 @@ query('#submitInfo').on.click.add((e) {
         constructor is an easy way to get data from a web server.</para>
 
         <screen format="linespecific">import 'dart:html';
-import 'dart:json';
+import 'dart:json' as json;
 
 onSuccess(HttpRequest request) {
-  Map response = JSON.parse(request.responseText);
+  Map response = json.parse(request.responseText);
   String name = response['name'];
   String license = response['license'];
   print('The $name project uses the $license license.');
@@ -1365,7 +1399,7 @@ main() {
         <para>A full example of handling errors follows:</para>
 
         <screen format="linespecific">import 'dart:html';
-import 'dart:json';
+import 'dart:json' as json;
 
 loadEnd(HttpRequest request) {
   if (request.status != 200) {
@@ -1373,7 +1407,7 @@ loadEnd(HttpRequest request) {
     return;
   }
 
-  Map response = JSON.parse(request.responseText);
+  Map response = json.parse(request.responseText);
   String name = response['name'];
   String license = response['license'];
   print('The $name project uses the $license license.');
@@ -1404,7 +1438,7 @@ main() {
         to send data to a form handler.</para>
 
         <screen format="linespecific">import 'dart:html';
-import 'dart:json';
+import 'dart:json' as json;
 import 'dart:uri';
 
 String encodeMap(Map data) {
@@ -1488,7 +1522,7 @@ main() {
 
         <screen format="linespecific">// Called from the message listener like this: receivedMessage(e.data)
 receivedMessage(String data) {
-  Map message = JSON.parse(data);
+  Map message = json.parse(data);
   if (message['from'] != null) {
     print('Message from ${message['from']}: ${message['content']}');
   }
@@ -1963,7 +1997,7 @@ main() {
 main() {
   var logFile = new File('log.txt');
   var out = logFile.openOutputStream(FileMode.WRITE);
-  out.writeString('FILE ACCESSED ${new Date.now()}');
+  out.writeString('FILE ACCESSED ${new DateTime.now()}');
   out.close();
 }</screen>
 
@@ -2178,9 +2212,9 @@ main() {
       <title>Decoding JSON</title>
 
       <para>Decode a JSON-encoded string into a Dart object with
-      <literal>JSON.parse()</literal>.</para>
+      <literal>json.parse()</literal>.</para>
 
-      <screen format="linespecific">import 'dart:json';
+      <screen format="linespecific">import 'dart:json' as json;
 
 main() {
   // NOTE: Be sure to use double quotes ("), not single quotes ('),
@@ -2192,7 +2226,7 @@ main() {
   ]
   ''';
 
-  var scores = JSON.parse(jsonString);
+  var scores = json.parse(jsonString);
   assert(scores is List);
 
   var firstScore = scores[0];
@@ -2205,7 +2239,7 @@ main() {
       <title>Encoding JSON</title>
 
       <para>Encode a supported Dart object into a JSON-formatted string with
-      <literal>JSON.stringify()</literal>.</para>
+      <literal>json.stringify()</literal>.</para>
 
       <para>Only objects of type int, double, String, bool, null, List, or Map
       can be encoded into JSON. List and Map objects are encoded
@@ -2217,7 +2251,7 @@ main() {
       <literal>toJson()</literal> returns an encodable value, that value is
       encoded in the object’s place.</para>
 
-      <screen format="linespecific">import 'dart:json';
+      <screen format="linespecific">import 'dart:json' as json;
 
 main() {
   var scores = [
@@ -2226,7 +2260,7 @@ main() {
     {'score': 100, 'overtime': true, 'special_guest': null}
   ];
 
-  var jsonText = JSON.stringify(scores);
+  var jsonText = json.stringify(scores);
   assert(jsonText == '[{"score":40},{"score":80},'
                      '{"score":100,"overtime":true,'
                      '"special_guest":null}]');

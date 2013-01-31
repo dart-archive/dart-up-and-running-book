@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE preface PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
 "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
-<preface id="foreword" role="keep-together" xml:base="merged/foreword.xml">
+<preface id="foreword" role="keep-together">
   <prefaceinfo>
     <?dbfo keep-together="always"?>
 

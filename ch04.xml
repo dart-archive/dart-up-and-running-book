@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
 "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
-<chapter id="ch04" xml:base="merged/ch04.xml">
+<chapter id="ch04">
   <title>Tools</title>
 
   <para>Dart provides several tools to help you write and deploy your web and

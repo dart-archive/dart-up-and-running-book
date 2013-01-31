@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
 "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
-<chapter id="ch05" xml:base="merged/ch05.xml">
+<chapter id="ch05">
   <?dbhtml stop-chunking?>
 
   <title>Walkthrough: Dart Chat</title>
@@ -82,7 +82,7 @@
     <para>The chat server and client are simple. The chat server is an HTTP
     server that provides a WebSocket. The chat client uses that WebSocket for
     a bi-directional communication channel with the server. The client sends
-    chat messages to the sever over the WebSocket, and the server relays those
+    chat messages to the server over the WebSocket, and the server relays those
     messages to all other connected clients.</para>
 
     <para>As <xref linkend="web-socket-connections" /> shows, the server
@@ -170,12 +170,12 @@
     <para>The script contents run when the browser has loaded the HTML and
     constructed its DOM (document object model).</para>
 
-    <para>You can get dart.js <ulink
-    url="http://pub.dartlang.org/packages/browser">with the browser pub
-    package</ulink> or <ulink
-    url="http://dart.googlecode.com/svn/trunk/dart/client/dart.js">from the
-    Dart project.</ulink> See <xref linkend="ch04-tools-dart2js" /> for more
-    information about compiling Dart code into its JavaScript
+    <para>You can get dart.js with the <ulink
+    url="http://pub.dartlang.org/packages/browser">browser package from
+    pub,</ulink> or you can get it <ulink
+    url="http://dart.googlecode.com/svn/trunk/dart/client/dart.js">directly
+    from the Dart project.</ulink> See <xref linkend="ch04-tools-dart2js" />
+    for more information about compiling Dart code into its JavaScript
     equivalent.</para>
   </sect1>
 
@@ -309,14 +309,14 @@ messageInput = new MessageInput(messageElem);</programlisting>
       open to creating more detailed messages in the future.</para>
 
       <para>The <literal>stringify()</literal> method converts a Dart object
-      to a JSON encoded string, and the <literal>parse()</literal> method
+      to a JSON-encoded string, and the <literal>parse()</literal> method
       converts a JSON string back into a Dart object. Here’s the JSON-related
       code from the chat client:</para>
 
-      <programlisting format="linespecific">import 'dart:json';
+      <programlisting format="linespecific">import 'dart:json' as json;
 
-var encoded = JSON.stringify({'f': from, 'm': message});
-Map message = JSON.parse(encodedMessage);</programlisting>
+var encoded = json.stringify({'f': from, 'm': message});
+Map message = json.parse(encodedMessage);</programlisting>
 
       <para>See <xref linkend="ch03-json" /> for more information.</para>
     </sect2>
@@ -341,7 +341,7 @@ Map message = JSON.parse(encodedMessage);</programlisting>
       parses the JSON data and displays it in the status area.</para>
 
       <programlisting format="linespecific">_receivedEncodedMessage(String encodedMessage) {
-  Map message = JSON.parse(encodedMessage);
+  Map message = json.parse(encodedMessage);
   if (message['f'] != null) {
     chatWindow.displayMessage(message['m'], message['f']);
   }
@@ -349,11 +349,11 @@ Map message = JSON.parse(encodedMessage);</programlisting>
 
       <para>To send a message on the WebSocket connection,
       <literal>_sendEncodedMessage()</literal> ensures the WebSocket
-      connection is ready and then sends the JSON encoded message.</para>
+      connection is ready and then sends the JSON-encoded message.</para>
 
       <programlisting format="linespecific">// In the ChatConnection class:
 send(String from, String message) {
-  var encoded = JSON.stringify({'f': from, 'm': message});
+  var encoded = json.stringify({'f': from, 'm': message});
   _sendEncodedMessage(encoded);
 }
 

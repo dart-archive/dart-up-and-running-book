@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
 "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
-<chapter id="ch01" xml:base="merged/ch01.xml">
+<chapter id="ch01">
   <?dbhtml stop-chunking?>
 
   <title>Quick Start</title>
@@ -263,7 +263,7 @@ main() {
       <emphasis role="bold">DartEditor</emphasis> executable file
       <inlinemediaobject>
           <imageobject>
-            <imagedata fileref="figs/web/Dart_Logo_21.pdf" format="PNG"
+            <imagedata fileref="figs/web/Dart_Logo_21.png" format="PNG"
                        width="0.12in" />
           </imageobject>
         </inlinemediaobject>.</para>
