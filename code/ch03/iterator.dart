@@ -15,7 +15,7 @@ class Processes extends Iterable<Process> {
 }
 
 main() {
-  // Objects that implement Iterable can be used with for-in.
+  // Iterable objects can be used with for-in.
   for (var process in new Processes()) {
     // Do something with the process.
   }

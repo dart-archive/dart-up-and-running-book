@@ -23,7 +23,10 @@ main() {
   y2k = DateTime.parse('2000-01-01T00:00:00Z');
   print(y2k);
   
+  y2k = new DateTime.utc(2000);   // January 1, 2000, UTC
   assert(y2k.millisecondsSinceEpoch == 946684800000);
+  var unixEpoch = new DateTime.utc(1970); // 1/1/1970, UTC
+  assert(unixEpoch.millisecondsSinceEpoch == 0);
   
   // Add one year.
   var y2001 = y2k.add(const Duration(days: 366));

@@ -65,7 +65,11 @@ main() {
 
   assert(greeting != greetingTemplate); // greetingTemplate didn't change.
   //END
-  }
+  
+  buildingAString();
+  regularExpressions();
+  regularExpressions2();
+}
 
 buildingAString() {
   //NOTE: DID NOT USE A METHOD CASCADE. BROKE due to add return type changing.
