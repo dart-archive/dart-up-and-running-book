@@ -1,0 +1,4 @@
+name: ch03_html
+description: A sample web application
+dependencies:
+  browser: any
