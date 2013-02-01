@@ -898,7 +898,8 @@ Futures.wait([deleteDone, copyDone, checksumDone]).then((List values) {
       indicate that an error has occurred. You can define a custom exception
       by implementing the Exception interface.</para>
 
-      <screen format="linespecific">class FooException implements Exception {
+      <screen format="linespecific"><remark>ch03/exceptions.dart
+</remark>class FooException implements Exception {
   final String msg;
   const FooException([this.msg]);
   String toString() =&gt; msg == null ? 'FooException' : msg;
@@ -923,7 +924,8 @@ Futures.wait([deleteDone, copyDone, checksumDone]).then((List values) {
     <literal moreinfo="none">math</literal> to make clear which top-level
     functions and constants are from the Math library.</para>
 
-    <screen format="linespecific">import 'dart:math' as math;</screen>
+    <screen format="linespecific"><remark>ch03/math-tests.dart
+</remark>import 'dart:math' as math;</screen>
 
     <sect2 id="ch03-trigonometry">
       <title>Trigonometry</title>
@@ -934,7 +936,8 @@ Futures.wait([deleteDone, copyDone, checksumDone]).then((List values) {
         <para>These methods use radians, not degrees!</para>
       </note>
 
-      <screen format="linespecific">// Cosine
+      <screen format="linespecific"><remark>ch03/math-tests.dart
+</remark>// Cosine
 assert(math.cos(math.PI) == -1.0);
 
 // Sine
@@ -953,7 +956,8 @@ assert(double.parse(sinOf30degrees.toStringAsPrecision(2)) == 0.5);</screen>
       <para>The Math library provides optimized <literal>max()</literal> and
       <literal>min()</literal> methods.</para>
 
-      <screen format="linespecific">assert(math.max(1, 1000) == 1000);
+      <screen format="linespecific"><remark>ch03/math-tests.dart
+</remark>assert(math.max(1, 1000) == 1000);
 assert(math.min(1, -1000) == -1000);</screen>
     </sect2>
 
@@ -963,7 +967,8 @@ assert(math.min(1, -1000) == -1000);</screen>
       <para>Find your favorite constants—<emphasis>pi</emphasis>,
       <emphasis>e</emphasis>, and more—in the Math library.</para>
 
-      <screen format="linespecific">// See the Math library for additional constants.
+      <screen format="linespecific"><remark>ch03/math-tests.dart
+</remark>// See the Math library for additional constants.
 print(math.E);     // 2.718281828459045
 print(math.PI);    // 3.141592653589793
 print(math.SQRT2); // 1.4142135623730951</screen>
@@ -977,13 +982,15 @@ print(math.SQRT2); // 1.4142135623730951</screen>
       class. You can optionally provide a seed to the Random
       constructor.</para>
 
-      <screen format="linespecific">var random = new math.Random();
+      <screen format="linespecific"><remark>ch03/math-tests.dart
+</remark>var random = new math.Random();
 random.nextDouble(); // Between 0.0 and 1.0: [0, 1)
 random.nextInt(10);  // Between 0 and 9.</screen>
 
       <para>You can even generate random booleans.</para>
 
-      <screen format="linespecific">var random = new math.Random();
+      <screen format="linespecific"><remark>ch03/math-tests.dart
+</remark>var random = new math.Random();
 random.nextBool();  // true or false</screen>
     </sect2>
 
@@ -1020,7 +1027,8 @@ random.nextBool();  // true or false</screen>
     <para>To use the HTML library in your web app, import <literal
     moreinfo="none">dart:html</literal>.</para>
 
-    <programlisting format="linespecific">import 'dart:html';</programlisting>
+    <programlisting format="linespecific"><remark>ch03_html/ch03_html.dart
+</remark>import 'dart:html';</programlisting>
 
     <sect2 id="ch03-manipulating-the-dom">
       <title>Manipulating the DOM</title>
@@ -1068,14 +1076,15 @@ random.nextBool();  // true or false</screen>
         role="keep-together"><literal>queryAll()</literal> </phrase>returns a
         collection of elements that match the selector.</para>
 
-        <screen format="linespecific">Element elem1 = query('#an-id');           // Find an element by id (an-id).
+        <screen format="linespecific"><remark>ch03_html/ch03_html.dart
+</remark>Element elem1 = query('#an-id');           // Find an element by id (an-id).
 Element elem2 = query('.a-class');         // Find an element by class (a-class).
 List&lt;Element&gt; elems1 = queryAll('div');    // Find all elements by tag (&lt;div&gt;).
 List&lt;Element&gt; elems2 = queryAll('input[type="text"]'); // Find all text inputs.
 
 // Find all elements with the CSS class 'class' inside of a &lt;p&gt;
 // that is inside an element with the ID 'id'.
-List&lt;Element&gt; elems3 = queryAll('#id p .class');</screen>
+List&lt;Element&gt; elems3 = queryAll('#id p.class');</screen>
       </sect3>
 
       <sect3 id="ch03-manipulating-elements">
@@ -1098,7 +1107,8 @@ List&lt;Element&gt; elems3 = queryAll('#id p .class');</screen>
         <para>Consider this example of specifying an anchor element in
         HTML:</para>
 
-        <screen format="linespecific">&lt;a id='example' href='http://example.com'&gt;linktext&lt;/a&gt;</screen>
+        <screen format="linespecific"><remark>ch03_html/ch03_html.dart
+</remark>&lt;a id="example" href="http://example.com"&gt;link text&lt;/a&gt;</screen>
 
         <para>This &lt;a&gt; tag specifies an element with an <literal
         moreinfo="none">href</literal> attribute and a text node (accessible
@@ -1107,7 +1117,8 @@ List&lt;Element&gt; elems3 = queryAll('#id p .class');</screen>
         can use AnchorElement’s <literal moreinfo="none">href</literal>
         property:</para>
 
-        <screen format="linespecific">query('#example').href = 'http://dartlang.org';</screen>
+        <screen format="linespecific"><remark>ch03_html/ch03_html.dart
+</remark>query('#example').href = 'http://dartlang.org';</screen>
 
         <para>Often you need to set properties on multiple elements. For
         example, the following code sets the <literal
@@ -1117,25 +1128,23 @@ List&lt;Element&gt; elems3 = queryAll('#id p .class');</screen>
         as adding <literal moreinfo="none">display:none</literal> to the
         CSS.</para>
 
-        <screen format="linespecific">&lt;!-- Some HTML --&gt;
+        <screen format="linespecific"><remark>ch03_html/ch03_html.dart
+</remark>&lt;!-- In HTML: --&gt;
 &lt;p&gt;
-  &lt;a href="/downloads/linux" class="os linux"&gt;Download for Linux&lt;/a&gt;
-  &lt;a href="/downloads/mac" class="os mac"&gt;Download for Mac&lt;/a&gt;
-  &lt;a href="/downloads/win" class="os win"&gt;Download for Windows&lt;/a&gt;
+  &lt;span class="os linux"&gt;Words for Linux&lt;/span&gt;
+  &lt;span class="os mac"&gt;Words for Mac&lt;/span&gt;
+  &lt;span class="os win"&gt;Words for Windows&lt;/span&gt;
 &lt;/p&gt;
-
-// Some Dart.
-
+<remark>
+</remark>// In Dart:
 final osList = ['mac', 'win', 'linux'];
 
-main() {
-  var userOs = determineUserOs();
+var userOs = 'linux'; // In real code you'd programmatically determine this.
 
-  for (var os in osList) {            // For each possible OS...
-    bool shouldShow = (os == userOs); // Does this OS match the user's OS?
-    for (var elem in queryAll('.$os')) { // Find all elements for this OS.
-      elem.hidden = !shouldShow;      // Show or hide each element.
-    }
+for (var os in osList) {            // For each possible OS...
+  bool shouldShow = (os == userOs); // Does this OS match the user's OS?
+  for (var elem in queryAll('.$os')) { // Find all elements for this OS.
+    elem.hidden = !shouldShow;      // Show or hide each element.
   }
 }</screen>
 
@@ -1151,7 +1160,8 @@ main() {
         MDN Attributes page.</ulink> Here’s an example of setting an
         attribute’s value.</para>
 
-        <screen format="linespecific">elem.attributes['someAttribute'] = 'someValue';</screen>
+        <screen format="linespecific"><remark>ch03_html/ch03_html.dart
+</remark>elem.attributes['someAttribute'] = 'someValue';</screen>
       </sect3>
 
       <sect3 id="ch03-creating-elements">
@@ -1161,13 +1171,15 @@ main() {
         attaching them to the DOM. Here’s an example of creating a paragraph
         (&lt;p&gt;) element:</para>
 
-        <screen format="linespecific">var elem = new ParagraphElement();
+        <screen format="linespecific"><remark>ch03_html/ch03_html.dart
+</remark>var elem = new ParagraphElement();
 elem.text = 'Creating is easy!';</screen>
 
         <para>You can also create an element by parsing HTML text. Any child
         elements are also parsed and created.</para>
 
-        <screen format="linespecific">var elem = new Element.html('&lt;p&gt;Creating &lt;em&gt;is&lt;/em&gt; easy!&lt;/p&gt;');</screen>
+        <screen format="linespecific"><remark>ch03_html/ch03_html.dart
+</remark>var elem2 = new Element.html('&lt;p&gt;Creating &lt;em&gt;is&lt;/em&gt; easy!&lt;/p&gt;');</screen>
 
         <para>Note that elem is a ParagraphElement in the above
         example.</para>
@@ -1179,9 +1191,8 @@ elem.text = 'Creating is easy!';</screen>
         are accessible (as a List&lt;Element&gt;) from the <literal
         moreinfo="none">children</literal> property.</para>
 
-        <screen format="linespecific">var elem = new ParagraphElement();
-elem.text = "Don't forget to feed the llamas!";
-document.body.children.add(elem);</screen>
+        <screen format="linespecific"><remark>ch03_html/ch03_html.dart
+</remark>document.body.children.add(elem2);</screen>
       </sect3>
 
       <sect3 id="ch03-adding-replacing-and-removing-nodes">
