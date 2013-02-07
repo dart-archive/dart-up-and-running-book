@@ -5,9 +5,9 @@ import 'dart:json';
 import 'dart:uri';
 
 String encodeMap(Map data) {
-  return Strings.join(data.keys.mappedBy((k) {
+  return data.keys.map((k) {
     return '${encodeUriComponent(k)}=${encodeUriComponent(data[k])}';
-  }), '&');
+  }).join('&');
 }
 
 loadEnd(HttpRequest request) {
