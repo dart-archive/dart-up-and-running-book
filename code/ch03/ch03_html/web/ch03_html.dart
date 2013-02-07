@@ -103,14 +103,18 @@ void funWithCss() {
 
 void handleEvents() {
   // Find a button by ID and add an event handler.
-  query('#submitInfo').on.click.add((e) {
+  query('#submitInfo').onClick.listen((e) {
     // When the button is clicked, it runs this code.
     submitData();
   });
   
-  document.body.on.click.add((e) {
+  document.body.onClick.listen((e) {
     var clickedElem = e.target;
     print('You clicked the ${clickedElem.id} element.');
+//    // If you don't want blanks in the output, use this code instead:    
+//    var name = clickedElem.id;
+//    if (name == '') name = '<unnamed>';
+//    print('You clicked the $name element.');
   });
 }
 
