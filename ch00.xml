@@ -206,13 +206,19 @@
       </listitem>
 
       <listitem>
-        <para>Between M1 and M3, several APIs changed:</para>
+        <para>In M2, several APIs changed:</para>
 
         <itemizedlist>
           <listitem>
             <para>In the dart:html library, the <literal>elements</literal>
             property of Element is now called
             <literal>children</literal>.</para>
+          </listitem>
+
+          <listitem>
+            <para>Names in dart:html have changed to conform to Dart naming
+            standards. In particular, <literal>innerHTML</literal> is now
+            <literal>innerHtml</literal>.</para>
           </listitem>
 
           <listitem>
@@ -263,18 +269,21 @@
             <literal>hashCode</literal>, <literal>isEmpty</literal> and
             <literal>isNan</literal>. We also changed
             <literal>getKeys()</literal> to <literal>keys</literal>, and
-            <literal>getValues()</literal> to <literal>values</literal>.
-            <remark> {PENDING: any more to add here?}</remark></para>
+            <literal>getValues()</literal> to
+            <literal>values</literal>.</para>
           </listitem>
 
           <listitem>
             <para>The Iterable class has been beefed up, affecting all
             Collections such as Lists and Sets. The former Collection methods
             <literal>filter()</literal> and <literal>map()</literal> are now
-            in Iterable and named <literal>where()</literal> and
-            <literal>mappedBy()</literal>. The <literal>some()</literal>
-            method is now named <literal>any()</literal>. Many values returned
-            by Iterables are now lazily filled Iterables; you can use
+            in Iterable, and the name of <literal>filter()</literal> has
+            changed to <literal>where()</literal>. (<literal>map()</literal>
+            was briefly renamed to <literal>mappedBy()</literal>, but due to
+            public feedback that decision was reversed.) The
+            <literal>some()</literal> method is now named
+            <literal>any()</literal>. Many values returned by Iterables are
+            now lazily filled Iterables; you can use
             <literal>toList()</literal> or <literal>toSet()</literal> to force
             evaluation. We recommend <emphasis>extending</emphasis> Iterable
             rather than just implementing it, so you can take advantage of
@@ -299,6 +308,21 @@
             <para>Date is now named DateTime, and the
             <literal>fromString()</literal> constructor is now a static method
             named <literal>parse()</literal>.</para>
+          </listitem>
+
+          <listitem>
+            <para>Event handler registration used to be
+            <literal>.on.<replaceable>event</replaceable>.add()</literal>; now
+            it’s
+            <literal>.on<replaceable>Event</replaceable>.listen()</literal>.</para>
+          </listitem>
+
+          <listitem>
+            <para>The dart:html HttpRequest <literal>get()</literal> method
+            has been replaced by <literal>getString()</literal> and
+            <literal>request()</literal>, which return
+            <literal>Future&lt;String&gt;</literal> and
+            <literal>Future&lt;HttpRequest&gt;</literal>, respectively.</para>
           </listitem>
         </itemizedlist>
       </listitem>

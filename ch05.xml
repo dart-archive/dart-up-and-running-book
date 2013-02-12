@@ -82,8 +82,8 @@
     <para>The chat server and client are simple. The chat server is an HTTP
     server that provides a WebSocket. The chat client uses that WebSocket for
     a bi-directional communication channel with the server. The client sends
-    chat messages to the server over the WebSocket, and the server relays those
-    messages to all other connected clients.</para>
+    chat messages to the server over the WebSocket, and the server relays
+    those messages to all other connected clients.</para>
 
     <para>As <xref linkend="web-socket-connections" /> shows, the server
     starts things off by listening for requests to <literal
@@ -141,7 +141,8 @@
     “chat-username” and “chat-message”) and a status area (ID:
     “chat-display”).</para>
 
-    <programlisting format="linespecific">&lt;!-- In client/index.html: --&gt;
+    <programlisting format="linespecific"><remark>lang-html
+</remark>&lt;!-- In client/index.html: --&gt;
 &lt;textarea id="chat-display" rows="10" disabled&gt;&lt;/textarea&gt;
 ...
 &lt;input id="chat-username" name="chat-username" type="text"&gt;
@@ -153,7 +154,8 @@
     tags tell the browser to execute the client’s Dart or JavaScript
     code:</para>
 
-    <programlisting format="linespecific">&lt;script type="application/dart" src="chat-client.dart"&gt;&lt;/script&gt;
+    <programlisting format="linespecific"><remark>lang-html
+</remark>&lt;script type="application/dart" src="chat-client.dart"&gt;&lt;/script&gt;
 &lt;script src="dart.js"&gt;&lt;/script&gt;</programlisting>
 
     <para>The first line works in browsers that have an embedded Dart VM and
@@ -164,7 +166,8 @@
     JavaScript version of foo.dart. For non-Dartium browsers, dart.js changes
     the first &lt;script&gt; tag to the following:</para>
 
-    <programlisting format="linespecific">&lt;!-- Inserted by dart.js for non-Dartium browsers --&gt;
+    <programlisting format="linespecific"><remark>lang-html
+</remark>&lt;!-- Inserted by dart.js for non-Dartium browsers --&gt;
 &lt;script src="chat-client.dart.js"&gt;&lt;/script&gt;</programlisting>
 
     <para>The script contents run when the browser has loaded the HTML and
@@ -194,7 +197,8 @@
       <literal>query()</literal> method to get the client’s UI elements from
       the DOM.</para>
 
-      <programlisting format="linespecific">// In client/chat-client.dart:
+      <programlisting format="linespecific"><remark>lang-dart
+</remark>// In client/chat-client.dart:
 import 'dart:html';
 //...
 TextAreaElement chatElem = query('#chat-display');
@@ -212,7 +216,8 @@ InputElement messageElem = query('#chat-message');</programlisting>
       <para>Rather than always dealing with DOM APIs, the chat client wraps
       the elements in Dart objects:</para>
 
-      <programlisting format="linespecific">chatWindow = new ChatWindow(chatElem);
+      <programlisting format="linespecific"><remark>lang-dart
+</remark>new ChatWindow(chatElem);
 usernameInput = new UsernameInput(usernameElem);
 messageInput = new MessageInput(messageElem);</programlisting>
 
@@ -224,7 +229,8 @@ messageInput = new MessageInput(messageElem);</programlisting>
       express the relationship that ChatWindow is-a View. Here’s the complete
       code for UsernameInput:</para>
 
-      <programlisting format="linespecific">class UsernameInput extends View&lt;InputElement&gt; {
+      <programlisting format="linespecific"><remark>lang-dart
+</remark>class UsernameInput extends View&lt;InputElement&gt; {
   UsernameInput(InputElement elem) : super(elem);
 
   bind() { // Called by the View constructor.
@@ -246,7 +252,8 @@ messageInput = new MessageInput(messageElem);</programlisting>
       app uses the <literal moreinfo="none">username</literal> getter of a
       UsernameInput object. For example:</para>
 
-      <programlisting format="linespecific">chatWindow.displayMessage(message, usernameInput.username);</programlisting>
+      <programlisting format="linespecific"><remark>lang-dart
+</remark>chatWindow.displayMessage(message, usernameInput.username);</programlisting>
 
       <para>Notice how the code uses generics (View&lt;InputElement&gt;) to
       specify what kind of element the View class can encapsulate. In the
@@ -278,7 +285,8 @@ messageInput = new MessageInput(messageElem);</programlisting>
       <para>To display messages in the chat window, the ChatWindow class adds
       the message to the text node of the text area.</para>
 
-      <programlisting format="linespecific">class ChatWindow extends View&lt;TextAreaElement&gt; {
+      <programlisting format="linespecific"><remark>lang-dart
+</remark>class ChatWindow extends View&lt;TextAreaElement&gt; {
   ChatWindow(TextAreaElement elem) : super(elem);
   
   displayMessage(String msg, String from) {
@@ -313,7 +321,8 @@ messageInput = new MessageInput(messageElem);</programlisting>
       converts a JSON string back into a Dart object. Here’s the JSON-related
       code from the chat client:</para>
 
-      <programlisting format="linespecific">import 'dart:json' as json;
+      <programlisting format="linespecific"><remark>lang-dart
+</remark>import 'dart:json' as json;
 
 var encoded = json.stringify({'f': from, 'm': message});
 Map message = json.parse(encodedMessage);</programlisting>
@@ -332,7 +341,8 @@ Map message = json.parse(encodedMessage);</programlisting>
       the WebSocketEvents object it gets from <literal>webSocket.on</literal>.
       For example, here’s the code that responds to message events:</para>
 
-      <programlisting format="linespecific">webSocket.on.message.add((MessageEvent e) {
+      <programlisting format="linespecific"><remark>lang-dart
+</remark>webSocket.on.message.add((MessageEvent e) {
   print('received message ${e.data}');
   _receivedEncodedMessage(e.data);
 });</programlisting>
@@ -340,7 +350,8 @@ Map message = json.parse(encodedMessage);</programlisting>
       <para>The <literal>_receivedEncodedMessage()</literal> method just
       parses the JSON data and displays it in the status area.</para>
 
-      <programlisting format="linespecific">_receivedEncodedMessage(String encodedMessage) {
+      <programlisting format="linespecific"><remark>lang-dart
+</remark>_receivedEncodedMessage(String encodedMessage) {
   Map message = json.parse(encodedMessage);
   if (message['f'] != null) {
     chatWindow.displayMessage(message['m'], message['f']);
@@ -351,7 +362,8 @@ Map message = json.parse(encodedMessage);</programlisting>
       <literal>_sendEncodedMessage()</literal> ensures the WebSocket
       connection is ready and then sends the JSON-encoded message.</para>
 
-      <programlisting format="linespecific">// In the ChatConnection class:
+      <programlisting format="linespecific"><remark>lang-dart
+</remark>// In the ChatConnection class:
 send(String from, String message) {
   var encoded = json.stringify({'f': from, 'm': message});
   _sendEncodedMessage(encoded);
@@ -373,7 +385,8 @@ _sendEncodedMessage(String encodedMessage) {
       <literal>scheduleReconnect()</literal> can see variables from
       <literal>_init()</literal>.</para>
 
-      <programlisting format="linespecific">_init([int retrySeconds = 2]) {
+      <programlisting format="linespecific"><remark>lang-dart
+</remark>_init([int retrySeconds = 2]) {
   bool encounteredError = false;
   chatWindow.displayNotice('Connecting to Web socket');
   webSocket = new WebSocket(url);
@@ -408,7 +421,8 @@ _sendEncodedMessage(String encodedMessage) {
       server. The default request handler is configured to serve static files
       from a specific directory on the file system.</para>
 
-      <programlisting format="linespecific">runServer(String basePath, int port) {
+      <programlisting format="linespecific"><remark>lang-dart
+</remark>runServer(String basePath, int port) {
   HttpServer server = new HttpServer();  
   server.defaultRequestHandler = new StaticFileHandler(basePath).onRequest;
   //...
@@ -438,7 +452,8 @@ main() {
       doesn’t), the function specified to <literal>then()</literal>
       executes.</para>
 
-      <programlisting format="linespecific">// Respond to HTTP requests for static files.
+      <programlisting format="linespecific"><remark>lang-dart
+</remark>// Respond to HTTP requests for static files.
 onRequest(HttpRequest request, HttpResponse response) {
   //...
   file.exists().then((found) {
@@ -463,7 +478,8 @@ onRequest(HttpRequest request, HttpResponse response) {
       dart:io WebSocketHandler class accepts HTTP connections, converts them
       into WebSocket connections, and then passes them to ChatHandler.</para>
 
-      <programlisting format="linespecific">runServer(String basePath, int port) {
+      <programlisting format="linespecific"><remark>lang-dart
+</remark>runServer(String basePath, int port) {
   //...
   WebSocketHandler wsHandler = new WebSocketHandler();
   wsHandler.onOpen = new ChatHandler(basePath).onOpen;
@@ -472,7 +488,8 @@ onRequest(HttpRequest request, HttpResponse response) {
       <para>ChatHandler is a custom class that takes care of all WebSocket
       communication for the chat server. Here is its implementation.</para>
 
-      <programlisting format="linespecific">class ChatHandler {
+      <programlisting format="linespecific"><remark>lang-dart
+</remark>class ChatHandler {
   Set&lt;WebSocketConnection&gt; connections;
   //...
   onOpen(WebSocketConnection conn) {
@@ -512,7 +529,8 @@ onRequest(HttpRequest request, HttpResponse response) {
       isolate to handle file I/O without tying up the root isolate. Here’s the
       code that creates and starts this isolate:</para>
 
-      <programlisting format="linespecific">SendPort _loggingPort = spawnFunction(startLogging);</programlisting>
+      <programlisting format="linespecific"><remark>lang-dart
+</remark>SendPort _loggingPort = spawnFunction(startLogging);</programlisting>
 
       <para>The value returned by dart:isolate’s
       <literal>spawnFunction()</literal> is a SendPort object. Because
@@ -525,7 +543,8 @@ onRequest(HttpRequest request, HttpResponse response) {
       specifies the log file location, and subsequent messages provide data to
       write to the log file.</para>
 
-      <programlisting format="linespecific">startLogging() {
+      <programlisting format="linespecific"><remark>lang-dart
+</remark>startLogging() {
   print('started logger');
   File logFile;
   OutputStream out;
@@ -553,7 +572,8 @@ onRequest(HttpRequest request, HttpResponse response) {
       isolate. Every time the chat server calls the <literal>log()</literal>
       method, the root isolate sends the log data:</para>
 
-      <programlisting format="linespecific">void log(String message) {
+      <programlisting format="linespecific"><remark>lang-dart
+</remark>void log(String message) {
   _loggingPort.send(message);
 }</programlisting>
 

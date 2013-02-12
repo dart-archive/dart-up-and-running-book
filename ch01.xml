@@ -94,7 +94,8 @@
     <para>It’s hard to talk about a language without seeing it. Here’s a peek
     at a small Dart program:</para>
 
-    <programlisting format="linespecific">import 'dart:math';
+    <programlisting format="linespecific"><remark>lang-dart
+</remark>import 'dart:math';
 
 class Point {
   num x, y;
@@ -115,7 +116,8 @@ main() {
     <para>Of course, Dart’s main use case is building modern web apps.
     Programming the browser is easy:</para>
 
-    <programlisting format="linespecific">import 'dart:html';
+    <programlisting format="linespecific"><remark>lang-dart
+</remark>import 'dart:html';
 
 main() {
   var button = new ButtonElement();
