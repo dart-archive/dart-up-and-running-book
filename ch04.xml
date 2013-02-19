@@ -996,7 +996,9 @@ if (!navigator.webkitStartDart) {
     <para>You can use the <emphasis>dart2js</emphasis> tool to compile Dart
     code to JavaScript. <link linkend="ch04-editor-dart2js">Dart Editor</link>
     uses dart2js behind the scenes whenever Dart Editor compiles to
-    JavaScript.</para>
+    JavaScript. This section tells you how to use dart2js on the command line.
+    It also give tips on debugging the JavaScript that dart2js
+    generates.</para>
 
     <sect2 id="ch04-tools-dart2js-basic-usage">
       <title>Basic Usage</title>
@@ -1006,8 +1008,10 @@ if (!navigator.webkitStartDart) {
       <screen format="linespecific"><remark>lang-sh
 </remark><replaceable>$DART_SDK</replaceable>/bin/dart2js <replaceable>test.dart</replaceable></screen>
 
-      <para>This command produces a <literal moreinfo="none">.js</literal>
-      file that contains the JavaScript equivalent of your Dart code.</para>
+      <para>This command produces a file named <literal
+      moreinfo="none">out.js</literal> file that contains the JavaScript
+      equivalent of your Dart code. It also produces a source map, which can
+      help you debug the JavaScript version of the app more easily. </para>
     </sect2>
 
     <sect2 id="ch04-tools-dart2js-options">
@@ -1018,7 +1022,8 @@ if (!navigator.webkitStartDart) {
       <variablelist>
         <varlistentry>
           <term role="plain"><literal moreinfo="none">
-          -o<replaceable>&lt;file&gt;</replaceable> </literal></term>
+          -o<replaceable>&lt;file&gt;</replaceable></literal><emphasis> or
+          </emphasis><literal>--out=<replaceable>&lt;file&gt;</replaceable></literal></term>
 
           <listitem>
             <para>Generate the output into
@@ -1027,7 +1032,8 @@ if (!navigator.webkitStartDart) {
         </varlistentry>
 
         <varlistentry>
-          <term role="plain"><literal moreinfo="none"> -c </literal></term>
+          <term role="plain"><literal moreinfo="none"> -c</literal><emphasis>
+          or </emphasis><literal>--checked</literal></term>
 
           <listitem>
             <para>Insert runtime type checks, and enable assertions (checked
@@ -1036,14 +1042,133 @@ if (!navigator.webkitStartDart) {
         </varlistentry>
 
         <varlistentry>
-          <term role="plain"><literal moreinfo="none"> -h </literal></term>
+          <term role="plain"><literal moreinfo="none"> -h</literal><emphasis>
+          or </emphasis><literal>--help</literal></term>
 
           <listitem>
-            <para>Display help (add <literal moreinfo="none">-v</literal> for
-            information about all options).</para>
+            <para>Display help. (Use <literal moreinfo="none">-vh</literal>
+            for information about all options.)</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term role="plain"><literal moreinfo="none">
+          --minify</literal></term>
+
+          <listitem>
+            <para>Generate minified output.</para>
           </listitem>
         </varlistentry>
       </variablelist>
+    </sect2>
+
+    <sect2>
+      <title>Debugging</title>
+
+      <para>This section gives tips for debugging dart2js-produced code in
+      Chrome, Firefox, and Safari. Debugging the JavaScript produced by
+      dart2js is easiest in browsers such as Chrome that support source maps.
+      </para>
+
+      <para>Whichever browser you use, you should enable pausing on at least
+      uncaught exceptions, and perhaps on all exceptions. For frameworks such
+      as dart:isolate and dart:async that wrap user code in try-catch, we
+      recommend pausing on all exceptions.</para>
+
+      <sect3>
+        <title>Chrome</title>
+
+        <para>To debug in Chrome:</para>
+
+        <orderedlist>
+          <listitem>
+            <para>Open the Developer Tools window, as described in <ulink
+            url="https://developers.google.com/chrome-developer-tools/docs/overview#access">How
+            to Access the Developer Tools</ulink>.</para>
+          </listitem>
+
+          <listitem>
+            <para>Turn on source maps, as described in <ulink
+            url="http://www.youtube.com/watch?v=-xJl22Kvgjg">this
+            video</ulink>.</para>
+          </listitem>
+
+          <listitem>
+            <para>Enable debugging on either all exceptions or only uncaught
+            exceptions, as described in <ulink
+            url="https://developers.google.com/chrome-developer-tools/docs/scripts-breakpoints#js_exceptions">Pause
+            on Exceptions</ulink> and <ulink
+            url="https://developers.google.com/chrome-developer-tools/docs/scripts-breakpoints#js_uncaught">Pause
+            on Uncaught Exceptions</ulink>, respectively.</para>
+          </listitem>
+
+          <listitem>
+            <para>Reload your application.</para>
+          </listitem>
+        </orderedlist>
+      </sect3>
+
+      <sect3>
+        <title>Firefox</title>
+
+        <para>Firefox doesn’t yet support source maps (see <ulink
+        url="https://bugzilla.mozilla.org/show_bug.cgi?id=771597">bug
+        #771597</ulink>). To debug in Firefox:</para>
+
+        <orderedlist>
+          <listitem>
+            <para>Enable the Developer Toolbar, as described in <ulink
+            url="https://hacks.mozilla.org/2012/08/new-firefox-command-line-helps-you-develop-faster/">this
+            blog post</ulink>.</para>
+          </listitem>
+
+          <listitem>
+            <para>Click the <emphasis role="bold">Debugger</emphasis> button
+            at the bottom of the browser, and enable <emphasis
+            role="bold">Pause on exceptions</emphasis>. (See <xref
+            linkend="FirefoxDeveloperToolbar" />.) </para>
+          </listitem>
+
+          <listitem>
+            <para>Reload your application.</para>
+          </listitem>
+        </orderedlist>
+
+        <figure id="FirefoxDeveloperToolbar">
+          <title>Firefox’s Developer Toolbar</title>
+
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figs/web/daur_0411.png" />
+            </imageobject>
+          </mediaobject>
+        </figure>
+      </sect3>
+
+      <sect3>
+        <title>Safari</title>
+
+        <para>To debug in Safari:</para>
+
+        <orderedlist>
+          <listitem>
+            <para>Turn on the Develop menu, as described in <ulink
+            url="https://developer.apple.com/library/safari/#documentation/appleapplications/Conceptual/Safari_Developer_Guide/2SafariDeveloperTools/SafariDeveloperTools.html#//apple_ref/doc/uid/TP40007874-CH3-SW7">Enabling
+            Developer Tools in Safari on the Desktop</ulink>.</para>
+          </listitem>
+
+          <listitem>
+            <para>Enable breaks on either all exceptions or only uncaught
+            exceptions, as described in <ulink
+            url="http://developer.apple.com/library/safari/documentation/appleapplications/Conceptual/Safari_Developer_Guide/DebuggingYourWebsite/DebuggingYourWebsite.html#//apple_ref/doc/uid/TP40007874-CH8-SW1">Debugging
+            JavaScript Using the Web Inspector</ulink>.</para>
+          </listitem>
+
+          <listitem>
+            <para>Reload your application.</para>
+          </listitem>
+        </orderedlist>
+      </sect3>
     </sect2>
   </sect1>
 
