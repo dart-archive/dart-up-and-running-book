@@ -175,9 +175,7 @@
 
     <para>You can get dart.js with the <ulink
     url="http://pub.dartlang.org/packages/browser">browser package from
-    pub,</ulink> or you can get it <ulink
-    url="http://dart.googlecode.com/svn/trunk/dart/client/dart.js">directly
-    from the Dart project.</ulink> See <xref linkend="ch04-tools-dart2js" />
+    pub</ulink>. See <xref linkend="ch04-tools-dart2js" />
     for more information about compiling Dart code into its JavaScript
     equivalent.</para>
   </sect1>
@@ -234,7 +232,7 @@ messageInput = new MessageInput(messageElem);</programlisting>
   UsernameInput(InputElement elem) : super(elem);
 
   bind() { // Called by the View constructor.
-    elem.on.change.add((e) =&gt; _onUsernameChange());
+    elem.onChange.listen((e) =&gt; _onUsernameChange());
   }
 
   _onUsernameChange() {
@@ -269,8 +267,9 @@ messageInput = new MessageInput(messageElem);</programlisting>
       (MVC) architecture.</ulink></para>
 
       <note>
-        <para>We expect the Dart project to provide an MVC-type framework for
-        clients.</para>
+        <para>For more structure, see the <ulink
+          url="http://www.dartlang.org/articles/dart-web-components/">Web UI</ulink>
+          project for declarative widgets and dynamic, data-driven views.</para>
       </note>
     </sect2>
 
@@ -342,7 +341,7 @@ Map message = json.parse(encodedMessage);</programlisting>
       For example, here’s the code that responds to message events:</para>
 
       <programlisting format="linespecific"><remark>lang-dart
-</remark>webSocket.on.message.add((MessageEvent e) {
+</remark>webSocket.onMessage.listen((MessageEvent e) {
   print('received message ${e.data}');
   _receivedEncodedMessage(e.data);
 });</programlisting>
@@ -394,15 +393,16 @@ _sendEncodedMessage(String encodedMessage) {
   scheduleReconnect() {
     chatWindow.displayNotice('socket closed, retrying in $retrySeconds seconds');
     if (!encounteredError) {
-      window.setTimeout(() =&gt; _init(retrySeconds*2), 1000*retrySeconds);
+      new Timer(new Duration(seconds:retrySeconds),
+          () => _init(retrySeconds*2));
     }
     encounteredError = true;
   } 
   //...
-  webSocket.on.close.add((e) =&gt; scheduleReconnect());
-  webSocket.on.error.add((e) =&gt; scheduleReconnect());</programlisting>
+  webSocket.onClose.listen((e) =&gt; scheduleReconnect());
+  webSocket.onError.listen((e) =&gt; scheduleReconnect());</programlisting>
 
-      <para>The reconnect logic uses <literal>setTimeout()</literal> to
+      <para>The reconnect logic uses <literal>new Timer()</literal> to
       schedule a retry using an exponential backoff algorithm.</para>
     </sect2>
   </sect1>
@@ -555,7 +555,7 @@ onRequest(HttpRequest request, HttpResponse response) {
       out = logFile.openOutputStream(FileMode.APPEND);
     } else {
       time('write to file', () {
-        out.writeString('${new Date.now()} : $msg\n');
+        out.writeString('${new DateTime.now()} : $msg\n');
       });
     }
   });

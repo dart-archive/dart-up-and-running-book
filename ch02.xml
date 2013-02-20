@@ -861,20 +861,68 @@ list.forEach(printElement); // Pass printElement as a parameter.</programlisting
 assert(loudify('hello') == '!!! HELLO !!!');</programlisting>
     </sect2>
 
+    <sect2 id="ch02-lexical-scope">
+      <title>Lexical Scope</title>
+
+      <para>
+        Dart is a lexically scoped language, which means that the scope of
+        variables is determined statically, simply by the layout of the code.
+        You can "follow the curly braces outwards" to see if a variable is
+        in scope.
+      </para>
+
+      <para>
+        Here is an example of nested functions with variables at each scope
+        level.
+      </para>
+
+      <programlisting format="linespecific"><remark>lang-dart
+</remark>var topLevel = true;
+
+main() {
+    var insideMain = true;
+    
+    myFunction() {
+      var insideFunction = true;
+      
+      nestedFunction() {
+        var insideNestedFunction = true;
+        
+        assert(topLevel);
+        assert(insideMain);
+        assert(insideFunction);
+        assert(insideNestedFunction);
+      }
+    }
+
+}</programlisting>
+
+      <para>Notice how <literal>nestedFunction()</literal> can use variables
+        from every level, all
+        the way up to the top level.</para>
+    </sect2>
+
     <sect2 id="ch02-functions-lexical-closures">
       <title>Lexical Closures</title>
 
+      <para>A <emphasis>closure</emphasis> is a function object that has access
+        to variables in its
+        lexical scope, even when the function is used outside of its original
+        scope.</para>
+
       <para>Functions can close over variables defined in surrounding scopes.
-      In the following example, <literal>makeAdder()</literal> captures the
-      variable <literal moreinfo="none">n</literal> and makes it available to
-      the function that <literal>makeAdder()</literal> returns. Wherever the
+      In the following example, <literal>adder()</literal> captures the
+      variable <literal moreinfo="none">addBy</literal>. Wherever the
       returned function goes, it remembers <literal
-      moreinfo="none">n</literal>.</para>
+      moreinfo="none">addBy</literal>.</para>
 
       <programlisting format="linespecific"><remark>lang-dart
-</remark>/// Returns a function that adds [n] to the function's argument.
-Function makeAdder(num n) {
-  return (num i) =&gt; n + i;
+</remark>/// Returns a function that adds [addBy] to a number.
+Function makeAdder(num addBy) {
+  adder(num i) {
+    return addBy + i;
+  }
+  return adder;
 }
 
 main() {
