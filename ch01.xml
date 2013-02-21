@@ -124,7 +124,7 @@ main() {
   button..id = 'confirm'
         ..text = 'Click to Confirm'
         ..classes.add('important')
-        ..on.click.add((e) =&gt; window.alert('Confirmed!'));
+        ..onClick.listen((e) =&gt; window.alert('Confirmed!'));
   query('#registration').children.add(button);
 }</programlisting>
 

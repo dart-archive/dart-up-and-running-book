@@ -2153,7 +2153,7 @@ num distance = p.distanceTo(new Point(4,4)); // Invoke distanceTo() on p.</progr
 </remark>query('#button')
     ..text = 'Click to Confirm'                        // Get an object. Use its
     ..classes.add('important')                         // instance variables
-    ..on.click.add((e) =&gt; window.alert('Confirmed!')); // and methods.</programlisting>
+    ..onClick.listen((e) =&gt; window.alert('Confirmed!')); // and methods.</programlisting>
 
     <para>Some classes provide constant constructors. To create a compile-time
     constant using a constant constructor, use <literal
