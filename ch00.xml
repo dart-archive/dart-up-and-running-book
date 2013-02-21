@@ -320,11 +320,40 @@
           <listitem>
             <para>The dart:html HttpRequest <literal>get()</literal> method
             has been replaced by <literal>getString()</literal> and
-            <literal>request()</literal>, which return
-            <literal>Future&lt;String&gt;</literal> and
-            <literal>Future&lt;HttpRequest&gt;</literal>, respectively.</para>
+            <literal>request()</literal>, which return Future&lt;String&gt;
+            and Future&lt;HttpRequest&gt;, respectively.</para>
+          </listitem>
+
+          <listitem>
+            <para>The dart:html Window <literal>setTimeout()</literal> method
+            is gone; instead, use a Timer.</para>
+          </listitem>
+
+          <listitem>
+            <para>Timer and Completer have moved from dart:isolate to a new
+            library called dart:async. The Timer constructors now take a
+            Duration instead of an int.</para>
+          </listitem>
+
+          <listitem>
+            <para>The Future <literal>chain()</literal> and
+            <literal>handleException()</literal> methods are gone, replaced by
+            <literal>then()</literal> and
+            <literal>catchError()</literal>.</para>
           </listitem>
         </itemizedlist>
+      </listitem>
+    </itemizedlist>
+
+    <para>We’ve also added discussions for a few pre-existing features:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>Lexical scope (see <xref linkend="ch02-lexical-scope" />)</para>
+      </listitem>
+
+      <listitem>
+        <para>… <remark>[PENDING: more?]</remark></para>
       </listitem>
     </itemizedlist>
   </sect1>
