@@ -22,23 +22,25 @@ main() {
   assert(parts.length == 3);
   assert(parts[0] == 'structured');
 
-  // Get the character (as a string) by index.
+  // Get a character (as a string) by index.
   assert('Never odd or even'[0] == 'N');
 
-  // Use splitChars() to get a list of all characters (as Strings);
-  // good for iterating.
-  for (var char in 'hello'.splitChars()) {
+  // Use split() with an empty string parameter to get a list of
+  // all characters (as Strings); good for iterating.
+  for (var char in 'hello'.split('')) {
     print(char);
   }
 
-  // Get the char code at an index.
-  assert('Never odd or even'.charCodeAt(0) == 78);
+  // Get all the characters in the string as a list of UTF-16 code units.
+  // Some characters might require two code units.
+  var codeUnitList = 'Never odd or even'.codeUnits.toList();
+  assert(codeUnitList[0] == 78);
 
-  // Get all the char codes as a list of integers.
-  var charCodes = 'Never odd or even'.charCodes;
-  assert(charCodes.length == 17);
-  assert(charCodes[0] == 78);
-  //END
+  // Get all the characters in the string as a Runes object, which
+  // contains one item per character.
+  var runes = 'Never odd or even'.runes;
+  assert(runes.length == 17);
+//END
 
   //BEGIN
   // Convert to uppercase.
@@ -65,7 +67,7 @@ main() {
 
   assert(greeting != greetingTemplate); // greetingTemplate didn't change.
   //END
-  
+
   buildingAString();
   regularExpressions();
   regularExpressions2();
@@ -73,22 +75,23 @@ main() {
 
 buildingAString() {
   //NOTE: DID NOT USE A METHOD CASCADE. BROKE due to add return type changing.
+  //Then add and addAll were deprecated in favor of write and writeAll,
+  //and clear() was removed.
   //BEGIN
   var sb = new StringBuffer();
-  sb..add('Use a StringBuffer ')
-  ..addAll(['for ', 'efficient ', 'string ', 'creation '])
-  ..add('if you are ')
-  ..add('building lots of strings.');
+  sb..write('Use a StringBuffer ')
+    ..writeAll(['for ', 'efficient ', 'string ', 'creation'])
+    ..write('.');
 
   var fullString = sb.toString();
-  
+
   assert(fullString ==
-      'Use a StringBuffer for efficient string creation '
-      'if you are building lots of strings.');
-  
-  sb.clear();  // All gone!
-  assert(sb.toString() == '');
+      'Use a StringBuffer for efficient string creation.');
   //END
+  
+//  clear() is gone. For now, at least.
+//  sb.clear();  // All gone!
+//  assert(sb.toString() == '');
 }
 
 regularExpressions() {

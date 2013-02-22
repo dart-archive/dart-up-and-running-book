@@ -104,8 +104,8 @@ assert('Never odd or even'.indexOf('odd') == 6);</screen>
       <sect3 id="ch03-extracting-data-from-a-string">
         <title>Extracting data from a string</title>
 
-        <para>You can get the individual characters or character codes from a
-        string as Strings or ints, respectively.</para>
+        <para>You can get the individual characters or UTF-16 code units from
+        a string as Strings or ints, respectively.</para>
 
         <para>You can also extract a substring or split a string into a list
         of substrings.</para>
@@ -120,22 +120,19 @@ var parts = 'structured web apps'.split(' ');
 assert(parts.length == 3);
 assert(parts[0] == 'structured');
 
-// Get the character (as a string) by index.
+// Get a character (as a string) by index.
 assert('Never odd or even'[0] == 'N');
 
-// Use splitChars() to get a list of all characters (as Strings);
-// good for iterating.
-for (var char in 'hello'.splitChars()) {
+// Use split() with an empty string parameter to get a list of
+// all characters (as Strings); good for iterating.
+for (var char in 'hello'.split('')) {
   print(char);
 }
 
-// Get the char code at an index.
-assert('Never odd or even'.charCodeAt(0) == 78);
-
-// Get all the char codes as a list of integers.
-var charCodes = 'Never odd or even'.charCodes;
-assert(charCodes.length == 17);
-assert(charCodes[0] == 78);</screen>
+// Get all the characters in the string as a list of UTF-16 code units.
+// Some characters might require two code units.
+var codeUnitList = 'Never odd or even'.codeUnits.toList();
+assert(codeUnitList[0] == 78);</screen>
       </sect3>
 
       <sect3 id="ch03-converting-to-uppercase-or-lowercase">
@@ -202,19 +199,14 @@ assert(greeting != greetingTemplate); // greetingTemplate didn't change.</screen
 </remark><remark>ch03/string-tests.dart
 </remark>var sb = new StringBuffer();
 
-sb..add('Use a StringBuffer ')
-  ..addAll(['for ', 'efficient ', 'string ', 'creation '])
-  ..add('if you are ')
-  ..add('building lots of strings.');
+sb..write('Use a StringBuffer ')
+  ..writeAll(['for ', 'efficient ', 'string ', 'creation'])
+  ..write('.');
 
 var fullString = sb.toString();
 
 assert(fullString ==
-    'Use a StringBuffer for efficient string creation '
-    'if you are building lots of strings.');
-
-sb.clear();  // All gone!
-assert(sb.toString() == '');</screen>
+    'Use a StringBuffer for efficient string creation.');</screen>
       </sect3>
 
       <sect3 id="ch03-regular-expressions">
@@ -2062,8 +2054,8 @@ main() {
 
         <para>Errors are thrown as exceptions if you do not register an
         explicit handler. If you want to capture an error, you can register a
-        <literal moreinfo="none">catchError</literal> handler with the
-        Future object.</para>
+        <literal moreinfo="none">catchError</literal> handler with the Future
+        object.</para>
 
         <screen format="linespecific"><remark>lang-dart
 </remark>import 'dart:io';

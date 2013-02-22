@@ -1,5 +1,5 @@
 main() {
-  var y2k = new Date.fromString('2000-01-01T00:00:00Z');
+  var y2k = new DateTime.utc(2000);
   
   // Add one year.
   var y2001 = y2k.add(const Duration(days: 366));

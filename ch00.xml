@@ -260,6 +260,11 @@
       </listitem>
 
       <listitem>
+        <para>In M3, mixins were added to the language, enabling code re-use
+        between classes.</para>
+      </listitem>
+
+      <listitem>
         <para>The core libraries were revised in M3. Changes include:</para>
 
         <itemizedlist>
@@ -340,6 +345,23 @@
             <literal>handleException()</literal> methods are gone, replaced by
             <literal>then()</literal> and
             <literal>catchError()</literal>.</para>
+          </listitem>
+
+          <listitem>
+            <para>The String <literal>splitChars()</literal> method is gone;
+            instead, use <literal>split()</literal> with an empty string
+            argument. String’s <literal>charCodeAt()</literal> method is
+            deprecated; to get an iterator containing UTF-16 code units, use
+            String’s new <literal>codeUnits</literal> getter.</para>
+          </listitem>
+
+          <listitem>
+            <para>The StringBuffer <literal>add()</literal> and
+            <literal>addAll()</literal> methods are replaced by
+            <literal>write()</literal> and <literal>writeAll()</literal>,
+            respectively. StringBuffer no longer has a
+            <literal>clear()</literal> method; just create a new StringBuffer
+            instead.</para>
           </listitem>
         </itemizedlist>
       </listitem>

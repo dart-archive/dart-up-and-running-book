@@ -28,6 +28,6 @@ main() {
   httpRequest.open('POST', dataUrl);
   httpRequest.setRequestHeader('Content-type', 
                                'application/x-www-form-urlencoded');
-  httpRequest.on.loadEnd.add((e) => loadEnd(httpRequest));
+  httpRequest.onLoadEnd.listen((e) => loadEnd(httpRequest));
   httpRequest.send(encodedData);
 }
