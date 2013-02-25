@@ -45,7 +45,7 @@
     </note>
 
     <figure float="0" id="BrowserChart">
-      <title>Browser speed</title>
+      <title>Browser speed (V8 benchmark suite v7; higher numbers are better)</title>
 
       <mediaobject>
         <imageobject role="web">
