@@ -1,0 +1,7 @@
+name: ch02_meta
+description: A sample command-line application
+dependencies:
+  meta: any
+
+#dependencies:
+#  unittest: any
