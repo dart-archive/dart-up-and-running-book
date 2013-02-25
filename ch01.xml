@@ -372,7 +372,9 @@ main() {
           <para>In the Welcome tab, click the image labeled <emphasis
           role="bold">Sunflower</emphasis>. The Editor view now displays the
           contents of <code>sunflower.dart</code>, and the Files view lists
-          the files in the Sunflower app’s directory.</para>
+          the files in the
+          <ulink url="http://code.google.com/p/dart/source/browse/trunk/dart/samples/sunflower/">Sunflower
+          app’s directory</ulink>.</para>
         </listitem>
 
         <listitem>
@@ -392,10 +394,7 @@ main() {
 
         <listitem>
           <para>Move the slider to display the sunflower, as shown in <xref
-          linkend="sunflower" />. For details about the Sunflower example,
-          read the <ulink
-          url="http://www.dartlang.org/samples/sunflower/">Sunflower Code
-          Walkthrough.</ulink></para>
+          linkend="sunflower" />.</para>
 
           <figure float="none" id="sunflower">
             <title>The Sunflower sample running in Dartium</title>
