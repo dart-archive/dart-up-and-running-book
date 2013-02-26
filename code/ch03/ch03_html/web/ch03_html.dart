@@ -1,4 +1,5 @@
 import 'dart:html';
+import 'dart:svg';
 
 void main() {
   findElements();
@@ -15,7 +16,7 @@ void DELETEME(Event event) {
   var text = query("#sample_text_id").text;
   var buffer = new StringBuffer();
   for (int i = text.length - 1; i >= 0; i--) {
-    buffer.add(text[i]);
+    buffer.write(text[i]);
   }
   query("#sample_text_id").text = buffer.toString();
 }
@@ -32,7 +33,9 @@ void findElements() {
 }
 
 void replaceElement() {
-  query('#example').href = 'http://dartlang.org';
+  AElement aElement = query('#example');
+  //XX: PENDING, href has no setter anymore.
+  //aElement.href = 'http://dartlang.org';
 }
 
 void displayConditionally() {
