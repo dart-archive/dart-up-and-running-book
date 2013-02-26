@@ -1,14 +1,14 @@
-import 'todo.dart';
 //import 'dart:mirrors';
+// BEGIN
+import 'todo.dart';
 
-/// Do something.
-@todo('Seth', 'Make sure this code always works')
+@todo('seth', 'make this do something')
 void doSomething() {
   print('do something');
 }
+// END
 
 main() {
-  // PENDING: Do some reflection on doSomething
-  // to see the annotation.
+  // PENDING: Once reflection on annotations is implemented, show that here.
   print('tbd');
 }

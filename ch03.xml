@@ -2604,7 +2604,7 @@ main() {
 
 main() {
   var sha256 = new SHA256();
-  var digest = sha256.update('message'.charCodes).digest();
+  var digest = sha256.update('message'.codeUnits).digest();
   var hexString = CryptoUtils.bytesToHex(digest);
   assert(hexString ==
       'ab530a13e45914982b79f9b7e3fba994cfd1f3fb22f71cea1afbf02b460c6d1d');
@@ -2624,8 +2624,8 @@ main() {
       <screen format="linespecific"><remark>lang-dart
 </remark>import 'dart:crypto';
 main() {
-  var hmac = new HMAC(new SHA256(), 'secretkey'.charCodes);
-  var hmacDigest = hmac.update('message'.charCodes).digest();
+  var hmac = new HMAC(new SHA256(), 'secretkey'.codeUnits);
+  var hmacDigest = hmac.update('message'.codeUnits).digest();
   var hmacHex = CryptoUtils.bytesToHex(hmacDigest);
   assert(hmacHex ==
       '5c3e2f56de9411068f675ef32ffa12735210b9cbfee2ba521367a3955334a343');

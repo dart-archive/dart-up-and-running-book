@@ -260,6 +260,11 @@
       </listitem>
 
       <listitem>
+        <para>Metadata support was added to the language. See <xref
+        linkend="ch02-metadata" />.</para>
+      </listitem>
+
+      <listitem>
         <para>In M3, mixins were added to the language, enabling code re-use
         between classes.</para>
       </listitem>
@@ -350,9 +355,10 @@
           <listitem>
             <para>The String <literal>splitChars()</literal> method is gone;
             instead, use <literal>split()</literal> with an empty string
-            argument. String’s <literal>charCodeAt()</literal> method is
-            deprecated; to get an iterator containing UTF-16 code units, use
-            String’s new <literal>codeUnits</literal> getter.</para>
+            argument. String’s <literal>charCodes</literal> getter and
+            <literal>charCodeAt()</literal> method are gone; to get UTF-16
+            code units, use String’s <literal>codeUnits</literal> or
+            <literal>codeUnitAt()</literal> instead.</para>
           </listitem>
 
           <listitem>
@@ -367,6 +373,21 @@
       </listitem>
     </itemizedlist>
 
+    <para>We corrected or clarified some text, such as:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>Bitwise operators are implemented in <emphasis
+        role="bold">int</emphasis>, not num.</para>
+      </listitem>
+
+      <listitem>
+        <para>The <literal>is</literal> and <literal>as</literal> examples (in
+        <xref linkend="ch02-op-type-test" />) aren’t completely
+        equivalent.</para>
+      </listitem>
+    </itemizedlist>
+
     <para>We’ve also added discussions for a few pre-existing features:</para>
 
     <itemizedlist>
@@ -375,9 +396,13 @@
       </listitem>
 
       <listitem>
-        <para>… <remark>[PENDING: more?]</remark></para>
+        <para>Function equality (see <xref
+        linkend="ch02-function-equality" />) </para>
       </listitem>
     </itemizedlist>
+
+    <para>Finally, <xref linkend="BrowserChart" /> was updated to use a more
+    recent benchmark and have the latest numbers.</para>
   </sect1>
 
   <sect1 id="preface-acknowledgments">

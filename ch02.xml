@@ -162,7 +162,9 @@ main() {
         <para>Dart supports top-level functions (such as
         <literal>main()</literal>), as well as functions tied to a class or
         object (<emphasis>static</emphasis> and <emphasis>instance
-        methods</emphasis>, respectively).</para>
+        methods</emphasis>, respectively). You can also create functions
+        within functions (<emphasis>nested</emphasis> or <emphasis>local
+        functions</emphasis>).</para>
       </listitem>
 
       <listitem>
@@ -434,7 +436,7 @@ assert(oneAsString == '1');
 String piAsString = 3.14159.toStringAsFixed(2);
 assert(piAsString == '3.14');</programlisting>
 
-      <para>The num type specifies the traditional bitwise shift (&lt;&lt;,
+      <para>The int type specifies the traditional bitwise shift (&lt;&lt;,
       &gt;&gt;), AND (&amp;), and OR (|) operators. For example:</para>
 
       <programlisting format="linespecific"><remark>lang-dart
@@ -864,17 +866,13 @@ assert(loudify('hello') == '!!! HELLO !!!');</programlisting>
     <sect2 id="ch02-lexical-scope">
       <title>Lexical Scope</title>
 
-      <para>
-        Dart is a lexically scoped language, which means that the scope of
-        variables is determined statically, simply by the layout of the code.
-        You can "follow the curly braces outwards" to see if a variable is
-        in scope.
-      </para>
+      <para>Dart is a lexically scoped language, which means that the scope of
+      variables is determined statically, simply by the layout of the code.
+      You can “follow the curly braces outwards” to see if a variable is in
+      scope.</para>
 
-      <para>
-        Here is an example of nested functions with variables at each scope
-        level.
-      </para>
+      <para>Here is an example of nested functions with variables at each
+      scope level.</para>
 
       <programlisting format="linespecific"><remark>lang-dart
 </remark>var topLevel = true;
@@ -898,25 +896,24 @@ main() {
 }</programlisting>
 
       <para>Notice how <literal>nestedFunction()</literal> can use variables
-        from every level, all
-        the way up to the top level.</para>
+      from every level, all the way up to the top level.</para>
     </sect2>
 
     <sect2 id="ch02-functions-lexical-closures">
       <title>Lexical Closures</title>
 
-      <para>A <emphasis>closure</emphasis> is a function object that has access
-        to variables in its
-        lexical scope, even when the function is used outside of its original
-        scope.</para>
+      <para>A <emphasis>closure</emphasis> is a function object that has
+      access to variables in its lexical scope, even when the function is used
+      outside of its original scope.</para>
 
       <para>Functions can close over variables defined in surrounding scopes.
       In the following example, <literal>adder()</literal> captures the
-      variable <literal moreinfo="none">addBy</literal>. Wherever the
-      returned function goes, it remembers <literal
+      variable <literal moreinfo="none">addBy</literal>. Wherever the returned
+      function goes, it remembers <literal
       moreinfo="none">addBy</literal>.</para>
 
-      <programlisting format="linespecific"><remark>lang-dart
+      <programlisting format="linespecific"><remark>lang-dart</remark><remark>
+ch02/function_closure.dart
 </remark>/// Returns a function that adds [addBy] to a number.
 Function makeAdder(num addBy) {
   adder(num i) {
@@ -931,6 +928,50 @@ main() {
 
   assert(add2(3) == 5);
   assert(add4(3) == 7);
+}</programlisting>
+    </sect2>
+
+    <sect2 id="ch02-function-equality">
+      <title>Testing for Equality</title>
+
+      <para>Each time you create a closure, that closure is a new object. This
+      can cause problems when you want to test whether two functions are
+      equivalent. For example, consider this code:</para>
+
+      <programlisting format="linespecific"><remark>lang-dart
+</remark><remark>ch02/function_equality.dart
+</remark>var s = 'some string';       // Create a String object.
+var splitClosure1 = s.split; // Get a reference to its split() method.
+var splitClosure2 = s.split; // Get another reference to its split() method.
+
+// Because each reference to the method creates a separate closure,
+// s.split != s.split, and splitClosure1 != splitClosure2.
+assert(s.split != s.split);
+assert(splitClosure1 != splitClosure2);
+</programlisting>
+
+      <para>The key to comparing instance methods is to save a reference to
+      the closure:</para>
+
+      <programlisting><remark>lang-dart
+</remark><remark>ch02/function_equality.dart
+</remark>splitClosure2 = splitClosure1;
+assert(splitClosure1 == splitClosure2);</programlisting>
+
+      <para>Top-level and static methods are different: you can compare them
+      by name.</para>
+
+      <programlisting><remark>lang-dart
+</remark><remark>ch02/function_equality_2.dart
+</remark>foo() {}
+
+class SomeClass {
+  static void bar() {}
+}
+
+main() {
+  assert(foo == foo);
+  assert(SomeClass.bar == SomeClass.bar);
 }</programlisting>
     </sect2>
 
@@ -1410,6 +1451,13 @@ assert(a &lt;= b);       // 2 is less than or equal to 3.</programlisting>
 
       <programlisting format="linespecific"><remark>lang-dart
 </remark>(person as Person).firstName = 'Bob';</programlisting>
+
+      <note>
+        <para>The code isn’t equivalent. If <literal>person</literal> is null
+        or not a Person, the first example (with <literal>is</literal>) does
+        nothing; the second (with <literal>as</literal>) throws an
+        exception.</para>
+      </note>
     </sect2>
 
     <sect2 id="op-assign">
@@ -3234,6 +3282,81 @@ int sort(int a, int b) =&gt; a - b;
 main() {
   assert(sort is Compare);  // True!
 }</programlisting>
+  </sect1>
+
+  <sect1 id="ch02-metadata">
+    <title>Metadata</title>
+
+    <para>Use metadata to give additional information about your code. A
+    metadata annotation begins with the character <literal>@</literal>,
+    followed by either a reference to compile-time constant (such as
+    <literal>deprecated</literal>) or a call to a constant constructor.</para>
+
+    <para>The <ulink url="http://pub.dartlang.org/packages/meta">meta
+    package</ulink> defines the API for two common annotations:
+    <literal>@deprecated</literal> and <literal>@overrides</literal>. Here’s
+    an example of using the <literal>@deprecated</literal> annotation.</para>
+
+    <programlisting format="linespecific"><remark>lang-dart
+ch02/metadata.dart
+</remark>import 'package:meta/meta.dart'; // Defines deprecated.
+
+class Television {
+  /// _Deprecated: Use [turnOn] instead._
+  @deprecated      // Metadata; makes Dart Editor warn about using activate().
+  void activate() {
+    turnOn();
+  }
+
+  /// Turns the TV's power on.
+  void turnOn() {
+    print('on!');
+  }
+} 
+</programlisting>
+
+    <para>You can define your own metadata annotations. For example, here’s
+    how the meta package defines the <literal>deprecated</literal>
+    constant:</para>
+
+    <programlisting><remark>lang-dart</remark><remark>
+ch02/metadata.dart
+</remark>const deprecated = const _Deprecated();
+
+class _Deprecated {
+  const _Deprecated();
+}
+</programlisting>
+
+    <para>Here’s an example of defining a @todo annotation that takes two
+    arguments:</para>
+
+    <programlisting><remark>lang-dart
+</remark><remark>ch02/ch02_meta_create/todo.dart
+</remark>library todo;
+
+class todo {
+  final String who;
+  final String what;
+  
+  const todo(this.who, this.what);
+}</programlisting>
+
+    <para>And here’s an example of using that @todo annotation:</para>
+
+    <programlisting><remark>lang-dart</remark><remark>
+ch02/ch02_meta_create/metadata_user.dart
+</remark>import 'todo.dart';
+
+@todo('seth', 'make this do something')
+void doSomething() {
+  print('do something');
+}</programlisting>
+
+    <para>Metadata can appear before a library, class, typedef, type
+    parameter, constructor, factory, function, field, parameter, or variable
+    declaration and before an import or export directive. In the future,
+    you’ll be able to retrieve metadata at runtime using reflection.</para>
   </sect1>
 
   <sect1 id="comments">

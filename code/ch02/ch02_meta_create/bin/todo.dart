@@ -1,11 +1,9 @@
 library todo;
 
-const todo = _ToDo;
-
-class _ToDo {
-  String who = 'unassigned';
-  String what = 'unspecified';
+class todo {
+  final String who;
+  final String what;
   
-  _ToDo(this.who, this.what);
+  const todo(this.who, this.what);
 }
 
