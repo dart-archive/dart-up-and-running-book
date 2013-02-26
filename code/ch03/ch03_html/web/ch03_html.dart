@@ -15,7 +15,7 @@ void DELETEME(Event event) {
   var text = query("#sample_text_id").text;
   var buffer = new StringBuffer();
   for (int i = text.length - 1; i >= 0; i--) {
-    buffer.add(text[i]);
+    buffer.write(text[i]);
   }
   query("#sample_text_id").text = buffer.toString();
 }
@@ -32,7 +32,8 @@ void findElements() {
 }
 
 void replaceElement() {
-  query('#example').href = 'http://dartlang.org';
+  var elem = query('#example') as AnchorElement;
+  elem.href = 'http://dartlang.org';
 }
 
 void displayConditionally() {

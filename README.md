@@ -34,3 +34,9 @@ Project structure
 **\*.xml:** 
 	Book contents. **book.xml** is the entry point for the book, from an
 	XML point of view.
+
+Drone.io test status
+---------------------
+
+[![Build Status](https://drone.io/github.com/marycampione/dart-up-and-running-book/status.png)](https://drone.io/github.com/marycampione/dart-up-and-running-book/latest)
+
