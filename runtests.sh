@@ -16,7 +16,7 @@ echo "Type Analysis, running dart_analyzer..."
 
 EXITSTATUS=0
 
-for file in ch0*/*.dart
+for file in code/ch0*/*.dart
 do
   results=`$ANA $file 2>&1`
   if [ -n "$results" ]; then
