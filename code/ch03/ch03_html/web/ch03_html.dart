@@ -1,5 +1,4 @@
 import 'dart:html';
-import 'dart:svg';
 
 void main() {
   findElements();
@@ -33,9 +32,8 @@ void findElements() {
 }
 
 void replaceElement() {
-  AElement aElement = query('#example');
-  //XX: PENDING, href has no setter anymore.
-  //aElement.href = 'http://dartlang.org';
+  var elem = query('#example') as AnchorElement;
+  elem.href = 'http://dartlang.org';
 }
 
 void displayConditionally() {
