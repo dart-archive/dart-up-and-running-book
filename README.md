@@ -1,16 +1,23 @@
 Dart: Up and Running
 =============
 
-This is the book "Dart: Up and Running" by Kathy Walrath and Seth Ladd.
+[![Build Status](https://drone.io/github.com/dart-lang/dart-up-and-running-book/status.png)](https://drone.io/github.com/dart-lang/dart-up-and-running-book/latest)
+
+This is the book _Dart: Up and Running_ by Kathy Walrath and Seth Ladd.
 More info: http://shop.oreilly.com/product/0636920025719.do
 
 An HTML version of this book is online at
 http://www.dartlang.org/docs/dart-up-and-running/.
 
-As of February 2013, this is our primary repository for the book. (We'll copy the .xml files to the private
-O'Reilly repo from time to time; they'll publish from their repo every few months.)
 
-The code/ directory is up-to-date but incomplete.
+Repo info
+-----------
+As of February 2013, this is our primary repository for the book. We copy the .xml files to the private
+O'Reilly repo from time to time; we expect them to publish from their repo every few months.
+
+Currently, drone.io tests only whether the .dart files under code/ pass static analysis (dart_analyzer).
+We don't yet have .dart files for every snippet in the book.
+In the future, we might want to test whether the .xml files are valid.
 
 Updating the dartlang.org copy of this book
 ------------------
@@ -22,8 +29,7 @@ Project structure
 
 **code/:**
 	Code samples used in the book. We want this to be automatically checked
-	against or included in the XML files, but we're not there yet. We also
-	want this code to be automatically tested.
+	against or included in the XML files, but we're not there yet.
 
 **figs/:**
 	Figures and images.
@@ -34,11 +40,6 @@ Project structure
 **\*.xml:** 
 	Book contents. **book.xml** is the entry point for the book, from an
 	XML point of view.
-
-Drone.io test status
----------------------
-
-[![Build Status](https://drone.io/github.com/dart-lang/dart-up-and-running-book/status.png)](https://drone.io/github.com/dart-lang/dart-up-and-running-book/latest)
-
-Currently, we test only whether the .dart files under code/ pass static analysis (dart_analyzer).
-We don't yet have .dart files for every snippet in the book.
+	
+**runtests.sh:**
+       BASH script that runs dart_analyzer on all Dart source files in the code directory.
