@@ -38,5 +38,7 @@ Project structure
 Drone.io test status
 ---------------------
 
-[![Build Status](https://drone.io/github.com/marycampione/dart-up-and-running-book/status.png)](https://drone.io/github.com/marycampione/dart-up-and-running-book/latest)
+[![Build Status](https://drone.io/github.com/dart-lang/dart-up-and-running-book/status.png)](https://drone.io/github.com/dart-lang/dart-up-and-running-book/latest)
 
+Currently, we test only whether the .dart files under code/ pass static analysis (dart_analyzer).
+We don't yet have .dart files for every snippet in the book.
