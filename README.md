@@ -38,4 +38,4 @@ Project structure
 Drone.io test status
 ---------------------
 
-https://drone.io/github.com/marycampione/dart-up-and-running-book/status.png
+<a href="https://drone.io/github.com/marycampione/dart-up-and-running-book/status.png">
