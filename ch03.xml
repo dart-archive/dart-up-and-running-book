@@ -786,109 +786,6 @@ main() {
       </sect3>
     </sect2>
 
-    <sect2 id="ch03-asynchronous-programming">
-      <title>Asynchronous Programming</title>
-
-      <para>Asynchronous programming often uses callback functions, but Dart
-      provides an alternative: <ulink
-      url="http://api.dartlang.org/dart_core/Future.html">Future</ulink>
-      objects. A Future is like a promise for a result to be provided sometime
-      in the future.</para>
-
-      <para>You have the option of using a <ulink
-      url="http://api.dartlang.org/dart_async/Completer.html">Completer</ulink>
-      to produce a Future and, later, to supply a value to the Future.</para>
-
-      <warning>
-        <para>The API for asynchronous programming is changing in M3 and has
-        moved to a new library: <ulink
-        url="http://api.dartlang.org/dart_async.html">dart:async.</ulink> This
-        discussion and the examples will be updated.</para>
-      </warning>
-
-      <screen format="linespecific"><remark>lang-dart
-</remark>Future&lt;bool&gt; longExpensiveSearch() {
-  var completer = new Completer();
-  // Perform exhaustive search.
-  // ...
-  // Sometime later,
-  // found it!!
-  completer.complete(true);
-  return completer.future;
-}
-
-main() {
-  var result = longExpensiveSearch(); // Returns immediately.
-
-  // result.then() returns immediately.
-  result.then((success) {
-    // The following code executes when the operation is complete.
-    print('The item was found: $success');
-  });
-}</screen>
-
-      <sect3 id="ch03-chaining-multiple-async-methods">
-        <title>Chaining multiple asynchronous methods</title>
-
-        <para>The Future class specifies a <literal>chain()</literal> method,
-        which is a useful way to specify that multiple asynchronous methods
-        run in a certain order.</para>
-
-        <screen format="linespecific"><remark>lang-dart
-</remark>Future result = costlyQuery();
-result.handleException((exception) =&gt; print('DOH!'));
-
-result.chain((value) =&gt; expensiveWork())
-      .chain((value) =&gt; lengthyComputation())
-      .then((value)  =&gt; print('done!'));</screen>
-
-        <para>In the above example, the methods run in the following
-        order:</para>
-
-        <orderedlist continuation="restarts" inheritnum="ignore"
-                     numeration="arabic">
-          <listitem>
-            <para><literal>costlyQuery()</literal></para>
-          </listitem>
-
-          <listitem>
-            <para><literal>expensiveWork()</literal></para>
-          </listitem>
-
-          <listitem>
-            <para><literal>lengthyComputation()</literal></para>
-          </listitem>
-        </orderedlist>
-      </sect3>
-
-      <sect3 id="ch03-waiting-for-multiple-futures">
-        <title>Waiting for multiple futures</title>
-
-        <para>Sometimes your algorithm needs to initiate many asynchronous
-        methods and wait for each one to complete before continuing. Use the
-        <ulink
-        url="http://api.dartlang.org/dart_core/Futures.html">Futures</ulink>
-        class to manage multiple Futures and wait for them all to
-        complete.</para>
-
-        <screen format="linespecific"><remark>lang-dart
-</remark>Future deleteDone = deleteLotsOfFiles();
-Future copyDone = copyLotsOfFiles();
-Future checksumDone = checksumLotsOfOtherFiles();
-
-Futures.wait([deleteDone, copyDone, checksumDone]).then((List values) {
-  print('Done with all the long steps');
-});</screen>
-      </sect3>
-
-      <sect3 id="ch03-more-information-9">
-        <title>More information</title>
-
-        <para>For examples of using Future, see <xref
-        linkend="ch03-dartio---file-and-socket-io-for-command-line-apps" />.</para>
-      </sect3>
-    </sect2>
-
     <sect2 id="ch03-exceptions">
       <title>Exceptions</title>
 
@@ -935,6 +832,153 @@ Futures.wait([deleteDone, copyDone, checksumDone]).then((List values) {
       <para>For more information, see <xref linkend="exceptions" /> and the
       <ulink url="http://api.dartlang.org/dart_core/Exception.html">Exception
       API docs.</ulink></para>
+    </sect2>
+  </sect1>
+
+  <sect1 id="ch03-asynchronous-programming">
+    <title>Asynchronous Programming</title>
+
+    <note>
+      <para>This section is incomplete. More information on the
+        <literal>dart:async</literal> library will be added.</para>
+    </note>
+
+    <para>Asynchronous programming often uses callback functions, but Dart
+    provides an alternative: <ulink
+    url="http://api.dartlang.org/dart_async/Future.html">Future</ulink>
+    objects. A Future is like a promise for a result to be provided sometime
+    in the future.</para>
+
+    <para>You have the option of using a <ulink
+    url="http://api.dartlang.org/dart_async/Completer.html">Completer</ulink>
+    to produce a Future and, later, to supply a value to the Future.</para>
+
+    <para>Completer, Future, and more can be found in the
+      <ulink url="http://api.dartlang.org/dart_async.html">dart:async</ulink>
+      library.</para>
+
+    <para>In the following example, the
+    <literal>longExpensiveSearch()</literal>
+    function schedules a query and immediately returns a Future object.
+    Later, when
+    the query finishes in some future event loop iteration, the completer
+    completes with the results. The completion signals that the Future has a
+    value, which runs the callback registered in Future's
+    <literal>then()</literal>.</para>
+
+    <screen format="linespecific"><remark>lang-dart
+</remark><remark>ch03/futures.dart</remark>Future longExpensiveSearch() {
+var completer = new Completer();
+
+// Perform exhaustive search.
+dbQuery('select * from table', onSuccess: (results) {
+  // Sometime later,
+  // found it!!
+  completer.complete(results);
+});
+
+return completer.future;
+}
+
+Future doSearch() {
+var future = longExpensiveSearch(); // Returns immediately.
+
+return future.then((results) {
+  // The following code executes when the operation is complete.
+  print('Here are the results: $results');
+});
+}</screen>
+
+    <sect2 id="ch03-future-error-handling">
+      <title>Error handling with Futures</title>
+
+      <para>If an error or exception is thrown from within a Future,
+        you can catch it with <literal>catchError()</literal>.
+        Be sure to invoke <literal>catchError()</literal> on the result of
+        <literal>then()</literal>—not on the result of the
+        original Future.</para>
+
+      <screen format="linespecific"><remark>lang-dart
+</remark><remark>ch03/futures.dart</remark>Future runSearch() {
+var future = longExpensiveSearch(); // Returns immediately.
+
+return future.then((results) {
+  print('Here are the results: $results');
+}).catchError((e) {
+  print("Oops! Encountered $e");
+});
+}</screen>
+
+      <para>The <literal>then().catchError()</literal> pattern is
+      the asynchronous version of
+      <literal>try</literal>-<literal>catch</literal>.</para>
+    </sect2>
+
+    <sect2 id="ch03-chaining-multiple-async-methods">
+      <title>Chaining multiple asynchronous methods</title>
+
+      <para>The <literal>then()</literal> method returns a Future,
+      which is a useful way to chain multiple asynchronous methods
+      to run in a certain order. If the callback registered with
+      <literal>then()</literal> returns a Future, then it is simply
+      returned as-is by <literal>then()</literal>. If the callback returns
+      a value of any other type, a new Future instance is created and is
+      completed with the value.</para>
+
+      <screen format="linespecific"><remark>lang-dart
+</remark><remark>ch03/futures.dart</remark>Future runQuery() {
+Future result = costlyQuery();
+
+return result.then((value) =&gt; expensiveWork())
+             .then((value) =&gt; lengthyComputation())
+             .then((value) =&gt; print('done!'))
+             .catchError((exception) =&gt; print('DOH!'));
+}</screen>
+
+      <para>In the above example, the methods run in the following
+      order:</para>
+
+      <orderedlist continuation="restarts" inheritnum="ignore"
+                   numeration="arabic">
+        <listitem>
+          <para><literal>costlyQuery()</literal></para>
+        </listitem>
+
+        <listitem>
+          <para><literal>expensiveWork()</literal></para>
+        </listitem>
+
+        <listitem>
+          <para><literal>lengthyComputation()</literal></para>
+        </listitem>
+      </orderedlist>
+    </sect2>
+
+    <sect2 id="ch03-waiting-for-multiple-futures">
+      <title>Waiting for multiple futures</title>
+
+      <para>Sometimes your algorithm needs to initiate many asynchronous
+      methods and wait for each one to complete before continuing. Use the
+      <ulink
+      url="http://api.dartlang.org/dart_async/Future.html#wait">Future.wait</ulink>
+      static method to manage multiple Futures and wait for them all to
+      complete.</para>
+
+      <screen format="linespecific"><remark>lang-dart
+</remark>Future deleteDone = deleteLotsOfFiles();
+Future copyDone = copyLotsOfFiles();
+Future checksumDone = checksumLotsOfOtherFiles();
+
+new Future.wait([deleteDone, copyDone, checksumDone]).then((List values) {
+print('Done with all the long steps');
+});</screen>
+    </sect2>
+
+    <sect2 id="ch03-more-information-9">
+      <title>More information</title>
+
+      <para>For examples of using Future, see <xref
+      linkend="ch03-dartio---file-and-socket-io-for-command-line-apps" />.</para>
     </sect2>
   </sect1>
 
