@@ -15,7 +15,7 @@ useTypes() {
   
   try {
     // Generates static analysis warning, num is not a string.
-    fruits.add(5);  // BAD: Throws exception in checked mode.
+    /*fruits.add(5);*/  // BAD: Throws exception in checked mode.
   } on Error catch(e) {
     print('Caught exception, as expected in checked mode.');
     print('  $e');

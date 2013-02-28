@@ -9,7 +9,7 @@
 #####
 # Type Analysis
 
-ANA="dart_analyzer --enable_type_checks --fatal-type-errors --extended-exit-code"
+ANA="dart_analyzer --enable_type_checks --fatal-type-errors --extended-exit-code --type-checks-for-inferred-types"
 
 echo
 echo "Type Analysis, running dart_analyzer..."
@@ -23,7 +23,6 @@ do
     EXITSTATUS=1
     echo "$results"
     echo "$file: FAILURE."
-    exit $EXITSTATUS
   else
     echo "$file: Passed analysis."
   fi
