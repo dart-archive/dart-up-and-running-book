@@ -397,7 +397,7 @@
 
       <listitem>
         <para>Function equality (see <xref
-        linkend="ch02-function-equality" />) </para>
+        linkend="ch02-function-equality" />)</para>
       </listitem>
     </itemizedlist>
 
@@ -412,10 +412,11 @@
     hope we haven’t forgotten anyone, but we probably have.</para>
 
     <para>The following Dart engineers and managers gave us prompt, helpful
-    reviews of the sections corresponding to their areas of responsibility:
-    Mads Ager, Peter von der Ahé, Justin Fagnani, Dan Grove, Florian Loitsch,
-    Sam McCall, Vijay Menon, John Messerly, Anton Muhin, Lasse R.H. Nielsen,
-    Bob Nystrom, Ivan Posva, and Jaime Wren.</para>
+    reviews and information for the sections corresponding to their areas of
+    responsibility: Mads Ager, Peter von der Ahé, Justin Fagnani, Dan Grove,
+    Florian Loitsch, Sam McCall, Vijay Menon, John Messerly, Anton Muhin,
+    Lasse R.H. Nielsen, Bob Nystrom, Ivan Posva, Jaime Wren, Matthias Hausner,
+    and Keerti Parthasarathy.</para>
 
     <para>We’d especially like to thank the people who reviewed even bigger
     swaths of the book or contributed in other, large ways:</para>

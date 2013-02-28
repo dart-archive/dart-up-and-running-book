@@ -17,8 +17,8 @@
   high-performance, modern apps that users demand.</para>
 
   <warning>
-    <para>Dart is still changing! This book reflects the Milestone 1 release
-    (October 2012), which aims to finalize the language but not the libraries.
+    <para>Dart is still changing! This book reflects the Milestone 3 release
+    (February 2013), which means the language is stable but not the libraries.
     Wherever possible, this book tells you what we expect to change.</para>
   </warning>
 
@@ -45,7 +45,8 @@
     </note>
 
     <figure float="0" id="BrowserChart">
-      <title>Browser speed (V8 benchmark suite v7; higher numbers are better)</title>
+      <title>Browser speed (V8 benchmark suite v7; higher numbers are
+      better)</title>
 
       <mediaobject>
         <imageobject role="web">
@@ -241,7 +242,7 @@ main() {
       <orderedlist continuation="restarts" inheritnum="ignore">
         <listitem>
           <para>Download the Dart Editor ZIP file for your platform from
-          <ulink url="http://www.dartlang.org/downloads.html"></ulink>.</para>
+          <ulink url="http://dartlang.org/editor"></ulink>.</para>
         </listitem>
 
         <listitem>
@@ -299,20 +300,22 @@ main() {
               </imageobject>
             </inlinemediaobject> (at the upper left of Dart Editor).
           Alternatively, choose <emphasis role="bold">File &gt; New
-          Application...</emphasis> from the Dart Editor menu. A dialog
-          appears (see <xref linkend="DartEditor-newapp" />).</para>
+          Application...</emphasis> from the Dart Editor menu, or click the
+          <emphasis role="bold">Create an Application…</emphasis> button in
+          the Welcome page. A dialog appears (see <xref
+          linkend="DartEditor-newapp" />).</para>
         </listitem>
 
         <listitem>
           <para>Type in a name for your application—for example,
-          <code>HelloWorld</code>. If you don’t like the default directory,
+          <code>hello_world</code>. If you don’t like the default directory,
           type in a new location or browse to choose the location.</para>
         </listitem>
 
         <listitem>
-          <para>Unselect <emphasis role="bold">Generate content for a basic
-          web app</emphasis> and <emphasis role="bold">Add Pub
-          support</emphasis> if they’re selected. Then click <emphasis
+          <para>Make sure <emphasis role="bold">Generate sample
+          content</emphasis> and <emphasis role="bold">Command-line
+          application</emphasis> are selected. Then click <emphasis
           role="bold">Finish</emphasis> to create the initial files for the
           app.</para>
 
@@ -370,11 +373,11 @@ main() {
 
         <listitem>
           <para>In the Welcome tab, click the image labeled <emphasis
-          role="bold">Sunflower</emphasis>. The Editor view now displays the
-          contents of <code>sunflower.dart</code>, and the Files view lists
-          the files in the
-          <ulink url="http://code.google.com/p/dart/source/browse/trunk/dart/samples/sunflower/">Sunflower
-          app’s directory</ulink>.</para>
+          role="bold">Sunflower</emphasis>. Dart Editor creates a copy of the
+          <ulink
+          url="http://code.google.com/p/dart/source/browse/trunk/dart/samples/sunflower/">Sunflower
+          app’s directory</ulink>, and the Editor view displays the contents
+          of <code>web/sunflower.html</code>.</para>
         </listitem>
 
         <listitem>
@@ -415,16 +418,24 @@ main() {
       <para>Now that you know the basics, you can learn more about Dart Editor
       and help improve it.</para>
 
+      <sect3 id="ch01-editor-tutorial">
+        <title>Follow a tutorial</title>
+
+        <para>Try the Dart web programming tutorials at <ulink
+        url="http://www.dartlang.org/docs/tutorials/">A Game of Darts</ulink>,
+        which feature Dart Editor.</para>
+      </sect3>
+
       <sect3 id="ch01-editor-learn-more">
         <title>Become a power user</title>
 
-        <para>See the <ulink url="http://www.dartlang.org/editor/">Dart Editor
-        homepage</ulink> for help on using Dart Editor’s expanding feature
-        set.</para>
+        <para>Visit the <ulink url="http://www.dartlang.org/editor/">Dart
+        Editor homepage</ulink> for help on using Dart Editor’s expanding
+        feature set.</para>
       </sect3>
 
       <sect3 id="ch01-editor-feedback">
-        <title>Send feedback!</title>
+        <title>Send feedback</title>
 
         <para>Click the <emphasis role="bold">SEND FEEDBACK</emphasis> link
         (at the upper right of the Dart Editor window) whenever you notice a

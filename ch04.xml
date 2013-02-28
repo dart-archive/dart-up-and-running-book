@@ -75,8 +75,8 @@
 
     <para>A package can live anywhere. Some packages are distributed in the
     Dart SDK, under the <literal moreinfo="none">pkg</literal> directory.
-    Others are on GitHub. We plan to publish packages at<phrase
-    role="keep-together"> <ulink
+    Others are on GitHub. We publish packages at <phrase
+    role="keep-together"><ulink
     url="http://pub.dartlang.org">pub.dartlang.org</ulink>,</phrase> and we
     hope you will, too.</para>
 
@@ -215,15 +215,22 @@ import 'package:intl/intl.dart';</programlisting>
         <orderedlist continuation="restarts" inheritnum="ignore">
           <listitem>
             <para>Go to the <emphasis role="bold">File</emphasis> menu, and
-            choose <emphasis role="bold">Open Folder...</emphasis>. Or use the
-            keyboard shortcut (<phrase role="keep-together"><emphasis
+            choose <emphasis role="bold">Open Existing Folder...</emphasis>.
+            Or use the keyboard shortcut (<phrase
+            role="keep-together"><emphasis
             role="bold">Ctrl+O</emphasis></phrase> or, on Mac, <emphasis
             role="bold">Cmd+O</emphasis>).</para>
           </listitem>
 
           <listitem>
-            <para>Select the directory that contains the app’s files, and
-            click <emphasis role="bold">Open</emphasis>.</para>
+            <para>Click the <emphasis role="bold">Browse…</emphasis> button,
+            find the directory that contains the app’s files, and click
+            <emphasis role="bold">Open</emphasis>. Or just paste the directory
+            path into the Folder field.</para>
+          </listitem>
+
+          <listitem>
+            <para>Click <emphasis role="bold">OK</emphasis>.</para>
           </listitem>
         </orderedlist>
 
@@ -239,7 +246,7 @@ import 'package:intl/intl.dart';</programlisting>
         <para>Right-click (or Ctrl+click) the directory and choose <emphasis
         role="bold">Delete</emphasis>. If you want to delete the app’s files
         permanently, then in the dialog that comes up, choose <emphasis
-        role="bold">Delete projects on disk</emphasis>.</para>
+        role="bold">Delete project contents on disk</emphasis>.</para>
       </sect3>
     </sect2>
 
@@ -257,23 +264,32 @@ import 'package:intl/intl.dart';</programlisting>
               </imageobject>
             </inlinemediaobject> (at the upper left of Dart Editor).
           Alternatively, choose <emphasis role="bold">File &gt; New
-          Application...</emphasis> from the Dart Editor menu. A dialog
+          Application</emphasis> from the Dart Editor menu. A dialog
           appears.</para>
         </listitem>
 
         <listitem>
           <para>Type in a name for your application—for example,
-          <code>HelloWeb</code>. If you don’t like the default directory, type
-          in a new location or browse to choose the location.</para>
+          <code>hello_web</code>. If you don’t like the default parent
+          directory, type in a new location or browse to choose the
+          location.</para>
         </listitem>
 
         <listitem>
-          <para>If you’re creating a web app, select <emphasis
-          role="bold">Generate content for a basic web app</emphasis>. If you
-          want to use the pub package manager, select <emphasis
-          role="bold">Add pub support</emphasis>. Then click <emphasis
-          role="bold">Finish</emphasis> to create a directory with initial
-          files for the app.</para>
+          <para>Unless you really don’t want files to be automatically created
+          for you, make sure <emphasis role="bold">Generate sample
+          content</emphasis> is selected.</para>
+        </listitem>
+
+        <listitem>
+          <para>Select the kind of application you’re writing, such as command
+          line, web, or web with <ulink
+          url="http://www.dartlang.org/articles/dart-web-components/">web_ui</ulink>.</para>
+        </listitem>
+
+        <listitem>
+          <para>Click <emphasis role="bold">Finish</emphasis> to create a
+          directory with initial files for the app.</para>
 
           <para>A default Dart file appears in the Edit view, and its
           directory appears in the Files view. Your Dart Editor window should
@@ -312,7 +328,7 @@ import 'package:intl/intl.dart';</programlisting>
             period.</para>
 
             <para>For example, type <code>document.</code> or
-            <code>Date.</code> and pause a moment. Once the suggestions
+            <code>DateTime.</code> and pause a moment. Once the suggestions
             appear, continue typing to pare down the list.</para>
           </listitem>
 
@@ -357,19 +373,8 @@ import 'package:intl/intl.dart';</programlisting>
               <para>In the Edit view of a Dart file, hold down the <emphasis
               role="bold">Control</emphasis> key (<emphasis
               role="bold">Command</emphasis> key on Mac) and move the mouse
-              over the source code. As <xref linkend="sunflower-hover" />
-              shows, any API item under your cursor is underlined.</para>
-
-              <figure float="0" id="sunflower-hover">
-                <title>Control or Command while hovering over API
-                items</title>
-
-                <mediaobject>
-                  <imageobject role="web">
-                    <imagedata fileref="figs/web/daur_0403.png" format="PNG" />
-                  </imageobject>
-                </mediaobject>
-              </figure>
+              over the source code. Any API item under your cursor is
+              underlined.</para>
             </listitem>
 
             <listitem>
@@ -400,7 +405,7 @@ import 'package:intl/intl.dart';</programlisting>
 
             <mediaobject>
               <imageobject role="web">
-                <imagedata fileref="figs/web/daur_0404.png" format="PNG" />
+                <imagedata fileref="figs/web/daur_0403.png" format="PNG" />
               </imageobject>
             </mediaobject>
           </figure>
@@ -416,39 +421,6 @@ import 'package:intl/intl.dart';</programlisting>
 
           <para>Alternatively, add a more permanent outline view by choosing
           <emphasis role="bold">Tools &gt; Outline</emphasis>.</para>
-        </sect4>
-
-        <sect4 id="callers-view">
-          <title>Finding where an API is used</title>
-
-          <para>Use the Callers view to find where an API item—such as a
-          function—is used. To bring up the view, click the item’s name,
-          right-click, and choose <emphasis role="bold">Find
-          Callers</emphasis> (or type Ctrl+Alt+H).</para>
-
-          <para>To see how a caller itself is called, click its arrow in the
-          Callers view. For example, <xref linkend="clock-callers" /> shows
-          that two functions call the <literal>updateTime()</literal>
-          method.</para>
-
-          <figure float="0" id="clock-callers">
-            <title>The Callers view</title>
-
-            <mediaobject>
-              <imageobject role="web">
-                <imagedata fileref="figs/web/daur_0405.png" format="PNG" />
-              </imageobject>
-            </mediaobject>
-          </figure>
-
-          <para>Once the Callers view is visible, you can click the Show
-          Callee Hierarchy button <inlinemediaobject>
-              <imageobject>
-                <imagedata fileref="figs/web/callees.gif" width="0.12in" />
-              </imageobject>
-            </inlinemediaobject> to make the view show
-          <emphasis>callees</emphasis>—the functions called by the function
-          you’re inspecting.</para>
         </sect4>
       </sect3>
 
@@ -503,7 +475,7 @@ import 'package:intl/intl.dart';</programlisting>
           <imageobject>
             <imagedata fileref="figs/web/run.png" width="0.12in" />
           </imageobject>
-        </inlinemediaobject> while any file in that app is selected. If you’re
+        </inlinemediaobject> while a file in that app is selected. If you’re
       working on a web app, Dart Editor brings up a browser window that
       displays the app’s HTML page, with the app’s code running inside
       it.</para>
@@ -529,7 +501,7 @@ import 'package:intl/intl.dart';</programlisting>
           </listitem>
 
           <listitem>
-            <para>browser (JavaScript only)</para>
+            <para>browser (dart2js launches only)</para>
           </listitem>
 
           <listitem>
@@ -538,11 +510,11 @@ import 'package:intl/intl.dart';</programlisting>
           </listitem>
 
           <listitem>
-            <para>debugging enabled (Dartium only)</para>
+            <para>checked mode (Dartium only)</para>
           </listitem>
 
           <listitem>
-            <para>checked mode (Dartium only)</para>
+            <para>enable experimental features (Dartium only)</para>
           </listitem>
 
           <listitem>
@@ -563,15 +535,15 @@ import 'package:intl/intl.dart';</programlisting>
           </listitem>
 
           <listitem>
+            <para>working directory</para>
+          </listitem>
+
+          <listitem>
             <para>arguments to pass to the app</para>
           </listitem>
 
           <listitem>
             <para>checked mode</para>
-          </listitem>
-
-          <listitem>
-            <para>heap size</para>
           </listitem>
         </itemizedlist>
       </sect3>
@@ -596,7 +568,8 @@ import 'package:intl/intl.dart';</programlisting>
                 <imageobject>
                   <imagedata fileref="figs/web/run.png" width="0.12in" />
                 </imageobject>
-              </inlinemediaobject>.</para>
+              </inlinemediaobject> and choose <emphasis role="bold">Manage
+            Launches</emphasis>.</para>
           </listitem>
 
           <listitem>
@@ -613,7 +586,7 @@ import 'package:intl/intl.dart';</programlisting>
 
               <mediaobject>
                 <imageobject role="web">
-                  <imagedata fileref="figs/web/daur_0406.png" format="PNG" />
+                  <imagedata fileref="figs/web/daur_0404.png" format="PNG" />
                 </imageobject>
               </mediaobject>
             </figure>
@@ -633,7 +606,7 @@ import 'package:intl/intl.dart';</programlisting>
       <sect3 id="ch04-editor-run-non-dartium">
         <title>Specifying a browser</title>
 
-        <para>To specify the browser in which the your app runs:</para>
+        <para>To specify the browser in which the your web app runs:</para>
 
         <orderedlist continuation="restarts" inheritnum="ignore">
           <listitem>
@@ -643,39 +616,28 @@ import 'package:intl/intl.dart';</programlisting>
                 <imageobject>
                   <imagedata fileref="figs/web/run.png" width="0.12in" />
                 </imageobject>
-              </inlinemediaobject>. The Manage Launches dialog appears (see
-            <xref linkend="manage-launches" />). On the left side of the
-            dialog is a list of all launch configurations that you’ve created
-            or that were automatically created for you. On the right is
-            information about the currently selected launch
-            configuration.</para>
-
-            <figure float="0" id="manage-launches">
-              <title>The Manage Launches dialog</title>
-
-              <mediaobject>
-                <imageobject role="web">
-                  <imagedata fileref="figs/web/daur_0407.png" format="PNG" />
-                </imageobject>
-              </mediaobject>
-            </figure>
+              </inlinemediaobject> and choose <emphasis role="bold">Manage
+            Launches</emphasis>. A dialog appears (see <xref
+            linkend="new-web-launch-menu" />). On the left side of the dialog
+            is a list of all launch configurations that you’ve created or that
+            were automatically created for you. On the right is information
+            about the currently selected launch configuration.</para>
           </listitem>
 
           <listitem>
-            <para>In the Manage Launches dialog, click the Create new launch
-            button <inlinemediaobject>
+            <para>In the Manage Launches dialog, click the “Create a new
+            Dart2js launch” button <inlinemediaobject>
                 <imageobject>
-                  <imagedata fileref="figs/web/run-create.png" width="0.12in" />
+                  <imagedata fileref="figs/web/new-dart2js.png" width="0.12in" />
                 </imageobject>
-              </inlinemediaobject>, and choose <emphasis role="bold">New web
-            launch: JavaScript</emphasis>.</para>
+              </inlinemediaobject>.</para>
 
             <figure float="0" id="new-web-launch-menu">
               <title>Creating a new web launch</title>
 
               <mediaobject>
                 <imageobject role="web">
-                  <imagedata fileref="figs/web/daur_0408.png" format="PNG" />
+                  <imagedata fileref="figs/web/daur_0405.png" format="PNG" />
                 </imageobject>
               </mediaobject>
             </figure>
@@ -686,14 +648,14 @@ import 'package:intl/intl.dart';</programlisting>
 
             <itemizedlist>
               <listitem>
-                <para>Give the configuration a name that identifies the app,
-                the browser, and anything else important.
-                <emphasis>Example:</emphasis> HelloWeb.html in Firefox</para>
+                <para>Give the configuration a name.
+                <emphasis>Example:</emphasis> Firefox</para>
               </listitem>
 
               <listitem>
                 <para>Specify the HTML file or URL to open.
-                <emphasis>Example:</emphasis> /HelloWeb/HelloWeb.html</para>
+                <emphasis>Example:</emphasis>
+                /sunflower-1/web/sunflower.html</para>
               </listitem>
 
               <listitem>
@@ -727,10 +689,7 @@ import 'package:intl/intl.dart';</programlisting>
       <title>Debugging Apps</title>
 
       <para>You can debug both command-line and web apps with Dart Editor.
-      Debugging must be enabled in your launch configuration (which it is, by
-      default).</para>
-
-      <para>Some tips for debugging:</para>
+      Some tips:</para>
 
       <itemizedlist>
         <listitem>
@@ -741,25 +700,25 @@ import 'package:intl/intl.dart';</programlisting>
         <listitem>
           <para>Use the Debugger view to view your app’s state and control its
           execution. By default, the Debugger view is to the right of the Edit
-          view.</para>
+          view and appears when you first hit a breakpoint (<xref
+          linkend="debugger" />).</para>
         </listitem>
 
         <listitem>
-          <para>To see the values of variables, mouse over the variable or
-          look in the Debugging view’s Call Stack.</para>
+          <para>To see the value of a variable, mouse over it, look in the
+          Debugger view, or use an Expression <inlinemediaobject>
+              <imageobject>
+                <imagedata fileref="figs/web/watchlist_view.gif"
+                           width="0.12in" />
+              </imageobject>
+            </inlinemediaobject>.</para>
         </listitem>
 
         <listitem>
-          <para>Because everything in Dart is an object and operators are
-          really methods, you’ll probably use Step Return (F7) more than you’d
-          expect to climb out of Dart libraries.</para>
-        </listitem>
-
-        <listitem>
-          <para>To debug web apps, you use Dart Editor with Dartium (<xref
-          linkend="debugger" />). While you’re debugging, Dart Editor takes
-          the place of the Dartium console. For example, Dart Editor displays
-          the output of<literal> print()</literal> statements.</para>
+          <para>To debug web apps, you use Dart Editor with Dartium. While
+          you’re debugging, Dart Editor takes the place of the Dartium
+          console. For example, Dart Editor displays the output of<literal>
+          print()</literal> statements.</para>
         </listitem>
       </itemizedlist>
 
@@ -768,7 +727,7 @@ import 'package:intl/intl.dart';</programlisting>
 
         <mediaobject>
           <imageobject role="web">
-            <imagedata fileref="figs/web/daur_0409.png" format="PNG" />
+            <imagedata fileref="figs/web/daur_0406.png" format="PNG" />
           </imageobject>
         </mediaobject>
       </figure>
@@ -832,7 +791,7 @@ import 'package:intl/intl.dart';</programlisting>
 
           <mediaobject>
             <imageobject role="web">
-              <imagedata fileref="figs/web/daur_0410.png" format="PNG" />
+              <imagedata fileref="figs/web/daur_0407.png" format="PNG" />
             </imageobject>
           </mediaobject>
         </figure>
@@ -1139,7 +1098,7 @@ if (!navigator.webkitStartDart) {
 
           <mediaobject>
             <imageobject>
-              <imagedata fileref="figs/web/daur_0411.png" />
+              <imagedata fileref="figs/web/daur_0408.png" />
             </imageobject>
           </mediaobject>
         </figure>
