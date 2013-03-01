@@ -23,4 +23,5 @@ main() {
   if (emp is Person) {               // Type check
     emp.firstName = 'Bob';
   }
+  (emp as Person).firstName = 'Bob';
 }
