@@ -6,18 +6,21 @@ Dart: Up and Running
 This is the book _Dart: Up and Running_ by Kathy Walrath and Seth Ladd.
 More info: http://shop.oreilly.com/product/0636920025719.do
 
-An HTML version of this book is online at
-http://www.dartlang.org/docs/dart-up-and-running/.
+An HTML version of this book is online:
+http://www.dartlang.org/docs/dart-up-and-running/
 
 
-Repo info
+Repo and testing info
 -----------
 As of February 2013, this is our primary repository for the book. We copy the .xml files to the private
 O'Reilly repo from time to time; we expect them to publish from their repo every few months.
 
-Currently, drone.io tests only whether the .dart files under code/ pass static analysis (dart_analyzer).
-We don't yet have .dart files for every snippet in the book.
+Currently, drone.io tests only whether the .dart files under **code/** pass static analysis (dart_analyzer).
+We could do real unit testing, and we could do better with HTML samples.
 In the future, we might want to test whether the .xml files are valid.
+The command for that would be something like this:
+
+    xmllint --postvalid --xinclude --noout book.xml
 
 Updating the dartlang.org copy of this book
 ------------------
