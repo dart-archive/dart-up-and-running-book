@@ -54,6 +54,24 @@
         servers, and any other apps that don’t run in a browser.</para>
       </listitem>
     </varlistentry>
+
+    <varlistentry>
+      <term><link linkend="ch04-tools-dart_analyzer">dart_analyzer: The Static
+      Analyzer</link></term>
+
+      <listitem>
+        <para>Analyze your Dart source from the command line.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><link linkend="ch04-tools-dartdoc">dartdoc: The API Documentation
+      Generator</link></term>
+
+      <listitem>
+        <para>Generate documentation from your Dart source.</para>
+      </listitem>
+    </varlistentry>
   </variablelist>
 
   <para>All of these tools are in the Dart Editor bundle, since the editor
@@ -72,6 +90,11 @@
     can also contain resources for its libraries, such as documentation,
     tests, and images. If your app uses one or more packages, then your app
     itself must be a package.</para>
+
+    <note>
+      <para>Dart Editor has support for using pub, including creating,
+      installing, updating, and publishing packages.</para>
+    </note>
 
     <para>A package can live anywhere. Some packages are distributed in the
     Dart SDK, under the <literal moreinfo="none">pkg</literal> directory.
@@ -168,8 +191,8 @@ import 'package:intl/intl.dart';</programlisting>
       <para>Run <literal
       moreinfo="none"><replaceable>$DART_SDK</replaceable>/bin/pub
       --help</literal> for a list of commands. For more information about pub,
-      see the <ulink url="http://pub.dartlang.org/doc">pub
-      documentation.</ulink></para>
+      including publishing your own packages, see the <ulink
+      url="http://pub.dartlang.org/doc">pub documentation.</ulink></para>
     </sect2>
   </sect1>
 
@@ -965,12 +988,11 @@ if (!navigator.webkitStartDart) {
       <para>Here’s an example of compiling a Dart file to JavaScript:</para>
 
       <screen format="linespecific"><remark>lang-sh
-</remark><replaceable>$DART_SDK</replaceable>/bin/dart2js <replaceable>test.dart</replaceable></screen>
+</remark><replaceable>$DART_SDK</replaceable>/bin/dart2js --out=test.js <replaceable>test.dart</replaceable></screen>
 
-      <para>This command produces a file named <literal
-      moreinfo="none">out.js</literal> file that contains the JavaScript
+      <para>This command produces a file that contains the JavaScript
       equivalent of your Dart code. It also produces a source map, which can
-      help you debug the JavaScript version of the app more easily.</para>
+      help you debug the JavaScript version of the app more easily. </para>
     </sect2>
 
     <sect2 id="ch04-tools-dart2js-options">
@@ -986,7 +1008,9 @@ if (!navigator.webkitStartDart) {
 
           <listitem>
             <para>Generate the output into
-            <replaceable>&lt;file&gt;</replaceable>.</para>
+            <replaceable>&lt;file&gt;</replaceable>. If not specified, the
+            output goes in a file named <literal
+            moreinfo="none">out.js</literal>.</para>
           </listitem>
         </varlistentry>
 
@@ -1001,21 +1025,34 @@ if (!navigator.webkitStartDart) {
         </varlistentry>
 
         <varlistentry>
+          <term role="plain"><literal moreinfo="none">
+          --minify</literal></term>
+
+          <listitem>
+            <para>Generate minified output.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term role="plain"><literal moreinfo="none">
+          --disallow-unsafe-eval</literal></term>
+
+          <listitem>
+            <para>Disable dynamic generation of code in the output. Use this
+            option when you want the generated JavaScript to satisfy CSP
+            restrictions. For more information, see <ulink
+            url="http://www.html5rocks.com/en/tutorials/security/content-security-policy/">An
+            Introduction to Content Security Policy.</ulink></para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
           <term role="plain"><literal moreinfo="none"> -h</literal><emphasis>
           or </emphasis><literal>--help</literal></term>
 
           <listitem>
             <para>Display help. (Use <literal moreinfo="none">-vh</literal>
             for information about all options.)</para>
-          </listitem>
-        </varlistentry>
-
-        <varlistentry>
-          <term role="plain"><literal moreinfo="none">
-          --minify</literal></term>
-
-          <listitem>
-            <para>Generate minified output.</para>
           </listitem>
         </varlistentry>
       </variablelist>
@@ -1150,6 +1187,53 @@ if (!navigator.webkitStartDart) {
 </remark><replaceable>$DART_SDK</replaceable>/bin/dart <replaceable>test.dart</replaceable></screen>
     </sect2>
 
+    <sect2 id="ch04-tools-dart-vm-options">
+      <title>Options</title>
+
+      <para>Common command-line options for dart include:</para>
+
+      <variablelist>
+        <varlistentry>
+          <term role="plain"><literal moreinfo="none">
+          </literal><literal>--enable-type-checks</literal></term>
+
+          <listitem>
+            <para>Check type annotations at runtime.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term role="plain"><literal moreinfo="none">
+          </literal><literal>--assert</literal></term>
+
+          <listitem>
+            <para>Evaluate <literal>assert()</literal> expressions, and
+            terminate the program if an assertion fails.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term role="plain"><literal moreinfo="none">
+          --enable-checked-mode</literal><emphasis> or
+          </emphasis><literal>--checked</literal></term>
+
+          <listitem>
+            <para>Enable <emphasis>both</emphasis> assertions and type checks
+            (checked mode).</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term role="plain"><literal moreinfo="none">
+          --print-flags</literal></term>
+
+          <listitem>
+            <para>Print all the command-line options.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </sect2>
+
     <sect2 id="ch04-tools-dart-vm-type-checks">
       <title>Enabling Checked Mode</title>
 
@@ -1166,21 +1250,174 @@ if (!navigator.webkitStartDart) {
       raising an exception if the condition is false. Assertions do not run in
       production mode.</para>
 
-      <para>You can run the VM in checked mode with a command-line
-      flag:</para>
+      <para>You can run the VM in checked mode with the
+      <literal>--checked</literal> command-line flag:</para>
 
       <screen format="linespecific"><remark>lang-sh
 </remark><replaceable>$DART_SDK</replaceable>/bin/dart --checked <replaceable>test.dart</replaceable></screen>
     </sect2>
+  </sect1>
 
-    <sect2 id="ch04-tools-dart-vm-more-options">
-      <title>Additional Options</title>
+  <sect1 id="ch04-tools-dart_analyzer">
+    <title>dart_analyzer: The Static Analyzer</title>
 
-      <para>Print all the command-line options with <literal
-      moreinfo="none">--print-flags</literal>:</para>
+    <para>You can use the <emphasis>dart_analyzer</emphasis> tool (<literal
+    moreinfo="none">bin/dart_analyzer</literal>) to statically analyze your
+    code at the command line, checking for errors and warnings that are
+    specified in the <emphasis>Dart Language Specification</emphasis>.</para>
+
+    <note>
+      <para>Dart Editor performs the same analysis that dart_analyzer does,
+      but with additional checks for common mistakes.</para>
+    </note>
+
+    <sect2 id="ch04-tools-dart_analyzer-basic-usage">
+      <title>Basic Usage</title>
+
+      <para>Here’s an example of testing a Dart file:</para>
 
       <screen format="linespecific"><remark>lang-sh
-</remark><replaceable>$DART_SDK</replaceable>/bin/dart --print-flags</screen>
+</remark><replaceable>$DART_SDK</replaceable>/bin/dart_analyzer --enable_type_checks <replaceable>test.dart</replaceable></screen>
+    </sect2>
+
+    <sect2 id="ch04-tools-dart_analyzer-options">
+      <title>Options</title>
+
+      <para>Common command-line options for dart_analyzer include:</para>
+
+      <variablelist>
+        <varlistentry>
+          <term role="plain"><literal moreinfo="none">
+          </literal><literal>--enable_type_checks</literal></term>
+
+          <listitem>
+            <para>Perform runtime type checks.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term role="plain"><literal moreinfo="none">
+          </literal><literal>--fatal-type-errors</literal></term>
+
+          <listitem>
+            <para>Treat type errors as fatal.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term role="plain"><literal moreinfo="none">
+          </literal><literal>--help</literal></term>
+
+          <listitem>
+            <para>Print all the command-line options.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </sect2>
+  </sect1>
+
+  <sect1 id="ch04-tools-dartdoc">
+    <title>dartdoc: The API Documentation Generator</title>
+
+    <para>You can use the <emphasis>dartdoc</emphasis> tool (<literal
+    moreinfo="none">bin/dartdoc</literal>) to generate documentation from your
+    Dart code. By default, dartdoc parses and creates documentation for the
+    .dart files that you pass to it, plus the libraries they import.</para>
+
+    <para>To improve dartdoc’s output, provide documentation comments, as
+    described in <xref linkend="comments-doc" />. Also see the article <ulink
+    url="http://www.dartlang.org/articles/doc-comment-guidelines/">Guidelines
+    for Dart Doc Comments</ulink>.</para>
+
+    <sect2 id="ch04-tools-dartdoc-basic-usage">
+      <title>Basic Usage</title>
+
+      <para>Here’s an example of generating documentation from a Dart
+      file.</para>
+
+      <screen format="linespecific"><remark>lang-sh
+</remark><replaceable>$DART_SDK</replaceable>/bin/dartdoc --out=/docs/mylib <replaceable>mylib.dart</replaceable></screen>
+
+      <para>By default, the generated documentation appears in a directory
+      named <literal>docs/</literal>.</para>
+    </sect2>
+
+    <sect2 id="ch04-tools-dartdoc-options">
+      <title>Options</title>
+
+      <para>Common command-line options for dartdoc include:</para>
+
+      <variablelist>
+        <varlistentry>
+          <term role="plain"><literal moreinfo="none">
+          </literal><literal>--out=<replaceable>&lt;absolute_path&gt;</replaceable></literal></term>
+
+          <listitem>
+            <para>Put the documentation in the specified directory. If the
+            directory doesn’t already exist, it’s created.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <variablelist>
+        <varlistentry>
+          <term role="plain"><literal moreinfo="none">
+          </literal><literal>--no-code</literal></term>
+
+          <listitem>
+            <para>Don’t include source code in the generated
+            documentation.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <variablelist>
+        <varlistentry>
+          <term role="plain"><literal moreinfo="none">
+          </literal><literal>--exclude-lib=<replaceable>&lt;identifier&gt;</replaceable></literal></term>
+
+          <listitem>
+            <para>Don’t generate documentation for the specified library.
+            <emphasis>Example:</emphasis>
+            <literal>--exclude-lib=metadata</literal></para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <variablelist>
+        <varlistentry>
+          <term role="plain"><literal moreinfo="none">
+          </literal><literal>--omit-generation-time</literal></term>
+
+          <listitem>
+            <para>Don’t put a timestamp at the bottom of every page.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <variablelist>
+        <varlistentry>
+          <term role="plain"><literal moreinfo="none">
+          </literal><literal>--mode=static</literal></term>
+
+          <listitem>
+            <para>Use static HTML navigation. The resulting files can be much
+            larger than the default, but previewing docs locally is
+            easier.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <variablelist>
+        <varlistentry>
+          <term role="plain"><literal moreinfo="none">
+          </literal><literal>--help</literal></term>
+
+          <listitem>
+            <para>Print all the command-line options.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
     </sect2>
   </sect1>
 
