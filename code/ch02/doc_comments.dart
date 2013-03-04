@@ -1,3 +1,4 @@
+//BEGIN
 /**
  * The llama (Lama glama) is a domesticated South American
  * camelid, widely used as a meat and pack animal by Andean
@@ -21,6 +22,7 @@ class Llama {
     // ...
   }
 }
+//END
 
 class Food {
 }
