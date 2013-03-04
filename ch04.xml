@@ -992,7 +992,7 @@ if (!navigator.webkitStartDart) {
 
       <para>This command produces a file that contains the JavaScript
       equivalent of your Dart code. It also produces a source map, which can
-      help you debug the JavaScript version of the app more easily. </para>
+      help you debug the JavaScript version of the app more easily.</para>
     </sect2>
 
     <sect2 id="ch04-tools-dart2js-options">
@@ -1404,6 +1404,22 @@ if (!navigator.webkitStartDart) {
             <para>Use static HTML navigation. The resulting files can be much
             larger than the default, but previewing docs locally is
             easier.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <variablelist>
+        <varlistentry>
+          <term role="plain"><literal moreinfo="none">
+          </literal><literal>--pkg=<replaceable>&lt;path&gt;</replaceable></literal></term>
+
+          <listitem>
+            <para>Specify where to find imported libraries. You might need to
+            use this option if dartdoc can’t find a library because your
+            directory structure doesn’t match <ulink
+            url="http://pub.dartlang.org/doc/package-layout.html">pub’s
+            package layout conventions</ulink>. <emphasis>Example:</emphasis>
+            <literal>--pkg=foo/packages/</literal> </para>
           </listitem>
         </varlistentry>
       </variablelist>
