@@ -156,7 +156,7 @@
 
     <programlisting format="linespecific"><remark>lang-html
 </remark>&lt;script type="application/dart" src="chat-client.dart"&gt;&lt;/script&gt;
-&lt;script src="dart.js"&gt;&lt;/script&gt;</programlisting>
+&lt;script src="packages/browser/dart.js"&gt;&lt;/script&gt;</programlisting>
 
     <para>The first line works in browsers that have an embedded Dart VM and
     so can execute Dart code; currently, only Dartium qualifies. The second
@@ -262,15 +262,9 @@ messageInput = new MessageInput(messageElem);</programlisting>
 
       <para>Wrapping elements is a technique you can use as you develop a
       simple app that might evolve into a larger app. As the app grows, you
-      might change it to use a real <ulink
-      url="http://en.wikipedia.org/wiki/Model-view-controller">model-view-controller
-      (MVC) architecture.</ulink></para>
-
-      <note>
-        <para>For more structure, see the <ulink
-          url="http://www.dartlang.org/articles/dart-web-components/">Web UI</ulink>
-          project for declarative widgets and dynamic, data-driven views.</para>
-      </note>
+      might change it to use <ulink
+      url="http://www.dartlang.org/articles/dart-web-components/">Web UI</ulink>,
+      a library for declarative widgets and dynamic, data-driven views.</para>
     </sect2>
 
     <sect2 id="ch05-update-element">
@@ -423,18 +417,25 @@ _sendEncodedMessage(String encodedMessage) {
 
       <programlisting format="linespecific"><remark>lang-dart
 </remark>runServer(String basePath, int port) {
-  HttpServer server = new HttpServer();  
-  server.defaultRequestHandler = new StaticFileHandler(basePath).onRequest;
-  //...
-  server.onError = (error) =&gt; print(error);
-  server.listen('127.0.0.1', 1337);
-  print('listening for connections on $port');
-}
+  ChatHandler chatHandler = new ChatHandler(basePath);
+  StaticFileHandler fileHandler = new StaticFileHandler(basePath);
+  
+  HttpServer.bind('127.0.0.1', port)
+    .then((HttpServer server) {
+      print('listening for connections on $port');
+      
+      var sc = new StreamController();
+      sc.stream.transform(new WebSocketTransformer()).listen(chatHandler.onConnection);
 
-main() {
-  var script = new File(new Options().script);
-  var directory = script.directorySync();
-  runServer('${directory.path}/client', 1337);
+      server.listen((HttpRequest request) {
+        if (request.uri.path == '/ws') {
+          sc.add(request);
+        } else {
+          fileHandler.onRequest(request);
+        }
+      });
+    },
+    onError: (error) => print("Error starting HTTP server: $error"));
 }</programlisting>
 
       <para>The StaticFileHandler first gets the file contents using File and
@@ -454,15 +455,25 @@ main() {
 
       <programlisting format="linespecific"><remark>lang-dart
 </remark>// Respond to HTTP requests for static files.
-onRequest(HttpRequest request, HttpResponse response) {
-  //...
-  file.exists().then((found) {
+onRequest(HttpRequest request) {
+  final String path =
+      request.uri.path == &#039;/&#039; ? &#039;/index.html&#039; : request.uri.path;
+  final File file = new File(&#039;${basePath}${path}&#039;);
+  file.exists().then((bool found) {
     if (found) {
-      // ...Respond with the file’s contents...
+      file.fullPath().then((String fullPath) {
+        if (!fullPath.startsWith(basePath)) {
+          _send404(request.response);
+        } else {
+          file.openRead().pipe(request.response)
+            .catchError((e) =&gt; print(e));
+        }
+      });
     } else {
-      // ...Send a 404 response...
+      _send404(request.response);
     }
-  });</programlisting>
+  });
+}</programlisting>
 
       <para>See <xref linkend="ch03-asynchronous-programming" /> for more
       information about using Future, and <xref
@@ -475,14 +486,15 @@ onRequest(HttpRequest request, HttpResponse response) {
 
       <para>In addition to serving static files, the chat server manages
       WebSocket connections, routing chat messages between clients. The
-      dart:io WebSocketHandler class accepts HTTP connections, converts them
+      dart:io WebSocketTransformer class accepts HTTP connections, converts them
       into WebSocket connections, and then passes them to ChatHandler.</para>
 
       <programlisting format="linespecific"><remark>lang-dart
 </remark>runServer(String basePath, int port) {
   //...
-  WebSocketHandler wsHandler = new WebSocketHandler();
-  wsHandler.onOpen = new ChatHandler(basePath).onOpen;
+  var sc = new StreamController();
+  sc.stream.transform(new WebSocketTransformer())
+      .listen(chatHandler.onConnection);
 }</programlisting>
 
       <para>ChatHandler is a custom class that takes care of all WebSocket
@@ -492,25 +504,24 @@ onRequest(HttpRequest request, HttpResponse response) {
 </remark>class ChatHandler {
   Set&lt;WebSocketConnection&gt; connections;
   //...
-  onOpen(WebSocketConnection conn) {
-    connections.add(conn);
-
-    conn.onClosed = (int status, String reason) {
-      connections.remove(conn);
-    };
-
-    conn.onMessage = (message) {
-      connections.forEach((connection) {
+  onConnection(WebSocket conn) {
+    void onMessage(message) {
+      print(&#039;new ws msg: $message&#039;);
+      webSocketConnections.forEach((connection) {
         if (conn != connection) {
-          //...
-          connection.send(message));
+          print(&#039;queued msg to be sent&#039;);
+          queue(() =&gt; connection.send(message));
         }
       });
-    };
-
-    conn.onError = (e) {
-      connections.remove(conn);
-    };
+      time(&#039;send to isolate&#039;, () =&gt; log.log(message));
+    }
+    
+    print(&#039;new ws conn&#039;);
+    webSocketConnections.add(conn);
+    conn.listen(onMessage,
+      onDone: () =&gt; webSocketConnections.remove(conn),
+      onError: (e) =&gt; webSocketConnections.remove(conn)
+    );
   }
 }</programlisting>
 
@@ -547,15 +558,15 @@ onRequest(HttpRequest request, HttpResponse response) {
 </remark>startLogging() {
   print('started logger');
   File logFile;
-  OutputStream out;
+  IOSink out;
   port.receive((msg, replyTo) {
     if (logFile == null) {
       print('Opening file $msg');
       logFile = new File(msg);
-      out = logFile.openOutputStream(FileMode.APPEND);
+      out = logFile.openWrite(FileMode.APPEND);
     } else {
       time('write to file', () {
-        out.writeString('${new DateTime.now()} : $msg\n');
+        out.addString('${new DateTime.now()} : $msg\n');
       });
     }
   });
