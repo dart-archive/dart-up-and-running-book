@@ -424,6 +424,10 @@
 
     <itemizedlist>
       <listitem>
+        <para>Keywords (see <xref linkend="ch02-keywords" />)</para>
+      </listitem>
+
+      <listitem>
         <para>Lexical scope (see <xref linkend="ch02-lexical-scope" />)</para>
       </listitem>
 
