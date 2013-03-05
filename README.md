@@ -3,6 +3,8 @@ Dart: Up and Running
 
 [![Build Status](https://drone.io/github.com/dart-lang/dart-up-and-running-book/status.png)](https://drone.io/github.com/dart-lang/dart-up-and-running-book/latest)
 
+Note: The listFiles.dart test will fail until a new SDK is released.
+
 This is the book _Dart: Up and Running_ by Kathy Walrath and Seth Ladd.
 More info: http://shop.oreilly.com/product/0636920025719.do
 
