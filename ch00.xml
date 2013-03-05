@@ -265,12 +265,20 @@
       </listitem>
 
       <listitem>
+        <para>We added references to the <ulink
+        url="http://www.dartlang.org/articles/dart-web-components/">Web UI
+        package</ulink>, which provides a higher level, scalable approach to
+        creating UIs for web apps.</para>
+      </listitem>
+
+      <listitem>
         <para>In M3, mixins were added to the language, enabling code re-use
         between classes.</para>
       </listitem>
 
       <listitem>
-        <para>The core libraries were revised in M3. Changes include:</para>
+        <para>The core libraries were greatly revised in M3 or shortly
+        afterward. Changes include:</para>
 
         <itemizedlist>
           <listitem>
@@ -369,6 +377,30 @@
             <literal>clear()</literal> method; just create a new StringBuffer
             instead.</para>
           </listitem>
+
+          <listitem>
+            <para>The dart:io library has changed significantly since M3, as
+            has all I/O in Dart. I/O now centers around the dart:async
+            library's Stream and Future classes, instead of callbacks. The
+            changes are too numerous to list here, but at a high level, the
+            InputStream and OutputStream classes have been replaced with
+            classes implementing <ulink
+            url="http://api.dartlang.org/docs/releases/latest/dart_async/Stream.html">Stream</ulink>
+            and the <ulink
+            url="http://api.dartlang.org/dart_io/IOSink.html">IOSink</ulink>
+            helper class. A new <ulink
+            url="http://api.dartlang.org/dart_io/FileSystemEntity.html">FileSystemEntity</ulink>
+            class is the superclass of File and Directory. To create a new
+            HttpServer, you now use the static <literal>bind()</literal>
+            method. For more information, see the <ulink
+            url="http://news.dartlang.org/2013/02/io-library-now-uses-streams.html">announcement.</ulink></para>
+          </listitem>
+
+          <listitem>
+            <para>The most used dart:crypto methods for hashes have changed
+            from <literal>update()</literal> and <literal>digest()</literal>
+            to <literal>add()</literal> and <literal>close()</literal>.</para>
+          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
@@ -388,7 +420,7 @@
       </listitem>
     </itemizedlist>
 
-    <para>We’ve also added discussions for a few pre-existing features:</para>
+    <para>We’ve also added sections for some pre-existing features:</para>
 
     <itemizedlist>
       <listitem>
@@ -399,10 +431,20 @@
         <para>Function equality (see <xref
         linkend="ch02-function-equality" />)</para>
       </listitem>
+
+      <listitem>
+        <para>The dart_analyzer tool (see <xref
+        linkend="ch04-tools-dart_analyzer" />)</para>
+      </listitem>
+
+      <listitem>
+        <para>The dartdoc tool (see <xref
+        linkend="ch04-tools-dartdoc" />)</para>
+      </listitem>
     </itemizedlist>
 
-    <para>Finally, <xref linkend="BrowserChart" /> was updated to use a more
-    recent benchmark and have the latest numbers.</para>
+    <para>Finally, <xref linkend="BrowserChart" /> now uses a more recent
+    benchmark and has the latest numbers.</para>
   </sect1>
 
   <sect1 id="preface-acknowledgments">
@@ -416,7 +458,7 @@
     responsibility: Mads Ager, Peter von der Ahé, Justin Fagnani, Dan Grove,
     Florian Loitsch, Sam McCall, Vijay Menon, John Messerly, Anton Muhin,
     Lasse R.H. Nielsen, Bob Nystrom, Ivan Posva, Jaime Wren, Matthias Hausner,
-    and Keerti Parthasarathy.</para>
+    Keerti Parthasarathy, and Konstantin Scheglov.</para>
 
     <para>We’d especially like to thank the people who reviewed even bigger
     swaths of the book or contributed in other, large ways:</para>
@@ -455,10 +497,10 @@
 
       <listitem>
         <para>Gilad Bracha, the language spec writer whose reviews of the
-        language chapter (our longest one) were invaluable for getting
-        language details right. We couldn’t cover everything, so we look
-        forward to his future work on making all the corners of the language
-        understandable to all Dart programmers.</para>
+        language chapter were invaluable for getting language details right.
+        We couldn’t cover everything, so we look forward to his future work on
+        making all the corners of the language understandable to all Dart
+        programmers.</para>
       </listitem>
     </itemizedlist>
 

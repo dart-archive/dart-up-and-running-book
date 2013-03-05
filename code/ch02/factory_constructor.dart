@@ -27,6 +27,11 @@ class Logger {
 // END(factory_constructor)
 
 main() {
+  //BEGIN
+  var logger = new Logger('UI');
+  logger.log('Button clicked');
+  //END
+  
   var l1 = new Logger('log1');
   var l1_2 = new Logger('log1');
   var l2 = new Logger('log2');

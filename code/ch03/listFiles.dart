@@ -7,7 +7,7 @@ main() {
   contentsStream.listen(
     (FileSystemEntity f) {
       if (f is File) {
-        print('Found file ${f.name}');
+        print('Found file ${f.path}');
       } else if (f is Directory) {
         print('Found dir ${f.path}');
       }

@@ -5,4 +5,6 @@ var s3 = 'It\'s easy to escape the string delimiter.';
 var s4 = "It's even easier to just use the other string delimiter.";
 // END(quoting)
 
-main() {}
+main() {
+  print('Unicode escapes work: \u2665'); // Unicode escapes work: [heart]
+}

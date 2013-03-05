@@ -17,9 +17,10 @@
   high-performance, modern apps that users demand.</para>
 
   <warning>
-    <para>Dart is still changing! This book reflects the Milestone 3 release
-    (February 2013), which means the language is stable but not the libraries.
-    Wherever possible, this book tells you what we expect to change.</para>
+    <para>Dart is still changing! This book was produced in March 2013, just
+    after the Milestone 3 release, which means the language is stable but not
+    the libraries. Wherever possible, this book tells you what we expect to
+    change.</para>
   </warning>
 
   <sect1 id="ch01-why-dart">

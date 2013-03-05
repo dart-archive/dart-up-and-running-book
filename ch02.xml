@@ -501,6 +501,12 @@ multi-line string.""";</programlisting>
       <programlisting format="linespecific"><remark>lang-dart
 </remark>var s = r"In a raw string, even \n isn't special.";</programlisting>
 
+      <para>You can use Unicode escapes inside of strings.</para>
+
+      <programlisting format="linespecific"><remark>lang-dart
+</remark><remark>ch02/quoting.dart
+</remark>print('Unicode escapes work: \u2665'); // Unicode escapes work: [heart]</programlisting>
+
       <para>For more information on using strings, see <xref
       linkend="ch03-strings-and-regular-expressions" />.</para>
     </sect2>
@@ -1832,8 +1838,10 @@ assert((value &gt;&gt; 4)       == 0x02);  // Shift right</programlisting>
       moreinfo="none">for</literal> loop.</para>
 
       <programlisting format="linespecific"><remark>lang-dart
-</remark>for (int i = 0; i &lt; candidates.length; i++) {
-  candidates[i].interview();
+</remark><remark>ch02/flow_for_loops.dart
+</remark>var message = new StringBuffer("Dart is fun");
+for (var i = 0; i &lt; 5; i++) {
+  message.write('!');
 }</programlisting>
 
       <para>Closures inside of Dart’s <literal moreinfo="none">for</literal>
@@ -1841,6 +1849,7 @@ assert((value &gt;&gt; 4)       == 0x02);  // Shift right</programlisting>
       JavaScript. For example, consider:</para>
 
       <programlisting format="linespecific"><remark>lang-dart
+</remark><remark>ch02/flow_for_loops.dart
 </remark>var callbacks = [];
 for (var i = 0; i &lt; 2; i++) {
   callbacks.add(() =&gt; print(i));
@@ -1855,10 +1864,11 @@ callbacks.forEach((c) =&gt; c());</programlisting>
       <para>If the object that you are iterating over is a Collection, you can
       use the <literal><ulink
       url="http://api.dartlang.org/dart_core/Collection.html#forEach">forEach()</ulink></literal>
-      method. Using<literal> forEach() </literal>is a good option if you don’t
+      method. Using <literal>forEach()</literal> is a good option if you don’t
       need to know the current iteration counter.</para>
 
       <programlisting format="linespecific"><remark>lang-dart
+</remark><remark>ch02/flow_for_loops.dart
 </remark>candidates.forEach((candidate) =&gt; candidate.interview());</programlisting>
 
       <para>Collections also support the <literal
@@ -1866,6 +1876,7 @@ callbacks.forEach((c) =&gt; c());</programlisting>
       <xref linkend="ch03-iteration" />.</para>
 
       <programlisting format="linespecific"><remark>lang-dart
+</remark><remark>ch02/flow_for_loops.dart
 </remark>var collection = [0, 1, 2];
 for (var x in collection) {
   print(x);
@@ -2228,6 +2239,7 @@ assert(identical(a,b)); // They are the same instance!</programlisting>
       <para>Here’s how you declare instance variables:</para>
 
       <programlisting format="linespecific"><remark>lang-dart
+</remark><remark>ch02/instance_variables.dart
 </remark>class Point {
   num x;      // Declare an instance variable (x), initially null.
   num y;      // Declare y, initially null.
@@ -2244,6 +2256,7 @@ assert(identical(a,b)); // They are the same instance!</programlisting>
       linkend="classes-getters-and-setters" />.</para>
 
       <programlisting format="linespecific"><remark>lang-dart
+</remark><remark>ch02/instance_variables.dart
 </remark>class Point {
   num x;
   num y;
@@ -2272,6 +2285,7 @@ main() {
       class.</para>
 
       <programlisting format="linespecific"><remark>lang-dart
+</remark><remark>ch02/constructor_long_way.dart
 </remark>class Point {
   num x;
   num y;
@@ -2327,6 +2341,7 @@ main() {
         class or to provide extra clarity.</para>
 
         <programlisting format="linespecific"><remark>lang-dart
+</remark><remark>ch02/named_constructor.dart
 </remark>class Point {
   num x;
   num y;
@@ -2357,6 +2372,7 @@ main() {
         just before the constructor body (if any).</para>
 
         <programlisting format="linespecific"><remark>lang-dart
+</remark><remark>ch02/op_as.dart
 </remark>class Person {
   Person.fromJson(Map data) {
     print('in Person');
@@ -2388,6 +2404,7 @@ main() {
         Separate initializers with commas.</para>
 
         <programlisting format="linespecific"><remark>lang-dart
+</remark><remark>ch02/initializer_list.dart
 </remark>class Point {
   num x;
   num y;
@@ -2414,6 +2431,7 @@ main() {
         empty, with the constructor call appearing after a colon (:).</para>
 
         <programlisting format="linespecific"><remark>lang-dart
+</remark><remark>ch02/along_x_axis.dart
 </remark>class Point {
   num x;
   num y;
@@ -2433,6 +2451,7 @@ main() {
         <literal moreinfo="none">const</literal>.</para>
 
         <programlisting format="linespecific"><remark>lang-dart
+</remark><remark>ch02/immutable_point.dart
 </remark>class ImmutablePoint {
   final num x;
   final num y;
@@ -2454,6 +2473,7 @@ main() {
         returning objects from a cache.</para>
 
         <programlisting format="linespecific"><remark>lang-dart
+</remark><remark>ch02/factory_constructor.dart
 </remark>class Logger {
   final String name;
   bool mute = false;
@@ -2489,6 +2509,7 @@ main() {
         moreinfo="none">new</literal> keyword:</para>
 
         <programlisting format="linespecific"><remark>lang-dart
+</remark><remark>ch02/factory_constructor.dart
 </remark>var logger = new Logger('UI');
 logger.log('Button clicked');</programlisting>
       </sect3>
@@ -2508,7 +2529,10 @@ logger.log('Button clicked');</programlisting>
         example of an instance method.</para>
 
         <programlisting format="linespecific"><remark>lang-dart
-</remark>class Point {
+</remark><remark>ch02/distance_to.dart
+</remark>import 'dart:math';
+
+class Point {
   num x;
   num y;
   Point(this.x, this.y);
@@ -2532,6 +2556,7 @@ logger.log('Button clicked');</programlisting>
         moreinfo="none">set</literal> keywords.</para>
 
         <programlisting format="linespecific"><remark>lang-dart
+</remark><remark>ch02/rectangle.dart
 </remark>class Rectangle {
   num left;
   num top;
@@ -2575,6 +2600,7 @@ main() {
         body.</para>
 
         <programlisting format="linespecific"><remark>lang-dart
+</remark><remark>ch02/doer.dart
 </remark>abstract class Doer {
   // ...Define instance variables and methods...
  
@@ -2661,6 +2687,7 @@ class EffectiveDoer extends Doer {
         operators.</para>
 
         <programlisting format="linespecific"><remark>lang-dart
+</remark><remark>ch02/vector.dart
 </remark>class Vector {
   final int x;
   final int y;
@@ -2706,6 +2733,7 @@ main() {
       method.</para>
 
       <programlisting format="linespecific"><remark>lang-dart
+</remark><remark>ch02/abstract.dart
 </remark>// This class is declared abstract and thus can't be instantiated.
 abstract class AbstractContainer {
   // ...Define constructors, fields, methods...
@@ -2717,6 +2745,7 @@ abstract class AbstractContainer {
       even though it defines an abstract method.</para>
 
       <programlisting format="linespecific"><remark>lang-dart
+</remark><remark>ch02/abstract.dart
 </remark>class SpecializedContainer extends AbstractContainer {
   // ...Define more constructors, fields, methods...
 
@@ -2742,6 +2771,7 @@ abstract class AbstractContainer {
       the APIs required by the interfaces. For example:</para>
 
       <programlisting format="linespecific"><remark>lang-dart
+</remark><remark>ch02/imposter.dart
 </remark>// A person. The implicit interface contains greet().
 class Person {
   final _name;          // In the interface, but visible only in this library,
@@ -2766,6 +2796,7 @@ main() {
       interfaces:</para>
 
       <programlisting format="linespecific"><remark>lang-dart
+</remark><remark>ch02/point_interfaces.dart
 </remark>class Point <emphasis role="bold">implements Comparable, Location</emphasis> {
   // ...
 }</programlisting>
@@ -2779,11 +2810,13 @@ main() {
       superclass.</para>
 
       <programlisting format="linespecific"><remark>lang-dart
+</remark><remark>smart_tv.dart
 </remark>class Television {
   void turnOn() {
     _illuminateDisplay();
     _activateIrSensor();
   }
+  ...
 }
 
 class SmartTelevision extends Television {
@@ -2793,6 +2826,7 @@ class SmartTelevision extends Television {
     _initializeMemory();
     _upgradeApps();
   }
+  ...
 }</programlisting>
 
       <para>Subclasses can override instance methods, getters, and
@@ -2812,6 +2846,7 @@ class SmartTelevision extends Television {
         state and constants.</para>
 
         <programlisting format="linespecific"><remark>lang-dart
+</remark><remark>ch02/color.dart
 </remark>class Color {
   static const RED = const Color('red'); // A constant static variable.
   final String name;                     // An instance variable.
@@ -2833,7 +2868,10 @@ main() {
         moreinfo="none">this</literal>.</para>
 
         <programlisting format="linespecific"><remark>lang-dart
-</remark>class Point {
+</remark><remark>ch02/point.dart
+</remark>import 'dart:math';
+
+class Point {
   num x;
   num y;
   Point(this.x, this.y);
@@ -2892,7 +2930,8 @@ main() {
       checked mode) can detect that assigning a non-string to the list is
       probably a mistake.</para>
 
-      <programlisting format="linespecific"><remark>lang-dart
+      <programlisting format="linespecific"><remark>lang-dart</remark><remark>
+ch02/generics.dart
 </remark>var names = new List&lt;String&gt;();
 names.addAll(['Seth', 'Kathy', 'Lars']);
 // ...
@@ -3042,6 +3081,7 @@ print(names is List&lt;String&gt;); // true</programlisting>
       they can import like this:</para>
 
       <programlisting format="linespecific"><remark>lang-dart
+</remark><remark>ch02/libraries/using_libraries.dart
 </remark>import 'dart:html';</programlisting>
 
       <para>The only required argument to <literal
@@ -3057,6 +3097,7 @@ print(names is List&lt;String&gt;); // true</programlisting>
       by a package manager such as the pub tool. For example:</para>
 
       <programlisting format="linespecific"><remark>lang-dart
+</remark><remark>ch02/libraries/using_schemes.dart, mylib, utils
 </remark>import 'dart:io';
 import 'package:mylib/mylib.dart';
 import 'package:utils/utils.dart';</programlisting>
@@ -3070,6 +3111,7 @@ import 'package:utils/utils.dart';</programlisting>
         have code like this:</para>
 
         <programlisting format="linespecific"><remark>lang-dart
+</remark><remark>ch02/libraries/library_prefix.dart, lib1, lib2
 </remark>import 'package:lib1/lib1.dart';
 import 'package:lib2/lib2.dart' as lib2;
 // ...
@@ -3084,6 +3126,7 @@ var element2 = new lib2.Element(); // Uses Element from lib2.</programlisting>
         import the library. For example:</para>
 
         <programlisting format="linespecific"><remark>lang-dart
+</remark><remark>ch02/libraries/library_partil.dart, lib1, lib2
 </remark>import 'package:lib1/lib1.dart' show foo, bar; // Import only foo and bar.
 import 'package:lib2/lib2.dart' hide foo;      // Import all names EXCEPT foo.</programlisting>
       </sect3>
@@ -3110,6 +3153,7 @@ import 'package:lib2/lib2.dart' hide foo;      // Import all names EXCEPT foo.</
         the current library:</para>
 
         <programlisting format="linespecific"><remark>lang-dart
+</remark><remark>ch02/ballgame.dart
 </remark>library ballgame;   // Declare that this is a library named ballgame.
 
 import 'dart:html'; // This app uses the HTML library.
@@ -3136,6 +3180,7 @@ import 'dart:html'; // This app uses the HTML library.
         parts of this library:</para>
 
         <programlisting format="linespecific"><remark>lang-dart
+</remark><remark>ch02/ballgame.dart
 </remark>library ballgame;
 
 import 'dart:html';
@@ -3150,6 +3195,7 @@ part 'util.dart';
         of the ballgame library:</para>
 
         <programlisting format="linespecific"><remark>lang-dart
+</remark><remark>ch02/ball.dart
 </remark>part of ballgame;
 
 // ...Code goes here...</programlisting>
@@ -3158,6 +3204,7 @@ part 'util.dart';
         rest of the ballgame library:</para>
 
         <programlisting format="linespecific"><remark>lang-dart
+</remark><remark>ch02/util.dart
 </remark>part of ballgame;
 
 // ...Code goes here...</programlisting>
@@ -3172,6 +3219,7 @@ part 'util.dart';
         that provides a subset of methods from another library.</para>
 
         <programlisting format="linespecific"><remark>lang-dart
+</remark><remark>ch02/french.dart, togo.dart, french_togo.dart
 </remark><emphasis>// In french.dart:</emphasis>
 library french;
 hello() =&gt; print('Bonjour!');
@@ -3222,6 +3270,7 @@ void main() {
     <para>Consider the following code, which does not use a typedef.</para>
 
     <programlisting format="linespecific"><remark>lang-dart
+</remark><remark>ch02/sorted_collection.dart
 </remark>class SortedCollection {
   Function compare;
 
@@ -3391,6 +3440,7 @@ void doSomething() {
       comment; see the next section). Multi-line comments can nest.</para>
 
       <programlisting format="linespecific"><remark>lang-dart
+</remark><remark>ch02/multi_line_comments.dart
 </remark>main() {
   /*
    * This is a lot of work. Consider raising chickens.
@@ -3422,6 +3472,7 @@ void doSomething() {
       other classes and arguments:</para>
 
       <programlisting format="linespecific"><remark>lang-dart
+</remark><remark>ch02/doc_comments.dart
 </remark>/**
  * The llama (Lama glama) is a domesticated South American
  * camelid, widely used as a meat and pack animal by Andean
@@ -3461,8 +3512,10 @@ class Llama {
     <title>Summary</title>
 
     <para>This chapter summarized the commonly used features in the Dart
-    language. For more information about the language, see the <ulink
-    url="http://www.dartlang.org/docs/spec/">Dart Language
+    language. More features are being implemented, such as <ulink
+    url="http://www.dartlang.org/articles/mixins/">mixins</ulink>, but we
+    expect that they won’t break existing code. For more information, see the
+    <ulink url="http://www.dartlang.org/docs/spec/">Dart Language
     Specification</ulink> and <ulink
     url="http://www.dartlang.org/articles/">articles</ulink> such as <ulink
     url="http://www.dartlang.org/articles/idiomatic-dart/"

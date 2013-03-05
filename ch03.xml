@@ -836,12 +836,7 @@ main() {
   </sect1>
 
   <sect1 id="ch03-asynchronous-programming">
-    <title>Asynchronous Programming</title>
-
-    <note>
-      <para>This section is incomplete. More information on the
-        <literal>dart:async</literal> library will be added.</para>
-    </note>
+    <title>dart:async - Asynchronous Programming</title>
 
     <para>Asynchronous programming often uses callback functions, but Dart
     provides an alternative: <ulink
@@ -851,22 +846,25 @@ main() {
 
     <para>You have the option of using a <ulink
     url="http://api.dartlang.org/dart_async/Completer.html">Completer</ulink>
-    to produce a Future and, later, to supply a value to the Future.</para>
+    to produce a Future and, later, to supply a value to the Future.
+    Completer, Future, and more are in the <ulink
+    url="http://api.dartlang.org/dart_async.html">dart:async</ulink>
+    library.</para>
 
-    <para>Completer, Future, and more can be found in the
-      <ulink url="http://api.dartlang.org/dart_async.html">dart:async</ulink>
-      library.</para>
+    <para>The dart:async library works in both web apps and command-line apps.
+    To use it, import <literal>dart:async</literal>.</para>
 
-    <para>In the following example, the
-    <literal>longExpensiveSearch()</literal>
-    function schedules a query and immediately returns a Future object.
-    Later, when
-    the query finishes in some future event loop iteration, the completer
-    completes with the results. The completion signals that the Future has a
-    value, which runs the callback registered in Future's
-    <literal>then()</literal>.</para>
+    <sect2 id="ch03-future-example">
+      <title>Using Future and Completer</title>
 
-    <screen format="linespecific"><remark>lang-dart
+      <para>In the following example, the
+      <literal>longExpensiveSearch()</literal> function schedules a query and
+      immediately returns a Future object. Later, when the query finishes in
+      some future event loop iteration, the completer completes with the
+      results. The completion signals that the Future has a value, which runs
+      the callback registered in Future's <literal>then()</literal>.</para>
+
+      <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03/futures.dart</remark>Future longExpensiveSearch() {
 var completer = new Completer();
 
@@ -888,15 +886,16 @@ return future.then((results) {
   print('Here are the results: $results');
 });
 }</screen>
+    </sect2>
 
     <sect2 id="ch03-future-error-handling">
-      <title>Error handling with Futures</title>
+      <title>Error Handling with Futures</title>
 
-      <para>If an error or exception is thrown from within a Future,
-        you can catch it with <literal>catchError()</literal>.
-        Be sure to invoke <literal>catchError()</literal> on the result of
-        <literal>then()</literal>—not on the result of the
-        original Future.</para>
+      <para>If an error or exception is thrown from within a Future, you can
+      catch it with <literal>catchError()</literal>. Be sure to invoke
+      <literal>catchError()</literal> on the result of
+      <literal>then()</literal>—not on the result of the original
+      Future.</para>
 
       <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03/futures.dart</remark>Future runSearch() {
@@ -909,21 +908,20 @@ return future.then((results) {
 });
 }</screen>
 
-      <para>The <literal>then().catchError()</literal> pattern is
-      the asynchronous version of
+      <para>The <literal>then().catchError()</literal> pattern is the
+      asynchronous version of
       <literal>try</literal>-<literal>catch</literal>.</para>
     </sect2>
 
     <sect2 id="ch03-chaining-multiple-async-methods">
-      <title>Chaining multiple asynchronous methods</title>
+      <title>Chaining Multiple Asynchronous Methods</title>
 
-      <para>The <literal>then()</literal> method returns a Future,
-      which is a useful way to chain multiple asynchronous methods
-      to run in a certain order. If the callback registered with
-      <literal>then()</literal> returns a Future, then it is simply
-      returned as-is by <literal>then()</literal>. If the callback returns
-      a value of any other type, a new Future instance is created and is
-      completed with the value.</para>
+      <para>The <literal>then()</literal> method returns a Future, which is a
+      useful way to chain multiple asynchronous methods to run in a certain
+      order. If the callback registered with <literal>then()</literal> returns
+      a Future, then it is simply returned as-is by <literal>then()</literal>.
+      If the callback returns a value of any other type, a new Future instance
+      is created and is completed with the value.</para>
 
       <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03/futures.dart</remark>Future runQuery() {
@@ -955,12 +953,12 @@ return result.then((value) =&gt; expensiveWork())
     </sect2>
 
     <sect2 id="ch03-waiting-for-multiple-futures">
-      <title>Waiting for multiple futures</title>
+      <title>Waiting for Multiple Futures</title>
 
       <para>Sometimes your algorithm needs to initiate many asynchronous
       methods and wait for each one to complete before continuing. Use the
       <ulink
-      url="http://api.dartlang.org/dart_async/Future.html#wait">Future.wait</ulink>
+      url="http://api.dartlang.org/dart_async/Future.html#wait">Future.wait()</ulink>
       static method to manage multiple Futures and wait for them all to
       complete.</para>
 
@@ -975,7 +973,7 @@ print('Done with all the long steps');
     </sect2>
 
     <sect2 id="ch03-more-information-9">
-      <title>More information</title>
+      <title>More Information</title>
 
       <para>For examples of using Future, see <xref
       linkend="ch03-dartio---file-and-socket-io-for-command-line-apps" />.</para>
@@ -1100,6 +1098,12 @@ random.nextBool();  // true or false</screen>
     exchanging data using <link linkend="ch03-websockets">WebSockets</link>.
     HTML5 (and dart:html) has many additional APIs that this section doesn’t
     cover. Only web apps can use dart:html, not command-line apps.</para>
+
+    <note>
+      <para>For a scalable, higher level approach to web app UIs, see the
+      <ulink url="http://www.dartlang.org/articles/dart-web-components/">Web
+      UI package.</ulink></para>
+    </note>
 
     <para>To use the HTML library in your web app, import <literal
     moreinfo="none">dart:html</literal>.</para>
@@ -1588,7 +1592,7 @@ httpRequest.send(encodedData);
         to send data to a form handler.</para>
 
         <screen format="linespecific"><remark>lang-dart
-</remark><remark>tutorial/servers/web/client.dart (and original book sample… no real test file yet)
+</remark><remark>ch03/ch03_3_html/*
 </remark>import 'dart:html';
 import 'dart:uri';
 ...
@@ -1722,6 +1726,19 @@ receivedMessage(String data) {
         <para>For an example of using WebSockets, see <xref lang=""
         linkend="ch05" />.</para>
       </sect3>
+    </sect2>
+
+    <sect2 id="ch03-more-information-html">
+      <title>More information</title>
+
+      <para>This section barely scratched the surface of using the dart:html
+      library. For more information, see the documentation for <ulink
+      url="http://api.dartlang.org/dart_html.html">dart:html</ulink>. Dart has
+      additional libraries for more specialized web APIs, such as <ulink
+      url="http://api.dartlang.org/dart_web_audio.html">web audio</ulink>.
+      Finally, don’t miss the <ulink
+      url="http://www.dartlang.org/articles/dart-web-components/">Web UI
+      package.</ulink></para>
     </sect2>
   </sect1>
 
@@ -1899,7 +1916,7 @@ main() {
         ports and callbacks.</para>
 
         <para>Handle an incoming message with a callback function passed to
-        the<literal> receive()</literal> method.</para>
+        the <literal>receive()</literal> method.</para>
 
         <screen format="linespecific"><remark>lang-dart
 </remark>import 'dart:isolate';
@@ -2043,7 +2060,7 @@ main() {
       a file: all at once, or streaming. Reading a file all at once requires
       enough memory to store all the contents of the file. If the file is very
       large or you want to process it while reading it, you should use an
-      InputStream, as described in <xref
+      Stream, as described in <xref
       linkend="ch03-streaming-file-contents" />.</para>
 
       <sect3 id="ch03-reading-a-file-as-text">
@@ -2056,6 +2073,7 @@ main() {
         file as one or more strings.</para>
 
         <screen format="linespecific"><remark>lang-dart
+</remark><remark>ch03/textRead.dart
 </remark>import 'dart:io';
 
 main() {
@@ -2082,6 +2100,7 @@ main() {
         a Future, which provides the result when it’s available.</para>
 
         <screen format="linespecific"><remark>lang-dart
+</remark><remark>ch03/binaryRead.dart
 </remark>import 'dart:io';
 
 main() {
@@ -2102,44 +2121,51 @@ main() {
         object.</para>
 
         <screen format="linespecific"><remark>lang-dart
+</remark><remark>ch03/fileErrors.dart
 </remark>import 'dart:io';
 
 main() {
   var config = new File('config.txt');
-  file.readAsString().then((String contents) {
+  config.readAsString().then((String contents) {
     print(contents);
   }).catchError((e) {
     print(e);
-  });</screen>
+  });
+}</screen>
       </sect3>
 
       <sect3 id="ch03-streaming-file-contents">
         <title>Streaming file contents</title>
 
-        <para>Use an InputStream to read a file, a little at a time. The
-        <literal moreinfo="none">onData</literal> callback runs when data is
-        ready to be read. When the InputStream is finished reading the file,
-        the <literal moreinfo="none">onClosed</literal> callback
+        <para>Use a Stream to read a file, a little at a time. The <literal
+        moreinfo="none">listen()</literal> method specifies a handler to be
+        called when data is available. When the Stream is finished reading the
+        file, the <literal moreinfo="none">onDone</literal> callback
         executes.</para>
 
         <screen format="linespecific"><remark>lang-dart
+</remark><remark>ch03/readFile.dart
 </remark>import 'dart:io';
+import 'dart:async';
 
 main() {
   var config = new File('config.txt');
-  var inputStream = config.openInputStream();
+  Stream&lt;List&lt;int&gt;&gt; inputStream = config.openRead();
 
-  inputStream.onError = (e) =&gt; print(e);
-  inputStream.onClosed = () =&gt; print('file is now closed');
-  inputStream.onData = () {
-    List&lt;int&gt; bytes = inputStream.read();
-    print('Read ${bytes.length} bytes from stream');
-  };
+  inputStream
+    .transform(new StringDecoder())
+    .transform(new LineTransformer())
+    .listen(
+      (String line) { 
+        print('Read ${line.length} bytes from stream');
+      },
+      onDone: () { print('file is now closed'); },
+      onError: (e) { print(e.toString()); });
 }</screen>
 
         <para>To decode an input stream from bytes into characters, wrap the
         InputStream with a <ulink
-        url="http://api.dartlang.org/io/StringInputStream.html">StringInputStream.</ulink>
+        url="http://api.dartlang.org/dart_io/StringDecoder.html">StringDecoder.</ulink>
         You can read the strings either as data becomes available or a line at
         a time.</para>
       </sect3>
@@ -2147,24 +2173,27 @@ main() {
       <sect3 id="ch03-writing-file-contents">
         <title>Writing file contents</title>
 
-        <para>Use an OutputStream to write data to a file. Open a file for
-        writing with <literal>openOutputStream()</literal> and declare a mode.
-        Use <literal moreinfo="none">FileMode.WRITE</literal> to completely
+        <para>You can use a <ulink
+        url="http://api.dartlang.org/dart_io/IOSink.html">IOSink</ulink> to
+        write data to a file. Use the File <literal>openWrite()</literal>
+        method to declare a mode and get an IOSink that you can write to. Use
+        <literal moreinfo="none">FileMode.WRITE</literal> to completely
         overwrite existing data in the file, and <literal
         moreinfo="none">FileMode.APPEND</literal> to add to the end.</para>
 
         <screen format="linespecific"><remark>lang-dart
+</remark><remark>ch03/writeFile.dart
 </remark>import 'dart:io';
 
 main() {
   var logFile = new File('log.txt');
-  var out = logFile.openOutputStream(FileMode.WRITE);
-  out.writeString('FILE ACCESSED ${new DateTime.now()}');
-  out.close();
+  var sink = logFile.openWrite(FileMode.WRITE);
+  sink.addString('FILE ACCESSED ${new DateTime.now()}');
+  sink.close();
 }</screen>
 
         <para>To write binary data, use <literal
-        moreinfo="none">write(List&lt;int&gt; buffer)</literal>.</para>
+        moreinfo="none">add(List&lt;int&gt; buffer)</literal>.</para>
       </sect3>
 
       <sect3 id="ch03-listing-files-in-a-directory">
@@ -2172,21 +2201,28 @@ main() {
 
         <para>Finding all files and subdirectories for a directory is an
         asynchronous operation. The <literal>list()</literal> method returns a
-        DirectoryLister, on which you can register callback handlers to be
-        notified when a file is encountered (using <literal
-        moreinfo="none">onFile</literal>) or when a directory is encountered
-        (using <literal moreinfo="none">onDir</literal>).</para>
+        Stream on which you can register handlers (using
+        <literal>listen()</literal>) to be notified when a file or directory
+        is encountered.</para>
 
         <screen format="linespecific"><remark>lang-dart
+</remark><remark>ch03/listFiles.dart
 </remark>import 'dart:io';
+import 'dart:async';
 
 main() {
   var dir = new Directory('/tmp');
-
-  DirectoryLister lister = dir.list(recursive:true); // Returns immediately.
-  lister.onError = (e) =&gt; print(e);
-  lister.onFile = (String name) =&gt; print('Found file $name');
-  lister.onDir = (String name) =&gt; print('Found dir $name');
+  var contentsStream = dir.list(recursive:true);
+  contentsStream.listen(
+    (FileSystemEntity f) {
+      if (f is File) {
+        print('Found file ${f.path}');
+      } else if (f is Directory) {
+        print('Found dir ${f.path}');
+      }
+    },
+    onError: (e) { print(e.toString()); }
+  );
 }</screen>
       </sect3>
 
@@ -2219,16 +2255,9 @@ main() {
         </itemizedlist>
 
         <para>Refer to the API docs for <ulink
-        url="http://api.dartlang.org/io/File.html">File,</ulink> <ulink
-        url="http://api.dartlang.org/io/Directory.html">Directory,</ulink> and
-        <ulink
-        url="http://api.dartlang.org/io/DirectoryLister.html">DirectoryLister</ulink>
-        for a full list of methods. Also see <ulink
-        url="http://api.dartlang.org/io/InputStream.html">InputStream,</ulink>
-        <ulink
-        url="http://api.dartlang.org/io/StringInputStream.html">StringInputStream,</ulink>
-        and <ulink
-        url="http://api.dartlang.org/io/OutputStream.html">OutputStream.</ulink></para>
+        url="http://api.dartlang.org/io/File.html">File</ulink> and <ulink
+        url="http://api.dartlang.org/io/Directory.html">Directory</ulink> for
+        a full list of methods.</para>
 
         <para>Besides the APIs discussed in this section, the dart:io library
         also provides APIs for <ulink
@@ -2258,9 +2287,6 @@ main() {
         You can match request handlers, set headers, stream data, and
         more.</para>
 
-        <para>Because Dart is single threaded and has an event loop, the API
-        design of HttpServer favors callbacks for handling events.</para>
-
         <para>The following sample web server can return only simple text
         information. This server listens on port 8888 and address 127.0.0.1
         (localhost), responding to requests for the path <literal
@@ -2269,21 +2295,28 @@ main() {
         of 404 (not found).</para>
 
         <screen format="linespecific"><remark>lang-dart
+</remark><remark>ch03/httpServer.dart
 </remark>import 'dart:io';
 
 main() {
-  dartHandler(HttpRequest request, HttpResponse response) {
+  dartHandler(HttpRequest request) {
     print('New request');
-    response.outputStream.writeString('Dart is optionally typed');
-    response.outputStream.close();
+    request.response.addString('Dart is optionally typed');
+    request.response.close();
   };
 
-  var httpServer = new HttpServer();
-  httpServer.addRequestHandler(
-      (req) =&gt; req.path == '/languages/dart',
-      dartHandler);
-
-  httpServer.listen('127.0.0.1', 8888);
+  HttpServer.bind('127.0.0.1', 8888).then((HttpServer server) {
+    server.listen((request) { 
+      print("got request");
+      if (request.uri.path == '/languages/dart') {
+        dartHandler(request);
+      } else {
+        request.response.addString('Not found');
+        request.response.statusCode = HttpStatus.NOT_FOUND;
+        request.response.close();
+      }
+    });
+  });
 }</screen>
 
         <para>You can see a more comprehensive HTTP server in <xref
@@ -2301,60 +2334,27 @@ main() {
         browser-based apps. When programming in the browser, use the <link
         linkend="ch03-httprequest">HttpRequest class</link>.</para>
 
-        <para>The HttpClient API, like the HttpServer API, is callback
-        oriented. The general flow of events is as follows:</para>
-
-        <orderedlist continuation="restarts" inheritnum="ignore"
-                     numeration="arabic">
-          <listitem>
-            <para>Create a new HttpClient.</para>
-          </listitem>
-
-          <listitem>
-            <para>Get the URL.</para>
-          </listitem>
-
-          <listitem>
-            <para>Register the <literal>onResponse()</literal> callback on the
-            HttpClientConnection.</para>
-          </listitem>
-
-          <listitem>
-            <para>Register the<literal> onData()</literal> callback on the
-            input stream.</para>
-          </listitem>
-
-          <listitem>
-            <para>Register the <literal>onClosed()</literal> callback on the
-            HttpClientConnection.</para>
-          </listitem>
-
-          <listitem>
-            <para>Read data when available.</para>
-          </listitem>
-
-          <listitem>
-            <para>Shut down the HttpClient when you no longer want to create
-            connections using it.</para>
-          </listitem>
-        </orderedlist>
-
         <screen format="linespecific"><remark>lang-dart
+</remark><remark>ch03/httpClient.dart
 </remark>import 'dart:io';
 import 'dart:uri';
 
 main() {
+  var url = new Uri('http://127.0.0.1:8888/languages/dart');
   var httpClient = new HttpClient();
-  var conn = httpClient.getUrl(new Uri('http://127.0.0.1:8888/languages/dart'));
-  conn.onResponse = (HttpClientResponse resp) {
-    var input = resp.inputStream;
-    input.onData = () {
-      var data = input.read();
-      var text = new String.fromCharCodes(data);
-      print(text);
-    };
-    input.onClosed = () =&gt; httpClient.shutdown();
-  };
+  httpClient.getUrl(url)
+    .then((HttpClientRequest request) {
+      print('have request');
+      return request.close();
+    })
+    .then((HttpClientResponse response) {
+      print('have response');
+      response.transform(new StringDecoder()).toList().then((data) {
+        var body = data.join('');
+        print(body);
+        httpClient.close();
+      });
+    });
 }</screen>
       </sect3>
     </sect2>
@@ -2637,25 +2637,23 @@ main() {
       generate hashes (also known as <emphasis>digests</emphasis> or
       <emphasis>message digests</emphasis>). We recommend using SHA256, but we
       have included SHA1 and MD5 for compatibility with older systems. All
-      these <phrase role="keep-together">types inherit </phrase> from <ulink
+      these <phrase role="keep-together">types implement</phrase> <ulink
       url="http://api.dartlang.org/crypto/Hash.html">Hash,</ulink> which
       defines the Dart interface for <ulink
       url="http://en.wikipedia.org/wiki/Cryptographic_hash_function">cryptographic
       hash functions.</ulink></para>
 
       <screen format="linespecific"><remark>lang-dart
+</remark><remark>ch03/sha256.dart
 </remark>import 'dart:crypto';
 
 main() {
   var sha256 = new SHA256();
-  var digest = sha256.update('message'.codeUnits).digest();
-  var hexString = CryptoUtils.bytesToHex(digest);
+  sha256.add('message'.codeUnits);
+  var hexString = CryptoUtils.bytesToHex(sha256.close());
   assert(hexString ==
       'ab530a13e45914982b79f9b7e3fba994cfd1f3fb22f71cea1afbf02b460c6d1d');
 }</screen>
-
-      <para>If the message content changes, the digest value also changes
-      (with a very high probability).</para>
     </sect2>
 
     <sect2 id="ch03-crypto-authentication">
@@ -2666,17 +2664,15 @@ main() {
       cryptographic hash function with a secret key.</para>
 
       <screen format="linespecific"><remark>lang-dart
+</remark><remark>ch03/hmac.dart
 </remark>import 'dart:crypto';
 main() {
   var hmac = new HMAC(new SHA256(), 'secretkey'.codeUnits);
-  var hmacDigest = hmac.update('message'.codeUnits).digest();
-  var hmacHex = CryptoUtils.bytesToHex(hmacDigest);
+  hmac.add('message'.codeUnits);
+  var hmacHex = CryptoUtils.bytesToHex(hmac.close());
   assert(hmacHex ==
       '5c3e2f56de9411068f675ef32ffa12735210b9cbfee2ba521367a3955334a343');
 }</screen>
-
-      <para>If either the message contents or key changes, the digest value
-      also changes (with a very high probability).</para>
     </sect2>
 
     <sect2 id="ch03-crypto-base64">
@@ -2706,7 +2702,18 @@ main() {
     <title>Summary</title>
 
     <para>This chapter introduced you to the most commonly used functionality
-    in Dart’s built-in libraries. You can use the pub tool, discussed in the
-    next chapter, to install additional Dart libraries.</para>
+    in many of Dart’s built-in libraries. It didn’t cover all the built-in
+    libraries, however. Other libraries you might want to look into include
+    <ulink
+    url="http://api.dartlang.org/dart_collection.html">dart:collection,</ulink>
+    <ulink
+    url="http://api.dartlang.org/dart_mirrors.html">dart:mirrors,</ulink>
+    <ulink url="http://api.dartlang.org/logging.html">logging,</ulink> <ulink
+    url="http://api.dartlang.org/mock.html">mock,</ulink> and <ulink
+    url="http://api.dartlang.org/unittest.html"
+    wordsize="">unittest.</ulink></para>
+
+    <para>You can use the pub tool, discussed in the next chapter, to install
+    additional Dart libraries.</para>
   </sect1>
 </chapter>
