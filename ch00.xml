@@ -24,9 +24,9 @@
   Attribution-Noncommercial-No Derivative Works 3.0 United States
   License.</ulink> Source code files for this book’s samples are also there,
   in the <ulink
-  url="https://github.com/dart-lang/dart-up-and-running-book/tree/master/code"><literal>code/</literal></ulink>
-  subdirectory. Downloading the sample code from GitHub is much easier than
-  copying it from the book.</para>
+  url="https://github.com/dart-lang/dart-up-and-running-book/tree/master/code"><literal>code/</literal>
+  subdirectory.</ulink> Downloading the sample code from GitHub is much easier
+  than copying it from the book.</para>
 
   <para>If you find an error in the sample code or text, please <ulink
   url="https://github.com/dart-lang/dart-up-and-running-book/issues/new">create
@@ -211,29 +211,28 @@
         <itemizedlist>
           <listitem>
             <para>In the dart:html library, the <literal>elements</literal>
-            property of Element is now called
-            <literal>children</literal>.</para>
+            property of Element changed to <literal>children</literal>.</para>
           </listitem>
 
           <listitem>
-            <para>Names in dart:html have changed to conform to Dart naming
-            standards. In particular, <literal>innerHTML</literal> is now
+            <para>Names in dart:html changed to conform to Dart naming
+            standards. In particular, <literal>innerHTML</literal> became
             <literal>innerHtml</literal>.</para>
           </listitem>
 
           <listitem>
-            <para>The <literal>charCodes()</literal> method of String is now a
+            <para>The <literal>charCodes()</literal> method of String became a
             getter, so we removed the parentheses from all references to
             <literal>charCodes</literal>.</para>
           </listitem>
 
           <listitem>
-            <para>The <literal>readAsText()</literal> method of File is now
-            called <literal>readAsString()</literal>.</para>
+            <para>The <literal>readAsText()</literal> method of File became
+            <literal>readAsString()</literal>.</para>
           </listitem>
 
           <listitem>
-            <para>Constructors for the Date class have changed.</para>
+            <para>Constructors for the Date class changed.</para>
           </listitem>
 
           <listitem>
@@ -245,7 +244,7 @@
           </listitem>
 
           <listitem>
-            <para>The return type of StringBuffer's <literal>add()</literal>
+            <para>The return type of StringBuffer’s <literal>add()</literal>
             method changed to void. Code that used to chain calls to
             <literal>add()</literal> should now use method cascades
             instead.</para>
@@ -282,9 +281,9 @@
 
         <itemizedlist>
           <listitem>
-            <para>Some methods have changed to fields or getters. This meant
-            we had to remove the <literal>()</literal> after
-            <literal>hashCode</literal>, <literal>isEmpty</literal> and
+            <para>Some methods changed to fields or getters. This meant we had
+            to remove the <literal>()</literal> after
+            <literal>hashCode</literal>, <literal>isEmpty</literal>, and
             <literal>isNan</literal>. We also changed
             <literal>getKeys()</literal> to <literal>keys</literal>, and
             <literal>getValues()</literal> to
@@ -292,25 +291,25 @@
           </listitem>
 
           <listitem>
-            <para>The Iterable class has been beefed up, affecting all
-            Collections such as Lists and Sets. The former Collection methods
-            <literal>filter()</literal> and <literal>map()</literal> are now
-            in Iterable, and the name of <literal>filter()</literal> has
-            changed to <literal>where()</literal>. (<literal>map()</literal>
-            was briefly renamed to <literal>mappedBy()</literal>, but due to
-            public feedback that decision was reversed.) The
-            <literal>some()</literal> method is now named
+            <para>The Iterable class was beefed up, affecting all Collections
+            such as Lists and Sets. The former Collection methods
+            <literal>filter()</literal> and <literal>map()</literal> moved to
+            Iterable, and the name of <literal>filter()</literal> changed to
+            <literal>where()</literal>. (<literal>map()</literal> was briefly
+            renamed to <literal>mappedBy()</literal>, but due to public
+            feedback that decision was reversed.) The
+            <literal>some()</literal> method changed to
             <literal>any()</literal>. Many values returned by Iterables are
             now lazily filled Iterables; you can use
             <literal>toList()</literal> or <literal>toSet()</literal> to force
             evaluation. We recommend <emphasis>extending</emphasis> Iterable
             rather than just implementing it, so you can take advantage of
             added functionality. More details are in an article, <ulink
-            url="http://www.dartlang.org/articles/m3-whats-new/iterables.html">Iterables</ulink>.</para>
+            url="http://www.dartlang.org/articles/m3-whats-new/iterables.html">Iterables.</ulink></para>
           </listitem>
 
           <listitem>
-            <para>The Iterator interface has changed from
+            <para>The Iterator interface changed from
             <literal>next()</literal> and <literal>hasNext()</literal> to
             <literal>current</literal> and
             <literal>moveNext()</literal>.</para>
@@ -337,7 +336,7 @@
 
           <listitem>
             <para>The dart:html HttpRequest <literal>get()</literal> method
-            has been replaced by <literal>getString()</literal> and
+            was replaced by <literal>getString()</literal> and
             <literal>request()</literal>, which return Future&lt;String&gt;
             and Future&lt;HttpRequest&gt;, respectively.</para>
           </listitem>
@@ -348,9 +347,9 @@
           </listitem>
 
           <listitem>
-            <para>Timer and Completer have moved from dart:isolate to a new
-            library called dart:async. The Timer constructors now take a
-            Duration instead of an int.</para>
+            <para>Timer and Completer moved from dart:isolate to a new library
+            called dart:async. The Timer constructors now take a Duration
+            instead of an int.</para>
           </listitem>
 
           <listitem>
@@ -371,7 +370,7 @@
 
           <listitem>
             <para>The StringBuffer <literal>add()</literal> and
-            <literal>addAll()</literal> methods are replaced by
+            <literal>addAll()</literal> methods were replaced by
             <literal>write()</literal> and <literal>writeAll()</literal>,
             respectively. StringBuffer no longer has a
             <literal>clear()</literal> method; just create a new StringBuffer
@@ -379,16 +378,15 @@
           </listitem>
 
           <listitem>
-            <para>The dart:io library has changed significantly since M3, as
-            has all I/O in Dart. I/O now centers around the dart:async
-            library's Stream and Future classes, instead of callbacks. The
-            changes are too numerous to list here, but at a high level, the
-            InputStream and OutputStream classes have been replaced with
-            classes implementing <ulink
+            <para>The dart:io library changed significantly after M3, as did
+            all I/O in Dart. I/O now centers around the dart:async library’s
+            Stream and Future classes, instead of callbacks. The InputStream
+            and OutputStream classes were replaced with classes implementing
+            <ulink
             url="http://api.dartlang.org/docs/releases/latest/dart_async/Stream.html">Stream</ulink>
-            and the <ulink
-            url="http://api.dartlang.org/dart_io/IOSink.html">IOSink</ulink>
-            helper class. A new <ulink
+            and <ulink
+            url="http://api.dartlang.org/dart_io/IOSink.html">IOSink.</ulink>
+            A new <ulink
             url="http://api.dartlang.org/dart_io/FileSystemEntity.html">FileSystemEntity</ulink>
             class is the superclass of File and Directory. To create a new
             HttpServer, you now use the static <literal>bind()</literal>
@@ -397,9 +395,9 @@
           </listitem>
 
           <listitem>
-            <para>The most used dart:crypto methods for hashes have changed
-            from <literal>update()</literal> and <literal>digest()</literal>
-            to <literal>add()</literal> and <literal>close()</literal>.</para>
+            <para>The most used dart:crypto methods for hashes changed from
+            <literal>update()</literal> and <literal>digest()</literal> to
+            <literal>add()</literal> and <literal>close()</literal>.</para>
           </listitem>
         </itemizedlist>
       </listitem>
@@ -420,7 +418,7 @@
       </listitem>
     </itemizedlist>
 
-    <para>We’ve also added sections for some pre-existing features:</para>
+    <para>We also added sections for some pre-existing features:</para>
 
     <itemizedlist>
       <listitem>
@@ -472,8 +470,7 @@
         <para>JJ Behrens, whose careful look at the first draft of the book
         helped us catch errors and inconsistencies, as well as rework Chapter
         5 to be more interesting, and less of a laundry list. He also created
-        a system for testing our samples, so we can be sure that they work now
-        and continue to work as the language and libraries evolve.</para>
+        a system for testing our samples.</para>
       </listitem>
 
       <listitem>
@@ -484,8 +481,9 @@
       <listitem>
         <para>Mary Campione, whose stream-of-consciousness review of the
         entire book, performed while she was first learning the language,
-        helped us find and fix many confusing spots, as well as some
-        errors.</para>
+        helped us find and fix many confusing spots, as well as some errors.
+        Later she reviewed and updated our samples, and she implemented
+        continuous build testing for our samples on drone.io.</para>
       </listitem>
 
       <listitem>
@@ -519,7 +517,7 @@
     make some last-minute fixes that improved the final result. We’d also like
     to thank the good people who manage the author workflow and make working
     on an O’Reilly book such a pleasure. We personally worked with Sarah
-    Schneider and Jessica Hosman.</para>
+    Schneider, Jessica Hosman, and Rachel James.</para>
 
     <para>Finally, we thank Lars Bak and Kasper Lund for writing the foreword,
     and most of all for creating Dart.</para>

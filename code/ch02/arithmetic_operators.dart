@@ -1,11 +1,10 @@
 main() {
-  var a = 2;
-  var b = 3;
+  assert(2 + 3 == 5);
+  assert(2 - 3 == -1);
+  assert(2 * 3 == 6);
+  assert(5 / 2 == 2.5);   // Result is a double
+  assert(5 ~/ 2 == 2);    // Result is an integer
+  assert(5 % 2 == 1);     // Remainder
 
-  assert(a + b == 5);
-  assert(a - b == -1);
-  assert(a * b == 6);
-  assert( a / b > 0.6 && a / b < 0.7);
-  assert(a ~/ b == 0);  // Quotient
-  assert(a % b == 2);   // Remainder
+  print('5/2 = ${5~/2} remainder ${5%2}'); // 5/2 = 2 remainder 1
 }

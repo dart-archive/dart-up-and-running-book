@@ -76,9 +76,10 @@
 
   <para>All of these tools are in the Dart Editor bundle, since the editor
   uses Dartium and the other tools. You can also download Dartium separately,
-  and you can download an SDK that includes dart2js, dart, and pub. See the
-  <ulink url="http://www.dartlang.org/downloads.html">Downloads page</ulink>
-  for links and details.</para>
+  and you can download an SDK that includes pub, dart2js, dart, dart_analyzer,
+  and dartdoc. See the <ulink
+  url="http://www.dartlang.org/downloads.html">Downloads page</ulink> for
+  links and details.</para>
 
   <sect1 id="ch04-tools-pub">
     <title>pub: The Dart Package Manager</title>
@@ -436,7 +437,8 @@ import 'package:intl/intl.dart';</programlisting>
           <para>You can reduce the size of the list by typing one or more
           characters. For example, if you type <emphasis
           role="bold">c</emphasis>, only the <emphasis
-          role="bold">center</emphasis> variables appear.</para>
+          role="bold">center</emphasis> and <emphasis
+          role="bold">context</emphasis> variables appear.</para>
 
           <para>If you choose an item from the list—for example, <emphasis
           role="bold">centerX</emphasis>— the editor scrolls to its
@@ -1080,13 +1082,13 @@ if (!navigator.webkitStartDart) {
           <listitem>
             <para>Open the Developer Tools window, as described in <ulink
             url="https://developers.google.com/chrome-developer-tools/docs/overview#access">How
-            to Access the Developer Tools</ulink>.</para>
+            to Access the Developer Tools.</ulink></para>
           </listitem>
 
           <listitem>
             <para>Turn on source maps, as described in <ulink
             url="http://www.youtube.com/watch?v=-xJl22Kvgjg">this
-            video</ulink>.</para>
+            video.</ulink></para>
           </listitem>
 
           <listitem>
@@ -1095,7 +1097,7 @@ if (!navigator.webkitStartDart) {
             url="https://developers.google.com/chrome-developer-tools/docs/scripts-breakpoints#js_exceptions">Pause
             on Exceptions</ulink> and <ulink
             url="https://developers.google.com/chrome-developer-tools/docs/scripts-breakpoints#js_uncaught">Pause
-            on Uncaught Exceptions</ulink>, respectively.</para>
+            on Uncaught Exceptions,</ulink> respectively.</para>
           </listitem>
 
           <listitem>
@@ -1115,7 +1117,7 @@ if (!navigator.webkitStartDart) {
           <listitem>
             <para>Enable the Developer Toolbar, as described in <ulink
             url="https://hacks.mozilla.org/2012/08/new-firefox-command-line-helps-you-develop-faster/">this
-            blog post</ulink>.</para>
+            blog post.</ulink></para>
           </listitem>
 
           <listitem>
@@ -1150,14 +1152,14 @@ if (!navigator.webkitStartDart) {
           <listitem>
             <para>Turn on the Develop menu, as described in <ulink
             url="https://developer.apple.com/library/safari/#documentation/appleapplications/Conceptual/Safari_Developer_Guide/2SafariDeveloperTools/SafariDeveloperTools.html#//apple_ref/doc/uid/TP40007874-CH3-SW7">Enabling
-            Developer Tools in Safari on the Desktop</ulink>.</para>
+            Developer Tools in Safari on the Desktop.</ulink></para>
           </listitem>
 
           <listitem>
             <para>Enable breaks on either all exceptions or only uncaught
             exceptions, as described in <ulink
             url="http://developer.apple.com/library/safari/documentation/appleapplications/Conceptual/Safari_Developer_Guide/DebuggingYourWebsite/DebuggingYourWebsite.html#//apple_ref/doc/uid/TP40007874-CH8-SW1">Debugging
-            JavaScript Using the Web Inspector</ulink>.</para>
+            JavaScript Using the Web Inspector.</ulink></para>
           </listitem>
 
           <listitem>
@@ -1324,10 +1326,10 @@ if (!navigator.webkitStartDart) {
     Dart code. By default, dartdoc parses and creates documentation for the
     .dart files that you pass to it, plus the libraries they import.</para>
 
-    <para>To improve dartdoc’s output, provide documentation comments, as
+    <para>To improve dartdoc’s output, provide documentation comments as
     described in <xref linkend="comments-doc" />. Also see the article <ulink
     url="http://www.dartlang.org/articles/doc-comment-guidelines/">Guidelines
-    for Dart Doc Comments</ulink>.</para>
+    for Dart Doc Comments.</ulink></para>
 
     <sect2 id="ch04-tools-dartdoc-basic-usage">
       <title>Basic Usage</title>
@@ -1418,8 +1420,8 @@ if (!navigator.webkitStartDart) {
             use this option if dartdoc can’t find a library because your
             directory structure doesn’t match <ulink
             url="http://pub.dartlang.org/doc/package-layout.html">pub’s
-            package layout conventions</ulink>. <emphasis>Example:</emphasis>
-            <literal>--pkg=foo/packages/</literal> </para>
+            package layout conventions.</ulink> <emphasis>Example:</emphasis>
+            <literal>--pkg=foo/packages/</literal></para>
           </listitem>
         </varlistentry>
       </variablelist>

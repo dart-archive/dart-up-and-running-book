@@ -769,10 +769,12 @@ assert(list[1] == 2);</programlisting>
       If you use a Map constructor, any object can be a key.</para>
 
       <programlisting format="linespecific"><remark>lang-dart
-</remark>var map = new Map();                  // use a map constructor.
-map[1] = 'partridge';                 // key is 1; value is 'partridge'.
-map[2] = 'turtledoves';               // key is 2; value is 'turtledoves'.
-map[5] = 'golden rings';              // key is 5; value is 'golden rings'.</programlisting>
+</remark><remark>ch02/map_constructor.dart
+</remark>var map = new Map();                  // Use a map constructor.
+map[1] = 'partridge';                 // Key is 1; value is 'partridge'.
+map[2] = 'turtledoves';               // Key is 2; value is 'turtledoves'.
+map[5] = 'golden rings';              // Key is 5; value is 'golden rings'.
+</programlisting>
 
       <para>A map <emphasis>value</emphasis> can be any object, including
       null.</para>
@@ -919,11 +921,6 @@ enableFlags({bool bold: false, bool hidden: false}) {
 }
 
 enableFlags(bold: true); // bold will be true; hidden will be false.</programlisting>
-
-        <note>
-          <para>The preceding two examples use <link
-          linkend="comments-doc">documentation comments</link>.</para>
-        </note>
       </sect3>
 
       <sect3 id="functions-optional-positional-parameters">
@@ -1345,16 +1342,16 @@ if (n % i == 0 &amp;&amp; d % i == 0)     // Harder to read, but equivalent.</pr
 
       <para>Example:</para>
 
-      <programlisting format="linespecific"><remark>lang-dart
-</remark>var a = 2;
-var b = 3;
+      <programlisting format="linespecific"><remark>lang-dart</remark><remark>
+ch02/arithmetic_operators.dart
+</remark>assert(2 + 3 == 5);
+assert(2 - 3 == -1);
+assert(2 * 3 == 6);
+assert(5 / 2 == 2.5);   // Result is a double
+assert(5 ~/ 2 == 2);    // Result is an integer
+assert(5 % 2 == 1);     // Remainder
 
-assert(a + b == 5);
-assert(a - b == -1);
-assert(a * b == 6);
-assert( a / b &gt; 0.6 &amp;&amp; a / b &lt; 0.7);
-assert(a ~/ b == 0);  // Quotient
-assert(a % b == 2);   // Remainder</programlisting>
+print('5/2 = ${5~/2} remainder ${5%2}'); // 5/2 = 2 remainder 1</programlisting>
 
       <para>Dart also supports both prefix and postfix increment and decrement
       operators.</para>
@@ -1510,16 +1507,14 @@ assert(a != b) ; // -1 != 0</programlisting>
       <para>Here’s an example of using each of the equality and relational
       operators:</para>
 
-      <programlisting format="linespecific"><remark>lang-dart
-</remark>var a = 2;
-var b = 3;
-
-assert(a == 2);       // 2 and 2 are equal.
-assert(a != b);       // 2 and 3 aren't equal.
-assert(b &gt; a);        // 3 is more than 2.
-assert(a &lt; b);        // 2 is less then 3.
-assert(b &gt;= b);       // 3 is greater than or equal to 3.
-assert(a &lt;= b);       // 2 is less than or equal to 3.</programlisting>
+      <programlisting format="linespecific"><remark>lang-dart</remark><remark>
+ch02/op_equality.dart
+</remark>assert(2 == 2);
+assert(2 != 3);
+assert(3 &gt; 2);
+assert(2 &lt; 3);
+assert(3 &gt;= 3);
+assert(2 &lt;= 3);</programlisting>
     </sect2>
 
     <sect2 id="ch02-op-type-test">

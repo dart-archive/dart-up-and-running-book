@@ -34,7 +34,7 @@
 </remark>assert(int.parse('42') == 42);
 assert(double.parse('0.50') == 0.5);</screen>
 
-      <para>Use the toString() method (defined by <ulink
+      <para>Use the <literal>toString()</literal> method (defined by <ulink
       url="http://api.dartlang.org/dart_core/Object.html">Object</ulink>) to
       convert an int or double to a string. To specify the number of digits to
       the right of the decimal, use <literal>toStringAsFixed()</literal>
@@ -862,7 +862,7 @@ main() {
       immediately returns a Future object. Later, when the query finishes in
       some future event loop iteration, the completer completes with the
       results. The completion signals that the Future has a value, which runs
-      the callback registered in Future's <literal>then()</literal>.</para>
+      the callback registered in Future’s <literal>then()</literal>.</para>
 
       <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03/futures.dart</remark>Future longExpensiveSearch() {
@@ -958,7 +958,7 @@ return result.then((value) =&gt; expensiveWork())
       <para>Sometimes your algorithm needs to initiate many asynchronous
       methods and wait for each one to complete before continuing. Use the
       <ulink
-      url="http://api.dartlang.org/dart_async/Future.html#wait">Future.wait()</ulink>
+      url="http://api.dartlang.org/dart_async/Future.html#wait"><literal>Future.wait()</literal></ulink>
       static method to manage multiple Futures and wait for them all to
       complete.</para>
 
@@ -968,7 +968,7 @@ Future copyDone = copyLotsOfFiles();
 Future checksumDone = checksumLotsOfOtherFiles();
 
 new Future.wait([deleteDone, copyDone, checksumDone]).then((List values) {
-print('Done with all the long steps');
+  print('Done with all the long steps');
 });</screen>
     </sect2>
 
@@ -2163,8 +2163,8 @@ main() {
       onError: (e) { print(e.toString()); });
 }</screen>
 
-        <para>To decode an input stream from bytes into characters, wrap the
-        InputStream with a <ulink
+        <para>To decode from bytes into characters, wrap the stream with a
+        <ulink
         url="http://api.dartlang.org/dart_io/StringDecoder.html">StringDecoder.</ulink>
         You can read the strings either as data becomes available or a line at
         a time.</para>
@@ -2173,7 +2173,7 @@ main() {
       <sect3 id="ch03-writing-file-contents">
         <title>Writing file contents</title>
 
-        <para>You can use a <ulink
+        <para>You can use an <ulink
         url="http://api.dartlang.org/dart_io/IOSink.html">IOSink</ulink> to
         write data to a file. Use the File <literal>openWrite()</literal>
         method to declare a mode and get an IOSink that you can write to. Use
@@ -2553,9 +2553,8 @@ main() {
     <para>The UTF library helps bridge the gap between strings and
     UTF-8/UTF-16/UTF-32 encodings.</para>
 
-    <para>The UTF library works in both web apps and command-line apps. To use
-    the UTF library, import <literal
-    moreinfo="none">dart:utf</literal>.</para>
+    <para>This library works in both web apps and command-line apps. To use
+    it, import <literal moreinfo="none">dart:utf</literal>.</para>
 
     <sect2 id="ch03-utf-decode-utf8">
       <title>Decoding UTF-8 Characters</title>
