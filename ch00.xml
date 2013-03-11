@@ -343,7 +343,8 @@
 
           <listitem>
             <para>The dart:html Window <literal>setTimeout()</literal> method
-            is gone; instead, use a Timer.</para>
+            is gone. Instead, use <literal>Future.delayed()</literal> or, if
+            you know what you’re doing, Timer.</para>
           </listitem>
 
           <listitem>
