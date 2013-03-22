@@ -96,8 +96,7 @@
 
       <mediaobject>
         <imageobject role="web">
-          <imagedata fileref="figs/web/daur_0502.png" format="PNG"
-                     width="315px" />
+          <imagedata fileref="figs/web/daur_0502.png" format="PNG" />
         </imageobject>
       </mediaobject>
     </figure>
