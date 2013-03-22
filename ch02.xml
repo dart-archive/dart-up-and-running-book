@@ -61,7 +61,7 @@ main() {
       </varlistentry>
 
       <varlistentry>
-        <term><literal moreinfo="none">100</literal></term>
+        <term><literal moreinfo="none">42</literal></term>
 
         <listitem>
           <para>A number <firstterm>literal</firstterm>. Literals are a kind
