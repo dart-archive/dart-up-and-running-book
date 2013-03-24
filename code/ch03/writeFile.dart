@@ -1,8 +1,30 @@
 import 'dart:io';
 
-main() {
+overwriteFile() {
   var logFile = new File('log.txt');
-  var sink = logFile.openWrite(FileMode.WRITE);
-  sink.addString('FILE ACCESSED ${new DateTime.now()}');
+  var sink = logFile.openWrite();
+  sink.write('FILE ACCESSED ${new DateTime.now()}\n');
   sink.close();
+}
+
+appendToFile() {
+  var logFile = new File('betterLog.txt');
+  var sink = logFile.openWrite(mode: FileMode.APPEND);
+  sink.write('FILE ACCESSED ${new DateTime.now()}\n');
+  sink.close();
+}
+
+writeBinary() {
+  var binaryFile = new File('copyOfIcon.ico');
+  var sink = binaryFile.openWrite();
+  var icoFile = new File('icon.ico');
+  var data = icoFile.openSync(FileMode.READ).readSync(icoFile.lengthSync());
+  sink.writeBytes(data);
+  sink.close();
+}
+
+main() {
+  overwriteFile();
+  appendToFile();
+  writeBinary();
 }

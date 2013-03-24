@@ -392,9 +392,8 @@ assert(ingredients.contains('titanium'));
 // Check whether all the items are in the set.
 assert(ingredients.containsAll(['titanium', 'xenon']));</screen>
 
-        <para>An intersection is a set whose items are in two other sets. A
-        subset has all of its items included in another, potentially larger,
-        collection.</para>
+        <para>An intersection is a set whose items are in two other
+        sets.</para>
 
         <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03/set-tests.dart
@@ -405,13 +404,7 @@ ingredients.addAll(['gold', 'titanium', 'xenon']);
 var nobleGases = new Set.from(['xenon', 'argon']);
 var intersection = ingredients.intersection(nobleGases);
 assert(intersection.length == 1);
-assert(intersection.contains('xenon'));
-
-// Check whether this set is a subset of another collection.
-// That is, does another collection contains all the items of this set?
-var allElements = ['hydrogen', 'helium', 'lithium', 'beryllium',
-                   'gold', 'titanium', 'xenon' /* all the rest */];
-assert(ingredients.isSubsetOf(allElements));</screen>
+assert(intersection.contains('xenon'));</screen>
 
         <para>Refer to the <ulink
         url="http://api.dartlang.org/dart_core/Set.html">Set API docs</ulink>
@@ -2176,24 +2169,27 @@ main() {
         <para>You can use an <ulink
         url="http://api.dartlang.org/dart_io/IOSink.html">IOSink</ulink> to
         write data to a file. Use the File <literal>openWrite()</literal>
-        method to declare a mode and get an IOSink that you can write to. Use
-        <literal moreinfo="none">FileMode.WRITE</literal> to completely
-        overwrite existing data in the file, and <literal
-        moreinfo="none">FileMode.APPEND</literal> to add to the end.</para>
+        method to declare a mode and get an IOSink that you can write to. The
+        default mode, <literal moreinfo="none">FileMode.WRITE</literal>,
+        completely overwrites existing data in the file.</para>
 
         <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03/writeFile.dart
-</remark>import 'dart:io';
+</remark>var logFile = new File('log.txt');
+var sink = logFile.openWrite();
+sink.write('FILE ACCESSED ${new DateTime.now()}\n');
+sink.close();</screen>
 
-main() {
-  var logFile = new File('log.txt');
-  var sink = logFile.openWrite(FileMode.WRITE);
-  sink.addString('FILE ACCESSED ${new DateTime.now()}');
-  sink.close();
-}</screen>
+        <para>To add to the end of the file, use the optional
+        <literal>mode</literal> parameter to specify
+        <literal>FileMode.APPEND</literal>:</para>
+
+        <screen format="linespecific"><remark>lang-dart
+</remark><remark>ch03/writeFile.dart
+</remark>var sink = logFile.openWrite(mode: FileMode.APPEND); </screen>
 
         <para>To write binary data, use <literal
-        moreinfo="none">add(List&lt;int&gt; buffer)</literal>.</para>
+        moreinfo="none">writeBytes(List&lt;int&gt; buffer)</literal>.</para>
       </sect3>
 
       <sect3 id="ch03-listing-files-in-a-directory">
@@ -2301,7 +2297,7 @@ main() {
 main() {
   dartHandler(HttpRequest request) {
     print('New request');
-    request.response.addString('Dart is optionally typed');
+    request.response.write('Dart is optionally typed');
     request.response.close();
   };
 
@@ -2311,7 +2307,7 @@ main() {
       if (request.uri.path == '/languages/dart') {
         dartHandler(request);
       } else {
-        request.response.addString('Not found');
+        request.response.write('Not found');
         request.response.statusCode = HttpStatus.NOT_FOUND;
         request.response.close();
       }

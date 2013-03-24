@@ -197,257 +197,298 @@
   <sect1 id="preface-updates">
     <title>Content Updates</title>
 
-    <para>We’ve updated the content to reflect the following changes:</para>
+    <para>This section gives details about how the book has changed since its
+    first printing.</para>
 
-    <itemizedlist>
-      <listitem>
-        <para>Using <literal>part of</literal> in additional library files is
-        now <emphasis>required</emphasis>, not optional.</para>
-      </listitem>
+    <sect2 id="preface-updates-v3">
+      <title>Content Updates: Third Printing</title>
 
-      <listitem>
-        <para>In M2, several APIs changed:</para>
+      <para>We’ve updated the content to reflect the following M4
+      changes:</para>
 
-        <itemizedlist>
-          <listitem>
-            <para>In the dart:html library, the <literal>elements</literal>
-            property of Element changed to <literal>children</literal>.</para>
-          </listitem>
+      <itemizedlist>
+        <listitem>
+          <para>File’s <literal>openWrite()</literal> method now has no
+          required parameters but two optional named parameters. The
+          <literal>mode</literal> parameter has a default value of
+          <literal>FileMode.WRITE</literal>.</para>
+        </listitem>
 
-          <listitem>
-            <para>Names in dart:html changed to conform to Dart naming
-            standards. In particular, <literal>innerHTML</literal> became
-            <literal>innerHtml</literal>.</para>
-          </listitem>
+        <listitem>
+          <para>IOSink’s methods for writing data have changed. To write
+          string data, instead of <literal>addString()</literal> use
+          <literal>write()</literal>. To write binary data, instead of
+          <literal>add()</literal> use <literal>writeBytes()</literal>.</para>
+        </listitem>
 
-          <listitem>
-            <para>The <literal>charCodes()</literal> method of String became a
-            getter, so we removed the parentheses from all references to
-            <literal>charCodes</literal>.</para>
-          </listitem>
+        <listitem>
+          <para>Set’s <literal>isSubsetOf()</literal> method is gone. Instead,
+          use the Set <literal>containsAll()</literal> method. You can convert
+          any Iterable to a Set using <literal>toSet()</literal>.</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
 
-          <listitem>
-            <para>The <literal>readAsText()</literal> method of File became
-            <literal>readAsString()</literal>.</para>
-          </listitem>
+    <sect2 id="preface-updates-v2">
+      <title>Content Updates: Second Printing</title>
 
-          <listitem>
-            <para>Constructors for the Date class changed.</para>
-          </listitem>
+      <para>We’ve updated the content to reflect the following changes:</para>
 
-          <listitem>
-            <para>NullPointerException no longer exists.</para>
-          </listitem>
+      <itemizedlist>
+        <listitem>
+          <para>Using <literal>part of</literal> in additional library files
+          is now <emphasis>required</emphasis>, not optional.</para>
+        </listitem>
 
-          <listitem>
-            <para>RegExp no longer has a const constructor.</para>
-          </listitem>
+        <listitem>
+          <para>In M2, several APIs changed:</para>
 
-          <listitem>
-            <para>The return type of StringBuffer’s <literal>add()</literal>
-            method changed to void. Code that used to chain calls to
-            <literal>add()</literal> should now use method cascades
-            instead.</para>
-          </listitem>
-        </itemizedlist>
-      </listitem>
+          <itemizedlist>
+            <listitem>
+              <para>In the dart:html library, the <literal>elements</literal>
+              property of Element changed to
+              <literal>children</literal>.</para>
+            </listitem>
 
-      <listitem>
-        <para>The recommended way for web apps to use
-        <literal>dart.js</literal> is now to have a local copy, preferably one
-        downloaded using the <literal>browser</literal> pub package.</para>
-      </listitem>
+            <listitem>
+              <para>Names in dart:html changed to conform to Dart naming
+              standards. In particular, <literal>innerHTML</literal> became
+              <literal>innerHtml</literal>.</para>
+            </listitem>
 
-      <listitem>
-        <para>Metadata support was added to the language. See <xref
-        linkend="ch02-metadata" />.</para>
-      </listitem>
+            <listitem>
+              <para>The <literal>charCodes()</literal> method of String became
+              a getter, so we removed the parentheses from all references to
+              <literal>charCodes</literal>.</para>
+            </listitem>
 
-      <listitem>
-        <para>We added references to the <ulink
-        url="http://www.dartlang.org/articles/dart-web-components/">Web UI
-        package</ulink>, which provides a higher level, scalable approach to
-        creating UIs for web apps.</para>
-      </listitem>
+            <listitem>
+              <para>The <literal>readAsText()</literal> method of File became
+              <literal>readAsString()</literal>.</para>
+            </listitem>
 
-      <listitem>
-        <para>In M3, mixins were added to the language, enabling code re-use
-        between classes.</para>
-      </listitem>
+            <listitem>
+              <para>Constructors for the Date class changed.</para>
+            </listitem>
 
-      <listitem>
-        <para>The core libraries were greatly revised in M3 or shortly
-        afterward. Changes include:</para>
+            <listitem>
+              <para>NullPointerException no longer exists.</para>
+            </listitem>
 
-        <itemizedlist>
-          <listitem>
-            <para>Some methods changed to fields or getters. This meant we had
-            to remove the <literal>()</literal> after
-            <literal>hashCode</literal>, <literal>isEmpty</literal>, and
-            <literal>isNan</literal>. We also changed
-            <literal>getKeys()</literal> to <literal>keys</literal>, and
-            <literal>getValues()</literal> to
-            <literal>values</literal>.</para>
-          </listitem>
+            <listitem>
+              <para>RegExp no longer has a const constructor.</para>
+            </listitem>
 
-          <listitem>
-            <para>The Iterable class was beefed up, affecting all Collections
-            such as Lists and Sets. The former Collection methods
-            <literal>filter()</literal> and <literal>map()</literal> moved to
-            Iterable, and the name of <literal>filter()</literal> changed to
-            <literal>where()</literal>. (<literal>map()</literal> was briefly
-            renamed to <literal>mappedBy()</literal>, but due to public
-            feedback that decision was reversed.) The
-            <literal>some()</literal> method changed to
-            <literal>any()</literal>. Many values returned by Iterables are
-            now lazily filled Iterables; you can use
-            <literal>toList()</literal> or <literal>toSet()</literal> to force
-            evaluation. We recommend <emphasis>extending</emphasis> Iterable
-            rather than just implementing it, so you can take advantage of
-            added functionality. More details are in an article, <ulink
-            url="http://www.dartlang.org/articles/m3-whats-new/iterables.html">Iterables.</ulink></para>
-          </listitem>
+            <listitem>
+              <para>The return type of StringBuffer’s <literal>add()</literal>
+              method changed to void. Code that used to chain calls to
+              <literal>add()</literal> should now use method cascades
+              instead.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
 
-          <listitem>
-            <para>The Iterator interface changed from
-            <literal>next()</literal> and <literal>hasNext()</literal> to
-            <literal>current</literal> and
-            <literal>moveNext()</literal>.</para>
-          </listitem>
+        <listitem>
+          <para>The recommended way for web apps to use
+          <literal>dart.js</literal> is now to have a local copy, preferably
+          one downloaded using the <literal>browser</literal> pub
+          package.</para>
+        </listitem>
 
-          <listitem>
-            <para>The dart:json library no longer has a JSON class. Former
-            JSON static methods such as <literal>parse()</literal> and
-            <literal>stringify()</literal> are now top-level functions.</para>
-          </listitem>
+        <listitem>
+          <para>Metadata support was added to the language. See <xref
+          linkend="ch02-metadata" />.</para>
+        </listitem>
 
-          <listitem>
-            <para>Date is now named DateTime, and the
-            <literal>fromString()</literal> constructor is now a static method
-            named <literal>parse()</literal>.</para>
-          </listitem>
+        <listitem>
+          <para>We added references to the <ulink
+          url="http://www.dartlang.org/articles/dart-web-components/">Web UI
+          package</ulink>, which provides a higher level, scalable approach to
+          creating UIs for web apps.</para>
+        </listitem>
 
-          <listitem>
-            <para>Event handler registration used to be
-            <literal>.on.<replaceable>event</replaceable>.add()</literal>; now
-            it’s
-            <literal>.on<replaceable>Event</replaceable>.listen()</literal>.</para>
-          </listitem>
+        <listitem>
+          <para>In M3, mixins were added to the language, enabling code re-use
+          between classes.</para>
+        </listitem>
 
-          <listitem>
-            <para>The dart:html HttpRequest <literal>get()</literal> method
-            was replaced by <literal>getString()</literal> and
-            <literal>request()</literal>, which return Future&lt;String&gt;
-            and Future&lt;HttpRequest&gt;, respectively.</para>
-          </listitem>
+        <listitem>
+          <para>The core libraries were greatly revised in M3 or shortly
+          afterward. Changes include:</para>
 
-          <listitem>
-            <para>The dart:html Window <literal>setTimeout()</literal> method
-            is gone. Instead, use <literal>Future.delayed()</literal> or, if
-            you know what you’re doing, Timer.</para>
-          </listitem>
+          <itemizedlist>
+            <listitem>
+              <para>Some methods changed to fields or getters. This meant we
+              had to remove the <literal>()</literal> after
+              <literal>hashCode</literal>, <literal>isEmpty</literal>, and
+              <literal>isNan</literal>. We also changed
+              <literal>getKeys()</literal> to <literal>keys</literal>, and
+              <literal>getValues()</literal> to
+              <literal>values</literal>.</para>
+            </listitem>
 
-          <listitem>
-            <para>Timer and Completer moved from dart:isolate to a new library
-            called dart:async. The Timer constructors now take a Duration
-            instead of an int.</para>
-          </listitem>
+            <listitem>
+              <para>The Iterable class was beefed up, affecting all
+              Collections such as Lists and Sets. The former Collection
+              methods <literal>filter()</literal> and <literal>map()</literal>
+              moved to Iterable, and the name of <literal>filter()</literal>
+              changed to <literal>where()</literal>. (<literal>map()</literal>
+              was briefly renamed to <literal>mappedBy()</literal>, but due to
+              public feedback that decision was reversed.) The
+              <literal>some()</literal> method changed to
+              <literal>any()</literal>. Many values returned by Iterables are
+              now lazily filled Iterables; you can use
+              <literal>toList()</literal> or <literal>toSet()</literal> to
+              force evaluation. We recommend <emphasis>extending</emphasis>
+              Iterable rather than just implementing it, so you can take
+              advantage of added functionality. More details are in an
+              article, <ulink
+              url="http://www.dartlang.org/articles/m3-whats-new/iterables.html">Iterables.</ulink></para>
+            </listitem>
 
-          <listitem>
-            <para>The Future <literal>chain()</literal> and
-            <literal>handleException()</literal> methods are gone, replaced by
-            <literal>then()</literal> and
-            <literal>catchError()</literal>.</para>
-          </listitem>
+            <listitem>
+              <para>The Iterator interface changed from
+              <literal>next()</literal> and <literal>hasNext()</literal> to
+              <literal>current</literal> and
+              <literal>moveNext()</literal>.</para>
+            </listitem>
 
-          <listitem>
-            <para>The String <literal>splitChars()</literal> method is gone;
-            instead, use <literal>split()</literal> with an empty string
-            argument. String’s <literal>charCodes</literal> getter and
-            <literal>charCodeAt()</literal> method are gone; to get UTF-16
-            code units, use String’s <literal>codeUnits</literal> or
-            <literal>codeUnitAt()</literal> instead.</para>
-          </listitem>
+            <listitem>
+              <para>The dart:json library no longer has a JSON class. Former
+              JSON static methods such as <literal>parse()</literal> and
+              <literal>stringify()</literal> are now top-level
+              functions.</para>
+            </listitem>
 
-          <listitem>
-            <para>The StringBuffer <literal>add()</literal> and
-            <literal>addAll()</literal> methods were replaced by
-            <literal>write()</literal> and <literal>writeAll()</literal>,
-            respectively. StringBuffer no longer has a
-            <literal>clear()</literal> method; just create a new StringBuffer
-            instead.</para>
-          </listitem>
+            <listitem>
+              <para>Date is now named DateTime, and the
+              <literal>fromString()</literal> constructor is now a static
+              method named <literal>parse()</literal>.</para>
+            </listitem>
 
-          <listitem>
-            <para>The dart:io library changed significantly after M3, as did
-            all I/O in Dart. I/O now centers around the dart:async library’s
-            Stream and Future classes, instead of callbacks. The InputStream
-            and OutputStream classes were replaced with classes implementing
-            <ulink
-            url="http://api.dartlang.org/docs/releases/latest/dart_async/Stream.html">Stream</ulink>
-            and <ulink
-            url="http://api.dartlang.org/dart_io/IOSink.html">IOSink.</ulink>
-            A new <ulink
-            url="http://api.dartlang.org/dart_io/FileSystemEntity.html">FileSystemEntity</ulink>
-            class is the superclass of File and Directory. To create a new
-            HttpServer, you now use the static <literal>bind()</literal>
-            method. For more information, see the <ulink
-            url="http://news.dartlang.org/2013/02/io-library-now-uses-streams.html">announcement.</ulink></para>
-          </listitem>
+            <listitem>
+              <para>Event handler registration used to be
+              <literal>.on.<replaceable>event</replaceable>.add()</literal>;
+              now it’s
+              <literal>.on<replaceable>Event</replaceable>.listen()</literal>.</para>
+            </listitem>
 
-          <listitem>
-            <para>The most used dart:crypto methods for hashes changed from
-            <literal>update()</literal> and <literal>digest()</literal> to
-            <literal>add()</literal> and <literal>close()</literal>.</para>
-          </listitem>
-        </itemizedlist>
-      </listitem>
-    </itemizedlist>
+            <listitem>
+              <para>The dart:html HttpRequest <literal>get()</literal> method
+              was replaced by <literal>getString()</literal> and
+              <literal>request()</literal>, which return Future&lt;String&gt;
+              and Future&lt;HttpRequest&gt;, respectively.</para>
+            </listitem>
 
-    <para>We corrected or clarified some text, such as:</para>
+            <listitem>
+              <para>The dart:html Window <literal>setTimeout()</literal>
+              method is gone. Instead, use <literal>Future.delayed()</literal>
+              or, if you know what you’re doing, Timer.</para>
+            </listitem>
 
-    <itemizedlist>
-      <listitem>
-        <para>Bitwise operators are implemented in <emphasis
-        role="bold">int</emphasis>, not num.</para>
-      </listitem>
+            <listitem>
+              <para>Timer and Completer moved from dart:isolate to a new
+              library called dart:async. The Timer constructors now take a
+              Duration instead of an int.</para>
+            </listitem>
 
-      <listitem>
-        <para>The <literal>is</literal> and <literal>as</literal> examples (in
-        <xref linkend="ch02-op-type-test" />) aren’t completely
-        equivalent.</para>
-      </listitem>
-    </itemizedlist>
+            <listitem>
+              <para>The Future <literal>chain()</literal> and
+              <literal>handleException()</literal> methods are gone, replaced
+              by <literal>then()</literal> and
+              <literal>catchError()</literal>.</para>
+            </listitem>
 
-    <para>We also added sections for some pre-existing features:</para>
+            <listitem>
+              <para>The String <literal>splitChars()</literal> method is gone;
+              instead, use <literal>split()</literal> with an empty string
+              argument. String’s <literal>charCodes</literal> getter and
+              <literal>charCodeAt()</literal> method are gone; to get UTF-16
+              code units, use String’s <literal>codeUnits</literal> or
+              <literal>codeUnitAt()</literal> instead.</para>
+            </listitem>
 
-    <itemizedlist>
-      <listitem>
-        <para>Keywords (see <xref linkend="ch02-keywords" />)</para>
-      </listitem>
+            <listitem>
+              <para>The StringBuffer <literal>add()</literal> and
+              <literal>addAll()</literal> methods were replaced by
+              <literal>write()</literal> and <literal>writeAll()</literal>,
+              respectively. StringBuffer no longer has a
+              <literal>clear()</literal> method; just create a new
+              StringBuffer instead.</para>
+            </listitem>
 
-      <listitem>
-        <para>Lexical scope (see <xref linkend="ch02-lexical-scope" />)</para>
-      </listitem>
+            <listitem>
+              <para>The dart:io library changed significantly after M3, as did
+              all I/O in Dart. I/O now centers around the dart:async library’s
+              Stream and Future classes, instead of callbacks. The InputStream
+              and OutputStream classes were replaced with classes implementing
+              <ulink
+              url="http://api.dartlang.org/docs/releases/latest/dart_async/Stream.html">Stream</ulink>
+              and <ulink
+              url="http://api.dartlang.org/dart_io/IOSink.html">IOSink.</ulink>
+              A new <ulink
+              url="http://api.dartlang.org/dart_io/FileSystemEntity.html">FileSystemEntity</ulink>
+              class is the superclass of File and Directory. To create a new
+              HttpServer, you now use the static <literal>bind()</literal>
+              method. For more information, see the <ulink
+              url="http://news.dartlang.org/2013/02/io-library-now-uses-streams.html">announcement.</ulink></para>
+            </listitem>
 
-      <listitem>
-        <para>Function equality (see <xref
-        linkend="ch02-function-equality" />)</para>
-      </listitem>
+            <listitem>
+              <para>The most used dart:crypto methods for hashes changed from
+              <literal>update()</literal> and <literal>digest()</literal> to
+              <literal>add()</literal> and <literal>close()</literal>.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </itemizedlist>
 
-      <listitem>
-        <para>The dart_analyzer tool (see <xref
-        linkend="ch04-tools-dart_analyzer" />)</para>
-      </listitem>
+      <para>We corrected or clarified some text, such as:</para>
 
-      <listitem>
-        <para>The dartdoc tool (see <xref
-        linkend="ch04-tools-dartdoc" />)</para>
-      </listitem>
-    </itemizedlist>
+      <itemizedlist>
+        <listitem>
+          <para>Bitwise operators are implemented in <emphasis
+          role="bold">int</emphasis>, not num.</para>
+        </listitem>
 
-    <para>Finally, <xref linkend="BrowserChart" /> now uses a more recent
-    benchmark and has the latest numbers.</para>
+        <listitem>
+          <para>The <literal>is</literal> and <literal>as</literal> examples
+          (in <xref linkend="ch02-op-type-test" />) aren’t completely
+          equivalent.</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>We also added sections for some pre-existing features:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Keywords (see <xref linkend="ch02-keywords" />)</para>
+        </listitem>
+
+        <listitem>
+          <para>Lexical scope (see <xref
+          linkend="ch02-lexical-scope" />)</para>
+        </listitem>
+
+        <listitem>
+          <para>Function equality (see <xref
+          linkend="ch02-function-equality" />)</para>
+        </listitem>
+
+        <listitem>
+          <para>The dart_analyzer tool (see <xref
+          linkend="ch04-tools-dart_analyzer" />)</para>
+        </listitem>
+
+        <listitem>
+          <para>The dartdoc tool (see <xref
+          linkend="ch04-tools-dartdoc" />)</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>Finally, <xref linkend="BrowserChart" /> now uses a more recent
+      benchmark and has the latest numbers.</para>
+    </sect2>
   </sect1>
 
   <sect1 id="preface-acknowledgments">

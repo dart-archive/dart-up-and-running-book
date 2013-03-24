@@ -1,7 +1,7 @@
 main() {
   getAndPutItems();
   checkForItems();
-  intersectAndSubset();
+  intersectAndSuperset();
 }
 
 getAndPutItems() {
@@ -29,7 +29,7 @@ checkForItems() {
   assert(ingredients.containsAll(['titanium', 'xenon']));
 }
 
-intersectAndSubset() {
+intersectAndSuperset() {
   var ingredients = new Set();
   ingredients.addAll(['gold', 'titanium', 'xenon']);
 
@@ -39,9 +39,8 @@ intersectAndSubset() {
   assert(intersection.length == 1);
   assert(intersection.contains('xenon'));
 
-  // Check whether this set is a subset of another collection.
-  // That is, does another collection contains all the items of this set?
+  // Check whether one set is a superset of another collection.
   var allElements = ['hydrogen', 'helium', 'lithium', 'beryllium',
                      'gold', 'titanium', 'xenon' /* all the rest */];
-  assert(ingredients.isSubsetOf(allElements));
+  assert(allElements.toSet().containsAll(ingredients));
 }

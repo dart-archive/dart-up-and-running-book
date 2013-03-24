@@ -43,7 +43,7 @@ main() {
   query('#button')
       ..text = 'Click to Confirm'                        // Get an object. Use its
       ..classes.add('important')                         // instance variables
-      ..on.click.add((e) => window.alert('Confirmed!')); // and methods.
+      ..onClick.add((e) => window.alert('Confirmed!'));  // and methods.
  */
 
   /* var */ p = const ImmutablePoint(2,2);
