@@ -4,6 +4,8 @@ breedMoreLlamas() { }
 buyMoreLlamas() { }
 cleanLlamaStalls() { }
 
+class Point { }
+
 main() {
   var numberOfLlamas = 1;
   if (numberOfLlamas <= 0) {
@@ -13,9 +15,7 @@ main() {
     throw 'Out of llamas!';
   }
 
-/* TODO: how to make this testable?
-  num distanceTo(Point other) => throw const NotImplementedException();
- */
+  distanceTo(Point other) => throw new UnimplementedError();
 
   try {
     breedMoreLlamas();

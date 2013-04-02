@@ -2220,7 +2220,7 @@ assert(urlString.startsWith('https')); // Make sure this is an HTTPS URL.</progr
       expressions:</para>
 
       <programlisting format="linespecific"><remark>lang-dart
-</remark>num distanceTo(Point other) =&gt; throw const NotImplementedException();</programlisting>
+</remark>distanceTo(Point other) =&gt; throw new UnimplementedError();</programlisting>
     </sect2>
 
     <sect2 id="ch02-exceptions-catch">
