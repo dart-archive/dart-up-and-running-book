@@ -27,7 +27,7 @@
 
       <para>You can convert a string into an integer or double with the
       <literal>parse()</literal> methods of int and double,
-      respectively.</para>
+      respectively:</para>
 
       <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03/number-tests.dart
@@ -39,8 +39,9 @@ assert(double.parse('0.50') == 0.5);</screen>
       convert an int or double to a string. To specify the number of digits to
       the right of the decimal, use <literal>toStringAsFixed()</literal>
       (defined by num). To specify the number of significant digits in the
-      string, use <literal>toStringAsPrecision()</literal> (also in
-      num).</para>
+      string, use <phrase
+      role="keep-together"><literal>toStringAsPrecision()</literal>
+      </phrase>(also in num):</para>
 
       <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03/number-tests.dart
@@ -83,8 +84,8 @@ assert(double.parse('1.2e+2') == 120.0);</screen>
         <title>Searching inside a string</title>
 
         <para>You can find particular locations within a string, as well as
-        check whether a string begins with or ends with a particular
-        pattern.</para>
+        check whether a string begins with or ends with a particular pattern.
+        For example:</para>
 
         <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03/string-tests.dart
@@ -108,7 +109,7 @@ assert('Never odd or even'.indexOf('odd') == 6);</screen>
         a string as Strings or ints, respectively.</para>
 
         <para>You can also extract a substring or split a string into a list
-        of substrings.</para>
+        of substrings:</para>
 
         <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03/string-tests.dart
@@ -139,7 +140,7 @@ assert(codeUnitList[0] == 78);</screen>
         <title>Converting to uppercase or lowercase</title>
 
         <para>You can easily convert strings to their uppercase and lowercase
-        variants.</para>
+        variants:</para>
 
         <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03/string-tests.dart
@@ -178,7 +179,7 @@ assert(!'  '.isEmpty);</screen>
         docs,</ulink> you’ll notice that none of the methods actually changes
         the state of a String. For example, the method
         <literal>replaceAll()</literal> returns a new String without changing
-        the original String.</para>
+        the original String:</para>
 
         <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03/string-tests.dart
@@ -307,7 +308,7 @@ fruits.clear();
 assert(fruits.length == 0);</screen>
 
         <para>Use <literal>indexOf()</literal> to find the index of an object
-        in a list.</para>
+        in a list:</para>
 
         <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03/list-tests.dart
@@ -337,7 +338,7 @@ fruits.sort((a, b) =&gt; a.compareTo(b));
 assert(fruits[0] == 'apples');</screen>
 
         <para>Lists are parameterized types, so you can specify the type that
-        a list should contain.</para>
+        a list should contain:</para>
 
         <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03/list-tests.dart
@@ -379,7 +380,7 @@ assert(ingredients.length == 2);</screen>
 
         <para>Use <literal>contains()</literal> and
         <literal>containsAll()</literal> to check whether one or more objects
-        are in a set.</para>
+        are in a set:</para>
 
         <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03/set-tests.dart
@@ -419,7 +420,7 @@ assert(intersection.contains('xenon'));</screen>
         examples work with any object that implements Collection.</para>
 
         <para>Use <literal>isEmpty</literal> to check whether a collection has
-        no items.</para>
+        no items:</para>
 
         <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03/collection-isEmpty.dart
@@ -444,7 +445,8 @@ assert(loudTeas.any((tea) =&gt; tea == 'GREEN'));</screen>
           <emphasis>lazily evaluated</emphasis>: your function isn’t called
           until you ask for an item from the returned object. To force the
           function to be called for every item in the collection, you can use
-          <literal>toList()</literal> or <literal>toSet()</literal>.</para>
+          <phrase role="keep-together"><literal>toList()</literal> or
+          <literal>toSet()</literal></phrase>.</para>
         </note>
 
         <para>Use <literal>where()</literal> to get all the items in a
@@ -490,8 +492,9 @@ assert(!teas.every(isDecaffeinated));</screen>
           however, get a collection of a map’s keys or its values.</para>
         </note>
 
-        <para>You can declare a map using a terse literal syntax, or you can
-        use a traditional constructor.</para>
+        <para><phrase role="keep-together">You can declare a map using a terse
+        literal syntax, or you can use a traditional
+        constructor:</phrase></para>
 
         <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03/map-1.dart
@@ -532,7 +535,7 @@ nobleGases.remove(54);
 assert(!nobleGases.containsKey(54));</screen>
 
         <para>You can retrieve all the values or all the keys from a
-        map.</para>
+        map:</para>
 
         <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03/map-1.dart
@@ -553,7 +556,7 @@ var values = hawaiianBeaches.values;
 assert(values.length == 3);
 assert(values.any((v) =&gt; v.indexOf('waikiki') != -1));</screen>
 
-        <para>You can also iterate through the key-value pairs.</para>
+        <para>You can also iterate through the key-value pairs:</para>
 
         <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03/map-1.dart
@@ -601,7 +604,7 @@ assert(teamAssignments['Catcher'] != null);</screen>
       <para>A DateTime object is a point in time. The time zone is either UTC
       or the local time zone.</para>
 
-      <para>You can create DateTime objects using several constructors.</para>
+      <para>You can create DateTime objects using several constructors:</para>
 
       <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03/date.dart
@@ -626,7 +629,7 @@ y2k = DateTime.parse('2000-01-01T00:00:00Z');
 
       <para>The <literal moreinfo="none">millisecondsSinceEpoch</literal>
       property of a date returns the number of milliseconds since the “Unix
-      epoch”—January 1, 1970, UTC.</para>
+      epoch”—January 1, 1970, UTC:</para>
 
       <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03/date.dart
@@ -636,7 +639,7 @@ var unixEpoch = new DateTime.utc(1970); // 1/1/1970, UTC
 assert(unixEpoch.millisecondsSinceEpoch == 0);</screen>
 
       <para>Use the Duration class to calculate the difference between two
-      dates and to shift a date’s time forward or backwards.</para>
+      dates and to shift a date’s time forward or backwards:</para>
 
       <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03/date.dart
@@ -795,7 +798,8 @@ main() {
 
           <listitem>
             <para>Thrown when a receiving object (which might be null) does
-            not implement a method.</para>
+            not implement a <phrase
+            role="keep-together">method</phrase>.</para>
           </listitem>
         </varlistentry>
 
@@ -812,7 +816,8 @@ main() {
 
       <para>Throwing an application-specific exception is a common way to
       indicate that an error has occurred. You can define a custom exception
-      by implementing the Exception interface.</para>
+      by implementing the Exception <phrase
+      role="keep-together">interface</phrase>:</para>
 
       <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03/exceptions.dart
@@ -853,9 +858,10 @@ main() {
       <para>In the following example, the
       <literal>longExpensiveSearch()</literal> function schedules a query and
       immediately returns a Future object. Later, when the query finishes in
-      some future event loop iteration, the completer completes with the
-      results. The completion signals that the Future has a value, which runs
-      the callback registered in Future’s <literal>then()</literal>.</para>
+      some <phrase role="keep-together">future event loop iteration</phrase>,
+      the completer completes with the results. The completion signals that
+      the Future has a value, which runs the callback registered in <phrase
+      role="keep-together">Future’s <literal>then()</literal>.</phrase></para>
 
       <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03/futures.dart</remark>Future longExpensiveSearch() {
@@ -885,8 +891,9 @@ return future.then((results) {
       <title>Error Handling with Futures</title>
 
       <para>If an error or exception is thrown from within a Future, you can
-      catch it with <literal>catchError()</literal>. Be sure to invoke
-      <literal>catchError()</literal> on the result of
+      catch it with <phrase
+      role="keep-together"><literal>catchError()</literal>.</phrase> Be sure
+      to invoke <literal>catchError()</literal> on the result of
       <literal>then()</literal>—not on the result of the original
       Future.</para>
 
@@ -912,7 +919,7 @@ return future.then((results) {
       <para>The <literal>then()</literal> method returns a Future, which is a
       useful way to chain multiple asynchronous methods to run in a certain
       order. If the callback registered with <literal>then()</literal> returns
-      a Future, then it is simply returned as-is by <literal>then()</literal>.
+      a Future, then it is simply returned as is by <literal>then()</literal>.
       If the callback returns a value of any other type, a new Future instance
       is created and is completed with the value.</para>
 
@@ -953,7 +960,7 @@ return result.then((value) =&gt; expensiveWork())
       <ulink
       url="http://api.dartlang.org/dart_async/Future.html#wait"><literal>Future.wait()</literal></ulink>
       static method to manage multiple Futures and wait for them all to
-      complete.</para>
+      complete:</para>
 
       <screen format="linespecific"><remark>lang-dart
 </remark>Future deleteDone = deleteLotsOfFiles();
@@ -984,7 +991,7 @@ new Future.wait([deleteDone, copyDone, checksumDone]).then((List values) {
     <para>To use the Math library in your app, import <literal
     moreinfo="none">dart:math</literal>. The following examples use the prefix
     <literal moreinfo="none">math</literal> to make clear which top-level
-    functions and constants are from the Math library.</para>
+    functions and constants are from the Math library:</para>
 
     <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03/math-tests.dart
@@ -993,11 +1000,7 @@ new Future.wait([deleteDone, copyDone, checksumDone]).then((List values) {
     <sect2 id="ch03-trigonometry">
       <title>Trigonometry</title>
 
-      <para>The Math library provides basic trigonometric functions.</para>
-
-      <note>
-        <para>These methods use radians, not degrees!</para>
-      </note>
+      <para>The Math library provides basic trigonometric functions:</para>
 
       <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03/math-tests.dart
@@ -1012,13 +1015,17 @@ var sinOf30degrees = math.sin(radians);
 
 // Truncate the decimal places to 2.
 assert(double.parse(sinOf30degrees.toStringAsPrecision(2)) == 0.5);</screen>
+
+      <note>
+        <para>These functions use radians, not degrees!</para>
+      </note>
     </sect2>
 
     <sect2 id="ch03-maximum-and-mininum">
       <title>Maximum and Mininum</title>
 
       <para>The Math library provides optimized <literal>max()</literal> and
-      <literal>min()</literal> methods.</para>
+      <literal>min()</literal> methods:</para>
 
       <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03/math-tests.dart
@@ -1030,7 +1037,7 @@ assert(math.min(1, -1000) == -1000);</screen>
       <title>Math Constants</title>
 
       <para>Find your favorite constants—<emphasis>pi</emphasis>,
-      <emphasis>e</emphasis>, and more—in the Math library.</para>
+      <emphasis>e</emphasis>, and more—in the Math library:</para>
 
       <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03/math-tests.dart
@@ -1054,7 +1061,7 @@ print(math.SQRT2); // 1.4142135623730951</screen>
 random.nextDouble(); // Between 0.0 and 1.0: [0, 1)
 random.nextInt(10);  // Between 0 and 9.</screen>
 
-      <para>You can even generate random booleans.</para>
+      <para>You can even generate random booleans:</para>
 
       <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03/math-tests.dart
@@ -1094,12 +1101,12 @@ random.nextBool();  // true or false</screen>
 
     <note>
       <para>For a scalable, higher level approach to web app UIs, see the
-      <ulink url="http://www.dartlang.org/articles/dart-web-components/">Web
-      UI package.</ulink></para>
+      <ulink url="http://www.dartlang.org/articles/web-ui/">Web UI
+      package.</ulink></para>
     </note>
 
     <para>To use the HTML library in your web app, import <literal
-    moreinfo="none">dart:html</literal>.</para>
+    moreinfo="none">dart:html</literal>:</para>
 
     <programlisting format="linespecific"><remark>lang-dart
 </remark><remark>ch03_html/ch03_html.dart
@@ -1203,8 +1210,8 @@ List&lt;Element&gt; elems3 = queryAll('#id p.class');</screen>
         moreinfo="none">hidden</literal> property of all elements that have a
         class of “mac”, “win”, or “linux”. Setting the <literal
         moreinfo="none">hidden</literal> property to true has the same effect
-        as adding <literal moreinfo="none">display:none</literal> to the
-        CSS.</para>
+        as adding <literal moreinfo="none">display:none</literal> to <phrase
+        role="keep-together">the CSS</phrase>.</para>
 
         <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03_html/ch03_html.dart
@@ -1237,7 +1244,7 @@ for (var os in osList) {            // For each possible OS...
         converts to strings. For a list of attribute names and their meanings,
         see the <ulink url="https://developer.mozilla.org/en/HTML/Attributes">
         MDN Attributes page.</ulink> Here’s an example of setting an
-        attribute’s value.</para>
+        attribute’s value:</para>
 
         <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03_html/ch03_html.dart
@@ -1263,7 +1270,7 @@ elem.text = 'Creating is easy!';</screen>
 </remark><remark>ch03_html/ch03_html.dart
 </remark>var elem2 = new Element.html('&lt;p&gt;Creating &lt;em&gt;is&lt;/em&gt; easy!&lt;/p&gt;');</screen>
 
-        <para>Note that elem is a ParagraphElement in the above
+        <para>Note that elem2 is a ParagraphElement in the above
         example.</para>
 
         <para>Attach the newly created element to the document by assigning a
@@ -1288,7 +1295,7 @@ elem.text = 'Creating is easy!';</screen>
         methods and operators to manipulate the children of the node.</para>
 
         <para>To add a node as the last child of its parent, use the List
-        <literal>add()</literal> method.</para>
+        <literal>add()</literal> method:</para>
 
         <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03_html/ch03_html.dart
@@ -1296,7 +1303,7 @@ elem.text = 'Creating is easy!';</screen>
 query('#inputs').nodes.add(elem);</screen>
 
         <para>To replace a node, use the Node <literal>replaceWith()</literal>
-        method.</para>
+        method:</para>
 
         <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03_html/ch03_html.dart
@@ -1304,7 +1311,7 @@ query('#inputs').nodes.add(elem);</screen>
 query('#status').replaceWith(elem);</screen>
 
         <para>To remove a node, use the Node <literal>remove()</literal>
-        method.</para>
+        method:</para>
 
         <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03_html/ch03_html.dart
@@ -1324,7 +1331,7 @@ query('#expendable').remove();</screen>
         field, which is a list. Add and remove CSS classes simply by adding
         and removing strings from this collection. For example, the following
         sample adds the <literal moreinfo="none">warning</literal> class to an
-        element.</para>
+        element:</para>
 
         <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03_html/ch03_html.dart
@@ -1333,7 +1340,7 @@ element.classes.add('warning');</screen>
 
         <para>It’s often very efficient to find an element by ID. You can
         dynamically set an element ID with the <literal
-        moreinfo="none">id</literal> property.</para>
+        moreinfo="none">id</literal> property:</para>
 
         <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03_html/ch03_html.dart
@@ -1352,7 +1359,7 @@ message.text = 'Please subscribe to the Dart mailing list.';</screen>
 
         <para>While using IDs and classes to associate an element with a set
         of styles is best practice, sometimes you want to attach a specific
-        style directly to the element.</para>
+        style directly to the element:</para>
 
         <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03_html/ch03_html.dart
@@ -1380,7 +1387,7 @@ message.text = 'Please subscribe to the Dart mailing list.';</screen>
         event handler.</para>
 
         <para>For example, here’s how you can handle clicks on a
-        button.</para>
+        button:</para>
 
         <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03_html/ch03_html.dart
@@ -1392,7 +1399,7 @@ query('#submitInfo').onClick.listen((e) {
 
         <para>Events can propagate up and down through the DOM tree. To
         discover which element originally fired the event, use <literal
-        moreinfo="none">e.target</literal>.</para>
+        moreinfo="none">e.target</literal>:</para>
 
         <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03_html/ch03_html.dart
@@ -1484,9 +1491,9 @@ processString(String jsonText) {
         <xref linkend="ch03-json" />.</para>
 
         <para>Add <literal>.catchError()</literal> after the call to
-        <literal>.then()</literal> to specify an error handler.</para>
+        <literal>.then()</literal> to specify an error handler:</para>
 
-        <screen format="linespecific"><remark>lang-dart
+        <programlisting role="keep-together"><remark>lang-dart
 </remark><remark>ch03_html/ch03_2_html.dart
 </remark>...
 HttpRequest.getString(uri)
@@ -1496,12 +1503,12 @@ HttpRequest.getString(uri)
 handleError(AsyncError error) {
   print('Uh oh, there was an error.');
   print(error.toString());
-}</screen>
+}</programlisting>
 
         <para>If you need access to the HttpRequest, not just the text data it
         retrieves, you can use the <literal>request()</literal> static method
         instead of <literal>getString()</literal>. Here’s an example of
-        reading XML data.</para>
+        reading XML data:</para>
 
         <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03_html/ch03_2_html.dart
@@ -1631,7 +1638,7 @@ main() {
 
       <para>To use a WebSocket in your web app, first create a <ulink
       url="http://api.dartlang.org/html/WebSocket.html">WebSocket</ulink>
-      object, passing the WebSocket URL as an argument.</para>
+      object, passing the WebSocket URL as an argument:</para>
 
       <screen format="linespecific"><remark>lang-dart
 </remark>var webSocket = new WebSocket('ws://127.0.0.1:1337/ws');</screen>
@@ -1640,7 +1647,7 @@ main() {
         <title>Sending data</title>
 
         <para>To send string data on the WebSocket, use the
-        <literal>send()</literal> method.</para>
+        <literal>send()</literal> method:</para>
 
         <screen format="linespecific"><remark>lang-dart
 </remark>sendMessage(String data) {
@@ -1656,7 +1663,7 @@ main() {
         <title>Receiving data</title>
 
         <para>To receive data on the WebSocket, register a listener for
-        message events.</para>
+        message events:</para>
 
         <screen format="linespecific"><remark>lang-dart
 </remark>webSocket.onMessage.listen((MessageEvent e) {
@@ -1668,7 +1675,7 @@ main() {
         object. This object’s <literal moreinfo="none">data</literal> field
         has the data from the server. Here’s an example of decoding a JSON
         string sent on a WebSocket, where the JSON string has two fields,
-        “from” and “content”.</para>
+        “from” and “content”:</para>
 
         <screen format="linespecific"><remark>lang-dart
 </remark>// Called from the message listener like this: receivedMessage(e.data)
@@ -1688,7 +1695,7 @@ receivedMessage(String data) {
         defines the WebSocket events your app can handle: open, close, error,
         and (as shown above) message. Here’s an example of a method that
         creates a WebSocket object and handles message, open, close, and error
-        events.</para>
+        events:</para>
 
         <screen format="linespecific"><remark>lang-dart
 </remark>connectToWebSocket([int retrySeconds = 2]) {
@@ -1726,11 +1733,11 @@ receivedMessage(String data) {
 
       <para>This section barely scratched the surface of using the dart:html
       library. For more information, see the documentation for <ulink
-      url="http://api.dartlang.org/dart_html.html">dart:html</ulink>. Dart has
+      url="http://api.dartlang.org/dart_html.html">dart:html.</ulink> Dart has
       additional libraries for more specialized web APIs, such as <ulink
-      url="http://api.dartlang.org/dart_web_audio.html">web audio</ulink>.
+      url="http://api.dartlang.org/dart_web_audio.html">web audio.</ulink>
       Finally, don’t miss the <ulink
-      url="http://www.dartlang.org/articles/dart-web-components/">Web UI
+      url="http://www.dartlang.org/articles/web-ui/">Web UI
       package.</ulink></para>
     </sect2>
   </sect1>
@@ -1868,7 +1875,7 @@ main() {
         <literal>spawnFunction()</literal> method returns a handle to the
         newly created isolate’s SendPort.</para>
 
-        <para>To simply send a message, use <literal>send()</literal>.</para>
+        <para>To simply send a message, use <literal>send()</literal>:</para>
 
         <screen format="linespecific"><remark>lang-dart
 </remark>import 'dart:isolate';
@@ -1909,11 +1916,10 @@ main() {
         ports and callbacks.</para>
 
         <para>Handle an incoming message with a callback function passed to
-        the <literal>receive()</literal> method.</para>
+        the <literal>receive()</literal> method:</para>
 
-        <screen format="linespecific"><remark>lang-dart
+        <programlisting role="keep-together"><remark>lang-dart
 </remark>import 'dart:isolate';
-
 echo() {
   port.receive((msg, reply) {
     print('I received: $msg');
@@ -1927,7 +1933,7 @@ main() {
   // Note: incomplete.
   // Use a ReceivePort (details below) to keep the root isolate alive
   // long enough for echo() to perform its work.
-}</screen>
+}</programlisting>
       </sect3>
 
       <sect3 id="ch03-receiving-replies">
@@ -1938,7 +1944,7 @@ main() {
         <literal>call()</literal> method returns a Future for the
         reply.</para>
 
-        <screen format="linespecific"><remark>lang-dart
+        <screen format="linespecific" role=""><remark>lang-dart
 </remark>import 'dart:isolate';
 
 echo() {
@@ -1976,7 +1982,7 @@ main() {
         message to inform the root isolate when a child isolate finishes. Here
         is an example:</para>
 
-        <screen format="linespecific"><remark>lang-dart
+        <screen format="linespecific" role="keep-together"><remark>lang-dart
 </remark>import 'dart:isolate';
 
 childIsolate() {
@@ -2017,8 +2023,8 @@ main() {
       url="http://api.dartlang.org/dart_isolate.html">dart:isolate
       library,</ulink> as well as for <ulink
       url="http://api.dartlang.org/dart_isolate/SendPort.html">SendPort</ulink>
-      and<phrase role="keep-together"> <ulink
-      url="http://api.dartlang.org/dart_isolate/ReceivePort.html">ReceivePort.</ulink></phrase></para>
+      and <ulink role="keep-together" security=""
+      url="http://api.dartlang.org/dart_isolate/ReceivePort.html">ReceivePort</ulink>.</para>
     </sect2>
   </sect1>
 
@@ -2111,7 +2117,7 @@ main() {
         <para>Errors are thrown as exceptions if you do not register an
         explicit handler. If you want to capture an error, you can register a
         <literal moreinfo="none">catchError</literal> handler with the Future
-        object.</para>
+        object:</para>
 
         <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03/fileErrors.dart
@@ -2159,8 +2165,8 @@ main() {
         <para>To decode from bytes into characters, wrap the stream with a
         <ulink
         url="http://api.dartlang.org/dart_io/StringDecoder.html">StringDecoder.</ulink>
-        You can read the strings either as data becomes available or a line at
-        a time.</para>
+        You can read the strings either as data becomes available or one line
+        at a time.</para>
       </sect3>
 
       <sect3 id="ch03-writing-file-contents">
@@ -2173,12 +2179,12 @@ main() {
         default mode, <literal moreinfo="none">FileMode.WRITE</literal>,
         completely overwrites existing data in the file.</para>
 
-        <screen format="linespecific"><remark>lang-dart
+        <programlisting role="keep-together"><remark>lang-dart
 </remark><remark>ch03/writeFile.dart
 </remark>var logFile = new File('log.txt');
 var sink = logFile.openWrite();
 sink.write('FILE ACCESSED ${new DateTime.now()}\n');
-sink.close();</screen>
+sink.close();</programlisting>
 
         <para>To add to the end of the file, use the optional
         <literal>mode</literal> parameter to specify
@@ -2228,7 +2234,7 @@ main() {
         <para>The File and Directory classes contain other functionality,
         including but not limited to:</para>
 
-        <itemizedlist>
+        <itemizedlist role="keep-together">
           <listitem>
             <para>Creating a file or directory: <literal>create()</literal> in
             File and Directory</para>
@@ -2328,7 +2334,8 @@ main() {
         or server-side application. You can set headers, use HTTP methods, and
         read and write data. The HttpClient class does not work in
         browser-based apps. When programming in the browser, use the <link
-        linkend="ch03-httprequest">HttpRequest class</link>.</para>
+        linkend="ch03-httprequest">HttpRequest class</link>. Here’s an example
+        of using HttpClient:</para>
 
         <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03/httpClient.dart
@@ -2373,7 +2380,7 @@ main() {
       <title>Decoding JSON</title>
 
       <para>Decode a JSON-encoded string into a Dart object with
-      <literal>json.parse()</literal>.</para>
+      <literal>json.parse()</literal>:</para>
 
       <screen format="linespecific"><remark>lang-dart
 </remark>import 'dart:json' as json;
@@ -2408,12 +2415,13 @@ main() {
       recursively.</para>
 
       <para>If any object that isn’t an int, double, String, bool, null, List,
-      or Map is passed to <literal>stringify()</literal>, the object’s
-      <literal>toJson()</literal> method is called. If
+      or Map is passed to <phrase
+      role="keep-together"><literal>stringify()</literal>,</phrase> the
+      object’s <literal>toJson()</literal> method is called. If
       <literal>toJson()</literal> returns an encodable value, that value is
       encoded in the object’s place.</para>
 
-      <screen format="linespecific"><remark>lang-dart
+      <programlisting role="keep-together"><remark>lang-dart
 </remark>import 'dart:json' as json;
 
 main() {
@@ -2427,7 +2435,7 @@ main() {
   assert(jsonText == '[{"score":40},{"score":80},'
                      '{"score":100,"overtime":true,'
                      '"special_guest":null}]');
-}</screen>
+}</programlisting>
     </sect2>
   </sect1>
 
@@ -2456,8 +2464,10 @@ main() {
       <literal moreinfo="none">&amp;</literal>, <literal
       moreinfo="none">#</literal>), use the top-level
       <literal>encodeUri()</literal> and <literal>decodeUri()</literal>
-      functions. These functions are good for encoding or decoding a fully
-      qualified URI, leaving intact special URI characters.</para>
+      functions. These <phrase role="keep-together">functions are
+      good</phrase> for encoding or decoding a fully qualified URI, leaving
+      intact <phrase role="keep-together">special URI
+      characters.</phrase></para>
 
       <screen format="linespecific"><remark>lang-dart
 </remark>import 'dart:uri';
@@ -2507,7 +2517,7 @@ main() {
       <title>Parsing URIs</title>
 
       <para>You can parse a URI into its parts with the
-      <literal>Uri()</literal> constructor.</para>
+      <literal>Uri()</literal> constructor:</para>
 
       <screen format="linespecific"><remark>lang-dart
 </remark>import 'dart:uri';
@@ -2530,16 +2540,17 @@ main() {
       <title>Building URIs</title>
 
       <para>You can build up a URI from individual parts using the
-      <literal>Uri.fromComponents()</literal> constructor.</para>
+      <literal>Uri.fromComponents()</literal> <phrase role="keep-together"
+      security="">constructor</phrase>:</para>
 
-      <screen format="linespecific"><remark>lang-dart
+      <programlisting role="keep-together"><remark>lang-dart
 </remark>import 'dart:uri';
 
 main() {
   var uri = new Uri.fromComponents(scheme: 'http', domain: 'example.org', 
                      path: '/foo/bar', fragment: 'frag');
   assert(uri.toString() == 'http://example.org/foo/bar#frag');
-}</screen>
+}</programlisting>
     </sect2>
   </sect1>
 
@@ -2556,7 +2567,7 @@ main() {
       <title>Decoding UTF-8 Characters</title>
 
       <para>Use <literal>decodeUtf8()</literal> to decode UTF8-encoded bytes
-      to a Dart string.</para>
+      to a Dart string:</para>
 
       <screen format="linespecific"><remark>lang-dart
 </remark>import 'dart:utf';
@@ -2575,7 +2586,7 @@ main() {
       <title>Encoding Strings to UTF-8 Bytes</title>
 
       <para>Use <literal>encodeUtf8()</literal> to encode a Dart string as a
-      list of UTF8-encoded bytes.</para>
+      list of UTF8-encoded bytes:</para>
 
       <screen format="linespecific"><remark>lang-dart
 </remark>import 'dart:utf';
@@ -2636,7 +2647,7 @@ main() {
       url="http://api.dartlang.org/crypto/Hash.html">Hash,</ulink> which
       defines the Dart interface for <ulink
       url="http://en.wikipedia.org/wiki/Cryptographic_hash_function">cryptographic
-      hash functions.</ulink></para>
+      hash <phrase role="keep-together">functions</phrase>.</ulink></para>
 
       <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03/sha256.dart
@@ -2656,7 +2667,7 @@ main() {
 
       <para>Use a hash-based message authentication code (<ulink
       url="http://en.wikipedia.org/wiki/HMAC">HMAC</ulink>) to combine a
-      cryptographic hash function with a secret key.</para>
+      cryptographic hash function with a secret key:</para>
 
       <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03/hmac.dart
@@ -2676,7 +2687,7 @@ main() {
       <para>You can represent binary data as a character string by using the
       <ulink url="http://en.wikipedia.org/wiki/Base64">Base64</ulink> encoding
       scheme. Use the <literal>CryptoUtils.bytesToBase64()</literal> utility
-      method to convert a list of bytes into a Base64-encoded string.</para>
+      method to convert a list of bytes into a Base64-encoded string:</para>
 
       <screen format="linespecific"><remark>lang-dart
 </remark>import 'dart:crypto';
@@ -2705,10 +2716,9 @@ main() {
     url="http://api.dartlang.org/dart_mirrors.html">dart:mirrors,</ulink>
     <ulink url="http://api.dartlang.org/logging.html">logging,</ulink> <ulink
     url="http://api.dartlang.org/mock.html">mock,</ulink> and <ulink
-    url="http://api.dartlang.org/unittest.html"
-    wordsize="">unittest.</ulink></para>
-
-    <para>You can use the pub tool, discussed in the next chapter, to install
-    additional Dart libraries.</para>
+    url="http://api.dartlang.org/unittest.html" wordsize=""><phrase
+    role="keep-together">unittest</phrase>.</ulink> You can use the pub tool,
+    discussed in the next chapter, to install additional Dart <phrase
+    role="keep-together">libraries</phrase>.</para>
   </sect1>
 </chapter>

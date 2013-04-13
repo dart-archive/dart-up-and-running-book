@@ -9,9 +9,7 @@
   <para>This chapter points out some of the useful and fun features of Dart
   that we used to build Dart Chat, a client-server app. If you’d like
   step-by-step instructions on building Dart Chat, you might be interested in
-  our <ulink
-  url="https://www.dartlang.org/slides/2012/06/io12/Bullseye-Your-first-Dart-app-Codelab-GoogleIO2012.pdf">code
-  lab.</ulink></para>
+  our <ulink url="http://bit.ly/code-lab">code lab.</ulink></para>
 
   <para><xref linkend="DartChat-screenshot" /> shows the chat client executing
   in a Dartium window. Each copy of the chat client can send messages to the
@@ -96,8 +94,7 @@
 
       <mediaobject>
         <imageobject role="web">
-          <imagedata fileref="figs/web/daur_0502.png" format="PNG"
-                     width="315px" />
+          <imagedata fileref="figs/web/daur_0502.png" format="PNG" />
         </imageobject>
       </mediaobject>
     </figure>
@@ -121,8 +118,9 @@
 
     <para>The chat server implements an HTTP server to listen for WebSocket
     requests. The HTTP server can also serve static files from the client
-    directory—for example, http://127.0.0.1:1337/chat-log.txt shows the file
-    that’s at client/chat-log.txt.</para>
+    directory—for example,
+    <emphasis>http://127.0.0.1:1337/chat-log.txt</emphasis> shows the file
+    that’s at <emphasis>client/chat-log.txt</emphasis>.</para>
 
     <para>The client code is split between HTML (page structure), CSS (page
     look), and JavaScript (logic and behavior). That’s typical of web
@@ -139,7 +137,7 @@
 
     <para>The main elements in the client UI are two text fields (with the IDs
     “chat-username” and “chat-message”) and a status area (ID:
-    “chat-display”).</para>
+    “chat-display”):</para>
 
     <programlisting format="linespecific"><remark>lang-html
 </remark>&lt;!-- In client/index.html: --&gt;
@@ -150,9 +148,9 @@
 &lt;input id="chat-message" name="chat-message" type="text" disabled 
     value="enter message..."&gt;</programlisting>
 
-    <para>Near the bottom of client/index.html, a couple of &lt;script&gt;
-    tags tell the browser to execute the client’s Dart or JavaScript
-    code:</para>
+    <para>Near the bottom of <emphasis>client/index.html</emphasis>, a couple
+    of &lt;script&gt; tags tell the browser to execute the client’s Dart or
+    JavaScript code:</para>
 
     <programlisting format="linespecific"><remark>lang-html
 </remark>&lt;script type="application/dart" src="chat-client.dart"&gt;&lt;/script&gt;
@@ -160,11 +158,14 @@
 
     <para>The first line works in browsers that have an embedded Dart VM and
     so can execute Dart code; currently, only Dartium qualifies. The second
-    line is important for every other browser. It executes dart.js, which is a
-    standard script that converts all Dart &lt;script&gt; tags to use
-    foo.dart.js instead of foo.dart, with the assumption that foo.dart.js is a
-    JavaScript version of foo.dart. For non-Dartium browsers, dart.js changes
-    the first &lt;script&gt; tag to the following:</para>
+    line is important for every other browser. It executes
+    <emphasis>dart.js</emphasis>, which is a standard script that converts all
+    Dart &lt;script&gt; tags to use <emphasis>foo.dart.js</emphasis> instead
+    of <emphasis>foo.dart</emphasis>, with the assumption that
+    <emphasis>foo.dart.js</emphasis> is a JavaScript version of
+    <emphasis>foo.dart</emphasis>. For non-Dartium browsers,
+    <emphasis>dart.js</emphasis> changes the first &lt;script&gt; tag to the
+    following:</para>
 
     <programlisting format="linespecific"><remark>lang-html
 </remark>&lt;!-- Inserted by dart.js for non-Dartium browsers --&gt;
@@ -175,7 +176,7 @@
 
     <para>You can get dart.js with the <ulink
     url="http://pub.dartlang.org/packages/browser">browser package from
-    pub</ulink>. See <xref linkend="ch04-tools-dart2js" /> for more
+    pub.</ulink> See <xref linkend="ch04-tools-dart2js" /> for more
     information about compiling Dart code into its JavaScript
     equivalent.</para>
   </sect1>
@@ -183,17 +184,17 @@
   <sect1 id="ch05-client-dart-code">
     <title>The Client’s Dart Code</title>
 
-    <para>Dart code (client/chat-client.dart) provides the client’s logic,
-    using the DOM to interact with UI elements. For example, the client’s Dart
-    code uses the DOM to find the text area where the client displays
-    messages.</para>
+    <para>Dart code (<emphasis>client/chat-client.dart</emphasis>) provides
+    the client’s logic, using the DOM to interact with UI elements. For
+    example, the client’s Dart code uses the DOM to find the text area where
+    the client displays messages.</para>
 
     <sect2 id="ch05-find-element">
       <title>Finding DOM Elements</title>
 
       <para>The client app uses dart:html’s top-level
       <literal>query()</literal> method to get the client’s UI elements from
-      the DOM.</para>
+      the DOM:</para>
 
       <programlisting format="linespecific"><remark>lang-dart
 </remark>// In client/chat-client.dart:
@@ -263,9 +264,8 @@ messageInput = new MessageInput(messageElem);</programlisting>
       <para>Wrapping elements is a technique you can use as you develop a
       simple app that might evolve into a larger app. As the app grows, you
       might change it to use <ulink
-      url="http://www.dartlang.org/articles/dart-web-components/">Web
-      UI</ulink>, a library for declarative widgets and dynamic, data-driven
-      views.</para>
+      url="http://www.dartlang.org/articles/web-ui/">Web UI,</ulink> a library
+      for declarative widgets and dynamic, data-driven views.</para>
     </sect2>
 
     <sect2 id="ch05-update-element">
@@ -277,7 +277,7 @@ messageInput = new MessageInput(messageElem);</programlisting>
       method is called any time the text in the input element changes.</para>
 
       <para>To display messages in the chat window, the ChatWindow class adds
-      the message to the text node of the text area.</para>
+      the message to the text node of the text area:</para>
 
       <programlisting format="linespecific"><remark>lang-dart
 </remark>class ChatWindow extends View&lt;TextAreaElement&gt; {
@@ -315,9 +315,8 @@ messageInput = new MessageInput(messageElem);</programlisting>
       converts a JSON string back into a Dart object. Here’s the JSON-related
       code from the chat client:</para>
 
-      <programlisting format="linespecific"><remark>lang-dart
+      <programlisting format="linespecific" role="keep-together"><remark>lang-dart
 </remark>import 'dart:json' as json;
-
 var encoded = json.stringify({'f': from, 'm': message});
 Map message = json.parse(encodedMessage);</programlisting>
 
@@ -341,7 +340,7 @@ Map message = json.parse(encodedMessage);</programlisting>
 });</programlisting>
 
       <para>The <literal>_receivedEncodedMessage()</literal> method just
-      parses the JSON data and displays it in the status area.</para>
+      parses the JSON data and displays it in the status area:</para>
 
       <programlisting format="linespecific"><remark>lang-dart
 </remark>_receivedEncodedMessage(String encodedMessage) {
@@ -353,7 +352,7 @@ Map message = json.parse(encodedMessage);</programlisting>
 
       <para>To send a message on the WebSocket connection,
       <literal>_sendEncodedMessage()</literal> ensures the WebSocket
-      connection is ready and then sends the JSON-encoded message.</para>
+      connection is ready and then sends the JSON-encoded message:</para>
 
       <programlisting format="linespecific"><remark>lang-dart
 </remark>// In the ChatConnection class:
@@ -478,8 +477,9 @@ onRequest(HttpRequest request) {
 
       <para>See <xref linkend="ch03-asynchronous-programming" /> for more
       information about using Future, and <xref
-      linkend="ch03-files-and-directories" /> for details on file and
-      directory I/O.</para>
+      linkend="ch03-files-and-directories" /> for details on file and <phrase
+      role="">directory </phrase><phrase role="keep-together"><phrase
+      role="">I/O</phrase>.</phrase></para>
     </sect2>
 
     <sect2 id="ch05-server-web-sockets">
@@ -500,7 +500,7 @@ onRequest(HttpRequest request) {
 }</programlisting>
 
       <para>ChatHandler is a custom class that takes care of all WebSocket
-      communication for the chat server. Here is its implementation.</para>
+      communication for the chat server. Here is its implementation:</para>
 
       <programlisting format="linespecific"><remark>lang-dart
 </remark>class ChatHandler {
@@ -539,8 +539,9 @@ onRequest(HttpRequest request) {
 
       <para>The chat server logs data to a file, client/chat-log.txt, using a
       custom library implemented in file-logger.dart. This library uses an
-      isolate to handle file I/O without tying up the root isolate. Here’s the
-      code that creates and starts this isolate:</para>
+      isolate to handle file <phrase role="keep-together">I/O</phrase> without
+      tying up the root isolate. Here’s the code that creates and starts this
+      isolate:</para>
 
       <programlisting format="linespecific"><remark>lang-dart
 </remark>SendPort _loggingPort = spawnFunction(startLogging);</programlisting>
@@ -605,38 +606,22 @@ onRequest(HttpRequest request) {
 
     <itemizedlist>
       <listitem>
-        <para><ulink
-        url="https://code.google.com/p/dart/source/browse/#svn%2Ftrunk%2Fdart%2Fsamples%2Fsolar">
-        Solar</ulink>, which simulates the solar system with animations in a
-        canvas, using <phrase><literal
+        <para><ulink url="http://bit.ly/ZOz3h1"> Solar,</ulink> which
+        simulates the solar system with animations in a canvas, using
+        <phrase><literal
         role="keep-together">requestAnimationFrame()</literal></phrase>.</para>
       </listitem>
 
       <listitem>
-        <para><ulink
-        url="https://code.google.com/p/dart/source/browse/#svn%2Ftrunk%2Fdart%2Fsamples%2Fspirodraw">
-        Spirodraw</ulink>, a fun, interactive tool to build colorful works of
-        art.</para>
+        <para><ulink url="http://bit.ly/14eTsBz"> Spirodraw,</ulink> a fun,
+        interactive tool to build colorful works of art.</para>
       </listitem>
     </itemizedlist>
 
-    <para>Finally, please visit our website and join the discussion. We look
-    forward to hearing from you!</para>
-
-    <itemizedlist role="keep-together">
-      <listitem>
-        <para><ulink url="http://www.dartlang.org">Dart website</ulink></para>
-      </listitem>
-
-      <listitem>
-        <para><ulink url="http://www.dartlang.org/mailing-list"> Dart
-        discussion group</ulink></para>
-      </listitem>
-
-      <listitem>
-        <para><ulink url="http://stackoverflow.com/tags/dart"> Dart questions
-        on Stack Overflow</ulink></para>
-      </listitem>
-    </itemizedlist>
+    <para>Finally, please <ulink url="http://www.dartlang.org">visit our
+    website</ulink> and <ulink url="http://www.dartlang.org/mailing-list">join
+    the discussion.</ulink> We look forward to hearing from you and <ulink
+    url="http://stackoverflow.com/tags/dart">answering your
+    questions!</ulink></para>
   </sect1>
 </chapter>

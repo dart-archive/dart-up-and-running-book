@@ -18,9 +18,9 @@
 
   <warning>
     <para>Dart is still changing! This book was produced in March 2013, just
-    after the Milestone 3 release, which means the language is stable but not
-    the libraries. Wherever possible, this book tells you what we expect to
-    change.</para>
+    after the Milestone 3 release, which means the language is stable, but the
+    libraries are not. Wherever possible, this book tells you what we expect
+    to change.</para>
   </warning>
 
   <sect1 id="ch01-why-dart">
@@ -96,7 +96,7 @@
     <para>It’s hard to talk about a language without seeing it. Here’s a peek
     at a small Dart program:</para>
 
-    <programlisting format="linespecific"><remark>lang-dart
+    <programlisting format="linespecific" role="keep-together"><remark>lang-dart
 </remark>import 'dart:math';
 
 class Point {
@@ -211,9 +211,8 @@ main() {
 
     <para><emphasis>Dart is open source.</emphasis> Dart was born for the web,
     and it’s available under a BSD-style license. You can find the project’s
-    issue tracker and source repository at <ulink
-    url="http://dart.googlecode.com">dart.googlecode.com</ulink>. Maybe you’ll
-    submit the next patch?</para>
+    <ulink url="http://dart.googlecode.com">issue tracker and source
+    repository</ulink> online. Maybe you’ll submit the next patch?</para>
   </sect1>
 
   <sect1 id="ch01-editor">
@@ -242,8 +241,8 @@ main() {
 
       <orderedlist continuation="restarts" inheritnum="ignore">
         <listitem>
-          <para>Download the Dart Editor ZIP file for your platform from
-          <ulink url="http://dartlang.org/editor"></ulink>.</para>
+          <para>Download the <ulink url="http://dartlang.org/editor">Dart
+          Editor ZIP file</ulink> for your platform.</para>
         </listitem>
 
         <listitem>
@@ -264,13 +263,13 @@ main() {
       <title>Step 2: Launch the Editor</title>
 
       <para>Go to your Dart installation directory, and double-click the
-      <emphasis role="bold">DartEditor</emphasis> executable file
-      <inlinemediaobject>
+      <emphasis role="bold">DartEditor</emphasis> executable <phrase
+      role="keep-together">file <inlinemediaobject>
           <imageobject>
             <imagedata fileref="figs/web/Dart_Logo_21.png" format="PNG"
                        width="0.12in" />
           </imageobject>
-        </inlinemediaobject>.</para>
+        </inlinemediaobject>.</phrase></para>
 
       <para>You should see the Dart Editor application window appear, looking
       something like <xref linkend="DartEditor-initial" />.</para>
@@ -377,8 +376,8 @@ main() {
           role="bold">Sunflower</emphasis>. Dart Editor creates a copy of the
           <ulink
           url="http://code.google.com/p/dart/source/browse/trunk/dart/samples/sunflower/">Sunflower
-          app’s directory</ulink>, and the Editor view displays the contents
-          of <code>web/sunflower.html</code>.</para>
+          app’s directory,</ulink> and the Editor view displays the contents
+          of <emphasis>web/sunflower.html</emphasis>.</para>
         </listitem>
 
         <listitem>
@@ -387,7 +386,8 @@ main() {
                 <imagedata fileref="figs/web/run.png" width="0.12in" />
               </imageobject>
             </inlinemediaobject>. Dart Editor launches Dartium, which displays
-          sunflower.html.</para>
+          <phrase
+          role="keep-together"><emphasis>sunflower.html</emphasis></phrase>.</para>
 
           <warning>
             <para>Dartium is a technical preview, and it might have security
@@ -417,13 +417,13 @@ main() {
       <title>What Next?</title>
 
       <para>Now that you know the basics, you can learn more about Dart Editor
-      and help improve it.</para>
+      and help <phrase role="keep-together">improve it</phrase>.</para>
 
       <sect3 id="ch01-editor-tutorial">
         <title>Follow a tutorial</title>
 
         <para>Try the Dart web programming tutorials at <ulink
-        url="http://www.dartlang.org/docs/tutorials/">A Game of Darts</ulink>,
+        url="http://www.dartlang.org/docs/tutorials/">A Game of Darts,</ulink>
         which feature Dart Editor.</para>
       </sect3>
 

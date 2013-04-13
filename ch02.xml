@@ -22,7 +22,7 @@
   <sect1 id="main-print">
     <title>A Basic Dart Program</title>
 
-    <para>The following code uses many of Dart’s most basic features.</para>
+    <para>The following code uses many of Dart’s most basic features:</para>
 
     <programlisting format="linespecific"><remark>lang-dart
 </remark>// Define a function.
@@ -218,125 +218,125 @@ main() {
       <para><xref linkend="keyword_table" /> lists the words that the Dart
       language reserves.</para>
 
-      <table class="keywordTable" id="keyword_table">
-        <title>Dart keywords</title>
+      <para><table class="keywordTable" id="keyword_table">
+          <title>Dart keywords</title>
 
-        <tgroup cols="5">
-          <tbody>
-            <row>
-              <entry>abstract</entry>
+          <tgroup cols="6">
+            <tbody>
+              <row>
+                <entry>abstract</entry>
 
-              <entry>do</entry>
+                <entry>continue</entry>
 
-              <entry>finally</entry>
+                <entry>factory</entry>
 
-              <entry>new</entry>
+                <entry>import</entry>
 
-              <entry>this</entry>
-            </row>
+                <entry>return</entry>
 
-            <row>
-              <entry>as</entry>
+                <entry>try</entry>
+              </row>
 
-              <entry>dynamic</entry>
+              <row>
+                <entry>as</entry>
 
-              <entry>for</entry>
+                <entry>default</entry>
 
-              <entry>null</entry>
+                <entry>false</entry>
 
-              <entry>throw</entry>
-            </row>
+                <entry>in</entry>
 
-            <row>
-              <entry>assert</entry>
+                <entry>set</entry>
 
-              <entry>else</entry>
+                <entry>typedef</entry>
+              </row>
 
-              <entry>get</entry>
+              <row>
+                <entry>assert</entry>
 
-              <entry>operator</entry>
+                <entry>do</entry>
 
-              <entry>true</entry>
-            </row>
+                <entry>final</entry>
 
-            <row>
-              <entry>break</entry>
+                <entry>is</entry>
 
-              <entry>export</entry>
+                <entry>static</entry>
 
-              <entry>if</entry>
+                <entry>var</entry>
+              </row>
 
-              <entry>part</entry>
+              <row>
+                <entry>break</entry>
 
-              <entry>try</entry>
-            </row>
+                <entry>dynamic</entry>
 
-            <row>
-              <entry>case</entry>
+                <entry>finally</entry>
 
-              <entry>external</entry>
+                <entry>library</entry>
 
-              <entry>implements</entry>
+                <entry>super</entry>
 
-              <entry>return</entry>
+                <entry>void</entry>
+              </row>
 
-              <entry>typedef</entry>
-            </row>
+              <row>
+                <entry>case</entry>
 
-            <row>
-              <entry>catch</entry>
+                <entry>else</entry>
 
-              <entry>extends</entry>
+                <entry>for</entry>
 
-              <entry>import</entry>
+                <entry>new</entry>
 
-              <entry>set</entry>
+                <entry>switch</entry>
 
-              <entry>var</entry>
-            </row>
+                <entry>while</entry>
+              </row>
 
-            <row>
-              <entry>class</entry>
+              <row>
+                <entry>catch</entry>
 
-              <entry>factory</entry>
+                <entry>export</entry>
 
-              <entry>in</entry>
+                <entry>get</entry>
 
-              <entry>static</entry>
+                <entry>null</entry>
 
-              <entry>void</entry>
-            </row>
+                <entry>this</entry>
 
-            <row>
-              <entry>const</entry>
+                <entry>with</entry>
+              </row>
 
-              <entry>false</entry>
+              <row>
+                <entry>class</entry>
 
-              <entry>is</entry>
+                <entry>external</entry>
 
-              <entry>super</entry>
+                <entry>if</entry>
 
-              <entry>while</entry>
-            </row>
+                <entry>operator</entry>
 
-            <row>
-              <entry>continue</entry>
+                <entry>throw</entry>
 
-              <entry>final</entry>
+                <entry></entry>
+              </row>
 
-              <entry>library</entry>
+              <row>
+                <entry>const</entry>
 
-              <entry>switch</entry>
+                <entry>extends</entry>
 
-              <entry>with</entry>
-            </row>
+                <entry>implements</entry>
 
-            <row>
-              <entry>default</entry>
-            </row>
-          </tbody>
-        </tgroup>
-      </table>
+                <entry>part</entry>
+
+                <entry>true</entry>
+
+                <entry></entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </table></para>
     </sect2>
 
     <sect2 id="ch02-runtime-modes">
@@ -402,7 +402,8 @@ assert(lineCount == null);
 
       <para>Adding types is a way to clearly express your intent. Tools such
       as compilers and editors can use these types to help you, by providing
-      early warnings for bugs and code completion.</para>
+      early warnings for bugs and code <phrase
+      role="keep-together">completion</phrase>.</para>
 
       <note>
         <para>This chapter follows the <ulink
@@ -425,7 +426,7 @@ assert(lineCount == null);
 
       <para>A local, top-level, or class variable that’s declared as <literal
       moreinfo="none">final</literal> is initialized the first time it’s
-      used.</para>
+      used:</para>
 
       <programlisting format="linespecific"><remark>lang-dart
 </remark>final name = 'Bob';   // Or: final String name = 'Bob';
@@ -440,7 +441,7 @@ assert(lineCount == null);
       you want to be compile-time constants. Where you declare the variable,
       set the value to a compile-time constant such as a literal, a const
       variable, or the result of an arithmetic operation on constant
-      numbers.</para>
+      numbers:</para>
 
       <programlisting format="linespecific"><remark>lang-dart
 </remark>const bar = 1000000;       // Unit of pressure (in dynes/cm2)
@@ -585,9 +586,10 @@ var s3 = 'It\'s easy to escape the string delimiter.';
 var s4 = "It's even easier to just use the other string delimiter.";</programlisting>
 
       <para>You can put the value of an expression inside a string by using
-      ${<emphasis>expression</emphasis>}. If the expression is an identifier,
-      you can skip the {}. To get the string corresponding to an object, Dart
-      calls the object’s <literal>toString()</literal> method.</para>
+      <literal>${</literal><emphasis><literal>expression</literal></emphasis><literal>}</literal>.
+      If the expression is an identifier, you can skip the {}. To get the
+      string corresponding to an object, Dart calls the object’s
+      <literal>toString()</literal> method.</para>
 
       <programlisting format="linespecific"><remark>lang-dart
 </remark>var s = 'string interpolation';
@@ -611,7 +613,7 @@ assert('That deserves all caps. ${s.toUpperCase()} is very handy!' ==
 assert(s == 'String concatenation works even over line breaks.');</programlisting>
 
       <para>Another way to create a multi-line string: use a triple quote with
-      either single or double quotation marks.</para>
+      either single or double quotation marks:</para>
 
       <programlisting format="linespecific"><remark>lang-dart
 </remark>var s1 = '''
@@ -623,12 +625,12 @@ var s2 = """This is also a
 multi-line string.""";</programlisting>
 
       <para>You can create a <quote>raw</quote> string by prefixing it with
-      <literal moreinfo="none">r</literal>.</para>
+      <literal moreinfo="none">r</literal>:</para>
 
       <programlisting format="linespecific"><remark>lang-dart
 </remark>var s = r"In a raw string, even \n isn't special.";</programlisting>
 
-      <para>You can use Unicode escapes inside of strings.</para>
+      <para>You can use Unicode escapes inside of strings:</para>
 
       <programlisting format="linespecific"><remark>lang-dart
 </remark><remark>ch02/quoting.dart
@@ -680,9 +682,7 @@ if (name) {
   print('JavaScript prints this line because it thinks 1 is true.');
 } else {
   print('Dart in production mode prints this line.');
-
-  // However, in checked mode, if (1) throws an exception
-  // because 1 is not boolean.
+  // However, in checked mode, if (1) throws an exception.
 }</programlisting>
 
       <note>
@@ -794,7 +794,7 @@ gifts['fourth'] = 'calling birds';    // Add a key-value pair</programlisting>
 assert(gifts['first'] == 'partridge');</programlisting>
 
       <para>If you look for a key that isn’t in a map, you get a null in
-      return.</para>
+      return:</para>
 
       <programlisting format="linespecific"><remark>lang-dart
 </remark>var gifts = { 'first': 'partridge' };
@@ -846,14 +846,16 @@ assert(gifts.length == 2);</programlisting>
 
     <note>
       <para>Only an <emphasis>expression</emphasis>—not a
-      <emphasis>statement</emphasis>—can appear between the arrow (=&gt;) and
-      the semicolon (;). For example, you can’t put an <link
-      linkend="if-else">if statement</link> there, but you can use a <link
-      linkend="op-other">conditional (?:) expression</link>.</para>
+      <emphasis>statement</emphasis>—can appear between the <phrase
+      role="keep-together">arrow (=&gt;)</phrase> and the semicolon (;). For
+      example, you can’t put an <link linkend="if-else"><phrase
+      role="keep-together">if statement</phrase></link> there, but you can use
+      a <link linkend="op-other">conditional (<literal>?:</literal>)
+      expression</link>.</para>
     </note>
 
     <para>You can use types with =&gt;, although the convention is not to do
-    so.</para>
+    so:</para>
 
     <programlisting format="linespecific"><remark>lang-dart
 </remark>printNumber(num number) =&gt; print('The number is $number.'); // Types are OK.</programlisting>
@@ -880,7 +882,7 @@ assert(gifts.length == 2);</programlisting>
 
       <para>If you need to know whether the caller passed in a value for an
       optional parameter, use the syntax <literal
-      moreinfo="none">?<replaceable>param</replaceable></literal>.</para>
+      moreinfo="none">?<replaceable>param</replaceable></literal>:</para>
 
       <programlisting format="linespecific"><remark>lang-dart
 </remark>if (?device) {    // Returns true if the caller specified the parameter.
@@ -900,7 +902,7 @@ assert(gifts.length == 2);</programlisting>
         <para>When defining a function, use <literal
         moreinfo="none">{<replaceable>param1</replaceable>,
         <replaceable>param2</replaceable>, …}</literal> to specify named
-        parameters.</para>
+        parameters:</para>
 
         <programlisting format="linespecific"><remark>lang-dart
 </remark>/// Sets the [bold] and [hidden] flags to the values you specify.
@@ -909,7 +911,7 @@ enableFlags({bool bold, bool hidden}) {
 }</programlisting>
 
         <para>Use a colon (<literal moreinfo="none">:</literal>) to specify
-        default values.</para>
+        default values:</para>
 
         <programlisting format="linespecific"><remark>lang-dart
 </remark>/**
@@ -927,8 +929,8 @@ enableFlags(bold: true); // bold will be true; hidden will be false.</programlis
         <title>Optional positional parameters</title>
 
         <para>Wrapping a set of function parameters in <literal
-        moreinfo="none">[]</literal> marks them as optional positional
-        parameters.</para>
+        moreinfo="none">[]</literal> marks them as optional positional <phrase
+        role="keep-together">parameters</phrase>:</para>
 
         <programlisting format="linespecific"><remark>lang-dart
 </remark>String say(String from, String msg, [String device]) {
@@ -953,7 +955,7 @@ enableFlags(bold: true); // bold will be true; hidden will be false.</programlis
   'Bob says Howdy with a smoke signal');</programlisting>
 
         <para>Use <literal moreinfo="none">=</literal> to specify default
-        values.</para>
+        values:</para>
 
         <programlisting format="linespecific"><remark>lang-dart
 </remark>String say(String from, String msg,
@@ -1002,11 +1004,10 @@ assert(loudify('hello') == '!!! HELLO !!!');</programlisting>
       scope.</para>
 
       <para>Here is an example of nested functions with variables at each
-      scope level.</para>
+      scope level:</para>
 
       <programlisting format="linespecific"><remark>lang-dart
 </remark>var topLevel = true;
-
 main() {
     var insideMain = true;
     
@@ -1015,14 +1016,12 @@ main() {
       
       nestedFunction() {
         var insideNestedFunction = true;
-        
         assert(topLevel);
         assert(insideMain);
         assert(insideFunction);
         assert(insideNestedFunction);
       }
     }
-
 }</programlisting>
 
       <para>Notice how <literal>nestedFunction()</literal> can use variables
@@ -1088,8 +1087,8 @@ assert(splitClosure1 != splitClosure2);
 </remark>splitClosure2 = splitClosure1;
 assert(splitClosure1 == splitClosure2);</programlisting>
 
-      <para>Top-level and static methods are different: you can compare them
-      by name.</para>
+      <para>Top-level and static methods are different—you can compare them by
+      name:</para>
 
       <programlisting><remark>lang-dart
 </remark><remark>ch02/function_equality_2.dart
@@ -1279,9 +1278,11 @@ if (n % i == 0 &amp;&amp; d % i == 0)     // Harder to read, but equivalent.</pr
     <sect2 id="op-arithmetic">
       <title>Arithmetic Operators</title>
 
-      <para>Dart supports the usual arithmetic operators.</para>
+      <para>Dart supports the usual arithmetic operators, as shown in <xref
+      linkend="arithmetic_operator_table" />.</para>
 
-      <table class="operatorTable" id="arithmetic_operator_table">
+      <table class="operatorTable" id="arithmetic_operator_table"
+             role="keep-together">
         <title>Arithmetic operators</title>
 
         <tgroup cols="2">
@@ -1583,8 +1584,8 @@ assert(2 &lt;= 3);</programlisting>
       <note>
         <para>The code isn’t equivalent. If <literal>person</literal> is null
         or not a Person, the first example (with <literal>is</literal>) does
-        nothing; the second (with <literal>as</literal>) throws an
-        exception.</para>
+        nothing; the second (with <literal>as</literal>) throws an <phrase
+        role="keep-together">exception</phrase>.</para>
       </note>
     </sect2>
 
@@ -1594,39 +1595,38 @@ assert(2 &lt;= 3);</programlisting>
       <para>As you’ve already seen, you assign values using the <literal
       moreinfo="none">=</literal> operator. You can also use compound
       assignment operators such as <literal moreinfo="none">+=</literal>,
-      which combine an operation with an assignment.</para>
+      which combine an operation with an <phrase
+      role="keep-together">assignment</phrase>.</para>
 
-      <table id="assignment_operator_table">
+      <table id="assignment_operator_table" role="keep-together">
         <title>Assignment operators</title>
 
-        <tgroup cols="4">
+        <tgroup cols="6">
           <tbody>
             <row>
               <entry>=</entry>
 
-              <entry>*=</entry>
-
-              <entry>%=</entry>
-
-              <entry>&amp;=</entry>
-            </row>
-
-            <row>
-              <entry>+=</entry>
+              <entry>–=</entry>
 
               <entry>/=</entry>
 
-              <entry>&lt;&lt;=</entry>
+              <entry>%=</entry>
+
+              <entry>&gt;&gt;=</entry>
 
               <entry>^=</entry>
             </row>
 
             <row>
-              <entry>–=</entry>
+              <entry>+=</entry>
+
+              <entry>*=</entry>
 
               <entry>~/=</entry>
 
-              <entry>&gt;&gt;=</entry>
+              <entry>&lt;&lt;=</entry>
+
+              <entry>&amp;=</entry>
 
               <entry>|=</entry>
             </row>
@@ -1686,7 +1686,8 @@ assert(a == 6);</programlisting>
       <para>You can invert or combine boolean expressions using the logical
       operators.</para>
 
-      <table class="operatorTable" id="logical_operator_table">
+      <table class="operatorTable" id="logical_operator_table"
+             role="keep-together">
         <title>Logical operators</title>
 
         <tgroup cols="2">
@@ -1721,7 +1722,7 @@ assert(a == 6);</programlisting>
         </tgroup>
       </table>
 
-      <para>Here’s an example of using the logical operators.</para>
+      <para>Here’s an example of using the logical operators:</para>
 
       <programlisting format="linespecific"><remark>lang-dart
 </remark>if (!done &amp;&amp; (col == 0 || col == 3)) {
@@ -1733,8 +1734,8 @@ assert(a == 6);</programlisting>
       <title>Bitwise and Shift Operators</title>
 
       <para>You can manipulate the individual bits of numbers in Dart.
-      Usually, you’d use these bitwise and shift operators with
-      integers.</para>
+      Usually, you’d use these bitwise and shift operators with integers, as
+      shown in <xref linkend="bit_operator_table" />.</para>
 
       <table class="operatorTable" id="bit_operator_table">
         <title>Bitwise and shift operators</title>
@@ -1789,7 +1790,7 @@ assert(a == 6);</programlisting>
         </tgroup>
       </table>
 
-      <para>Here’s an example of using bitwise and shift operators.</para>
+      <para>Here’s an example of using bitwise and shift operators:</para>
 
       <programlisting format="linespecific"><remark>lang-dart
 </remark>final value = 0x22;
@@ -1809,7 +1810,8 @@ assert((value &gt;&gt; 4)       == 0x02);  // Shift right</programlisting>
       <para>A few operators remain, most of which you’ve already seen in other
       examples.</para>
 
-      <table class="operatorTable" id="other_operator_table">
+      <table class="operatorTable" id="other_operator_table"
+             role="keep-together">
         <title>Other operators</title>
 
         <tgroup cols="3">
@@ -1934,9 +1936,9 @@ assert((value &gt;&gt; 4)       == 0x02);  // Shift right</programlisting>
       <title>If and Else</title>
 
       <para>Dart supports <literal moreinfo="none">if</literal> statements
-      with optional <literal moreinfo="none">else</literal> statements. Also
-      see conditional expressions (?:), covered in <xref
-      linkend="op-other" />.</para>
+      with optional <literal moreinfo="none">else</literal> statements, as the
+      next sample shows. Also see conditional expressions (?:), which are
+      covered in <xref linkend="op-other" />.</para>
 
       <programlisting format="linespecific"><remark>lang-dart
 </remark>if (isRaining()) {
@@ -1957,7 +1959,7 @@ assert((value &gt;&gt; 4)       == 0x02);  // Shift right</programlisting>
       <title>For Loops</title>
 
       <para>You can iterate with the standard <literal
-      moreinfo="none">for</literal> loop.</para>
+      moreinfo="none">for</literal> loop. For example:</para>
 
       <programlisting format="linespecific"><remark>lang-dart
 </remark><remark>ch02/flow_for_loops.dart
@@ -1987,15 +1989,16 @@ callbacks.forEach((c) =&gt; c());</programlisting>
       use the <literal><ulink
       url="http://api.dartlang.org/dart_core/Collection.html#forEach">forEach()</ulink></literal>
       method. Using <literal>forEach()</literal> is a good option if you don’t
-      need to know the current iteration counter.</para>
+      need to know the current iteration counter:</para>
 
       <programlisting format="linespecific"><remark>lang-dart
 </remark><remark>ch02/flow_for_loops.dart
 </remark>candidates.forEach((candidate) =&gt; candidate.interview());</programlisting>
 
       <para>Collections also support the <literal
-      moreinfo="none">for-in</literal> form of iteration, as described in
-      <xref linkend="ch03-iteration" />.</para>
+      moreinfo="none">for-in</literal> form of iteration, which is described
+      <phrase lang="" role="">in <xref
+      linkend="ch03-iteration" />:</phrase></para>
 
       <programlisting format="linespecific"><remark>lang-dart
 </remark><remark>ch02/flow_for_loops.dart
@@ -2009,7 +2012,7 @@ for (var x in collection) {
       <title>While and Do-While</title>
 
       <para>A <literal moreinfo="none">while</literal> loop evaluates the
-      condition before the loop.</para>
+      condition before the loop:</para>
 
       <programlisting format="linespecific"><remark>lang-dart
 </remark>while(!isDone()) {
@@ -2018,7 +2021,7 @@ for (var x in collection) {
 
       <para>A <literal moreinfo="none">do</literal>-<literal
       moreinfo="none">while</literal> loop evaluates the condition
-      <emphasis>after</emphasis> the loop.</para>
+      <emphasis>after</emphasis> the loop:</para>
 
       <programlisting format="linespecific"><remark>lang-dart
 </remark>do {
@@ -2030,7 +2033,7 @@ for (var x in collection) {
       <title>Break and Continue</title>
 
       <para>Use <literal moreinfo="none">break</literal> to stop
-      looping.</para>
+      looping:</para>
 
       <programlisting format="linespecific"><remark>lang-dart
 </remark>while (true) {
@@ -2039,7 +2042,7 @@ for (var x in collection) {
 }</programlisting>
 
       <para>Use <literal moreinfo="none">continue</literal> to skip to the
-      next loop iteration.</para>
+      next loop iteration:</para>
 
       <programlisting format="linespecific"><remark>lang-dart
 </remark>for (int i = 0; i &lt; candidates.length; i++) {
@@ -2051,7 +2054,7 @@ for (var x in collection) {
 }</programlisting>
 
       <para>You might write that example differently if you’re using a <ulink
-      url="http://api.dartlang.org/dart_core/Collection.html">Collection.</ulink></para>
+      url="http://api.dartlang.org/dart_core/Collection.html">Collection</ulink>:</para>
 
       <programlisting format="linespecific"><remark>lang-dart
 </remark>candidates.where((c) =&gt; c.yearsExperience &gt;= 5)
@@ -2077,9 +2080,9 @@ for (var x in collection) {
 
       <para>Use a <literal moreinfo="none">default</literal> clause to execute
       code when no <literal moreinfo="none">case</literal> clause
-      matches.</para>
+      matches:</para>
 
-      <programlisting format="linespecific"><remark>lang-dart
+      <programlisting format="linespecific" role="keep-together"><remark>lang-dart
 </remark>var command = 'OPEN';
 switch (command) {
   case 'CLOSED':
@@ -2119,9 +2122,9 @@ switch (command) {
 
       <para>However, Dart does support empty <literal
       moreinfo="none">case</literal> clauses, allowing a form of
-      fall-through.</para>
+      fall-through:</para>
 
-      <programlisting format="linespecific"><remark>lang-dart
+      <programlisting format="linespecific" role=""><remark>lang-dart
 </remark>var command = 'CLOSED';
 switch (command) {
   case 'CLOSED':     // Empty case falls through.
@@ -2132,7 +2135,7 @@ switch (command) {
 }</programlisting>
 
       <para>If you really want fall-through, you can use a <literal
-      moreinfo="none">continue</literal> statement and a label.</para>
+      moreinfo="none">continue</literal> statement and a label:</para>
 
       <programlisting format="linespecific"><remark>lang-dart
 </remark>var command = 'CLOSED';
@@ -2191,7 +2194,8 @@ assert(urlString.startsWith('https')); // Make sure this is an HTTPS URL.</progr
 
     <para>In contrast to Java, all of Dart’s exceptions are unchecked
     exceptions. Methods do not declare which exceptions they might throw, and
-    you are not required to catch any exceptions.</para>
+    you are not required to catch any <phrase
+    role="keep-together">exceptions</phrase>.</para>
 
     <para>Dart provides <ulink
     url="http://api.dartlang.org/dart_core/Exception.html">Exception</ulink>
@@ -2205,12 +2209,12 @@ assert(urlString.startsWith('https')); // Make sure this is an HTTPS URL.</progr
       <title>Throw</title>
 
       <para>Here’s an example of throwing, or <emphasis>raising</emphasis>, an
-      exception.</para>
+      exception:</para>
 
       <programlisting format="linespecific"><remark>lang-dart
 </remark>throw new ExpectException('Value must be greater than zero');</programlisting>
 
-      <para>You can also throw arbitrary objects.</para>
+      <para>You can also throw arbitrary objects:</para>
 
       <programlisting format="linespecific"><remark>lang-dart
 </remark>throw 'Out of llamas!';</programlisting>
@@ -2228,7 +2232,7 @@ assert(urlString.startsWith('https')); // Make sure this is an HTTPS URL.</progr
 
       <para>Catching, or capturing, an exception stops the exception from
       propagating. Catching an exception gives you a chance to handle
-      it.</para>
+      it:</para>
 
       <programlisting format="linespecific"><remark>lang-dart
 </remark>try {
@@ -2241,9 +2245,9 @@ assert(urlString.startsWith('https')); // Make sure this is an HTTPS URL.</progr
       can specify multiple catch clauses. The first catch clause that matches
       the thrown object’s type handles the exception. If the catch clause does
       not specify a type, that clause can handle any type of thrown
-      object.</para>
+      object:</para>
 
-      <programlisting format="linespecific"><remark>lang-dart
+      <programlisting format="linespecific" role="keep-together"><remark>lang-dart
 </remark>try {
   breedMoreLlamas();
 } on OutOfLlamasException {           // A specific exception
@@ -2266,8 +2270,8 @@ assert(urlString.startsWith('https')); // Make sure this is an HTTPS URL.</progr
 
       <para>To ensure that some code runs whether or not an exception is
       thrown, use a <literal moreinfo="none">finally</literal> clause. If no
-      catch clause matches the exception, the exception is propagated after
-      the finally clause runs.</para>
+      <literal>catch</literal> clause matches the exception, the exception is
+      propagated after the <literal>finally</literal> clause runs:</para>
 
       <programlisting format="linespecific"><remark>lang-dart
 </remark>try {
@@ -2276,7 +2280,8 @@ assert(urlString.startsWith('https')); // Make sure this is an HTTPS URL.</progr
   cleanLlamaStalls();  // Always clean up, even if an exception is thrown.
 }</programlisting>
 
-      <para>The finally clause runs after any matching catch clauses.</para>
+      <para>The <literal>finally</literal> clause runs after any matching
+      <literal>catch</literal> clauses:</para>
 
       <programlisting format="linespecific"><remark>lang-dart
 </remark>try {
@@ -2303,7 +2308,7 @@ assert(urlString.startsWith('https')); // Make sure this is an HTTPS URL.</progr
     moreinfo="none">new</literal> keyword with a
     <firstterm>constructor</firstterm> for a class. Constructor names can be
     either <emphasis><replaceable>ClassName</replaceable></emphasis> or
-    <replaceable>ClassName.identifier</replaceable>.</para>
+    <replaceable>ClassName.identifier</replaceable>. For example:</para>
 
     <programlisting format="linespecific"><remark>lang-dart
 </remark>var jsonData = json.parse('{"x":1, "y":2}');
@@ -2317,7 +2322,7 @@ var p2 = new Point.fromJson(jsonData); // Create a Point using Point.fromJson().
     <emphasis>invoke</emphasis> it on an object: the method has access to that
     object’s functions and data.</para>
 
-    <para>Use a dot (.) to refer to an instance variable or method.</para>
+    <para>Use a dot (.) to refer to an instance variable or method:</para>
 
     <programlisting format="linespecific"><remark>lang-dart
 </remark>var p = new Point(2,2);
@@ -2328,9 +2333,9 @@ assert(p.y == 3);    // Get the value of y.
 num distance = p.distanceTo(new Point(4,4)); // Invoke distanceTo() on p.</programlisting>
 
     <para>Use the cascade operator (..) when you want to perform a series of
-    operations on the members of a single object.</para>
+    operations on the members of a single object:</para>
 
-    <programlisting format="linespecific"><remark>lang-dart
+    <programlisting format="linespecific" role="keep-together"><remark>lang-dart
 </remark>query('#button')
     ..text = 'Click to Confirm'                        // Get an object. Use its
     ..classes.add('important')                         // instance variables
@@ -2339,13 +2344,13 @@ num distance = p.distanceTo(new Point(4,4)); // Invoke distanceTo() on p.</progr
     <para>Some classes provide constant constructors. To create a compile-time
     constant using a constant constructor, use <literal
     moreinfo="none">const</literal> instead of <literal
-    moreinfo="none">new</literal>.</para>
+    moreinfo="none">new</literal>:</para>
 
     <programlisting format="linespecific"><remark>lang-dart
 </remark>var p = const ImmutablePoint(2,2);</programlisting>
 
     <para>Constructing two identical compile-time constants results in a
-    single, canonical instance.</para>
+    single, canonical <phrase role="keep-together">instance:</phrase></para>
 
     <programlisting format="linespecific"><remark>lang-dart
 </remark>var a = const ImmutablePoint(1, 1);
@@ -2377,7 +2382,7 @@ assert(identical(a,b)); // They are the same instance!</programlisting>
       method. For details, see <xref
       linkend="classes-getters-and-setters" />.</para>
 
-      <programlisting format="linespecific"><remark>lang-dart
+      <programlisting format="linespecific" role=""><remark>lang-dart
 </remark><remark>ch02/instance_variables.dart
 </remark>class Point {
   num x;
@@ -2404,7 +2409,7 @@ main() {
       its class (plus, optionally, an additional identifier as described in
       <xref linkend="ch02-constructors-named" />). The most common form of
       constructor, the generative constructor, creates a new instance of a
-      class.</para>
+      class:</para>
 
       <programlisting format="linespecific"><remark>lang-dart
 </remark><remark>ch02/constructor_long_way.dart
@@ -2429,9 +2434,9 @@ main() {
       </note>
 
       <para>The pattern of assigning a constructor argument to an instance
-      variable is so common, Dart has syntactic sugar to make it easy.</para>
+      variable is so common, Dart has syntactic sugar to make it easy:</para>
 
-      <programlisting format="linespecific"><remark>lang-dart
+      <programlisting format="linespecific" role="keep-together"><remark>lang-dart
 </remark>class Point {
   num x;
   num y;
@@ -2445,7 +2450,8 @@ main() {
 
         <para>If you don’t declare a constructor, a default constructor is
         provided for you. The default constructor has no arguments and invokes
-        the no-argument constructor in the superclass.</para>
+        the no-argument constructor in the <phrase
+        role="keep-together">superclass</phrase>.</para>
       </sect3>
 
       <sect3 id="ch02-constructors-not-inherited">
@@ -2460,7 +2466,7 @@ main() {
         <title>Named constructors</title>
 
         <para>Use a named constructor to implement multiple constructors for a
-        class or to provide extra clarity.</para>
+        class or to provide extra clarity:</para>
 
         <programlisting format="linespecific"><remark>lang-dart
 </remark><remark>ch02/named_constructor.dart
@@ -2490,8 +2496,9 @@ main() {
         <para>By default, a constructor in a subclass calls the superclass’s
         unnamed, no-argument constructor. If the superclass doesn’t have such
         a constructor, then you must manually call one of the constructors in
-        the superclass. Specify the superclass constructor after a colon (:),
-        just before the constructor body (if any).</para>
+        the superclass. Specify the superclass constructor after a colon
+        (<literal>:</literal>), just before the constructor body (if
+        any).</para>
 
         <programlisting format="linespecific"><remark>lang-dart
 </remark><remark>ch02/op_as.dart
@@ -2549,8 +2556,10 @@ main() {
         <title>Redirecting constructors</title>
 
         <para>Sometimes a constructor’s only purpose is to redirect to another
-        constructor in the same class. A redirecting constructor’s body is
-        empty, with the constructor call appearing after a colon (:).</para>
+        constructor in <phrase role="keep-together">the same class.</phrase> A
+        redirecting constructor’s body is empty, with the constructor call
+        <phrase role="keep-together">appearing after a colon
+        (:).</phrase></para>
 
         <programlisting format="linespecific"><remark>lang-dart
 </remark><remark>ch02/along_x_axis.dart
@@ -2592,7 +2601,7 @@ main() {
         subtype.</para>
 
         <para>The following example demonstrates a factory constructor
-        returning objects from a cache.</para>
+        returning objects from a cache:</para>
 
         <programlisting format="linespecific"><remark>lang-dart
 </remark><remark>ch02/factory_constructor.dart
@@ -2648,7 +2657,7 @@ logger.log('Button clicked');</programlisting>
         <para>Instance methods on objects can access instance variables and
         <literal moreinfo="none">this</literal>. The
         <literal>distanceTo()</literal> method in the following sample is an
-        example of an instance method.</para>
+        example of an instance method:</para>
 
         <programlisting format="linespecific"><remark>lang-dart
 </remark><remark>ch02/distance_to.dart
@@ -2675,7 +2684,7 @@ class Point {
         variable has an implicit getter, plus a setter if appropriate. You can
         create additional properties by implementing getters and setters,
         using the <literal moreinfo="none">get</literal> and <literal
-        moreinfo="none">set</literal> keywords.</para>
+        moreinfo="none">set</literal> keywords:</para>
 
         <programlisting format="linespecific"><remark>lang-dart
 </remark><remark>ch02/rectangle.dart
@@ -2719,7 +2728,7 @@ main() {
         <para>Instance, getter, and setter methods can be abstract, defining
         an interface but leaving its implementation up to other classes. To
         make a method abstract, use a semicolon (;) instead of a method
-        body.</para>
+        body:</para>
 
         <programlisting format="linespecific"><remark>lang-dart
 </remark><remark>ch02/doer.dart
@@ -2748,7 +2757,7 @@ class EffectiveDoer extends Doer {
         Vector class, you might define a <literal>+</literal> method to add
         two vectors.</para>
 
-        <table id="overridden_operator_table">
+        <table id="overridden_operator_table" role="keep-together">
           <title>Operators that can be overridden</title>
 
           <tgroup cols="4">
@@ -2806,7 +2815,7 @@ class EffectiveDoer extends Doer {
 
         <para>Here’s an example of a class that overrides the <literal
         moreinfo="none">+</literal> and <literal moreinfo="none">-</literal>
-        operators.</para>
+        operators:</para>
 
         <programlisting format="linespecific"><remark>lang-dart
 </remark><remark>ch02/vector.dart
@@ -2852,7 +2861,7 @@ main() {
       <para>Abstract classes often have <link
       linkend="ch02-method-abstract">abstract methods</link>. Here’s an
       example of declaring an abstract class that has an abstract
-      method.</para>
+      method:</para>
 
       <programlisting format="linespecific"><remark>lang-dart
 </remark><remark>ch02/abstract.dart
@@ -2864,7 +2873,7 @@ abstract class AbstractContainer {
 }</programlisting>
 
       <para>The following class isn’t abstract, and thus can be instantiated
-      even though it defines an abstract method.</para>
+      even though it defines an abstract method:</para>
 
       <programlisting format="linespecific"><remark>lang-dart
 </remark><remark>ch02/abstract.dart
@@ -2929,7 +2938,7 @@ main() {
 
       <para>Use <literal moreinfo="none">extends</literal> to create a
       subclass, and <literal moreinfo="none">super</literal> to refer to the
-      superclass.</para>
+      superclass:</para>
 
       <programlisting format="linespecific"><remark>lang-dart
 </remark><remark>smart_tv.dart
@@ -2977,7 +2986,7 @@ class SmartTelevision extends Television {
         <title>Static variables</title>
 
         <para>Static variables (class variables) are useful for class-wide
-        state and constants.</para>
+        state and constants:</para>
 
         <programlisting format="linespecific"><remark>lang-dart
 </remark><remark>ch02/color.dart
@@ -2999,7 +3008,7 @@ main() {
 
         <para>Static methods (class methods) do not operate on an instance,
         and thus do not have access to <literal
-        moreinfo="none">this</literal>.</para>
+        moreinfo="none">this</literal>. For example:</para>
 
         <programlisting format="linespecific"><remark>lang-dart
 </remark><remark>ch02/point.dart
@@ -3062,7 +3071,7 @@ main() {
       (read that as <quote>list of string</quote>). That way you, your fellow
       programmers, and your tools (such as Dart Editor and the Dart VM in
       checked mode) can detect that assigning a non-string to the list is
-      probably a mistake.</para>
+      probably a mistake. Here’s an example:</para>
 
       <programlisting format="linespecific"><remark>lang-dart</remark><remark>
 ch02/generics.dart
@@ -3132,8 +3141,9 @@ var pages = &lt;String, String&gt;{
 
       <note>
         <para>Map literals always have string <emphasis>keys</emphasis>, so
-        their type is always <literal moreinfo="none">&lt;String,
-        <replaceable>SomeType</replaceable>&gt;</literal>.</para>
+        their type is always <phrase role="keep-together"><literal
+        moreinfo="none">&lt;String,
+        <replaceable>SomeType</replaceable>&gt;</literal>.</phrase></para>
       </note>
     </sect2>
 
@@ -3170,16 +3180,17 @@ print(names is List&lt;String&gt;); // true</programlisting>
 
       <para>However, the <literal moreinfo="none">is</literal> expression
       checks the type of the <emphasis>collection</emphasis> only—not of the
-      objects inside it. In production mode, a List&lt;String&gt; might have
-      some non-string items in it. The solution is to either check each item’s
-      type or wrap item-manipulation code in an exception handler (see <xref
+      objects inside it. In production mode, a
+      <literal>List&lt;String&gt;</literal> might have some non-string items
+      in it. The solution is to either check each item’s type or wrap
+      item-manipulation code in an exception handler (see <xref
       linkend="exceptions" />).</para>
 
       <note>
         <para>In contrast, generics in Java use <emphasis>erasure</emphasis>,
         which means that generic type parameters are removed at runtime. In
         Java, you can test whether an object is a List, but you can’t test
-        whether it’s a List&lt;String&gt;.</para>
+        whether it’s a <literal>List&lt;String&gt;</literal>.</para>
       </note>
 
       <para>For more information about generics, see <ulink
@@ -3401,7 +3412,7 @@ void main() {
     declaring fields and return types. A typedef retains type information when
     a function type is assigned to a variable.</para>
 
-    <para>Consider the following code, which does not use a typedef.</para>
+    <para>Consider the following code, which does not use a typedef:</para>
 
     <programlisting format="linespecific"><remark>lang-dart
 </remark><remark>ch02/sorted_collection.dart
@@ -3425,15 +3436,16 @@ main() {
     <para>Type information is lost when assigning <literal
     moreinfo="none">f</literal> to <literal moreinfo="none">compare</literal>.
     The type of <literal moreinfo="none">f</literal> is <literal
-    moreinfo="none">(Object, Object)</literal> <phrase
-    role="unicode">→</phrase> <literal moreinfo="none">int</literal> (where
-    <phrase role="unicode">→</phrase> means returns), yet the type of <literal
+    moreinfo="none">(Object, </literal><phrase role="keep-together"><literal
+    moreinfo="none">Object)</literal> <phrase role="unicode">→</phrase>
+    <literal moreinfo="none">int</literal></phrase> (where <phrase
+    role="unicode">→</phrase> means returns), yet the type of <literal
     moreinfo="none">compare</literal> is Function. If we change the code to
     use explicit names and retain type information, both developers and tools
     can use that information.</para>
 
     <programlisting format="linespecific"><remark>lang-dart
-</remark><emphasis role="bold">typedef int Compare(Object a, Object b);</emphasis>
+</remark><emphasis role="">typedef int Compare(Object a, Object b);</emphasis>
 
 class SortedCollection {
   Compare compare;
@@ -3472,13 +3484,13 @@ main() {
 
     <para>Use metadata to give additional information about your code. A
     metadata annotation begins with the character <literal>@</literal>,
-    followed by either a reference to compile-time constant (such as
+    followed by either a reference to a compile-time constant (such as
     <literal>deprecated</literal>) or a call to a constant constructor.</para>
 
     <para>The <ulink url="http://pub.dartlang.org/packages/meta">meta
     package</ulink> defines the API for two common annotations:
     <literal>@deprecated</literal> and <literal>@overrides</literal>. Here’s
-    an example of using the <literal>@deprecated</literal> annotation.</para>
+    an example of using the <literal>@deprecated</literal> annotation:</para>
 
     <programlisting format="linespecific"><remark>lang-dart
 ch02/metadata.dart
@@ -3546,7 +3558,7 @@ void doSomething() {
     <title>Comments</title>
 
     <para>Dart supports single-line comments, multi-line comments, and
-    documentation comments.</para>
+    documentation <phrase role="keep-together">comments.</phrase></para>
 
     <sect2 id="ch02-comments-single-line">
       <title>Single-Line Comments</title>
@@ -3647,7 +3659,7 @@ class Llama {
 
     <para>This chapter summarized the commonly used features in the Dart
     language. More features are being implemented, such as <ulink
-    url="http://www.dartlang.org/articles/mixins/">mixins</ulink>, but we
+    url="http://www.dartlang.org/articles/mixins/">mixins,</ulink> but we
     expect that they won’t break existing code. For more information, see the
     <ulink url="http://www.dartlang.org/docs/spec/">Dart Language
     Specification</ulink> and <ulink
