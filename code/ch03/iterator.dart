@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 class Process {
   // Represents a process...
 }
@@ -10,7 +12,8 @@ class ProcessIterator implements Iterator<Process> {
 }
 
 // A mythical class that lets you iterate through all processes.
-class Processes extends Iterable<Process> {
+// Extends an Iterable subclass.
+class Processes extends DoubleLinkedQueue<Process> {
   final Iterator<Process> iterator = new ProcessIterator();
 }
 

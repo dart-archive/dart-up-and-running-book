@@ -226,8 +226,9 @@
         <listitem>
           <para>IOSink’s methods for writing data have changed. To write
           string data, instead of <literal>addString()</literal> use
-          <literal>write()</literal>. To write binary data, instead of
-          <literal>add()</literal> use <literal>writeBytes()</literal>.</para>
+          <literal>write()</literal>. The method for writing binary data was
+          temporarily renamed to <literal>writeBytes()</literal>, but is now
+          back to <literal>add()</literal>.</para>
         </listitem>
 
         <listitem>
@@ -241,6 +242,10 @@
           talked about sets, lists, and maps in <xref
           linkend="ch03-collections" />, and we talk more about
           Iterable.</para>
+        </listitem>
+
+        <listitem>
+          <para>The AsyncError class has been removed.</para>
         </listitem>
       </itemizedlist>
     </sect2>

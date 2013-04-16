@@ -7,15 +7,15 @@ dbQuery(query, {onSuccess(results)}) {
 }
 
 Future expensiveWork() {
-  return new Future.immediate(true);
+  return new Future.value(true);
 }
 
 Future lengthyComputation() {
-  return new Future.immediate(true);
+  return new Future.value(true);
 }
 
 Future costlyQuery() {
-  return new Future.immediate(true);
+  return new Future.value(true);
 }
 
 // end fake methods

@@ -53,7 +53,7 @@ parseText(String jsonText) {
 }
 
 // PENDING: We should do more explicit error handling, once it's available. 
-handleError(AsyncError error) {
+handleError(error) {
   print('Uh oh, there was an error.');
   print(error.toString());
 }

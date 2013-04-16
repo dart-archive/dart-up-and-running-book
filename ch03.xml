@@ -521,7 +521,7 @@ assert(teamAssignments['Catcher'] != null);</screen>
 
         <para>List, Set, and Map share common functionality found in many
         collections. Some of this common functionality is defined by the
-        Iterable class, which List and Set implement. </para>
+        Iterable class, which List and Set implement.</para>
 
         <note>
           <para>Although Map doesn’t implement Iterable, you can get Iterables
@@ -783,7 +783,8 @@ class ProcessIterator implements Iterator&lt;Process&gt; {
 }
 
 // A mythical class that lets you iterate through all processes.
-class Processes extends Iterable&lt;Process&gt; {
+// Extends an Iterable subclass.
+class Processes extends DoubleLinkedQueue&lt;Process&gt; {
   final Iterator&lt;Process&gt; iterator = new ProcessIterator();
 }
 
@@ -1514,7 +1515,7 @@ HttpRequest.getString(uri)
     .then(processString)
     .catchError(handleError);
 ...
-handleError(AsyncError error) {
+handleError(error) {
   print('Uh oh, there was an error.');
   print(error.toString());
 }</programlisting>
@@ -2209,7 +2210,7 @@ sink.close();</programlisting>
 </remark>var sink = logFile.openWrite(mode: FileMode.APPEND); </screen>
 
         <para>To write binary data, use <literal
-        moreinfo="none">writeBytes(List&lt;int&gt; buffer)</literal>.</para>
+        moreinfo="none">add(List&lt;int&gt; buffer)</literal>.</para>
       </sect3>
 
       <sect3 id="ch03-listing-files-in-a-directory">

@@ -19,7 +19,7 @@ writeBinary() {
   var sink = binaryFile.openWrite();
   var icoFile = new File('icon.ico');
   var data = icoFile.openSync().readSync(icoFile.lengthSync());
-  sink.writeBytes(data);
+  sink.add(data);
   sink.close();
 }
 
