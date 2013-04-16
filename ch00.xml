@@ -216,6 +216,14 @@
         </listitem>
 
         <listitem>
+          <para>File’s <literal>readAsString()</literal> and
+          <literal>readAsLines()</literal> methods no longer require a
+          parameter. Instead, they have an optional named parameter
+          (<literal>encoding</literal>), with a default value of
+          <literal>Encoding.UTF_8</literal>.</para>
+        </listitem>
+
+        <listitem>
           <para>IOSink’s methods for writing data have changed. To write
           string data, instead of <literal>addString()</literal> use
           <literal>write()</literal>. To write binary data, instead of
@@ -226,6 +234,13 @@
           <para>Set’s <literal>isSubsetOf()</literal> method is gone. Instead,
           use the Set <literal>containsAll()</literal> method. You can convert
           any Iterable to a Set using <literal>toSet()</literal>.</para>
+        </listitem>
+
+        <listitem>
+          <para>The Collection class is gone, so we’ve changed the way we
+          talked about sets, lists, and maps in <xref
+          linkend="ch03-collections" />, and we talk more about
+          Iterable.</para>
         </listitem>
       </itemizedlist>
     </sect2>
