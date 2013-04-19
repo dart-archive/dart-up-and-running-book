@@ -1002,6 +1002,42 @@ if (!navigator.webkitStartDart) {
       help you debug the JavaScript version of the app more easily.</para>
     </sect2>
 
+    <sect2 id="ch04-tools-dart2js-generating-efficient-code">
+      <title>Helping dart2js generate better code</title>
+
+      <para>By making type inference easier and
+        (when you're ready to deploy your app)
+        using the --minify option,
+        you can help dart2js to reduce the size of your app's JavaScript code.
+        </para>
+
+      <para>Type inference can help dart2js to
+        generate smaller and faster JavaScript code.
+        The goal of type inference is to
+        determine that a variable is always a specific type.
+        Here are some practices you can follow
+        to help dart2js do better type inference:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Avoid using null.</para>
+        </listitem>
+        <listitem>
+          <para>Use const variables wherever possible.</para>
+        </listitem>
+        <listitem>
+          <para>Be consistent with the types of parameters you pass into
+            each function or method.</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>Don't worry about the size of your app's included libraries.
+        Thanks to a feature called <emphasis>tree shaking,</emphasis>
+        dart2js omits unused classes, functions, methods, and so on.
+        Just import the libraries you need,
+        and let dart2js get rid of what you don't need.</para>
+    </sect2>
+
     <sect2 id="ch04-tools-dart2js-options">
       <title>Options</title>
 
@@ -1060,6 +1096,17 @@ if (!navigator.webkitStartDart) {
           <listitem>
             <para>Display help. (Use <literal moreinfo="none">-vh</literal>
             for information about all options.)</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term role="plain"><literal moreinfo="none">
+            --output-type=dart</literal></term>
+
+          <listitem>
+            <para>Output Dart code instead of JavaScript. This option
+              is useful when deploying your app, because it generates
+              a single file containing everything the app needs.</para>
           </listitem>
         </varlistentry>
       </variablelist>
