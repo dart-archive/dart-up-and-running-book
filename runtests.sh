@@ -9,7 +9,7 @@
 #####
 # Type Analysis
 
-ANA="dart_analyzer --enable_type_checks --fatal-type-errors --extended-exit-code --type-checks-for-inferred-types"
+ANA="dart_analyzer --fatal-type-errors --extended-exit-code"
 
 echo
 echo "Type Analysis, running dart_analyzer..."
