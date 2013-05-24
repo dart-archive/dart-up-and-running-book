@@ -1483,7 +1483,13 @@ assert(a != b) ; // -1 != 0</programlisting>
 
       <para>To test whether two objects <replaceable>x</replaceable> and
       <replaceable>y</replaceable> represent the same thing, use the <literal
-      moreinfo="none">==</literal> operator. Here’s how the <literal
+      moreinfo="none">==</literal> operator.
+      (In the rare case
+      where you need to know whether two objects are the exact same object,
+      use the <literal><ulink
+      url="http://api.dartlang.org/dart_core.html#identical">identical()</ulink></literal>
+      function instead.)
+      Here’s how the <literal
       moreinfo="none">==</literal> operator works:</para>
 
       <orderedlist continuation="restarts" inheritnum="ignore">
