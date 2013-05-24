@@ -205,7 +205,7 @@ import 'package:intl/intl.dart';</programlisting>
     <link linkend="ch04-editor-run-non-dartium">specifying a browser</link>
     and <link linkend="ch04-editor-dart2js">compiling to JavaScript</link>. If
     you run into a problem, see <ulink
-    url="http://www.dartlang.org/docs/editor/troubleshoot.html">Troubleshooting
+    url="http://www.dartlang.org/tools/editor/troubleshoot.html">Troubleshooting
     Dart Editor.</ulink> Dart Editor is updated frequently, so it probably
     looks different from what you see here. For the latest information, see
     the <ulink url="http://www.dartlang.org/editor">Dart Editor
