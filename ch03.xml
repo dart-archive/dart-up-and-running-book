@@ -1036,8 +1036,8 @@ assert(double.parse(sinOf30degrees.toStringAsPrecision(2)) == 0.5);</screen>
       </note>
     </sect2>
 
-    <sect2 id="ch03-maximum-and-mininum">
-      <title>Maximum and Mininum</title>
+    <sect2 id="ch03-maximum-and-minimum">
+      <title>Maximum and Minimum</title>
 
       <para>The Math library provides optimized <literal>max()</literal> and
       <literal>min()</literal> methods:</para>
