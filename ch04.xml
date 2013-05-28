@@ -1331,8 +1331,14 @@ if (!navigator.webkitStartDart) {
     Language Specification.</ulink></para>
 
     <note>
-      <para>Dart Editor performs the same analysis that dart_analyzer does,
-      but with additional checks for common mistakes.</para>
+      <para>Dart Editor uses the next generation Dart analyzer,
+        called <emphasis>dartanalyzer</emphasis> (no underscore).
+        Dart Editor also adds checks for common mistakes.
+        For now, the SDK contains both dart_analyzer and dartanalyzer,
+        but we expect dart_analyzer to be removed soon.
+        You can use many of the same command-line options for dartanalyzer
+        as for dart_analyzer.
+      </para>
     </note>
 
     <sect2 id="ch04-tools-dart_analyzer-basic-usage">
