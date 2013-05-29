@@ -56,7 +56,7 @@
     </varlistentry>
 
     <varlistentry>
-      <term><link linkend="ch04-tools-dart_analyzer">dart_analyzer: The Static
+      <term><link linkend="ch04-tools-dart_analyzer">dartanalyzer: The Static
       Analyzer</link></term>
 
       <listitem>
@@ -76,7 +76,7 @@
 
   <para>All of these tools are in the Dart Editor bundle, since the editor
   uses Dartium and the other tools. You can also download Dartium separately,
-  and you can download an SDK that includes pub, dart2js, dart, dart_analyzer,
+  and you can download an SDK that includes pub, dart2js, dart, dartanalyzer,
   and dartdoc. See the <ulink
   url="http://www.dartlang.org/downloads.html">Downloads page</ulink> for
   links and details.</para>
@@ -1322,23 +1322,19 @@ if (!navigator.webkitStartDart) {
   </sect1>
 
   <sect1 id="ch04-tools-dart_analyzer">
-    <title>dart_analyzer: The Static Analyzer</title>
+    <title>dartanalyzer: The Static Analyzer</title>
 
-    <para>You can use the <emphasis>dart_analyzer</emphasis> tool (<literal
-    moreinfo="none">bin/dart_analyzer</literal>) to statically analyze your
+    <para>You can use the <emphasis>dartanalyzer</emphasis> tool (<literal
+    moreinfo="none">bin/dartanalyzer</literal>) to statically analyze your
     code at the command line, checking for errors and warnings that are
     specified in the <ulink url="http://www.dartlang.org/docs/spec/">Dart
     Language Specification.</ulink></para>
 
     <note>
-      <para>Dart Editor uses the next generation Dart analyzer,
-        called <emphasis>dartanalyzer</emphasis> (no underscore).
-        Dart Editor also adds checks for common mistakes.
-        For now, the SDK contains both dart_analyzer and dartanalyzer,
-        but we expect dart_analyzer to be removed soon.
-        You can use many of the same command-line options for dartanalyzer
-        as for dart_analyzer.
-      </para>
+      <para>Dart Editor performs the same analysis that dartanalyzer does, but
+      with additional checks for common mistakes. A previous static analyzer,
+      called <emphasis>dart_analyzer</emphasis>, is no longer
+      supported.</para>
     </note>
 
     <sect2 id="ch04-tools-dart_analyzer-basic-usage">
@@ -1347,30 +1343,100 @@ if (!navigator.webkitStartDart) {
       <para>Here’s an example of testing a Dart file:</para>
 
       <screen format="linespecific"><remark>lang-sh
-</remark><replaceable>$DART_SDK</replaceable>/bin/dart_analyzer --enable_type_checks <replaceable>test.dart</replaceable></screen>
+</remark><replaceable>$DART_SDK</replaceable>/bin/dartanalyzer --package-root <replaceable>code/packages</replaceable> <replaceable>test.dart</replaceable></screen>
+
+      <para>As <xref linkend="ch04-dartanalyzer-exit" /> shows, the exit code
+      of dartanalyzer tells you whether the code passed analysis.</para>
+
+      <table id="ch04-dartanalyzer-exit">
+        <title>Exit codes for dartanalyzer</title>
+
+        <tgroup cols="2">
+          <thead>
+            <row>
+              <entry>Exit code</entry>
+
+              <entry>Description</entry>
+            </row>
+          </thead>
+
+          <tbody>
+            <row>
+              <entry>0</entry>
+
+              <entry>No issues found</entry>
+            </row>
+
+            <row>
+              <entry>1</entry>
+
+              <entry>Warnings found (but no errors)</entry>
+            </row>
+
+            <row>
+              <entry>2</entry>
+
+              <entry>Errors found</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
     </sect2>
 
     <sect2 id="ch04-tools-dart_analyzer-options">
       <title>Options</title>
 
-      <para>Common command-line options for dart_analyzer include:</para>
+      <para>You can use the following command-line options with
+      dartanalyzer:</para>
 
       <variablelist>
         <varlistentry>
           <term role="plain"><literal moreinfo="none">
-          </literal><literal>--enable_type_checks</literal></term>
+          </literal><literal>--dart-sdk
+          <replaceable>&lt;path&gt;</replaceable></literal></term>
 
           <listitem>
-            <para>Perform runtime type checks.</para>
+            <para>Specify the directory that contains the Dart SDK.</para>
           </listitem>
         </varlistentry>
 
         <varlistentry>
           <term role="plain"><literal moreinfo="none">
-          </literal><literal>--fatal-type-errors</literal></term>
+          </literal><literal>--package-root
+          <replaceable>&lt;path&gt;</replaceable></literal></term>
 
           <listitem>
-            <para>Treat type errors as fatal.</para>
+            <para>Specify the directory to search for any libraries that are
+            imported using <literal>package:</literal>.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term role="plain"><literal moreinfo="none">
+          </literal><literal>--show-package-warnings</literal></term>
+
+          <listitem>
+            <para>Show warnings not only for code in the specified .dart file
+            and others in its library, but also for libraries imported with
+            <literal>package:</literal>.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term role="plain"><literal moreinfo="none">
+          </literal><literal>--machine</literal></term>
+
+          <listitem>
+            <para>Produce output in a format suitable for parsing.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term role="plain"><literal moreinfo="none">
+          </literal><literal>--version</literal></term>
+
+          <listitem>
+            <para>Show the analyzer version.</para>
           </listitem>
         </varlistentry>
 
@@ -1379,7 +1445,7 @@ if (!navigator.webkitStartDart) {
           </literal><literal>--help</literal></term>
 
           <listitem>
-            <para>Print all the command-line options.</para>
+            <para>Show all the command-line options.</para>
           </listitem>
         </varlistentry>
       </variablelist>
