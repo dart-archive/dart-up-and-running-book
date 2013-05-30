@@ -740,9 +740,8 @@ assert(iMeantToDoThis.isNaN);</programlisting>
 assert(list.length == 3);
 assert(list[1] == 2);</programlisting>
 
-      <para>The List type has many handy methods for manipulating lists.
-      For more information
-      about lists, see <xref linkend="generics" /> and <xref
+      <para>The List type has many handy methods for manipulating lists. For
+      more information about lists, see <xref linkend="generics" /> and <xref
       linkend="ch03-collections" />.</para>
     </sect2>
 
@@ -878,15 +877,6 @@ assert(gifts.length == 2);</programlisting>
       default values must be compile-time constants such as literals. If no
       default value is provided, the value is <literal
       moreinfo="none">null</literal>.</para>
-
-      <para>If you need to know whether the caller passed in a value for an
-      optional parameter, use the syntax <literal
-      moreinfo="none">?<replaceable>param</replaceable></literal>:</para>
-
-      <programlisting format="linespecific"><remark>lang-dart
-</remark>if (?device) {    // Returns true if the caller specified the parameter.
-  // ...The user set the value. Do something with it...
-}</programlisting>
 
       <sect3 id="functions-optional-named-parameters">
         <title>Optional named parameters</title>
@@ -1133,12 +1123,11 @@ main() {
 
         <tbody>
           <row>
-            <entry>unary postfix and argument definition test</entry>
+            <entry>unary postfix</entry>
 
             <entry class="operatorList"><replaceable>expr</replaceable>++
             &nbsp;&nbsp; <replaceable>expr</replaceable>-- &nbsp;&nbsp; ()
-            &nbsp;&nbsp; [] &nbsp;&nbsp; . &nbsp;&nbsp;
-            ?<replaceable>identifier</replaceable></entry>
+            &nbsp;&nbsp; [] &nbsp;&nbsp; .</entry>
           </row>
 
           <row>
@@ -1483,14 +1472,12 @@ assert(a != b) ; // -1 != 0</programlisting>
 
       <para>To test whether two objects <replaceable>x</replaceable> and
       <replaceable>y</replaceable> represent the same thing, use the <literal
-      moreinfo="none">==</literal> operator.
-      (In the rare case
-      where you need to know whether two objects are the exact same object,
-      use the <literal><ulink
+      moreinfo="none">==</literal> operator. (In the rare case where you need
+      to know whether two objects are the exact same object, use the
+      <literal><ulink
       url="http://api.dartlang.org/dart_core.html#identical">identical()</ulink></literal>
-      function instead.)
-      Here’s how the <literal
-      moreinfo="none">==</literal> operator works:</para>
+      function instead.) Here’s how the <literal moreinfo="none">==</literal>
+      operator works:</para>
 
       <orderedlist continuation="restarts" inheritnum="ignore">
         <listitem>
@@ -1878,16 +1865,6 @@ assert((value &gt;&gt; 4)       == 0x02);  // Shift right</programlisting>
               <entry class="operator">Allows you to perform multiple
               operations on the members of a single object; described in <xref
               linkend="classes" /></entry>
-            </row>
-
-            <row>
-              <entry>?<replaceable>identifier</replaceable></entry>
-
-              <entry>Argument definition test</entry>
-
-              <entry>Tests whether the caller specified an optional parameter;
-              described in <xref
-              linkend="functions-optional-parameters" /></entry>
             </row>
           </tbody>
         </tgroup>
