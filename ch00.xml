@@ -248,6 +248,52 @@
           <para>The AsyncError class has been removed.</para>
         </listitem>
       </itemizedlist>
+
+      <para>We’ve updated the content to reflect the following M5
+      changes:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>The dart_analyzer tool has been replaced by
+          dartanalyzer.</para>
+        </listitem>
+
+        <listitem>
+          <para>The ? operator for testing whether an optional parameter has
+          been set is no longer in the language.</para>
+        </listitem>
+
+        <listitem>
+          <para>The dart:crypto library has moved out of the SDK (to <ulink
+          url="http://pub.dartlang.org/packages/crypto">http://pub.dartlang.org/packages/crypto</ulink>).</para>
+        </listitem>
+
+        <listitem>
+          <para>The dart:uri library is gone, its functionality folded into a
+          new Uri class in dart:core. The top-level functions
+          <literal>encodeUri()</literal>,
+          <literal>encodeUriComponent()</literal>,
+          <literal>decodeUri()</literal>, and
+          <literal>decodeUriComponent()</literal> are now static methods in
+          Uri named (respectively) <literal>encodeFull()</literal>,
+          <literal>encodeComponent()</literal>,
+          <literal>decodeFull()</literal>, and
+          <literal>decodeComponent()</literal>. To create a Uri from a string,
+          you now use the static <literal>parse()</literal> method. Uri now
+          has a single constructor, which takes the arguments that the
+          <literal>Uri.fromComponents()</literal> constructor used to take.
+          Finally, the <literal>domain</literal> field is now named
+          <literal>host</literal>.</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>We also tweaked existing coverage:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Fleshed out dart2js docs.</para>
+        </listitem>
+      </itemizedlist>
     </sect2>
 
     <sect2 id="preface-updates-v2">
