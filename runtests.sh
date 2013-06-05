@@ -26,7 +26,7 @@ EXITSTATUS=0
 for file in using_libraries.dart using_schemes.dart library_partial.dart library_prefix.dart
 do 
   (cd code/ch02/libraries; results=`$ANA $file 2>&1`)
-  echo
+  echo ""
   if [ -n "$results" ]; then
     EXITSTATUS=1
     echo "$results"
@@ -42,7 +42,7 @@ done
 #
 results=`$ANA code/ch02/ballgame/ballgame.dart code/ch02/ballgame/ball.dart code/ch02/ballgame/util.dart 2>&1`
 exit_code=$?
-echo
+echo ""
 if [ $exit_code -eq 2 ]; then
   let FAILURES++
   EXITSTATUS=1
@@ -55,7 +55,6 @@ elif [ $exit_code -eq 1 ]; then
 elif [ $exit_code -eq 0 ]; then
   let PASSING++
   echo "$results"
-  echo "$file: Passed analysis."
 else
   echo "$file: Unknown exit code: $exit_code."
 fi
@@ -65,6 +64,7 @@ fi
 #
 for file in code/ch0*/*.dart code/ch03/*html/web/*.dart
 do
+  echo ""
   results=`$ANA $file 2>&1`
   exit_code=$?
   if [ $exit_code -eq 2 ]; then
@@ -79,7 +79,6 @@ do
   elif [ $exit_code -eq 0 ]; then
     let PASSING++
     echo "$results"
-    echo "$file: Passed analysis."
   else
     echo "$file: Unknown exit code: $exit_code."
   fi

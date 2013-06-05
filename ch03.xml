@@ -612,6 +612,113 @@ assert(!teas.every(isDecaffeinated));</screen>
       </sect3>
     </sect2>
 
+    <sect2 id="ch03-uri">
+      <title>URIs</title>
+
+      <para>The <ulink url="http://api.dartlang.org/dart_core/Uri.html">Uri
+      class</ulink> provides functions to encode and decode strings for use in
+      URIs (which you might know as <emphasis>URLs</emphasis>). These
+      functions handle characters that are special for URIs, such as <literal
+      moreinfo="none">&amp;</literal> and <literal
+      moreinfo="none">=</literal>. The Uri class also parses and exposes the
+      components of a URI—host, port, scheme, and so on.</para>
+
+      <sect3 id="ch03-uri-fully-qualified">
+        <title>Encoding and Decoding Fully Qualified URIs</title>
+
+        <para>To encode and decode characters <emphasis>except</emphasis>
+        those with special meaning in a URI (such as <literal
+        moreinfo="none">/</literal>, <literal moreinfo="none">:</literal>,
+        <literal moreinfo="none">&amp;</literal>, <literal
+        moreinfo="none">#</literal>), use the <literal>encodeFull()</literal>
+        and <literal>decodeFull()</literal> methods. These <phrase
+        role="keep-together">methods are good</phrase> for encoding or
+        decoding a fully qualified URI, leaving intact <phrase
+        role="keep-together">special URI characters.</phrase></para>
+
+        <screen format="linespecific"><remark>lang-dart
+code/ch03/encodeUri.dart
+</remark>main() {
+  var uri = 'http://example.org/api?foo=some message';
+  var encoded = Uri.encodeFull(uri);
+  assert(encoded == 'http://example.org/api?foo=some%20message');
+
+  var decoded = Uri.decodeFull(encoded);
+  assert(uri == decoded);
+}</screen>
+
+        <para>Notice how only the space between <literal
+        moreinfo="none">some</literal> and <literal
+        moreinfo="none">message</literal> was encoded.</para>
+      </sect3>
+
+      <sect3 id="ch03-uri-components">
+        <title>Encoding and Decoding URI Components</title>
+
+        <para>To encode and decode all of a string’s characters that have
+        special meaning in a URI, including (but not limited to) <literal
+        moreinfo="none">/</literal>, <literal moreinfo="none">&amp;</literal>,
+        and <literal moreinfo="none">:</literal>, use the
+        <literal>encodeComponent()</literal> and
+        <literal>decodeComponent()</literal> methods.</para>
+
+        <screen format="linespecific"><remark>lang-dart
+code/ch03/encodeUriComponents.dart
+</remark>main() {
+  var uri = 'http://example.org/api?foo=some message';
+  var encoded = Uri.encodeComponent(uri);
+  assert(encoded == 'http%3A%2F%2Fexample.org%2Fapi%3Ffoo%3Dsome%20message');
+
+  var decoded = Uri.decodeComponent(encoded);
+  assert(uri == decoded);
+}</screen>
+
+        <para>Notice how every special character is encoded. For example,
+        <literal moreinfo="none">/</literal> is encoded to <literal
+        moreinfo="none">%2F</literal>.</para>
+      </sect3>
+
+      <sect3 id="ch03-uri-parsing">
+        <title>Parsing URIs</title>
+
+        <para>If you have a Uri object or a URI string, you can get its parts
+        using Uri fields such as <literal>path</literal>. To create a Uri from
+        a string, use the <literal>parse()</literal> static method:</para>
+
+        <screen format="linespecific"><remark>lang-dart
+code/ch03/parseUri.dart
+</remark>main() {
+  var uri = Uri.parse('http://example.org:8080/foo/bar#frag');
+
+  assert(uri.scheme   == 'http');
+  assert(uri.host     == 'example.org');
+  assert(uri.path     == '/foo/bar');
+  assert(uri.fragment == 'frag');
+  assert(uri.origin   == 'http://example.org:8080');
+}</screen>
+
+        <para>See the <ulink
+        url="http://api.dartlang.org/dart_core/Uri.html">Uri API docs</ulink>
+        for more URI components that you can get.</para>
+      </sect3>
+
+      <sect3 id="ch03-uri-building">
+        <title>Building URIs</title>
+
+        <para>You can build up a URI from individual parts using the
+        <literal>Uri()</literal> <phrase role="keep-together"
+        security="">constructor</phrase>:</para>
+
+        <programlisting role="keep-together"><remark>lang-dart
+code/ch03/uriFromComponents.dart
+</remark>main() {
+  var uri = new Uri(scheme: 'http', host: 'example.org', 
+                    path: '/foo/bar', fragment: 'frag');
+  assert(uri.toString() == 'http://example.org/foo/bar#frag');
+}</programlisting>
+      </sect3>
+    </sect2>
+
     <sect2 id="ch03-dates-and-times">
       <title>Dates and Times</title>
 
@@ -1601,19 +1708,18 @@ httpRequest.send(encodedData);
 
         <para>Submitting data to a form handler requires you to provide
         name-value pairs as URI-encoded strings. (Information about the URI
-        API is in <xref linkend="ch03-uri" />.) You must also set the <literal
-        moreinfo="none">Content-type</literal> header to <literal
+        class is in <xref linkend="ch03-uri" />.) You must also set the
+        <literal moreinfo="none">Content-type</literal> header to <literal
         moreinfo="none">application/x-www-form-urlencode</literal> if you wish
         to send data to a form handler.</para>
 
         <screen format="linespecific"><remark>lang-dart
-</remark><remark>ch03/ch03_3_html/*
+</remark><remark>ch03/ch03/ch03_3_html/json-send-to-server.dart
 </remark>import 'dart:html';
-import 'dart:uri';
-...
+
 String encodeMap(Map data) {
   return data.keys.map((k) {
-    return '${encodeUriComponent(k)}=${encodeUriComponent(data[k])}';
+    return '${Uri.encodeComponent(k)}=${Uri.encodeComponent(data[k])}';
   }).join('&amp;');
 }
 
@@ -2355,10 +2461,9 @@ main() {
         <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03/httpClient.dart
 </remark>import 'dart:io';
-import 'dart:uri';
 
 main() {
-  var url = new Uri('http://127.0.0.1:8888/languages/dart');
+  var url = Uri.parse('http://127.0.0.1:8888/languages/dart');
   var httpClient = new HttpClient();
   httpClient.getUrl(url)
     .then((HttpClientRequest request) {
@@ -2454,121 +2559,6 @@ main() {
     </sect2>
   </sect1>
 
-  <sect1 id="ch03-uri">
-    <title>dart:uri - Manipulating URIs</title>
-
-    <para>The <ulink url="http://api.dartlang.org/uri.html">URI
-    library</ulink> provides functions to encode and decode strings for use in
-    URIs (which you might know as <emphasis>URLs</emphasis>). These functions
-    handle characters that are special for URIs, such as <literal
-    moreinfo="none">&amp;</literal> and <literal
-    moreinfo="none">=</literal>.</para>
-
-    <para>Another part of the URI library is the Uri class, which parses and
-    exposes the components of a URI—domain, port, scheme, and so on.</para>
-
-    <para>The URI library works in both web apps and command-line apps. To use
-    it, import <literal moreinfo="none">dart:uri</literal>.</para>
-
-    <sect2 id="ch03-uri-fully-qualified">
-      <title>Encoding and Decoding Fully Qualified URIs</title>
-
-      <para>To encode and decode characters <emphasis>except</emphasis> those
-      with special meaning in a URI (such as <literal
-      moreinfo="none">/</literal>, <literal moreinfo="none">:</literal>,
-      <literal moreinfo="none">&amp;</literal>, <literal
-      moreinfo="none">#</literal>), use the top-level
-      <literal>encodeUri()</literal> and <literal>decodeUri()</literal>
-      functions. These <phrase role="keep-together">functions are
-      good</phrase> for encoding or decoding a fully qualified URI, leaving
-      intact <phrase role="keep-together">special URI
-      characters.</phrase></para>
-
-      <screen format="linespecific"><remark>lang-dart
-</remark>import 'dart:uri';
-
-main() {
-  var uri = 'http://example.org/api?foo=some message';
-  var encoded = encodeUri(uri);
-  assert(encoded == 'http://example.org/api?foo=some%20message');
-
-  var decoded = decodeUri(encoded);
-  assert(uri == decoded);
-}</screen>
-
-      <para>Notice how only the space between <literal
-      moreinfo="none">some</literal> and <literal
-      moreinfo="none">message</literal> was encoded.</para>
-    </sect2>
-
-    <sect2 id="ch03-uri-components">
-      <title>Encoding and Decoding URI Components</title>
-
-      <para>To encode and decode all of a string’s characters that have
-      special meaning in a URI, including (but not limited to) <literal
-      moreinfo="none">/</literal>, <literal moreinfo="none">&amp;</literal>,
-      and <literal moreinfo="none">:</literal>, use the top-level
-      <literal>encodeUriComponent()</literal> and
-      <literal>decodeUriComponent()</literal> functions.</para>
-
-      <screen format="linespecific"><remark>lang-dart
-</remark>import 'dart:uri';
-
-main() {
-  var uri = 'http://example.org/api?foo=some message';
-  var encoded = encodeUriComponent(uri);
-  assert(encoded == 'http%3A%2F%2Fexample.org%2Fapi%3Ffoo%3Dsome%20message');
-
-  var decoded = decodeUriComponent(encoded);
-  assert(uri == decoded);
-}</screen>
-
-      <para>Notice how every special character is encoded. For example,
-      <literal moreinfo="none">/</literal> is encoded to <literal
-      moreinfo="none">%2F</literal>.</para>
-    </sect2>
-
-    <sect2 id="ch03-uri-parsing">
-      <title>Parsing URIs</title>
-
-      <para>You can parse a URI into its parts with the
-      <literal>Uri()</literal> constructor:</para>
-
-      <screen format="linespecific"><remark>lang-dart
-</remark>import 'dart:uri';
-
-main() {
-  var uri = new Uri('http://example.org:8080/foo/bar#frag');
-
-  assert(uri.scheme == 'http');
-  assert(uri.domain == 'example.org');
-  assert(uri.path == '/foo/bar');
-  assert(uri.fragment == 'frag');
-  assert(uri.origin == 'http://example.org:8080');
-}</screen>
-
-      <para>See the <ulink url="http://api.dartlang.org/uri/Uri.html">Uri API
-      docs</ulink> for more URI components that you can get.</para>
-    </sect2>
-
-    <sect2 id="ch03-uri-building">
-      <title>Building URIs</title>
-
-      <para>You can build up a URI from individual parts using the
-      <literal>Uri.fromComponents()</literal> <phrase role="keep-together"
-      security="">constructor</phrase>:</para>
-
-      <programlisting role="keep-together"><remark>lang-dart
-</remark>import 'dart:uri';
-
-main() {
-  var uri = new Uri.fromComponents(scheme: 'http', domain: 'example.org', 
-                     path: '/foo/bar', fragment: 'frag');
-  assert(uri.toString() == 'http://example.org/foo/bar#frag');
-}</programlisting>
-    </sect2>
-  </sect1>
-
   <sect1 id="ch03-utf">
     <title>dart:utf - Strings and Unicode</title>
 
@@ -2633,89 +2623,6 @@ main() {
       UTF8-encoded bytes. For details, see the <ulink
       url="http://api.dartlang.org/utf.html">API docs for the UTF
       library.</ulink></para>
-    </sect2>
-  </sect1>
-
-  <sect1 id="ch03-crypto">
-    <title>dart:crypto - Hash Codes and More</title>
-
-    <para>The <ulink url="http://api.dartlang.org/crypto.html">Dart crypto
-    library</ulink> contains functions useful for cryptographic applications,
-    such as creating cryptographic hashes and generating hash-based message
-    authentication codes.</para>
-
-    <para>The crypto library works in both web apps and command-line apps. To
-    use the crypto library, import <literal
-    moreinfo="none">dart:crypto</literal>.</para>
-
-    <sect2 id="ch03-crypto-hash">
-      <title>Generating Cryptographic Hashes</title>
-
-      <para>With the crypto library, you can use <ulink
-      url="http://api.dartlang.org/crypto/SHA256.html">SHA256,</ulink> <ulink
-      url="http://api.dartlang.org/crypto/SHA1.html">SHA1,</ulink> or <ulink
-      url="http://api.dartlang.org/crypto/MD5.html">MD5</ulink> objects to
-      generate hashes (also known as <emphasis>digests</emphasis> or
-      <emphasis>message digests</emphasis>). We recommend using SHA256, but we
-      have included SHA1 and MD5 for compatibility with older systems. All
-      these <phrase role="keep-together">types implement</phrase> <ulink
-      url="http://api.dartlang.org/crypto/Hash.html">Hash,</ulink> which
-      defines the Dart interface for <ulink
-      url="http://en.wikipedia.org/wiki/Cryptographic_hash_function">cryptographic
-      hash <phrase role="keep-together">functions</phrase>.</ulink></para>
-
-      <screen format="linespecific"><remark>lang-dart
-</remark><remark>ch03/sha256.dart
-</remark>import 'dart:crypto';
-
-main() {
-  var sha256 = new SHA256();
-  sha256.add('message'.codeUnits);
-  var hexString = CryptoUtils.bytesToHex(sha256.close());
-  assert(hexString ==
-      'ab530a13e45914982b79f9b7e3fba994cfd1f3fb22f71cea1afbf02b460c6d1d');
-}</screen>
-    </sect2>
-
-    <sect2 id="ch03-crypto-authentication">
-      <title>Generating Message Authentication Codes</title>
-
-      <para>Use a hash-based message authentication code (<ulink
-      url="http://en.wikipedia.org/wiki/HMAC">HMAC</ulink>) to combine a
-      cryptographic hash function with a secret key:</para>
-
-      <screen format="linespecific"><remark>lang-dart
-</remark><remark>ch03/hmac.dart
-</remark>import 'dart:crypto';
-main() {
-  var hmac = new HMAC(new SHA256(), 'secretkey'.codeUnits);
-  hmac.add('message'.codeUnits);
-  var hmacHex = CryptoUtils.bytesToHex(hmac.close());
-  assert(hmacHex ==
-      '5c3e2f56de9411068f675ef32ffa12735210b9cbfee2ba521367a3955334a343');
-}</screen>
-    </sect2>
-
-    <sect2 id="ch03-crypto-base64">
-      <title>Generating Base64 Strings</title>
-
-      <para>You can represent binary data as a character string by using the
-      <ulink url="http://en.wikipedia.org/wiki/Base64">Base64</ulink> encoding
-      scheme. Use the <literal>CryptoUtils.bytesToBase64()</literal> utility
-      method to convert a list of bytes into a Base64-encoded string:</para>
-
-      <screen format="linespecific"><remark>lang-dart
-</remark>import 'dart:crypto';
-import 'dart:io';
-
-main() {
-  var file = new File('icon.ico');
-  var bytes = file.readAsBytesSync();
-  var base64 = CryptoUtils.bytesToBase64(bytes);
-  assert(base64 ==
-    'iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38G'
-    'IAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==');
-}</screen>
     </sect2>
   </sect1>
 
