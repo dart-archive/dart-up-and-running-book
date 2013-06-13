@@ -249,8 +249,8 @@
         </listitem>
       </itemizedlist>
 
-      <para>We’ve updated the content to reflect the following M5
-      changes:</para>
+      <para>M5 introduced additional changes, which our updates
+      reflect:</para>
 
       <itemizedlist>
         <listitem>
@@ -259,8 +259,13 @@
         </listitem>
 
         <listitem>
-          <para>The ? operator for testing whether an optional parameter has
-          been set is no longer in the language.</para>
+          <para>Instance variables can no longer be <literal>const</literal>.
+          Use <literal>static const</literal> variables instead.</para>
+        </listitem>
+
+        <listitem>
+          <para>The <literal>?</literal> operator for testing whether an
+          optional parameter has been set is no longer in the language.</para>
         </listitem>
 
         <listitem>

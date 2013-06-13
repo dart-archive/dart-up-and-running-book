@@ -438,10 +438,11 @@ assert(lineCount == null);
       </note>
 
       <para>Use <literal moreinfo="none">const</literal> for variables that
-      you want to be compile-time constants. Where you declare the variable,
-      set the value to a compile-time constant such as a literal, a const
-      variable, or the result of an arithmetic operation on constant
-      numbers:</para>
+      you want to be compile-time constants. If the const variable is at the
+      class level, mark it <literal>static const</literal>. (Instance
+      variables can’t be const.) Where you declare the variable, set the value
+      to a compile-time constant such as a literal, a const variable, or the
+      result of an arithmetic operation on constant numbers:</para>
 
       <programlisting format="linespecific"><remark>lang-dart
 </remark>const bar = 1000000;       // Unit of pressure (in dynes/cm2)
@@ -2360,10 +2361,9 @@ assert(identical(a,b)); // They are the same instance!</programlisting>
       moreinfo="none">null</literal>.</para>
 
       <para>All instance variables generate an implicit
-      <firstterm>getter</firstterm> method. Non-final, non-const instance
-      variables also generate an implicit <firstterm>setter</firstterm>
-      method. For details, see <xref
-      linkend="classes-getters-and-setters" />.</para>
+      <firstterm>getter</firstterm> method. Non-final instance variables also
+      generate an implicit <firstterm>setter</firstterm> method. For details,
+      see <xref linkend="classes-getters-and-setters" />.</para>
 
       <programlisting format="linespecific" role=""><remark>lang-dart
 </remark><remark>ch02/instance_variables.dart
@@ -2561,8 +2561,8 @@ main() {
         <para>If your class produces objects that never change, you can make
         these objects compile-time constants. To do this, define a <literal
         moreinfo="none">const</literal> constructor and make sure that all
-        instance variables are <literal moreinfo="none">final</literal> or
-        <literal moreinfo="none">const</literal>.</para>
+        instance variables are <literal
+        moreinfo="none">final</literal>.</para>
 
         <programlisting format="linespecific"><remark>lang-dart
 </remark><remark>ch02/immutable_point.dart
