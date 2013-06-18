@@ -292,6 +292,13 @@
         </listitem>
       </itemizedlist>
 
+      <itemizedlist>
+        <listitem>
+          <para>The dartdoc <literal>--pkg</literal> command-line option
+          is now <literal>--package-root</literal>.</para>
+        </listitem>
+      </itemizedlist>
+
       <para>We also tweaked existing coverage:</para>
 
       <itemizedlist>
