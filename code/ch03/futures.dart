@@ -18,6 +18,19 @@ Future costlyQuery() {
   return new Future.value(true);
 }
 
+
+Future deleteLotsOfFiles() {
+  return new Future.value(true);
+}
+
+Future copyLotsOfFiles() {
+  return new Future.value(true);
+}
+
+Future checksumLotsOfOtherFiles() {
+  return new Future.value(true);
+}
+
 // end fake methods
 
 Future longExpensiveSearch() {
@@ -61,8 +74,20 @@ Future runQuery() {
                .catchError((exception) => print('DOH!'));
 }
 
+Future wait() {
+  Future deleteDone = deleteLotsOfFiles();
+  Future copyDone = copyLotsOfFiles();
+  Future checksumDone = checksumLotsOfOtherFiles();
+
+  Future.wait([deleteDone, copyDone, checksumDone]).then((List values) {
+    print('Done with all the long steps');
+  });
+
+}
+
 main() {
   runSearch();
   doSearch();
   runQuery();
+  wait();
 }

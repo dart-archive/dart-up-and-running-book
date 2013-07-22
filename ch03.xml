@@ -1089,7 +1089,7 @@ return result.then((value) =&gt; expensiveWork())
 Future copyDone = copyLotsOfFiles();
 Future checksumDone = checksumLotsOfOtherFiles();
 
-new Future.wait([deleteDone, copyDone, checksumDone]).then((List values) {
+Future.wait([deleteDone, copyDone, checksumDone]).then((List values) {
   print('Done with all the long steps');
 });</screen>
     </sect2>
