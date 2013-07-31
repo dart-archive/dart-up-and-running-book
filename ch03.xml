@@ -2631,7 +2631,7 @@ main() {
 
     <para>The mirrors library provides basic reflection abilities to Dart. Use mirrors
       to query the structure of your program, and dynamically invoke functions or
-      methods at run time.</para>
+      methods at runtime.</para>
 
     <para>Mirrors can give you information about objects and classes inside the
       current isolate, as well as in other (possibly remote) isolates. Therefore,
@@ -2658,7 +2658,7 @@ main() {
         use Symbol's const constructor.
         This way, repeated uses of the same symbol can use the same
         canonicalized instance.
-        If the name of the symbol is determined dynamically at run time,
+        If the name of the symbol is determined dynamically at runtime,
         you can use the factory constructor.</para>
 
       <screen format="linespecific"><remark>lang-dart
@@ -2749,7 +2749,7 @@ assert('Person' == MirrorSystem.getName(mirror.simpleName));</screen>
 
         <screen><remark>lang-dart
         </remark>showFields(ClassMirror mirror) {
-  Map<Symbol, VariableMirror> fields = mirror.variables;
+  Map&lt;Symbol, VariableMirror> fields = mirror.variables;
 
   fields.forEach((s, v) {
     var finalStatus = v.isFinal ? 'final' : 'not final';
@@ -2764,7 +2764,7 @@ assert('Person' == MirrorSystem.getName(mirror.simpleName));</screen>
         <para>For a full list of methods,
           consult the <ulink
           url="http://api.dartlang.org/dart_mirrors/ClassMirror.html">API docs
-          for ClassMirror</ulink>.
+          for ClassMirror</ulink>.</para>
       </sect3>
 
       <sect3 id="ch03-mirrors-instance-inspect">

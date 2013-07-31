@@ -253,6 +253,7 @@
       reflect:</para>
 
       <itemizedlist>
+
         <listitem>
           <para>The dart_analyzer tool has been replaced by
           dartanalyzer.</para>
@@ -304,6 +305,16 @@
       <itemizedlist>
         <listitem>
           <para>Fleshed out dart2js docs.</para>
+        </listitem>
+
+        <listitem>
+          <para>Removed the incorrect <literal>new</literal>
+          from the example of using Future.wait().</para>
+        </listitem>
+
+        <listitem>
+          <para>Added a section about mirrors:
+          <xref linkend="ch03-mirrors"/>.</para>
         </listitem>
       </itemizedlist>
     </sect2>

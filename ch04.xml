@@ -1305,7 +1305,7 @@ if (!navigator.webkitStartDart) {
       enable checked mode for development and testing.</para>
 
       <para>In checked mode, assignments are dynamically checked, and certain
-      violations of the type system raise exceptions at run time. In
+      violations of the type system raise exceptions at runtime. In
       production mode, static type annotations have no effect.</para>
 
       <para>Assert statements are also enabled in checked mode. An <link
