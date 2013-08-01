@@ -2630,28 +2630,32 @@ main() {
     <title>dart:mirrors - Reflection</title>
 
     <para>The mirrors library provides basic reflection abilities to Dart. Use mirrors
-      to query the structure of your program, and dynamically invoke functions or
+      to query the structure of your program, and to dynamically invoke functions or
       methods at runtime.</para>
 
     <para>Mirrors can give you information about objects and classes inside the
       current isolate, as well as in other (possibly remote) isolates. Therefore,
       the mirrors library often has two versions of each method:
       synchronous (for working inside the current isolate) and asynchronous
-      (for working with another isolate). This section only covers
-      mirrors as they apply to the current isolate.</para>
+      (for working with another isolate).
+      This section covers mirrors only as they apply to the
+      current isolate.</para>
 
-    <para>Although this section covers only how mirrors work on the currently running app,
-      mirrors can also work on static source code.
-      For example, the dartdoc tool
-      (which generates HTML docs from Dart source code) uses source-code
-      mirrors.</para>
+        <note>
+          <para> Mirrors can also work on static source code.
+            For example, the dartdoc tool
+            (which generates HTML docs from Dart source code)
+            uses source-code mirrors.
+          </para>
+        </note>
 
     <sect2 id="ch03-mirrors-symbols">
       <title>Symbols</title>
 
       <para>The mirror system represents the names of Dart declarations
-        (classes, fields, and so on) by instances of the class Symbol. Symbols
-        help compilers like dart2js produce efficient output,
+        (classes, fields, and so on) by instances of the class
+        <ulink url="http://api.dartlang.org/dart_core/Symbol.html">Symbol</ulink>.
+        Symbols help compilers like dart2js produce efficient output,
         even when minified.</para>
 
       <para>When you know the name of the symbol ahead of time,
@@ -2659,7 +2663,7 @@ main() {
         This way, repeated uses of the same symbol can use the same
         canonicalized instance.
         If the name of the symbol is determined dynamically at runtime,
-        you can use the factory constructor.</para>
+        use the factory constructor.</para>
 
       <screen format="linespecific"><remark>lang-dart
       </remark>// If the symbol name is known at compile time.
@@ -2691,7 +2695,7 @@ main() {
       <para>Use mirrors to introspect the running program's structure. You can
         inspect classes, libraries, instances, and more.</para>
 
-      <para>For the following examples, let's introduce a simple Person class.</para>
+      <para>The examples in this section use the following Person class:</para>
 
       <screen format="linespecific"><remark>lang-dart
       </remark>class Person {
@@ -2790,13 +2794,21 @@ assert('Person' == MirrorSystem.getName(mirror.simpleName));</screen>
   assert(identical(p, person));</screen>
 
         <para>Once you have an InstanceMirror, you can invoke methods and
-          call getters and setters.</para>
+          call getters and setters.
+          For a full list of methods,
+          consult the <ulink
+          url="http://api.dartlang.org/dart_mirrors/InstanceMirror.html">API docs
+          for InstanceMirror</ulink>.</para>
       </sect3>
 
     </sect2>
 
     <sect2 id="ch03-mirrors-invocation">
       <title>Invocation</title>
+
+      <para>
+        {To be written}
+      </para>
 
       <sect3>
         <title>get and set fields</title>
@@ -2821,9 +2833,9 @@ assert('Person' == MirrorSystem.getName(mirror.simpleName));</screen>
     libraries, however. Other libraries you might want to look into include
     <ulink
     url="http://api.dartlang.org/dart_collection.html">dart:collection,</ulink>
-    <ulink url="http://api.dartlang.org/logging.html">logging,</ulink> <ulink
-    url="http://api.dartlang.org/mock.html">mock,</ulink> and <ulink
-    url="http://api.dartlang.org/unittest.html" wordsize=""><phrase
+    <ulink url="http://api.dartlang.org/dart_convert.html">dart:convert,</ulink>
+    <ulink url="http://api.dartlang.org/logging.html">logging,</ulink> and
+    <ulink url="http://api.dartlang.org/unittest.html" wordsize=""><phrase
     role="keep-together">unittest</phrase>.</ulink> You can use the pub tool,
     discussed in the next chapter, to install additional Dart <phrase
     role="keep-together">libraries</phrase>.</para>
