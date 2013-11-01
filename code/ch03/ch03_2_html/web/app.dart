@@ -1,6 +1,6 @@
 import 'dart:html';
 import 'dart:async';
-import 'dart:json' as json;
+import 'dart:convert' show JSON;
 
 // A JSON-formatted file in the same location as this page.
 var jsonUri = 'data.json';
@@ -29,7 +29,7 @@ processString(String jsonText) {
 processRequest(HttpRequest request) {
   var xmlDoc = request.responseXml;
   try {
-    var license = xmlDoc.query('license').text;
+    var license = xmlDoc.querySelector('license').text;
     print('License: $license');
   } catch(e) {
     print('$xmlUri doesn\'t have correct XML formatting.');
@@ -40,7 +40,7 @@ parseText(String jsonText) {
   var response;
   
   try {
-    response = json.parse(jsonText);
+    response = JSON.decode(jsonText);
   } on FormatException catch(e) {
     print('$jsonUri doesn\'t have correct JSON formatting.');
     print(e.message);

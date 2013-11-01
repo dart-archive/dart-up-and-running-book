@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:convert';
 
 main() {
   var url = Uri.parse('http://127.0.0.1:8888/languages/dart');
@@ -10,7 +11,7 @@ main() {
     })
     .then((HttpClientResponse response) {
       print('have response');
-      response.transform(new StringDecoder()).toList().then((data) {
+      response.transform(UTF8.decoder).toList().then((data) {
         var body = data.join('');
         print(body);
         httpClient.close();

@@ -8,6 +8,7 @@ class Person {
   int age;
   
   Person(this.firstName, this.lastName, this.age);
+  Person.noFirstName(this.lastName, this.age);
 
   String get fullName => '$firstName $lastName';
 
@@ -18,27 +19,20 @@ class Person {
 
 main() {
   // If the symbol name is known at compile time.
-  const className = const Symbol('MyClass');
+  const className = #MyClass;
 
   // If the symbol name is dynamically determined.
   var userInput = askUserForNameOfFunction();
   var functionName = new Symbol(userInput);
 
-
-  assert('MyClass' == MirrorSystem.getName(name));
-
-
+  assert('MyClass' == MirrorSystem.getName(className));
 
   ClassMirror mirror = reflectClass(Person);
-
   assert('Person' == MirrorSystem.getName(mirror.simpleName));
 
   reflectFromInstance();
-
   showConstructors(mirror);
-
   showFields(mirror);
-
   reflectOnInstance();
 }
 
@@ -48,28 +42,29 @@ reflectFromInstance() {
 }
 
 showConstructors(ClassMirror mirror) {
-  Map<Symbol, MethodMirror> constructors = mirror.constructors;
-
-  constructors.forEach((s, m) {
-    print('The constructor $s has ${m.parameters.length} parameters.');
+  var methods = mirror.declarations.values.where((m) => m is MethodMirror);
+  var constructors = methods.where((m) => m.isConstructor);
+  
+  constructors.forEach((m) {
+    print('The constructor ${m.simpleName} has ${m.parameters.length} parameters.');
   });
 }
 
 showFields(ClassMirror mirror) {
-  Map<Symbol, VariableMirror> fields = mirror.variables;
+  var fields = mirror.declarations.values.where((m) => m is VariableMirror);
 
-  fields.forEach((s, v) {
-    var finalStatus = v.isFinal ? 'final' : 'not final';
-    var privateStatus = v.isPrivate ? 'private' : 'not private';
-    var typeAnnotation = v.type.simpleName;
+  fields.forEach((VariableMirror m) {
+    var finalStatus = m.isFinal ? 'final' : 'not final';
+    var privateStatus = m.isPrivate ? 'private' : 'not private';
+    var typeAnnotation = m.type.simpleName;
 
-    print('The field $s is $privateStatus and $finalStatus and is annotated '
+    print('The field ${m.simpleName} is $privateStatus and $finalStatus and is annotated '
           'as $typeAnnotation');
   });
 }
 
 reflectOnInstance() {
-  var p = new Person('Bob', 'Smith', int);
+  var p = new Person('Bob', 'Smith', 42);
   InstanceMirror mirror = reflect(p);
 
   var person = mirror.reflectee;
