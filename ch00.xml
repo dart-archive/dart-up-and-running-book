@@ -322,8 +322,8 @@
         </listitem>
 
         <listitem>
-          <para>The @deprecated and @override annotations moved from the meta
-          package to dart:core.</para>
+          <para>The @deprecated, @override, and @proxy annotations moved from
+          the meta package to dart:core.</para>
         </listitem>
 
         <listitem>

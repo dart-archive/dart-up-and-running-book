@@ -3079,22 +3079,19 @@ class SmartTelevision extends Television {
 
       <para>If you use <literal>noSuchMethod()</literal> to implement every
       possible getter, setter, and method for a class, then you can use the
-      <literal>@proxy</literal> annotation (defined in the meta package) to
-      avoid warnings:</para>
+      <literal>@proxy</literal> annotation to avoid warnings:</para>
 
       <programlisting><remark>lang-dart
 </remark><remark>ch02/ch02_meta/bin/ch02_proxy.dart
-</remark>import 'package:meta/meta.dart';
-
-@proxy
+</remark>@proxy
 class A {
   void noSuchMethod(Invocation mirror) {
     // ...
   }
 }</programlisting>
 
-      <para>For more information on annotations and the meta package, see
-      <xref linkend="ch02-metadata" />.</para>
+      <para>For more information on annotations, see <xref
+      linkend="ch02-metadata" />.</para>
     </sect2>
 
     <sect2 id="ch02-mixins">
@@ -3651,12 +3648,11 @@ main() {
     followed by either a reference to a compile-time constant (such as
     <literal>deprecated</literal>) or a call to a constant constructor.</para>
 
-    <para>Two annotations are available to all Dart code:
-    <literal>@deprecated</literal> and <literal>@override</literal>. The
-    <ulink url="http://pub.dartlang.org/packages/meta">meta package</ulink>
-    defines a third annotation: <literal>@proxy</literal>. For examples of
-    using <literal>@override</literal> and <literal>@proxy</literal>, see
-    <xref linkend="ch02-class-extend" />. Here’s an example of using the
+    <para>Three annotations are available to all Dart code:
+    <literal>@deprecated</literal>, <literal>@override</literal>, and
+    <literal>@proxy</literal>. For examples of using
+    <literal>@override</literal> and <literal>@proxy</literal>, see <xref
+    linkend="ch02-class-extend" />. Here’s an example of using the
     <literal>@deprecated</literal> annotation:</para>
 
     <programlisting format="linespecific"><remark>lang-dart

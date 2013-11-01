@@ -1,9 +1,7 @@
-import 'package:meta/meta.dart';
-
 @proxy
 class A {
   void noSuchMethod(Invocation mirror) {
-    // ...
+    print('handling invocation: ${mirror.memberName}');
   }
 }
 
