@@ -1,8 +1,9 @@
 //BEGIN
 /**
- * The llama (Lama glama) is a domesticated South American
- * camelid, widely used as a meat and pack animal by Andean
- * cultures since pre-Hispanic times.
+ * A domesticated South American camelid (Lama glama).
+ * 
+ * Andean cultures have used llamas as meat and pack animals
+ * since pre-Hispanic times.
  */
 class Llama {
   String name;

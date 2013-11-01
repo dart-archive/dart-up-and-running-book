@@ -249,11 +249,9 @@
         </listitem>
       </itemizedlist>
 
-      <para>M5 introduced additional changes, which our updates
-      reflect:</para>
+      <para>M5 introduced additional changes:</para>
 
       <itemizedlist>
-
         <listitem>
           <para>The dart_analyzer tool has been replaced by
           dartanalyzer.</para>
@@ -295,26 +293,91 @@
 
       <itemizedlist>
         <listitem>
-          <para>The dartdoc <literal>--pkg</literal> command-line option
-          is now <literal>--package-root</literal>.</para>
+          <para>The dartdoc <literal>--pkg</literal> command-line option is
+          now <literal>--package-root</literal>.</para>
         </listitem>
       </itemizedlist>
 
-      <para>We also tweaked existing coverage:</para>
+      <para>M6, M7, and M8 introduced additional changes:</para>
 
       <itemizedlist>
+        <listitem>
+          <para>Keys in map literals no longer need to be strings.</para>
+        </listitem>
+
+        <listitem>
+          <para>Dart now has Symbols and symbol literals
+          (<literal>#<replaceable>identifier</replaceable></literal>): <xref
+          linkend="ch02-symbols" />.</para>
+        </listitem>
+
+        <listitem>
+          <para>Function equality testing is easier: <xref
+          linkend="ch02-function-equality" />.</para>
+        </listitem>
+
+        <listitem>
+          <para>Bitwise operators have higher precedence than they used
+          to.</para>
+        </listitem>
+
+        <listitem>
+          <para>The @deprecated and @override annotations moved from the meta
+          package to dart:core.</para>
+        </listitem>
+
+        <listitem>
+          <para>The main() function now takes an optional argument
+          (List&lt;String&gt;).</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>We also added new coverage of previously undocumented features and
+      tweaked existing coverage:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Added <xref linkend="ch02-mixins" />.</para>
+        </listitem>
+
+        <listitem>
+          <para>Added <xref linkend="ch03-mirrors" />.</para>
+        </listitem>
+
+        <listitem>
+          <para>In <xref linkend="ch02-keywords" />, marked which keywords are
+          built-in identifiers and discussed how they differ from reserved
+          words.</para>
+        </listitem>
+
+        <listitem>
+          <para>Added coverage of the + operator for strings.</para>
+        </listitem>
+
         <listitem>
           <para>Fleshed out dart2js docs.</para>
         </listitem>
 
         <listitem>
-          <para>Removed the incorrect <literal>new</literal>
-          from the example of using Future.wait().</para>
+          <para>Removed the incorrect <literal>new</literal> from the example
+          of using Future.wait().</para>
         </listitem>
 
         <listitem>
-          <para>Added a section about mirrors:
-          <xref linkend="ch03-mirrors"/>.</para>
+          <para>Discussed using expressions (such as function calls) as
+          arguments to a non-default constructor.</para>
+        </listitem>
+
+        <listitem>
+          <para>Added examples of using the @override and @proxy
+          annotations.</para>
+        </listitem>
+
+        <listitem>
+          <para>Changed the doc comment example to match the latest
+          guidelines, and pointed to <ulink
+          url="https://www.dartlang.org/articles/doc-comment-guidelines/">Guidelines
+          for Dart Doc Comments.</ulink></para>
         </listitem>
       </itemizedlist>
     </sect2>

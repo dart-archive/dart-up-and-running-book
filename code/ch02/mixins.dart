@@ -28,16 +28,25 @@ class Person {
   Person();
 }
 
+abstract class Performer {
+  Performer(String name);
+  String name;
+}
+class Musician extends Performer with Musical {
+  Musician(String name) : super(name);
+}
 class Maestro extends Person with Musical, Aggressive, Demented {
   Maestro(String maestroName) {
     name = maestroName;
-    //canConduct = true;
+    canConduct = true;
   }
 }
 
 main() {
   var director = new Maestro('Allen');
-  director.entertainMe();
+  director.entertainMe();  // Waving hands
+  
+  var musician = new Musician('Kathy');
+  musician.canPlayPiano = true;
+  musician.entertainMe();  // Playing piano
 }
-
-
