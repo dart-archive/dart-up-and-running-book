@@ -81,7 +81,7 @@
   url="http://www.dartlang.org/downloads.html">Downloads page</ulink> for
   links and details.</para>
 
-  <para>The tools are in the <emphasis>dart-sdk/bin</emphasis> directory
+  <para>The tools are in the <literal>dart-sdk/bin</literal> directory
   of your Dart installation directory.
   If you intend to use tools such as pub, dart2js, and dart from the command
   line, add the <literal>bin</literal> directory to your path.
@@ -157,7 +157,7 @@ dependencies:
       <title>Installing Packages</title>
 
       <para>Once you have a pubspec, you can run <literal moreinfo="none">pub
-      install</literal> from the top directory of your application:</para>
+      get</literal> from the top directory of your application:</para>
 
       <screen format="linespecific"><remark>lang-sh
 </remark>cd <replaceable>my/app</replaceable>
