@@ -95,14 +95,14 @@ buildingAString() {
 }
 
 regularExpressions() {
-  // A regular expression for one or more digits
+  // Here's a regular expression for one or more digits.
   var numbers = new RegExp(r'\d+');
   //NOTE: WAS: var numbers = const RegExp(r'\d+');
 
   var allCharacters = 'llamas live fifteen to twenty years';
   var someDigits = 'llamas live 15 to 20 years';
 
-  // Contains() can use a regular expression.
+  // contains() can use a regular expression.
   assert(!allCharacters.contains(numbers));
   assert(someDigits.contains(numbers));
 

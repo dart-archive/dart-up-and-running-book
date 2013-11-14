@@ -1,7 +1,11 @@
 main() {
   assert(int.parse('42') == 42);
+  assert(int.parse('0x42') == 66);
   assert(double.parse('0.50') == 0.5);
-
+  
+  // Specify the base.
+  assert(int.parse('42', radix: 16) == 66);
+  
   // Convert an int to a string.
   assert(42.toString() == '42');
   

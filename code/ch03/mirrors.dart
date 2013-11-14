@@ -25,7 +25,9 @@ main() {
   var userInput = askUserForNameOfFunction();
   var functionName = new Symbol(userInput);
 
+  print('className = ${MirrorSystem.getName(className)}');
   assert('MyClass' == MirrorSystem.getName(className));
+  assert('MyClass' == MirrorSystem.getName(#MyClass));
 
   ClassMirror mirror = reflectClass(Person);
   assert('Person' == MirrorSystem.getName(mirror.simpleName));

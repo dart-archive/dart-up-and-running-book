@@ -799,20 +799,19 @@ var nobleGases = {
 };
 </programlisting>
 
-      <para>You can create the same objects using a Map constructor.</para>
+      <para>You can create the same objects using a Map constructor:</para>
 
       <programlisting format="linespecific"><remark>lang-dart
 </remark><remark>ch02/map_constructor.dart
 </remark>var gifts = new Map();
-map['first'] = 'partridge';
-map['second'] = 'turtledoves';
-map['fifth'] = 'golden rings';
+gifts['first'] = 'partridge';
+gifts['second'] = 'turtledoves';
+gifts['fifth'] = 'golden rings';
 
 var nobleGases = new Map();
-map[2] = 'helium';
-map[10] = 'neon';
-map[18] = 'argon';
-</programlisting>
+nobleGases[2] = 'helium';
+nobleGases[10] = 'neon';
+nobleGases[18] = 'argon';</programlisting>
 
       <para>Add a new key-value pair to an existing map just as you would in
       JavaScript:</para>
@@ -2383,7 +2382,7 @@ assert(urlString.startsWith('https')); // Make sure this is an HTTPS URL.</progr
     <replaceable>ClassName.identifier</replaceable>. For example:</para>
 
     <programlisting format="linespecific"><remark>lang-dart
-</remark>var jsonData = json.parse('{"x":1, "y":2}');
+</remark>var jsonData = JSON.decode('{"x":1, "y":2}');
 
 var p1 = new Point(2,2);               // Create a Point using Point().
 var p2 = new Point.fromJson(jsonData); // Create a Point using Point.fromJson().</programlisting>
