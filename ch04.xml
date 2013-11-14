@@ -81,11 +81,16 @@
   url="http://www.dartlang.org/downloads.html">Downloads page</ulink> for
   links and details.</para>
 
+  <para>The tools are in the <emphasis>dart-sdk/bin</emphasis> directory
+  of your Dart installation directory.
+  If you intend to use tools such as pub, dart2js, and dart from the command
+  line, add the <literal>bin</literal> directory to your path.
+  </para>
+
   <sect1 id="ch04-tools-pub">
     <title>pub: The Dart Package Manager</title>
 
-    <para>You can use use the <emphasis>pub</emphasis> tool (<literal
-    moreinfo="none"><replaceable>$DART_SDK</replaceable>/bin/pub</literal>) to
+    <para>You can use the <emphasis>pub</emphasis> tool to
     manage Dart packages. A Dart package is simply a directory containing any
     number of Dart libraries and a list of the library dependencies. A package
     can also contain resources for its libraries, such as documentation,
@@ -97,9 +102,8 @@
       installing, updating, and publishing packages.</para>
     </note>
 
-    <para>A package can live anywhere. Some packages are distributed in the
-    Dart SDK, under the <literal moreinfo="none">pkg</literal> directory.
-    Others are on GitHub. We publish packages at <phrase
+    <para>A package can live anywhere. For example, some packages are 
+    on GitHub. The Dart team publishes packages at <phrase
     role="keep-together"><ulink
     url="http://pub.dartlang.org">pub.dartlang.org</ulink>,</phrase> and we
     hope you will, too.</para>
@@ -110,11 +114,12 @@
     <orderedlist continuation="restarts" inheritnum="ignore">
       <listitem>
         <para>Create a pubspec (a file that lists package
-        dependencies).</para>
+        dependencies and includes other metadata,
+        such as a name for your package).</para>
       </listitem>
 
       <listitem>
-        <para>Use pub to install the package.</para>
+        <para>Use pub to get your package's dependencies.</para>
       </listitem>
 
       <listitem>
@@ -138,10 +143,9 @@
       <programlisting format="linespecific"><remark>lang-js
 </remark>name: my_app
 dependencies:
-  js:
-    hosted: js
-  intl:
-    sdk: intl</programlisting>
+  js: any
+  intl: any
+    </programlisting>
 
       <para>For details, see the <ulink
       url="http://pub.dartlang.org/doc/pubspec.html">pubspec
@@ -157,7 +161,7 @@ dependencies:
 
       <screen format="linespecific"><remark>lang-sh
 </remark>cd <replaceable>my/app</replaceable>
-<replaceable>$DART_SDK</replaceable>/bin/pub install</screen>
+pub get</screen>
 
       <para>This command determines which packages your app depends on, and
       puts them in a central cache. For git dependencies, pub clones the git
@@ -190,7 +194,7 @@ import 'package:intl/intl.dart';</programlisting>
       <title>More Information</title>
 
       <para>Run <literal
-      moreinfo="none"><replaceable>$DART_SDK</replaceable>/bin/pub
+      moreinfo="none">pub
       --help</literal> for a list of commands. For more information about pub,
       including publishing your own packages, see the <ulink
       url="http://pub.dartlang.org/doc">pub documentation.</ulink></para>
@@ -391,7 +395,7 @@ import 'package:intl/intl.dart';</programlisting>
             type, library, and so on-hover the mouse over the item in the
             Edit view. Dart Editor displays a popup that provides more
             information about that item.</para>
-
+            
           <para>To go to the declaration of an API item, either within the
           same .dart file or in another file:</para>
 
@@ -948,7 +952,7 @@ if (navigator.userAgent.indexOf('(Dart)') == -1) {
       <para>Here’s an example of compiling a Dart file to JavaScript:</para>
 
       <screen format="linespecific"><remark>lang-sh
-</remark><replaceable>$DART_SDK</replaceable>/bin/dart2js --out=test.js <replaceable>test.dart</replaceable></screen>
+</remark>dart2js --out=test.js <replaceable>test.dart</replaceable></screen>
 
       <para>This command produces a file that contains the JavaScript
       equivalent of your Dart code. It also produces a source map, which can
@@ -1187,7 +1191,7 @@ if (navigator.userAgent.indexOf('(Dart)') == -1) {
       line:</para>
 
       <screen format="linespecific"><remark>lang-sh
-</remark><replaceable>$DART_SDK</replaceable>/bin/dart <replaceable>test.dart</replaceable></screen>
+</remark>dart <replaceable>test.dart</replaceable></screen>
     </sect2>
 
     <sect2 id="ch04-tools-dart-vm-options">
@@ -1248,7 +1252,7 @@ if (navigator.userAgent.indexOf('(Dart)') == -1) {
       <literal>--checked</literal> command-line flag:</para>
 
       <screen format="linespecific"><remark>lang-sh
-</remark><replaceable>$DART_SDK</replaceable>/bin/dart --checked <replaceable>test.dart</replaceable></screen>
+</remark>dart --checked <replaceable>test.dart</replaceable></screen>
     </sect2>
   </sect1>
 
@@ -1274,7 +1278,7 @@ if (navigator.userAgent.indexOf('(Dart)') == -1) {
       <para>Here’s an example of testing a Dart file:</para>
 
       <screen format="linespecific"><remark>lang-sh
-</remark><replaceable>$DART_SDK</replaceable>/bin/dartanalyzer --package-root <replaceable>code/packages</replaceable> <replaceable>test.dart</replaceable></screen>
+</remark>dartanalyzer --package-root <replaceable>code/packages</replaceable> <replaceable>test.dart</replaceable></screen>
 
       <para>As <xref linkend="ch04-dartanalyzer-exit" /> shows, the exit code
       of dartanalyzer tells you whether the code passed analysis.</para>
@@ -1406,7 +1410,7 @@ if (navigator.userAgent.indexOf('(Dart)') == -1) {
       file.</para>
 
       <screen format="linespecific"><remark>lang-sh
-</remark><replaceable>$DART_SDK</replaceable>/bin/dartdoc --out=/docs/mylib <replaceable>mylib.dart</replaceable></screen>
+</remark>dartdoc --out=/docs/mylib <replaceable>mylib.dart</replaceable></screen>
 
       <para>By default, the generated documentation appears in a directory
       named <literal>docs/</literal>.</para>
