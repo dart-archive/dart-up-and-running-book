@@ -127,7 +127,7 @@ main() {
         ..text = 'Click to Confirm'
         ..classes.add('important')
         ..onClick.listen((e) =&gt; window.alert('Confirmed!'));
-  query('#registration').children.add(button);
+  querySelector('#registration').children.add(button);
 }</programlisting>
 
     <para>You’ll learn about the Dart language and libraries in Chapters <xref
@@ -220,10 +220,9 @@ main() {
 
     <para>Now that you know something about Dart, get ready to code! These
     instructions feature the open-source Dart Editor tool. When you download
-    Dart, you not only get Dart Editor,
-    but also tools such as the Dart-to-JavaScript compiler and a version of
-    Chromium (nicknamed <emphasis>Dartium</emphasis>) that includes the Dart
-    VM.</para>
+    Dart, you not only get Dart Editor, but also tools such as the
+    Dart-to-JavaScript compiler and a version of Chromium (nicknamed
+    <emphasis>Dartium</emphasis>) that includes the Dart VM.</para>
 
     <note>
       <para>If you run into trouble installing and using Dart Editor, see
@@ -247,10 +246,10 @@ main() {
         </listitem>
 
         <listitem>
-          <para>Unzip the file you downloaded. The resulting directory, which we’ll call your
-          <emphasis>Dart installation directory</emphasis>, contains the
-          <code>DartEditor</code> executable file and several subdirectories,
-          including a <code>samples</code> directory.</para>
+          <para>Unzip the file you downloaded. The resulting directory, which
+          we’ll call your <emphasis>Dart installation directory</emphasis>,
+          contains the <code>DartEditor</code> executable file and several
+          subdirectories, including a <code>samples</code> directory.</para>
         </listitem>
 
         <listitem>

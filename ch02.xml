@@ -2407,7 +2407,7 @@ num distance = p.distanceTo(new Point(4,4)); // Invoke distanceTo() on p.</progr
     operations on the members of a single object:</para>
 
     <programlisting format="linespecific" role="keep-together"><remark>lang-dart
-</remark>query('#button')
+</remark>querySelector('#button')
     ..text = 'Click to Confirm'                        // Get an object. Use its
     ..classes.add('important')                         // instance variables
     ..onClick.listen((e) =&gt; window.alert('Confirmed!')); // and methods.</programlisting>
@@ -3558,9 +3558,6 @@ void main() {
     <emphasis>isolates</emphasis>. Each isolate has its own memory heap,
     ensuring that no isolate’s state is accessible from any other
     isolate.</para>
-
-    <para>Learn more about isolates in <xref
-    linkend="ch03-dartisolate---concurrency-with-isolates" />.</para>
   </sect1>
 
   <sect1 id="typedefs">

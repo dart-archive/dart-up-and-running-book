@@ -1958,108 +1958,6 @@ github.com/dart-lang/dart-samples/.../web/html5/websockets/basics/websocket_samp
     </sect2>
   </sect1>
 
-  <sect1 id="ch03-dartisolate---concurrency-with-isolates">
-    <title>dart:isolate - Concurrency with Isolates</title>
-
-    <para>Dart has no shared-memory threads. Instead, all Dart code runs in
-    isolates, which communicate via message passing. Messages are copied
-    before they are received, ensuring that no two isolates can manipulate the
-    same object instance. Because state is managed by individual isolates, no
-    locks or mutexes are needed, greatly simplifying concurrent
-    programming.</para>
-
-    <note>
-      <para>The isolate API changed recently. We'll update this section to
-      reflect the new API. <remark> {PENDING: update!!!} </remark></para>
-    </note>
-
-    <remark><p /></remark>
-
-    <sect2 id="ch03-isolate-concepts">
-      <title>Isolate Concepts</title>
-
-      <para>To use isolates, you should understand the following
-      concepts:</para>
-
-      <itemizedlist>
-        <listitem>
-          <para>No two isolates ever share the same thread at the same time.
-          Within an isolate, callbacks execute one at a time, making the code
-          more predictable.</para>
-        </listitem>
-
-        <listitem>
-          <para>All values in memory, including globals, are available only to
-          their isolate. No isolate can see or manipulate values owned by
-          another isolate.</para>
-        </listitem>
-
-        <listitem>
-          <para>The only way isolates can communicate with each other is by
-          passing messages.</para>
-        </listitem>
-
-        <listitem>
-          <para>Isolates send messages using SendPorts, and receive them using
-          ReceivePorts.</para>
-        </listitem>
-
-        <listitem>
-          <para>The content of a message can be any of the following:</para>
-
-          <itemizedlist>
-            <listitem>
-              <para>A primitive value (null, num, bool, double, String)</para>
-            </listitem>
-
-            <listitem>
-              <para>An instance of SendPort</para>
-            </listitem>
-
-            <listitem>
-              <para>A list or map whose elements are any of the above,
-              including other lists and maps</para>
-            </listitem>
-          </itemizedlist>
-        </listitem>
-      </itemizedlist>
-
-      <remark>Deleted this additional content type: "In special
-      circumstances(ch03-sending-any-type-of-object), an object of any type."
-      Also deleted the following bulleted items: (1) Each isolate has a
-      ReceivePort, which is available as the <literal
-      moreinfo="none">port</literal> variable. Because all Dart code runs
-      inside an isolate, even <literal>main()</literal> has access to a port
-      object. (2) When a web application is compiled to JavaScript, its
-      isolates can be implemented as Web workers. When running in Dartium,
-      isolates run in the VM. (3) In the standalone VM, the
-      <literal>main()</literal> function runs in the first isolate (also known
-      as the <emphasis>root isolate</emphasis>). When the root isolate
-      terminates, it terminates the whole VM, regardless of whether other
-      isolates are still running. For more information, see
-      ch03-keeping-the-root-isolate-alive.</remark>
-
-      <remark>Removed section on Using Isolates(ch03-using-isolates)
-      (subsections: [Spawning isolates](ch03-spawning-isolates), [Sending
-      messages](ch03-sending-messages), [Sending any type of
-      object](ch03-sending-any-type-of-object), [Receiving
-      messages](ch03-receiving-messages) [Receivingn
-      replies](ch03-receiving-replies) [Keeping the root isolate
-      alive](ch03-keeping-the-root-isolate-alive)).</remark>
-    </sect2>
-
-    <sect2 id="ch03-more-information-11">
-      <title>More Information</title>
-
-      <para>See the API docs for the <ulink
-      url="http://api.dartlang.org/dart_isolate.html">dart:isolate
-      library,</ulink> as well as for <ulink
-      url="http://api.dartlang.org/dart_isolate/SendPort.html">SendPort</ulink>
-      and <ulink role="keep-together" security=""
-      url="http://api.dartlang.org/dart_isolate/ReceivePort.html">ReceivePort.</ulink></para>
-    </sect2>
-  </sect1>
-
   <sect1 id="ch03-dartio---file-and-socket-io-for-command-line-apps">
     <title>dart:io - I/O for Command-Line Apps</title>
 
@@ -2556,10 +2454,17 @@ main() {
     <para>The dart:mirrors library works in both web apps and command-line
     apps. To use it, import dart:mirrors.</para>
 
-    <note>
-      <para>The dart:mirrors library is still under development. Its API might
-      change slightly as a result of user feedback.</para>
-    </note>
+    <warning>
+      <para>Using dart:mirrors can cause dart2js to generate very large
+      JavaScript files.</para>
+
+      <para>The current workaround is to add a <literal>@MirrorsUsed</literal>
+      annotation before the import of dart:mirrors. For details, see the
+      <ulink
+      url="http://api.dartlang.org/dart_mirrors/MirrorsUsed.html">MirrorsUsed</ulink>
+      API documentation. This workaround might change, as the dart:mirrors
+      library is still under development.</para>
+    </warning>
 
     <sect2 id="ch03-mirrors-symbols">
       <title>Symbols</title>
@@ -2606,37 +2511,169 @@ assert('MyClass' == MirrorSystem.getName(className));
       <para>Use mirrors to introspect the running program's structure. You can
       inspect classes, libraries, instances, and more.</para>
 
-      <note>
-        <para>The dart:mirrors library changed recently. We'll update this
-        section soon to reflect the new API. <remark> {PENDING: update!!!}
-        Removed the following: The examples in this section use the following
-        Person class: class Person { String firstName; String lastName; int
-        age; Person(this.firstName, this.lastName, this.age); String get
-        fullName =&gt; '$firstName $lastName'; void greet(String other) {
-        print('Hello there, $other!'); } } To begin, you need to
-        <emphasis>reflect</emphasis> on a class or object to get its
-        <emphasis>mirror</emphasis>. SECT3: Class Mirrors. Reflect on a Type
-        to get its ClassMirror. {e.g.} You can also call
-        <literal>runtimeType</literal> to get a Type from an instance. {e.g.}
-        Once you have a ClassMirror, you can get a class's constructors,
+      <para>The examples in this section use the following Person
+      class:</para>
+
+      <screen format="linespecific"><remark>lang-dart
+ch03/mirrors.dart
+</remark>class Person {
+  String firstName;
+  String lastName;
+  int age;
+  
+  Person(this.firstName, this.lastName, this.age);
+
+  String get fullName =&gt; '$firstName $lastName';
+
+  void greet(String other) {
+    print('Hello there, $other!');
+  }
+}</screen>
+
+      <para>To begin, you need to <emphasis>reflect</emphasis> on a class or
+      object to get its <emphasis>mirror</emphasis>.</para>
+
+      <sect3 id="ch03-mirrors-class-inspect">
+        <title>Class Mirrors</title>
+
+        <para>Reflect on a Type to get its ClassMirror.</para>
+
+        <screen format="linespecific"><remark>lang-dart
+ch03/mirrors.dart
+</remark>ClassMirror mirror = reflectClass(Person);
+
+assert('Person' == MirrorSystem.getName(mirror.simpleName));</screen>
+
+        <para>You can also call <literal>runtimeType</literal> to get a Type
+        from an instance.</para>
+
+        <screen format="linespecific"><remark>lang-dart
+ch03/mirrors.dart
+</remark>var person = new Person('Bob', 'Smith', 33);
+ClassMirror mirror = reflectClass(person.runtimeType);
+
+assert('Person' == MirrorSystem.getName(mirror.simpleName));</screen>
+
+        <para>Once you have a ClassMirror, you can get a class's constructors,
         fields, and more. Here is an example of listing the constructors of a
-        class. {e.g.} Here is an example of listing all of the fields declared
-        by a class. {e.g.} For a full list of methods, consult the <ulink
+        class.</para>
+
+        <screen format="linespecific"><remark>lang-dart
+ch03/mirrors.dart
+</remark>showConstructors(ClassMirror mirror) {
+  var methods = mirror.declarations.values.where((m) =&gt; m is MethodMirror);
+  var constructors = methods.where((m) =&gt; m.isConstructor);
+  
+  constructors.forEach((m) {
+    print('The constructor ${m.simpleName} has ${m.parameters.length} parameters.');
+  });
+}</screen>
+
+        <para>Here is an example of listing all of the fields declared by a
+        class.</para>
+
+        <screen><remark>lang-dart
+ch03/mirrors.dart
+</remark>showFields(ClassMirror mirror) {
+  var fields = mirror.declarations.values.where((m) =&gt; m is VariableMirror);
+
+  fields.forEach((VariableMirror m) {
+    var finalStatus = m.isFinal ? 'final' : 'not final';
+    var privateStatus = m.isPrivate ? 'private' : 'not private';
+    var typeAnnotation = m.type.simpleName;
+
+    print('The field ${m.simpleName} is $privateStatus and $finalStatus and is annotated '
+          'as $typeAnnotation');
+  });
+}</screen>
+
+        <para>For a full list of methods, consult the <ulink
         url="http://api.dartlang.org/dart_mirrors/ClassMirror.html">API docs
-        for ClassMirror</ulink>. SECT3: Instance Mirrors. Reflect on an object
-        to get an InstanceMirror. {e.g.} If you have an InstanceMirror and you
-        want to get the object that it reflects, use
-        <literal>reflectee</literal>. This works only if the current isolate
-        knows about the type of the reflectee. Remember, mirrors work across
-        isolates, and one isolate might contain a class that is not in the
-        current isolate. Once you have an InstanceMirror, you can invoke
-        methods and call getters and setters. For a full list of methods,
-        consult the <ulink
-        url="http://api.dartlang.org/dart_mirrors/InstanceMirror.html">API
-        docs for InstanceMirror</ulink>. SECT2: Invocation. {PENDING: To be
-        written} SECT3: get and set fields. SECT3: invoke. SECT3: delegate
-        </remark></para>
-      </note>
+        for ClassMirror</ulink>.</para>
+      </sect3>
+
+      <sect3 id="ch03-mirrors-instance-inspect">
+        <title>Instance Mirrors</title>
+
+        <para>Reflect on an object to get an InstanceMirror.</para>
+
+        <screen><remark>lang-dart
+ch03/mirrors.dart
+</remark>var p = new Person('Bob', 'Smith', 42);
+InstanceMirror mirror = reflect(p);</screen>
+
+        <para>If you have an InstanceMirror and you want to get the object
+        that it reflects, use <literal>reflectee</literal>.</para>
+
+        <screen><remark>lang-dart
+ch03/mirrors.dart
+</remark>var person = mirror.reflectee;
+assert(identical(p, person));</screen>
+      </sect3>
+    </sect2>
+
+    <sect2 id="ch03-mirrors-invocation">
+      <title>Invocation</title>
+
+      <para>Once you have an InstanceMirror, you can invoke methods and call
+      getters and setters. For a full list of methods, consult the <ulink
+      url="http://api.dartlang.org/dart_mirrors/InstanceMirror.html">API docs
+      for InstanceMirror</ulink>.</para>
+
+      <sect3 id="ch03-mirrors-invoke">
+        <title>Invoke Methods</title>
+
+        <para>Use InstanceMirror's <literal>invoke()</literal> method to
+        invoke a method on an object. The first parameter specifies the method
+        to be invoked, and the second is a list of positional arguments to the
+        method. An optional third parameter lets you specify named
+        arguments.</para>
+
+        <screen><remark>lang-dart
+ch03/mirrors.dart
+</remark>var p = new Person('Bob', 'Smith', 42);
+InstanceMirror mirror = reflect(p);
+
+mirror.invoke(#greet, ['Shailen']);</screen>
+      </sect3>
+
+      <sect3 id="ch03-mirrors-getset-fields">
+        <title>Get and Set Properties</title>
+
+        <para>Use InstanceMirror's <literal>getField()</literal> and
+        <literal>setField()</literal> methods to get and set properties of an
+        object.</para>
+
+        <screen><remark>lang-dart
+ch03/mirrors.dart
+</remark>
+var p = new Person('Bob', 'Smith', 42);
+InstanceMirror mirror = reflect(p);
+
+// Get the value of a property.
+var fullName = mirror.getField(#fullName).reflectee;
+assert(fullName == 'Bob Smith');
+  
+// Set the value of a property.
+mirror.setField(#firstName, 'Mary');
+assert(p.firstName == 'Mary');</screen>
+      </sect3>
+    </sect2>
+
+    <sect2 id="ch03-more-information-mirrors">
+      <title>More Information</title>
+
+      <para>The article <ulink
+      url="https://www.dartlang.org/articles/reflection-with-mirrors/">Reflection
+      in Dart with Mirrors</ulink> has more information and examples. Also see
+      the API docs for <ulink
+      url="http://api.dartlang.org/dart_mirrors.html">dart:mirror,</ulink>
+      especially <ulink
+      url="http://api.dartlang.org/dart_mirrors/MirrorsUsed.html">MirrorsUsed</ulink>,
+      <ulink
+      url="http://api.dartlang.org/dart_mirrors/ClassMirror.html">ClassMirror,</ulink>
+      and <ulink
+      url="http://api.dartlang.org/dart_mirrors/InstanceMirror.html">InstanceMirror.</ulink></para>
     </sect2>
   </sect1>
 
@@ -2647,6 +2684,8 @@ assert('MyClass' == MirrorSystem.getName(className));
     in many of Dart’s built-in libraries. It didn’t cover all the built-in
     libraries, however. Others that you might want to look into include <ulink
     url="http://api.dartlang.org/dart_collection.html">dart:collection,</ulink>
+    <ulink
+    url="http://api.dartlang.org/dart_isolate.html">dart:isolate,</ulink>
     <ulink url="http://api.dartlang.org/dart_js.html">dart:js,</ulink> and
     <ulink
     url="http://api.dartlang.org/dart_typed_data.html">dart:typed_data.</ulink>

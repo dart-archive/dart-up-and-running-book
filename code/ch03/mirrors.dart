@@ -8,7 +8,6 @@ class Person {
   int age;
   
   Person(this.firstName, this.lastName, this.age);
-  Person.noFirstName(this.lastName, this.age);
 
   String get fullName => '$firstName $lastName';
 
@@ -41,6 +40,7 @@ main() {
 reflectFromInstance() {
   var person = new Person('Bob', 'Smith', 33);
   ClassMirror mirror = reflectClass(person.runtimeType);
+  assert('Person' == MirrorSystem.getName(mirror.simpleName));
 }
 
 showConstructors(ClassMirror mirror) {
@@ -69,6 +69,19 @@ reflectOnInstance() {
   var p = new Person('Bob', 'Smith', 42);
   InstanceMirror mirror = reflect(p);
 
+  // Get the object that the mirror reflects.
   var person = mirror.reflectee;
   assert(identical(p, person));
+
+  // Invoke a method on the object.
+  mirror.invoke(#greet, ['Shailen']);
+
+  // Get the value of a property.
+  var fullName = mirror.getField(#fullName).reflectee;
+  assert(fullName == 'Bob Smith');
+  
+  // Set the value of a property.
+  mirror.setField(#firstName, 'Mary');
+  assert(p.firstName == 'Mary');
+  assert(p.fullName == 'Mary Smith');
 }
