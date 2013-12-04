@@ -78,28 +78,21 @@
   </sect1>
 
   <sect1 id="preface-examples">
-    <title>Using Code Examples</title>
+    <title>使用例子中的代码</title>
 
-    <para>This book is here to help you get your job done. In general, you may
-    use the code in this book in your programs and documentation. You do not
-    need to contact us for permission unless you’re reproducing a significant
-    portion of the code. For example, writing a program that uses several
-    chunks of code from this book does not require permission. Selling or
-    distributing a CD-ROM of examples from O’Reilly books does require
-    permission. Answering a question by citing this book and quoting example
-    code does not require permission. Incorporating a significant amount of
-    example code from this book into your product’s documentation does require
-    permission.</para>
+    <para>这本书可以帮助你顺利的完成工作。通常，你可能会使用这本书中的代码用于
+    你的程序或文档。如果你不是直接复制完整的样例代码以做它用就不需要联系我们获
+    取使用许可。例如，在你的程序中使用本书中的代码是不需要许可的。出售或者发布
+    一个本书中样例库的 CD 是需要许可的。通过引用本书中的例子来回答问题不需要许
+    可。融合大量的本书案例代码到你的文档中是需要许可的。</para>
 
-    <para>We appreciate, but do not require, attribution. An attribution
-    usually includes the <phrase role="keep-together">title, author,</phrase>
-    publisher, and ISBN. For example: “<emphasis>Dart:Up and
-    Running</emphasis> by Kathy <phrase role="keep-together">Walrath
+    <para>如果你标明引用代码的出处，我们将十分感谢，但这不是必须的。出处信息通
+    常包括 <phrase role="keep-together">标题, 作者,</phrase>出版商, 和 ISBN。 
+    例如: “<emphasis>Dart:启动和运行</emphasis> by Kathy <phrase role="keep-together">Walrath
     and</phrase> Seth Ladd (O’Reilly). Copyright 2013 Kathy Walrath and Seth
     Ladd, 978-1-449-33089-7.”</para>
 
-    <para>If you feel your use of code examples falls outside fair use or the
-    permission given above, feel free to contact us at
+    <para>如果你觉得使用这些代码的方式需要一份许可，可以随时联系我们
     <email>permissions@oreilly.com</email>.</para>
   </sect1>
 
