@@ -2447,9 +2447,7 @@ main() {
 
     <para>The dart:mirrors library provides basic reflection abilities to
     Dart. Use mirrors to query the structure of your program and to
-    dynamically invoke functions or methods at runtime. Mirrors can also work
-    on static source code. For example, the dartdoc tool (which generates HTML
-    docs from Dart source code) uses source-code mirrors.</para>
+    dynamically invoke functions or methods at runtime. </para>
 
     <para>The dart:mirrors library works in both web apps and command-line
     apps. To use it, import dart:mirrors.</para>
