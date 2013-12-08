@@ -6,111 +6,93 @@
 
   <title>Preface</title>
 
-  <para>You don’t need to be an expert web developer to build web apps. With
-  Dart, you can be productive as you build high-performance apps for the
-  modern web.</para>
+  <para>你并不需要成为编程高手才能开发 WEB 应用。使用 Dart ,当你为当今的互联网开
+  发高性能应用时，你将会非常富有创造力。</para>
 
-  <para>Our aim for this book is to be a useful introduction to the Dart
-  language, libraries, and tools. Because this book is short and Dart is
-  young, you might also need to refer to the Dart website at <ulink
-  url="http://dartlang.org"></ulink>—both for details and for updates. For the
-  latest news, keep an eye on the <ulink
-  url="http://google.com/+dartlang">Dart page</ulink> on Google+.</para>
+  <para>这本书的目标是成为一本实用的Dart语言入门书，包含语言介绍、类库介绍、
+  工具介绍。由于本书很短，而且 Dart 也很年轻，你同样需要查阅 Dart 官方网站
+  <ulink url="http://dartlang.org"></ulink>—获取更多的细节以及后续更新。 
+  关注 Google+ <ulink url="http://google.com/+dartlang">Dart 网页</ulink> 
+  获取最新的新闻。</para>
 
-  <para>Another important website is this book’s <ulink
+  <para>另外一个重要的网站是本书的 <ulink
   url="https://github.com/dart-lang/dart-up-and-running-book">GitHub
-  project.</ulink> The text for this work is available there under the <ulink
+  仓库</ulink> 本文在 <ulink
   url="http://creativecommons.org/licenses/by-nc-nd/3.0/us/">Creative Commons
   Attribution-Noncommercial-No Derivative Works 3.0 United States
-  License.</ulink> Source code files for this book’s samples are also there,
-  in the <ulink
+  License</ulink> 的许可下使用该书的内容。这本书中例子的源代码文件 <ulink
   url="https://github.com/dart-lang/dart-up-and-running-book/tree/master/code"><literal>code/</literal>
-  subdirectory.</ulink> Downloading the sample code from GitHub is much easier
-  than copying it from the book.</para>
+  subdirectory.</ulink> 直接下载源代码文件进行学习将会取得更好的效果</para>
 
-  <para>If you find an error in the sample code or text, please <ulink
-  url="https://github.com/dart-lang/dart-up-and-running-book/issues/new">create
-  an issue.</ulink></para>
+  <para>如果你发现本书内容或例子代码有错误，请在这里 <ulink
+  url="https://github.com/dart-lang/dart-up-and-running-book/issues/new">创建一个
+  问题</ulink>反馈</para>
 
   <sect1 id="preface-conventions">
-    <title>Conventions Used in This Book</title>
+    <title>本书中的一些习俗</title>
 
-    <para>The following typographical conventions are used in this
-    book:</para>
+    <para>下面是本书印刷上的一些习俗:</para>
 
     <variablelist>
       <varlistentry>
-        <term><emphasis>Italic</emphasis></term>
+        <term><emphasis>斜体</emphasis></term>
 
         <listitem>
-          <para>Indicates new terms, URLs, email addresses, filenames, and
-          file extensions.</para>
+          <para>标示新的术语, 网址, 电子邮件地址, 文件名, 以及文件扩展名</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
-        <term><literal moreinfo="none">Constant width</literal></term>
+        <term><literal moreinfo="none">固定宽度的文字</literal></term>
 
         <listitem>
-          <para>Used for program listings, as well as within paragraphs to
-          refer to program elements such as variable or function names,
-          databases, data types, environment variables, statements, and
-          keywords.</para>
+          <para>程序列表，或者是在段落中出现的变量名、方法名、数据库、数据
+          类型、环境变量、语句或关键字</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
-        <term><userinput moreinfo="none">Constant width
-        bold</userinput></term>
+        <term><userinput moreinfo="none">粗体固定宽度的文字</userinput></term>
 
         <listitem>
-          <para>Shows commands or other text that should be typed literally by
-          the user.</para>
+          <para>指命令或者其他需要被用户逐字敲入的文本</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
-        <term><replaceable>Constant width italic</replaceable></term>
+        <term><replaceable>斜体固定宽度的文字</replaceable></term>
 
         <listitem>
-          <para>Shows text that should be replaced with user-supplied values
-          or by values determined by context.</para>
+          <para>指那些需要用户提供值来替换的值或者由运行环境决定的值。</para>
         </listitem>
       </varlistentry>
     </variablelist>
 
     <tip>
-      <para>This icon signifies a tip, suggestion, or general note.</para>
+      <para>这个图标表示一个小窍门或建议或一般的注释。</para>
     </tip>
 
     <caution>
-      <para>This icon indicates a warning or caution.</para>
+      <para>这个图标标示一个警告或劝告。</para>
     </caution>
   </sect1>
 
   <sect1 id="preface-examples">
-    <title>Using Code Examples</title>
+    <title>使用例子中的代码</title>
 
-    <para>This book is here to help you get your job done. In general, you may
-    use the code in this book in your programs and documentation. You do not
-    need to contact us for permission unless you’re reproducing a significant
-    portion of the code. For example, writing a program that uses several
-    chunks of code from this book does not require permission. Selling or
-    distributing a CD-ROM of examples from O’Reilly books does require
-    permission. Answering a question by citing this book and quoting example
-    code does not require permission. Incorporating a significant amount of
-    example code from this book into your product’s documentation does require
-    permission.</para>
+    <para>这本书可以帮助你顺利的完成工作。通常，你可能会使用这本书中的代码用于
+    你的程序或文档。如果你不是直接复制完整的样例代码以做它用就不需要联系我们获
+    取使用许可。例如，在你的程序中使用本书中的代码是不需要许可的。出售或者发布
+    一个本书中样例库的 CD 是需要许可的。通过引用本书中的例子来回答问题不需要许
+    可。融合大量的本书案例代码到你的文档中是需要许可的。</para>
 
-    <para>We appreciate, but do not require, attribution. An attribution
-    usually includes the <phrase role="keep-together">title, author,</phrase>
-    publisher, and ISBN. For example: “<emphasis>Dart:Up and
-    Running</emphasis> by Kathy <phrase role="keep-together">Walrath
+    <para>如果你标明引用代码的出处，我们将十分感谢，但这不是必须的。出处信息通
+    常包括 <phrase role="keep-together">标题, 作者,</phrase>出版商, 和 ISBN。 
+    例如: “<emphasis>Dart:启动和运行</emphasis> by Kathy <phrase role="keep-together">Walrath
     and</phrase> Seth Ladd (O’Reilly). Copyright 2013 Kathy Walrath and Seth
     Ladd, 978-1-449-33089-7.”</para>
 
-    <para>If you feel your use of code examples falls outside fair use or the
-    permission given above, feel free to contact us at
+    <para>如果你觉得使用这些代码的方式需要一份许可，可以随时联系我们
     <email>permissions@oreilly.com</email>.</para>
   </sect1>
 
