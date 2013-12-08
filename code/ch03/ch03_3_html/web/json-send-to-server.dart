@@ -1,12 +1,10 @@
 // XXX: Dart Editor thinks this is OK, but I haven't run it.
 
 import 'dart:html';
-import 'dart:json';
-import 'dart:uri';
 
 String encodeMap(Map data) {
   return data.keys.map((k) {
-    return '${encodeUriComponent(k)}=${encodeUriComponent(data[k])}';
+    return '${Uri.encodeComponent(k)}=${Uri.encodeComponent(data[k])}';
   }).join('&');
 }
 
@@ -23,7 +21,6 @@ main() {
   var dataUrl = '/registrations/create';
   var data = {'dart': 'fun', 'editor': 'productive'};
   var encodedData = encodeMap(data);
-  print('hi');
 
   var httpRequest = new HttpRequest();
   httpRequest.open('POST', dataUrl);

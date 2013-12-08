@@ -12,27 +12,27 @@ void main() {
 }
 
 void DELETEME(Event event) {
-  var text = query("#sample_text_id").text;
+  var text = querySelector("#sample_text_id").text;
   var buffer = new StringBuffer();
   for (int i = text.length - 1; i >= 0; i--) {
     buffer.write(text[i]);
   }
-  query("#sample_text_id").text = buffer.toString();
+  querySelector("#sample_text_id").text = buffer.toString();
 }
 
 void findElements() {
-  Element elem1 = query('#an-id');           // Find an element by id (an-id).
-  Element elem2 = query('.a-class');         // Find an element by class (a-class).
-  List<Element> elems1 = queryAll('div');    // Find all elements by tag (<div>).
-  List<Element> elems2 = queryAll('input[type="text"]'); // Find all text inputs.
+  Element elem1 = querySelector('#an-id');           // Find an element by id (an-id).
+  Element elem2 = querySelector('.a-class');         // Find an element by class (a-class).
+  List<Element> elems1 = querySelectorAll('div');    // Find all elements by tag (<div>).
+  List<Element> elems2 = querySelectorAll('input[type="text"]'); // Find all text inputs.
 
   // Find all elements with the CSS class 'find-me' inside of a <p>
   // that is inside an element with the ID 'look-here'.
-  List<Element> elems3 = queryAll('#id p.class');
+  List<Element> elems3 = querySelectorAll('#id p.class');
 }
 
 void replaceElement() {
-  var elem = query('#example') as AnchorElement;
+  var elem = querySelector('#example') as AnchorElement;
   elem.href = 'http://dartlang.org';
 }
 
@@ -44,14 +44,14 @@ void displayConditionally() {
 
   for (var os in osList) {            // For each possible OS...
     bool shouldShow = (os == userOs); // Does this OS match the user's OS?
-    for (var elem in queryAll('.$os')) { // Find all elements for this OS.
+    for (var elem in querySelectorAll('.$os')) { // Find all elements for this OS.
       elem.hidden = !shouldShow;      // Show or hide each element.
     }
   }
 }
 
 void setAttribute() {
-  Element elem = query('#shy');
+  Element elem = querySelector('#shy');
   
   // Set a non-existent attribute. No error checking/complaints!
   elem.attributes['someAttribute'] = 'someValue';
@@ -74,17 +74,17 @@ void funWithNodes() {
   var elem = new Element.html('<p>Some <b>styled</b> text.</p>');
   
   // Find the parent by ID, and add elem as its last child.
-  query('#inputs').nodes.add(elem);
+  querySelector('#inputs').nodes.add(elem);
   
   // Find a node by ID, and replace it in the DOM.
-  query('#status').replaceWith(elem);
+  querySelector('#status').replaceWith(elem);
   
   // Find a node by ID, and remove it from the DOM.
-  query('#expendable').remove();
+  querySelector('#expendable').remove();
 }
 
 void funWithCss() {
-  var element = query('#message');
+  var element = querySelector('#message');
   element.classes.add('warning');
 //  
 //  var message = new DivElement();
@@ -99,12 +99,12 @@ void funWithCss() {
   ..fontWeight = 'bold'
   ..fontSize = '2em';
   
-  query("#fun-with-css").children.add(message);
+  querySelector("#fun-with-css").children.add(message);
 }
 
 void handleEvents() {
   // Find a button by ID and add an event handler.
-  query('#submitInfo').onClick.listen((e) {
+  querySelector('#submitInfo').onClick.listen((e) {
     // When the button is clicked, it runs this code.
     submitData();
   });

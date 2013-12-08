@@ -1,9 +1,14 @@
 main() {
   // BEGIN(adjacent_string_literals) 
-  var s = 'String ' 'concatenation'
-          " works even over line breaks.";
-  assert(s == 'String concatenation works even over line breaks.');
+  var s1 = 'String ' 'concatenation'
+           " works even over line breaks.";
+  assert(s1 == 'String concatenation works even over line breaks.');
+  
+  var s2 = 'The addition operator '
+           + 'works, as well.';
+  assert(s2 == 'The addition operator works, as well.');
   // END(adjacent_string_literals)
   
-  print(s); // String concatenation works even over line breaks.
+  print(s1); // String concatenation works even over line breaks.
+  print(s2); // The + operator works, as well.
 }

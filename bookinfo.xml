@@ -74,7 +74,7 @@
     caps.</para>
   </legalnotice>
 
-  <legalnotice role="damages">
+  <legalnotice id="legalnotice-damages" role="damages">
     <para>While every precaution has been taken in the preparation of this
     book, the publisher and authors assume no responsibility for errors or
     omissions, or for damages resulting from the use of the information
@@ -153,7 +153,7 @@
     </revision>
   </revhistory>
 
-  <legalnotice role="perfect">
+  <legalnotice id="legalnotice-perfect" role="perfect">
     <para></para>
   </legalnotice>
 </bookinfo>

@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 class Television {
   /// _Deprecated: Use [turnOn] instead._
   @deprecated      // Metadata; makes Dart Editor warn about using activate().

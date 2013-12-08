@@ -1,10 +1,8 @@
-import 'dart:uri';
-
 main() {
   var uri = 'http://example.org/api?foo=some message';
-  var encoded = encodeUri(uri);
+  var encoded = Uri.encodeFull(uri);
   assert(encoded == 'http://example.org/api?foo=some%20message');
 
-  var decoded = decodeUri(encoded);
+  var decoded = Uri.decodeFull(encoded);
   assert(uri == decoded);
 }

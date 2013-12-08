@@ -1,4 +1,4 @@
-import 'dart:json' as json;
+import 'dart:convert' show JSON;
 
 main() {
   // NOTE: Be sure to use double quotes ("), not single quotes ('),
@@ -10,7 +10,7 @@ main() {
   ]
   ''';
 
-  var scores = json.parse(jsonString);
+  var scores = JSON.decode(jsonString);
   assert(scores is List);
 
   var firstScore = scores[0];

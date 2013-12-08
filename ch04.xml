@@ -56,7 +56,7 @@
     </varlistentry>
 
     <varlistentry>
-      <term><link linkend="ch04-tools-dart_analyzer">dart_analyzer: The Static
+      <term><link linkend="ch04-tools-dart_analyzer">dartanalyzer: The Static
       Analyzer</link></term>
 
       <listitem>
@@ -76,16 +76,21 @@
 
   <para>All of these tools are in the Dart Editor bundle, since the editor
   uses Dartium and the other tools. You can also download Dartium separately,
-  and you can download an SDK that includes pub, dart2js, dart, dart_analyzer,
+  and you can download an SDK that includes pub, dart2js, dart, dartanalyzer,
   and dartdoc. See the <ulink
   url="http://www.dartlang.org/downloads.html">Downloads page</ulink> for
   links and details.</para>
 
+  <para>The tools are in the <literal>dart-sdk/bin</literal> directory
+  of your Dart installation directory.
+  If you intend to use tools such as pub, dart2js, and dart from the command
+  line, add the <literal>bin</literal> directory to your path.
+  </para>
+
   <sect1 id="ch04-tools-pub">
     <title>pub: The Dart Package Manager</title>
 
-    <para>You can use use the <emphasis>pub</emphasis> tool (<literal
-    moreinfo="none"><replaceable>$DART_SDK</replaceable>/bin/pub</literal>) to
+    <para>You can use the <emphasis>pub</emphasis> tool to
     manage Dart packages. A Dart package is simply a directory containing any
     number of Dart libraries and a list of the library dependencies. A package
     can also contain resources for its libraries, such as documentation,
@@ -97,9 +102,8 @@
       installing, updating, and publishing packages.</para>
     </note>
 
-    <para>A package can live anywhere. Some packages are distributed in the
-    Dart SDK, under the <literal moreinfo="none">pkg</literal> directory.
-    Others are on GitHub. We publish packages at <phrase
+    <para>A package can live anywhere. For example, some packages are 
+    on GitHub. The Dart team publishes packages at <phrase
     role="keep-together"><ulink
     url="http://pub.dartlang.org">pub.dartlang.org</ulink>,</phrase> and we
     hope you will, too.</para>
@@ -110,11 +114,12 @@
     <orderedlist continuation="restarts" inheritnum="ignore">
       <listitem>
         <para>Create a pubspec (a file that lists package
-        dependencies).</para>
+        dependencies and includes other metadata,
+        such as a name for your package).</para>
       </listitem>
 
       <listitem>
-        <para>Use pub to install the package.</para>
+        <para>Use pub to get your package's dependencies.</para>
       </listitem>
 
       <listitem>
@@ -138,10 +143,9 @@
       <programlisting format="linespecific"><remark>lang-js
 </remark>name: my_app
 dependencies:
-  js:
-    hosted: js
-  intl:
-    sdk: intl</programlisting>
+  js: any
+  intl: any
+    </programlisting>
 
       <para>For details, see the <ulink
       url="http://pub.dartlang.org/doc/pubspec.html">pubspec
@@ -153,11 +157,11 @@ dependencies:
       <title>Installing Packages</title>
 
       <para>Once you have a pubspec, you can run <literal moreinfo="none">pub
-      install</literal> from the top directory of your application:</para>
+      get</literal> from the top directory of your application:</para>
 
       <screen format="linespecific"><remark>lang-sh
 </remark>cd <replaceable>my/app</replaceable>
-<replaceable>$DART_SDK</replaceable>/bin/pub install</screen>
+pub get</screen>
 
       <para>This command determines which packages your app depends on, and
       puts them in a central cache. For git dependencies, pub clones the git
@@ -190,7 +194,7 @@ import 'package:intl/intl.dart';</programlisting>
       <title>More Information</title>
 
       <para>Run <literal
-      moreinfo="none"><replaceable>$DART_SDK</replaceable>/bin/pub
+      moreinfo="none">pub
       --help</literal> for a list of commands. For more information about pub,
       including publishing your own packages, see the <ulink
       url="http://pub.dartlang.org/doc">pub documentation.</ulink></para>
@@ -205,7 +209,7 @@ import 'package:intl/intl.dart';</programlisting>
     <link linkend="ch04-editor-run-non-dartium">specifying a browser</link>
     and <link linkend="ch04-editor-dart2js">compiling to JavaScript</link>. If
     you run into a problem, see <ulink
-    url="http://www.dartlang.org/docs/editor/troubleshoot.html">Troubleshooting
+    url="http://www.dartlang.org/tools/editor/troubleshoot.html">Troubleshooting
     Dart Editor.</ulink> Dart Editor is updated frequently, so it probably
     looks different from what you see here. For the latest information, see
     the <ulink url="http://www.dartlang.org/editor">Dart Editor
@@ -227,7 +231,8 @@ import 'package:intl/intl.dart';</programlisting>
       <title>Managing the Files View</title>
 
       <para>The Files view shows the files that implement the libraries
-      included in Dart, as well as all the apps that you create or
+      included in Dart, installed packages,
+      as well as all the apps that you create or
       open.</para>
 
       <sect3 id="ch04-editor-apps-open">
@@ -247,14 +252,12 @@ import 'package:intl/intl.dart';</programlisting>
           </listitem>
 
           <listitem>
-            <para>Click the <emphasis role="bold">Browse…</emphasis> button,
-            find the directory that contains the app’s files, and click
-            <emphasis role="bold">Open</emphasis>. Or just paste the directory
-            path into the Folder field.</para>
+            <para>Browse
+            to the directory that contains the app’s files.</para>
           </listitem>
 
           <listitem>
-            <para>Click <emphasis role="bold">OK</emphasis>.</para>
+            <para>Click <emphasis role="bold">Open</emphasis>.</para>
           </listitem>
         </orderedlist>
 
@@ -307,8 +310,8 @@ import 'package:intl/intl.dart';</programlisting>
 
         <listitem>
           <para>Select the kind of application you’re writing, such as command
-          line, web, or web with <ulink
-          url="http://www.dartlang.org/articles/web-ui/">web_ui.</ulink></para>
+          line, web, or web using <ulink
+          url="http://www.dartlang.org/polymer-dart/">Polymer.dart.</ulink></para>
         </listitem>
 
         <listitem>
@@ -386,28 +389,35 @@ import 'package:intl/intl.dart';</programlisting>
         You can also outline the contents of a Dart file.</para>
 
         <sect4 id="browse-api-declaration">
-          <title>Finding where an API is declared</title>
+          <title>Finding out more about an API</title>
 
-          <para>Use this feature to go to the declaration of an API
-          item—variable, method, type, library, and so on—either within the
-          same .dart file or in another file.</para>
+          <para>To get more information about an API item-variable, method,
+            type, library, and so on-hover the mouse over the item in the
+            Edit view. Dart Editor displays a popup that provides more
+            information about that item.</para>
+            
+          <para>To go to the declaration of an API item, either within the
+          same .dart file or in another file:</para>
 
           <orderedlist continuation="restarts" inheritnum="ignore">
             <listitem>
-              <para>In the Edit view of a Dart file, hold down the <emphasis
-              role="bold">Control</emphasis> key (<emphasis
-              role="bold">Command</emphasis> key on Mac) and move the mouse
-              over the source code. Any API item under your cursor is
-              underlined.</para>
+              <para>In the Edit view of a Dart file, click on
+                an API item. Dart Editor highlights the item and all other
+                occurrences of the item.</para>
             </listitem>
 
             <listitem>
-              <para>Continuing to press Control or Command, hover over an
-              underlined string, and click.</para>
+              <para>Right click.</para>
+            </listitem>
+
+            <listitem>
+              <para>Choose <emphasis role="bold">Open Declaration</emphasis>
+              in the menu.</para>
 
               <para>The editor displays the file that declares the item. For
-              example, if you Command-click cos, the file that declares the
-              <literal>cos()</literal> function appears.</para>
+              example, if you open the declaration for querySelector, the file
+              that declares the <literal>querySelector()</literal> function
+              appears.</para>
             </listitem>
           </orderedlist>
         </sect4>
@@ -415,9 +425,9 @@ import 'package:intl/intl.dart';</programlisting>
         <sect4 id="browse-api-outline">
           <title>Outlining a file’s contents</title>
 
-          <para>Either press <emphasis role="bold">Alt+O</emphasis> (<emphasis
+          <para>Press <emphasis role="bold">Alt+O</emphasis> (<emphasis
           role="bold">Option+O</emphasis> on Mac) or right-click and choose
-          <emphasis role="bold">Quick Outline</emphasis>.</para>
+          <emphasis role="bold">Outline File</emphasis>.</para>
 
           <para>A panel comes up displaying the classes, methods, and fields
           declared in the current Dart file. For example, the outline for the
@@ -454,7 +464,6 @@ import 'package:intl/intl.dart';</programlisting>
 
         <para>To change the name of an item throughout your code, put the
         cursor within (or double-click) the item’s name in the Edit view, and
-        choose <emphasis role="bold">Edit &gt; Rename...</emphasis> or
         right-click and choose <emphasis
         role="bold">Rename...</emphasis>.</para>
 
@@ -524,10 +533,6 @@ import 'package:intl/intl.dart';</programlisting>
         <itemizedlist>
           <listitem>
             <para>HTML file or URL to open</para>
-          </listitem>
-
-          <listitem>
-            <para>browser (dart2js launches only)</para>
           </listitem>
 
           <listitem>
@@ -630,85 +635,44 @@ import 'package:intl/intl.dart';</programlisting>
       </sect3>
 
       <sect3 id="ch04-editor-run-non-dartium">
-        <title>Specifying a browser</title>
+        <title>Specifying a browser for JavaScript launches</title>
 
-        <para>To specify the browser in which the your web app runs:</para>
+        <para>To specify the browser in which to run the JavaScript version
+        of your web apps:</para>
 
         <orderedlist continuation="restarts" inheritnum="ignore">
           <listitem>
-            <para>Choose <emphasis role="bold">Run &gt; Manage
-            Launches</emphasis>, or click the little arrow to the right of the
-            Run button <inlinemediaobject>
-                <imageobject>
-                  <imagedata fileref="figs/web/run.png" width="0.12in" />
-                </imageobject>
-              </inlinemediaobject> and choose <emphasis role="bold">Manage
-            Launches</emphasis>. A dialog appears (see <xref
-            linkend="new-web-launch-menu" />). On the left side of the dialog
-            is a list of all launch configurations that you’ve created or that
-            were automatically created for you. On the right is information
-            about the currently selected launch configuration.</para>
+            <para>Choose
+            <emphasis role="bold">Dart Editor &gt; Preferences</emphasis>.
+            </para>
           </listitem>
 
           <listitem>
-            <para>In the Manage Launches dialog, click the “Create a new
-            Dart2js launch” button <inlinemediaobject>
-                <imageobject>
-                  <imagedata fileref="figs/web/new-dart2js.png" width="0.12in" />
-                </imageobject>
-              </inlinemediaobject>.</para>
-
-            <para><figure float="0" id="new-web-launch-menu">
-                <title>Creating a new web launch</title>
-
-                <mediaobject>
-                  <imageobject role="web">
-                    <imagedata fileref="figs/web/daur_0405.png" format="PNG" />
-                  </imageobject>
-                </mediaobject>
-              </figure></para>
+            <para>Click <emphasis role="bold">Run and Debug</emphasis>.</para>
           </listitem>
 
           <listitem>
-            <para>Enter configuration information:</para>
-
-            <itemizedlist>
-              <listitem>
-                <para>Give the configuration a name.
-                <emphasis>Example:</emphasis> Firefox</para>
-              </listitem>
-
-              <listitem>
-                <para>Specify the HTML file or URL to open.
-                <emphasis>Example:</emphasis>
-                /sunflower-1/web/sunflower.html</para>
-              </listitem>
-
-              <listitem>
-                <para>Unless you want to use the default system browser,
-                unselect <emphasis role="bold">Use default <phrase
-                role="keep-together">system browser</phrase></emphasis> and
-                specify the location of the browser you want to use. <phrase
-                role="keep-together"><emphasis>Example:</emphasis>
-                /Applications/Firefox.app</phrase></para>
-              </listitem>
-            </itemizedlist>
+            <para>Unless you want to use the default system browser,
+            unselect <emphasis role="bold">Use default <phrase
+            role="keep-together">system browser</phrase></emphasis> and
+            specify the location of the browser you want to use. <phrase
+            role="keep-together"><emphasis>Example:</emphasis>
+            /Applications/Firefox.app</phrase></para>
           </listitem>
 
           <listitem>
-            <para>Click <emphasis role="bold">Apply</emphasis> to save your
-            changes, or <emphasis role="bold">Run</emphasis> to save your
-            changes and launch the app.</para>
+            <para>Click <emphasis role="bold">OK</emphasis> to save your
+            changes.</para>
           </listitem>
         </orderedlist>
 
-        <para>Now that you’ve set up the launch, you can choose it any time
-        from the Run button <inlinemediaobject>
-            <imageobject>
-              <imagedata fileref="figs/web/run.png" width="0.12in" />
-            </imageobject>
-          </inlinemediaobject>. Your app will be automatically compiled to
-        JavaScript each time you run it.</para>
+        <para>Now whenever you run an app as JavaScript,
+        Dart Editor will invoke your browser of choice.
+        </para>
+
+        Alternatively, you can run your app as JavaScript using
+        the default browser setting and then copy and paste the URL into
+        a different browser.
       </sect3>
     </sect2>
 
@@ -851,13 +815,14 @@ import 'package:intl/intl.dart';</programlisting>
       <para>If you don’t have Dart Editor or want a different version of
       Dartium, you can get it separately from the <ulink
       url="http://www.dartlang.org/downloads.html">Downloads page.</ulink> The
-      Dartium binary does expires after a while. When that happens, you’ll
+      Dartium binary does expire after a while. When that happens, you’ll
       need to download a new copy if you want to continue using
       Dartium.</para>
 
       <para>You don’t usually need to do anything special to install Dartium:
       just unarchive the ZIP file. If you want Dart Editor to launch a
-      particular copy of Dartium, then put that copy inside the <literal
+      particular copy of Dartium, then put that copy in the same directory 
+      as the <literal
       moreinfo="none">dart-sdk</literal> directory of your Dart installation
       directory (see <xref linkend="ch01-editor-download" />), replacing the
       original copy of Chromium.</para>
@@ -902,7 +867,7 @@ import 'package:intl/intl.dart';</programlisting>
   &lt;body&gt;
     &lt;script type="application/dart" src="app.dart"&gt;&lt;/script&gt;
 
-    &lt;!-- Bootstraps the Dart VM and handles non-Dart browsers. --&gt;
+    &lt;!-- Support for non-Dart browsers. --&gt;
     &lt;script src="packages/browser/dart.js"&gt;&lt;/script&gt;
   &lt;/body&gt;
 &lt;/html&gt;</programlisting>
@@ -910,7 +875,7 @@ import 'package:intl/intl.dart';</programlisting>
       <note>
         <para>Dart Editor automatically adds both the <literal
         moreinfo="none">application/dart</literal> script tag and the
-        <literal>bootstrap JavaScript</literal> tag into the project’s main
+        <literal>dart.js</literal> script tag into the project’s main
         HTML file.</para>
       </note>
     </sect2>
@@ -918,25 +883,18 @@ import 'package:intl/intl.dart';</programlisting>
     <sect2 id="ch04-dartium-detect">
       <title>Detecting Dart Support</title>
 
-      <para>The above example uses a bootstrap script that takes care of
-      turning on the Dart VM, as well as compatibility with non-Dart browsers.
-      Instead of using the <literal moreinfo="none">dart.js</literal> script,
-      you can manually include the necessary JavaScript code.</para>
-
-      <para>To start the Dart VM, use the JavaScript function <literal
-      moreinfo="none">navigator.webkitStartDart()</literal>. For
-      example:</para>
+      <para>You can check whether a browser supports Dart
+      with this JavaScript code:
+      </para>
 
       <programlisting format="linespecific"><remark>lang-js
 </remark>// In JavaScript code:
-if (!navigator.webkitStartDart) {
-  // No native Dart support.
+if (navigator.userAgent.indexOf('(Dart)') == -1) {
+  // No native Dart support...
   window.addEventListener("DOMContentLoaded", function (e) {
       // ...Fall back to compiled JS...
     }
   }, false);
-} else {
-  navigator.webkitStartDart();
 }</programlisting>
     </sect2>
 
@@ -948,27 +906,26 @@ if (!navigator.webkitStartDart) {
       flags</ulink> should work. In some cases, you might want to specify
       Dart-specific flags so that you can tweak the embedded Dart VM’s
       behavior. For example, while developing your web app, you might want the
-      VM to perform as many checks as possible. To achieve that, you can
-      enable checked mode (the VM’s <literal>--enable-type-checks</literal>
-      flag) and assertion checks (<literal>--enable-asserts</literal>
+      VM to verify type annotations and check assertions. To achieve that,
+      you can enable checked mode (the VM’s <literal>--checked</literal>
       flag).</para>
 
       <para>On Linux, you can specify flags by starting Dartium as
       follows:</para>
 
       <screen format="linespecific"><remark>lang-sh
-</remark>DART_FLAGS='--enable-type-checks --enable-asserts' <replaceable>path</replaceable>/chrome</screen>
+</remark>DART_FLAGS='--checked' <replaceable>path</replaceable>/chrome</screen>
 
       <para>On Mac:</para>
 
       <screen format="linespecific"><remark>lang-sh
-</remark>DART_FLAGS='--enable-type-checks --enable-asserts'              \
+</remark>DART_FLAGS='--checked'              \
   <replaceable>path</replaceable>/Chromium.app/Contents/MacOS/Chromium</screen>
 
       <para>Or (also on Mac):</para>
 
       <screen format="linespecific"><remark>lang-sh
-</remark>DART_FLAGS='--enable-type-checks --enable-asserts'              \
+</remark>DART_FLAGS='--checked'              \
    open <replaceable>path</replaceable>/Chromium.app</screen>
 
       <note>
@@ -995,7 +952,7 @@ if (!navigator.webkitStartDart) {
       <para>Here’s an example of compiling a Dart file to JavaScript:</para>
 
       <screen format="linespecific"><remark>lang-sh
-</remark><replaceable>$DART_SDK</replaceable>/bin/dart2js --out=test.js <replaceable>test.dart</replaceable></screen>
+</remark>dart2js --out=test.js <replaceable>test.dart</replaceable></screen>
 
       <para>This command produces a file that contains the JavaScript
       equivalent of your Dart code. It also produces a source map, which can
@@ -1037,19 +994,6 @@ if (!navigator.webkitStartDart) {
 
           <listitem>
             <para>Generate minified output.</para>
-          </listitem>
-        </varlistentry>
-
-        <varlistentry>
-          <term role="plain"><literal moreinfo="none">
-          --disallow-unsafe-eval</literal></term>
-
-          <listitem>
-            <para>Disable dynamic generation of code in the output. Use this
-            option when you want the generated JavaScript to satisfy CSP
-            restrictions. For more information, see <ulink
-            url="http://www.html5rocks.com/en/tutorials/security/content-security-policy/">An
-            Introduction to Content Security Policy.</ulink></para>
           </listitem>
         </varlistentry>
 
@@ -1142,7 +1086,7 @@ if (!navigator.webkitStartDart) {
         <orderedlist>
           <listitem>
             <para>Open the Developer Tools window, as described in <ulink
-            url="https://developers.google.com/chrome-developer-tools/docs/overview#access">How
+            url="https://developers.google.com/chrome-developer-tools/docs/overview">How
             to Access the Developer Tools.</ulink></para>
           </listitem>
 
@@ -1154,9 +1098,9 @@ if (!navigator.webkitStartDart) {
           <listitem>
             <para>Enable debugging, either on all exceptions or only on
             uncaught exceptions, <phrase role="">as described in <ulink
-            url="https://developers.google.com/chrome-developer-tools/docs/scripts-breakpoints#js_exceptions">Pause
+            url="https://developers.google.com/chrome-developer-tools/docs/scripts-breakpoints#pause-on-exceptions">Pause
             on Exceptions</ulink> </phrase>and <ulink
-            url="https://developers.google.com/chrome-developer-tools/docs/scripts-breakpoints#js_uncaught">Pause
+            url="https://developers.google.com/chrome-developer-tools/docs/scripts-breakpoints#pause-on-uncaught-exceptions">Pause
             on Uncaught Exceptions,</ulink> respectively.</para>
           </listitem>
 
@@ -1211,16 +1155,16 @@ if (!navigator.webkitStartDart) {
 
         <orderedlist>
           <listitem>
-            <para>Turn on the Develop menu, as described in <ulink
-            url="http://bit.ly/developer-tools">Enabling Developer Tools in
-            Safari on the Desktop.</ulink></para>
+            <para>Turn on the Develop menu, as described in the <ulink
+            url="https://developer.apple.com/library/safari/documentation/AppleApplications/Conceptual/Safari_Developer_Guide/GettingStarted/GettingStarted.html#//apple_ref/doc/uid/TP40007874-CH2-SW1">Safari
+            Web Inspector Guide</ulink>.</para>
           </listitem>
 
           <listitem>
             <para>Enable breaks, either on all exceptions or only on uncaught
-            exceptions, as described in <ulink
-            url="http://bit.ly/web-inspector">Debugging JavaScript Using the
-            Web Inspector.</ulink></para>
+            exceptions. See Figure 4-2 on the Safari <ulink
+            url="https://developer.apple.com/library/safari/documentation/AppleApplications/Conceptual/Safari_Developer_Guide/Debugger/Debugger.html#//apple_ref/doc/uid/TP40007874-CH5-SW1">Debugging</ulink>
+            page.</para>
           </listitem>
 
           <listitem>
@@ -1247,7 +1191,7 @@ if (!navigator.webkitStartDart) {
       line:</para>
 
       <screen format="linespecific"><remark>lang-sh
-</remark><replaceable>$DART_SDK</replaceable>/bin/dart <replaceable>test.dart</replaceable></screen>
+</remark>dart <replaceable>test.dart</replaceable></screen>
     </sect2>
 
     <sect2 id="ch04-tools-dart-vm-options">
@@ -1256,24 +1200,6 @@ if (!navigator.webkitStartDart) {
       <para>Common command-line options for dart include:</para>
 
       <variablelist>
-        <varlistentry>
-          <term role="plain"><literal moreinfo="none">
-          </literal><literal>--enable-type-checks</literal></term>
-
-          <listitem>
-            <para>Check type annotations at runtime.</para>
-          </listitem>
-        </varlistentry>
-
-        <varlistentry>
-          <term role="plain"><literal moreinfo="none">
-          </literal><literal>--assert</literal></term>
-
-          <listitem>
-            <para>Evaluate <literal>assert()</literal> expressions, and
-            terminate the program if an assertion fails.</para>
-          </listitem>
-        </varlistentry>
 
         <varlistentry>
           <term role="plain"><literal moreinfo="none">
@@ -1283,6 +1209,15 @@ if (!navigator.webkitStartDart) {
           <listitem>
             <para>Enable <emphasis>both</emphasis> assertions and type checks
             (checked mode).</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term role="plain"><literal moreinfo="none">
+          </literal><literal>--package-root=</literal><replaceable>&lt;path&gt;</replaceable></term>
+
+          <listitem>
+            <para>Specify where to find imported libraries.</para>
           </listitem>
         </varlistentry>
 
@@ -1305,7 +1240,7 @@ if (!navigator.webkitStartDart) {
       enable checked mode for development and testing.</para>
 
       <para>In checked mode, assignments are dynamically checked, and certain
-      violations of the type system raise exceptions at run time. In
+      violations of the type system raise exceptions at runtime. In
       production mode, static type annotations have no effect.</para>
 
       <para>Assert statements are also enabled in checked mode. An <link
@@ -1317,22 +1252,24 @@ if (!navigator.webkitStartDart) {
       <literal>--checked</literal> command-line flag:</para>
 
       <screen format="linespecific"><remark>lang-sh
-</remark><replaceable>$DART_SDK</replaceable>/bin/dart --checked <replaceable>test.dart</replaceable></screen>
+</remark>dart --checked <replaceable>test.dart</replaceable></screen>
     </sect2>
   </sect1>
 
   <sect1 id="ch04-tools-dart_analyzer">
-    <title>dart_analyzer: The Static Analyzer</title>
+    <title>dartanalyzer: The Static Analyzer</title>
 
-    <para>You can use the <emphasis>dart_analyzer</emphasis> tool (<literal
-    moreinfo="none">bin/dart_analyzer</literal>) to statically analyze your
+    <para>You can use the <emphasis>dartanalyzer</emphasis> tool (<literal
+    moreinfo="none">bin/dartanalyzer</literal>) to statically analyze your
     code at the command line, checking for errors and warnings that are
     specified in the <ulink url="http://www.dartlang.org/docs/spec/">Dart
     Language Specification.</ulink></para>
 
     <note>
-      <para>Dart Editor performs the same analysis that dart_analyzer does,
-      but with additional checks for common mistakes.</para>
+      <para>Dart Editor performs the same analysis that dartanalyzer does, but
+      with additional checks for common mistakes. A previous static analyzer,
+      called <emphasis>dart_analyzer</emphasis>, is no longer
+      supported.</para>
     </note>
 
     <sect2 id="ch04-tools-dart_analyzer-basic-usage">
@@ -1341,30 +1278,102 @@ if (!navigator.webkitStartDart) {
       <para>Here’s an example of testing a Dart file:</para>
 
       <screen format="linespecific"><remark>lang-sh
-</remark><replaceable>$DART_SDK</replaceable>/bin/dart_analyzer --enable_type_checks <replaceable>test.dart</replaceable></screen>
+</remark>dartanalyzer --package-root <replaceable>code/packages</replaceable> <replaceable>test.dart</replaceable></screen>
+
+      <para>As <xref linkend="ch04-dartanalyzer-exit" /> shows, the exit code
+      of dartanalyzer tells you whether the code passed analysis.</para>
+
+      <table id="ch04-dartanalyzer-exit">
+        <title>Exit codes for dartanalyzer</title>
+
+        <tgroup cols="2">
+          <thead>
+            <row>
+              <entry>Exit code</entry>
+
+              <entry>Description</entry>
+            </row>
+          </thead>
+
+          <tbody>
+            <row>
+              <entry>0</entry>
+
+              <entry>No issues found</entry>
+            </row>
+
+            <row>
+              <entry>1</entry>
+
+              <entry>Warnings found (but no errors)</entry>
+            </row>
+
+            <row>
+              <entry>2</entry>
+
+              <entry>Errors found</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
     </sect2>
 
     <sect2 id="ch04-tools-dart_analyzer-options">
       <title>Options</title>
 
-      <para>Common command-line options for dart_analyzer include:</para>
+      <para>You can use the following command-line options with
+      dartanalyzer:</para>
 
       <variablelist>
+
         <varlistentry>
           <term role="plain"><literal moreinfo="none">
-          </literal><literal>--enable_type_checks</literal></term>
+          </literal><literal>--dart-sdk
+          <replaceable>&lt;path&gt;</replaceable></literal></term>
 
           <listitem>
-            <para>Perform runtime type checks.</para>
+            <para>Specify the directory that contains the Dart SDK.</para>
+          </listitem>
+
+        </varlistentry>
+
+        <varlistentry>
+          <term role="plain"><literal moreinfo="none">
+          </literal><literal>--package-root
+          <replaceable>&lt;path&gt;</replaceable></literal></term>
+
+          <listitem>
+            <para>Specify the directory to search for any libraries that are
+            imported using <literal>package:</literal>.</para>
           </listitem>
         </varlistentry>
 
         <varlistentry>
           <term role="plain"><literal moreinfo="none">
-          </literal><literal>--fatal-type-errors</literal></term>
+          </literal><literal>--show-package-warnings</literal></term>
 
           <listitem>
-            <para>Treat type errors as fatal.</para>
+            <para>Show warnings not only for code in the specified .dart file
+            and others in its library, but also for libraries imported with
+            <literal>package:</literal>.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term role="plain"><literal moreinfo="none">
+          </literal><literal>--machine</literal></term>
+
+          <listitem>
+            <para>Produce output in a format suitable for parsing.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term role="plain"><literal moreinfo="none">
+          </literal><literal>--version</literal></term>
+
+          <listitem>
+            <para>Show the analyzer version.</para>
           </listitem>
         </varlistentry>
 
@@ -1373,7 +1382,7 @@ if (!navigator.webkitStartDart) {
           </literal><literal>--help</literal></term>
 
           <listitem>
-            <para>Print all the command-line options.</para>
+            <para>Show all the command-line options.</para>
           </listitem>
         </varlistentry>
       </variablelist>
@@ -1401,7 +1410,7 @@ if (!navigator.webkitStartDart) {
       file.</para>
 
       <screen format="linespecific"><remark>lang-sh
-</remark><replaceable>$DART_SDK</replaceable>/bin/dartdoc --out=/docs/mylib <replaceable>mylib.dart</replaceable></screen>
+</remark>dartdoc --out=/docs/mylib <replaceable>mylib.dart</replaceable></screen>
 
       <para>By default, the generated documentation appears in a directory
       named <literal>docs/</literal>.</para>
@@ -1478,7 +1487,7 @@ if (!navigator.webkitStartDart) {
       <variablelist>
         <varlistentry>
           <term role="plain"><literal moreinfo="none">
-          </literal><literal>--pkg=<replaceable>&lt;path&gt;</replaceable></literal></term>
+          </literal><literal>--package-root=<replaceable>&lt;path&gt;</replaceable></literal></term>
 
           <listitem>
             <para>Specify where to find imported libraries. You might need to
@@ -1486,7 +1495,7 @@ if (!navigator.webkitStartDart) {
             directory structure doesn’t match <ulink
             url="http://pub.dartlang.org/doc/package-layout.html">pub’s
             package layout conventions.</ulink> <emphasis>Example:</emphasis>
-            <literal>--pkg=foo/packages/</literal></para>
+            <literal>--package-root=foo/packages/</literal></para>
           </listitem>
         </varlistentry>
       </variablelist>

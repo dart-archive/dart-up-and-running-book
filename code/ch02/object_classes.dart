@@ -1,5 +1,5 @@
-import 'dart:math';
-import 'dart:json' as json;
+import 'dart:math' show sqrt;
+import 'dart:convert' show JSON;
 
 class Point {
   num x;
@@ -27,7 +27,7 @@ class ImmutablePoint {
 }
 
 main() {
-  var jsonData = json.parse('{"x":1, "y":2}');
+  var jsonData = JSON.decode('{"x":1, "y":2}');
 
   var p1 = new Point(2,2);               // Create a Point using Point().
   var p2 = new Point.fromJson(jsonData); // Create a Point using Point.fromJson().

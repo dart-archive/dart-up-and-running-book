@@ -6,4 +6,3 @@ class todo {
   
   const todo(this.who, this.what);
 }
-
