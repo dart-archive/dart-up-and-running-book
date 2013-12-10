@@ -7,13 +7,13 @@
   <title>Walkthrough: Dart Chat</title>
 
   <note>
-  <para>We deleted the contents of this chapter because it was
-  based on out-of-date code that no longer worked.
-  We intend to create a new example, with a new code walkthrough.
+  <para>由于本章内容已经过时了，里面的示例代码都无法
+  运行了，所有我们删除了本章内容。
+  我们计划用新的代码来创建一个新的演练示例。
 
-  In the meantime, if you would like to try a code lab,
-  check out
-  <ulink url="http://dartlang.org/codelabs/darrrt">Try Darrrt</ulink>.</para>
+  如果你想看看各种代码使用方式，请
+  访问
+  <ulink url="http://www.dartlang.cc/codelabs/darrrt">Try Darrrt</ulink>。</para>
   </note>
 
 </chapter>
