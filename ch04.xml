@@ -74,71 +74,74 @@
     </varlistentry>
   </variablelist>
 
-  <para>All of these tools are in the Dart Editor bundle, since the editor
-  uses Dartium and the other tools. You can also download Dartium separately,
-  and you can download an SDK that includes pub, dart2js, dart, dartanalyzer,
-  and dartdoc. See the <ulink
-  url="http://www.dartlang.org/downloads.html">Downloads page</ulink> for
-  links and details.</para>
+  <para>以上工具都包含在下载的 Dart 编辑器包中。你也可以单独
+      下载 Dartium，也可以单独
+      下载包含 pub、 dart2js、 dart、 dartanalyzer、
+  和 dartdoc 的 SDK。参考 <ulink
+  url="/tools/">下载界面</ulink>
+  。</para>
 
-  <para>The tools are in the <literal>dart-sdk/bin</literal> directory
-  of your Dart installation directory.
-  If you intend to use tools such as pub, dart2js, and dart from the command
-  line, add the <literal>bin</literal> directory to your path.
+  <para>这些工具位于下载的 Dart 安装目录中的 <literal>dart-sdk/bin</literal> 
+目录中。
+如果你想使用这些命令行工具，建议把
+ <literal>bin</literal> 目录添加到环境变量中去。
   </para>
 
   <sect1 id="ch04-tools-pub">
-    <title>pub: The Dart Package Manager</title>
+    <title>pub: Dart 包管理器</title>
 
-    <para>You can use the <emphasis>pub</emphasis> tool to
-    manage Dart packages. A Dart package is simply a directory containing any
-    number of Dart libraries and a list of the library dependencies. A package
-    can also contain resources for its libraries, such as documentation,
-    tests, and images. If your app uses one or more packages, then your app
-    itself must be a package.</para>
+    <para>你可以用 <emphasis>pub</emphasis> 来
+        管理 Dart 包。一个 Dart 包只是一个包含多个 Dart 库和其他资源的目录。
+        包还可以包含文档、测试、图片等资源。
+        应用使用其他包的前提条件是该应用
+        需要为一个包。
+    </para>
 
     <note>
-      <para>Dart Editor offers support for using pub, including creating,
-      installing, updating, and publishing packages.</para>
+      <para>Dart 编辑器支持 pub 的功能，包含 创建、安装
+          、更新、以及发布包等。
+      </para>
     </note>
 
-    <para>A package can live anywhere. For example, some packages are 
-    on GitHub. The Dart team publishes packages at <phrase
+    <para>包可以位于任何地方。例如，一些包可能在 GitHub 上。
+    Dart 团队在 <phrase
     role="keep-together"><ulink
-    url="http://pub.dartlang.org">pub.dartlang.org</ulink>,</phrase> and we
-    hope you will, too.</para>
+    url="http://pub.dartlang.org">pub.dartlang.org</ulink></phrase> 发布
+    包，我们也希望你在这里发布你的包。</para>
 
-    <para>To use a library that’s in a Dart package, you need to do the
-    following:</para>
+    <para>
+        要使用 Dart 包中的库，你需要安装如下
+        步骤操作：</para>
 
     <orderedlist continuation="restarts" inheritnum="ignore">
       <listitem>
-        <para>Create a pubspec (a file that lists package
-        dependencies and includes other metadata,
-        such as a name for your package).</para>
+        <para>创建一个 pubspec (该文件列出了
+            库的依赖关系和其他元数据，例如 你的包
+            的名字 等)。</para>
       </listitem>
 
       <listitem>
-        <para>Use pub to get your package's dependencies.</para>
+        <para>用 pub 获取你的应用所依赖的包。</para>
       </listitem>
 
       <listitem>
-        <para>Import the library.</para>
+        <para>导入要使用的库。</para>
       </listitem>
     </orderedlist>
 
     <sect2 id="ch04-tools-pub-pubspec">
-      <title>Creating a Pubspec</title>
+      <title>创建 Pubspec</title>
 
-      <para>To use a package, your application must define a pubspec that
-      lists dependencies and their download locations. The pubspec is a file
-      named <literal moreinfo="none">pubspec.yaml</literal>, and it must be in
-      the top directory of your application.</para>
+      <para>要使用其他包，你的应用必需创建一个 pubspec 文件并列出
+          所依赖的包和包的下载地址。 pubspec 文件的名字为
+        <literal moreinfo="none">pubspec.yaml</literal>，该文件必需
+        位于你项目的根目录中。
+</para>
 
-      <para>Here is an example of a pubspec that specifies the locations of
-      two packages. First, it points to the js package that’s hosted on
-      pub.dartlang.org, and then it points to the intl package in the Dart
-      SDK:</para>
+      <para>下面是一个示例 pubspec 文件，指定了两个包。
+          第一个使用了位于 pub.dartlang.org 的 js 包；
+          第二个使用了位于 Dart SDK 的 intl 包：
+ </para>
 
       <programlisting format="linespecific"><remark>lang-js
 </remark>name: my_app
@@ -147,62 +150,63 @@ dependencies:
   intl: any
     </programlisting>
 
-      <para>For details, see the <ulink
+      <para>详情请参考：<ulink
       url="http://pub.dartlang.org/doc/pubspec.html">pubspec
-      documentation</ulink> and the documentation for the packages you’re
-      interested in using.</para>
+      文档</ulink> ，这里还包含了你可以使用的第三方包的介绍。</para>
     </sect2>
 
     <sect2 id="ch04-tools-pub-install">
-      <title>Installing Packages</title>
+      <title>安装包</title>
 
-      <para>Once you have a pubspec, you can run <literal moreinfo="none">pub
-      get</literal> from the top directory of your application:</para>
+      <para>定义好 pubspec 文件后，就可以在项目根目录中运行 <literal moreinfo="none">pub
+      get</literal> 来下载这些包：</para>
 
       <screen format="linespecific"><remark>lang-sh
 </remark>cd <replaceable>my/app</replaceable>
 pub get</screen>
 
-      <para>This command determines which packages your app depends on, and
-      puts them in a central cache. For git dependencies, pub clones the git
-      repository. For hosted dependencies, pub downloads the package from
-      pub.dartlang.org. Transitive dependencies are included, too. For
-      example, if the js package is dependent on the unittest package, the pub
-      tool grabs both the js package and the unittest package.</para>
+      <para>该命令检测你的应用所依赖的包，并把这些包下载到一个中央缓存目录。
+          对于 git 包，pub 则会 clone 该库的 git 库。而对于托管到文件服务器的库，
+          pub 从 pub.dartlang.org 下载。 
+          同时还下载了应用使用的包所依赖的包。
+          例如，js 包依赖 unittest 包， 则 pub 会同时下载
+          js 和 unittest 包。
+      </para>
 
-      <para>Finally, pub creates a <literal moreinfo="none">packages</literal>
-      directory (under your app’s top directory) that has links to the
-      packages that your app depends on.</para>
+      <para>最后，pub 在你的应用根目录下创建一个 <literal moreinfo="none">packages</literal>
+      目录，该目录连接了你应用中需要使用的包。
+      </para>
     </sect2>
 
     <sect2 id="ch04-tools-pub-import">
-      <title>Importing Libraries from Packages</title>
+      <title>从包中导入库</title>
 
-      <para>To import libraries found in packages, use the <literal
-      moreinfo="none">package:</literal> prefix:</para>
+      <para>要使用包中的库，使用 <literal
+      moreinfo="none">package:</literal> 前缀导入库：</para>
 
       <programlisting format="linespecific"><remark>lang-dart
 </remark>import 'package:js/js.dart' as js;
 import 'package:intl/intl.dart';</programlisting>
 
-      <para>The Dart runtime takes everything after <literal
-      moreinfo="none">package:</literal> and looks it up within the <literal
-      moreinfo="none">packages</literal> directory for your app.</para>
+      <para>Dart 运行环境将负责解析<literal
+      moreinfo="none">package:</literal> 并从 <literal
+      moreinfo="none">packages</literal> 目录中加载需要的库。</para>
     </sect2>
 
     <sect2 id="ch04-tools-pub-more-options">
-      <title>More Information</title>
+      <title>其他信息</title>
 
-      <para>Run <literal
+      <para>运行 <literal
       moreinfo="none">pub
-      --help</literal> for a list of commands. For more information about pub,
-      including publishing your own packages, see the <ulink
-      url="http://pub.dartlang.org/doc">pub documentation.</ulink></para>
+      --help</literal> 来查询其他命令。关于 pub 的其他信息以及
+      如何发布你的包，请参考
+       <ulink
+      url="http://pub.dartlang.org/doc">pub 文档。</ulink></para>
     </sect2>
   </sect1>
 
   <sect1 id="ch04-tools-editor">
-    <title>Dart Editor</title>
+    <title>Dart 编辑器</title>
 
     <para>We already introduced Dart Editor in <xref linkend="ch01-editor" />.
     Here are some more tips on using Dart Editor, with information such as
