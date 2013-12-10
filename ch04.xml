@@ -2,74 +2,74 @@
 <!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
 "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
 <chapter id="ch04">
-  <title>Tools</title>
+  <title>工具</title>
 
-  <para>Dart provides several tools to help you write and deploy your web and
-  command-line apps:</para>
+  <para>Dart 提供了一些工具来帮助你编写和部署 web 应用和命令行
+  应用：</para>
 
   <variablelist>
     <varlistentry>
-      <term><link linkend="ch04-tools-pub">pub: The Dart package
-      manager</link></term>
+      <term><link linkend="ch04-tools-pub">pub: Dart 包
+      管理器</link></term>
 
       <listitem>
-        <para>Download and install packages of libraries.</para>
+        <para>下载和安装包中的库。</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
-      <term><link linkend="ch04-tools-editor">Dart Editor</link></term>
+      <term><link linkend="ch04-tools-editor">Dart 编辑器</link></term>
 
       <listitem>
-        <para>Edit, run, and debug web and command-line apps.</para>
+        <para>编辑、运行、调试 web 和 命令行 应用。</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
-      <term><link linkend="ch04-tools-dartium">Dartium: Chromium with the Dart
-      VM </link></term>
+      <term><link linkend="ch04-tools-dartium">Dartium: 带有 Dart
+      VM 的 Chromium 浏览器</link></term>
 
       <listitem>
-        <para>Run Dart web apps. This is a special build of Chromium (the
-        project behind Google Chrome).</para>
+        <para>运行 Dart web 应用。用带有 Dart VM 的 Chromium 
+        运行 web 应用。</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
-      <term><link linkend="ch04-tools-dart2js">dart2js: The Dart-to-JavaScript
+      <term><link linkend="ch04-tools-dart2js">dart2js: Dart-to-JavaScript
       compiler</link></term>
 
       <listitem>
-        <para>Convert your web app to JavaScript, so it can run in non-Dartium
-        browsers.</para>
+        <para>把你的 web 应用编译为 JavaScript 就可以在不包含 Dart VM
+        的浏览器中运行了。</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
-      <term><link linkend="ch04-tools-dart-vm">dart: The standalone Dart
+      <term><link linkend="ch04-tools-dart-vm">dart:独立的 Dart
       VM</link></term>
 
       <listitem>
-        <para>Run your command-line apps—server-side scripts, programs,
-        servers, and any other apps that don’t run in a browser.</para>
+        <para>运行命令行应用、服务器端脚本或者其他不能在
+        浏览器中运行的 Dart 应用。</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
-      <term><link linkend="ch04-tools-dart_analyzer">dartanalyzer: The Static
-      Analyzer</link></term>
+      <term><link linkend="ch04-tools-dart_analyzer">dartanalyzer: 静态
+      分析器</link></term>
 
       <listitem>
-        <para>Analyze your Dart source from the command line.</para>
+        <para>用命令行来分析 Dart 代码。</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
-      <term><link linkend="ch04-tools-dartdoc">dartdoc: The API Documentation
-      Generator</link></term>
+      <term><link linkend="ch04-tools-dartdoc">dartdoc: API 文档
+      生成器</link></term>
 
       <listitem>
-        <para>Generate documentation from your Dart source.</para>
+        <para>从 Dart 代码中生成文档。</para>
       </listitem>
     </varlistentry>
   </variablelist>
