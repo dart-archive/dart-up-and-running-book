@@ -78,7 +78,7 @@
       下载 Dartium，也可以单独
       下载包含 pub、 dart2js、 dart、 dartanalyzer、
   和 dartdoc 的 SDK。参考 <ulink
-  url="/tools/">下载界面</ulink>
+  url="http://www.dartlang.cc/tools/">下载界面</ulink>
   。</para>
 
   <para>这些工具位于下载的 Dart 安装目录中的 <literal>dart-sdk/bin</literal> 
@@ -208,31 +208,31 @@ import 'package:intl/intl.dart';</programlisting>
   <sect1 id="ch04-tools-editor">
     <title>Dart 编辑器</title>
 
-    <para>We already introduced Dart Editor in <xref linkend="ch01-editor" />.
-    Here are some more tips on using Dart Editor, with information such as
-    <link linkend="ch04-editor-run-non-dartium">specifying a browser</link>
-    and <link linkend="ch04-editor-dart2js">compiling to JavaScript</link>. If
-    you run into a problem, see <ulink
-    url="http://www.dartlang.org/tools/editor/troubleshoot.html">Troubleshooting
-    Dart Editor.</ulink> Dart Editor is updated frequently, so it probably
-    looks different from what you see here. For the latest information, see
-    the <ulink url="http://www.dartlang.org/editor">Dart Editor
-    documentation.</ulink></para>
+    <para>在 <xref linkend="ch01-editor" /> 我们已经介绍了 Dart 编辑器了。
+        下面是使用 Dart 编辑器的一些有用的提示，例如
+    <link linkend="ch04-editor-run-non-dartium">如何指定浏览器</link>
+    和 <link linkend="ch04-editor-dart2js">编译为  JavaScript</link>。
+    如果你遇到了问题，请参考 <ulink
+    url="http://www.dartlang.cc/tools/editor/troubleshoot.html">
+    Dart 编辑器问题指南。</ulink> Dart 编辑器更新比较快，
+    所以这里的截图可能看起来不太一样。
+    最新的信息 ，请参考 <ulink url="http://www.dartlang.cc/editor">Dart 编辑器文档。</ulink></para>
 
     <sect2 id="ch04-editor-view-samples">
-      <title>Viewing Samples</title>
+      <title>查看示例项目</title>
 
-      <para>The Welcome page of Dart Editor (<xref
-      linkend="DartEditor-initial" />) displays a few samples. To open a
-      sample and look at its source code, click the sample’s image.</para>
+      <para>Dart 编辑器的欢迎界面 (<xref
+      linkend="DartEditor-initial" />) 显示了一些示例项目。
+      只需要点击示例项目图片就可以打开该项目并查看其
+      代码了。</para>
 
-      <para>If you don’t see the Welcome page, you probably closed it. Get it
-      back with <emphasis role="bold">Tools &gt; Welcome
-      Page</emphasis>.</para>
+      <para>如果你没有看到欢迎界面，很有可能是之前你关闭该页面了。
+      通过菜单 <emphasis role="bold">Tools &gt; Welcome
+      Page</emphasis> 可以打开该页面。</para>
     </sect2>
 
     <sect2 id="ch04-editor-apps">
-      <title>Managing the Files View</title>
+      <title>管理文件视图</title>
 
       <para>The Files view shows the files that implement the libraries
       included in Dart, installed packages,
@@ -315,7 +315,7 @@ import 'package:intl/intl.dart';</programlisting>
         <listitem>
           <para>Select the kind of application you’re writing, such as command
           line, web, or web using <ulink
-          url="http://www.dartlang.org/polymer-dart/">Polymer.dart.</ulink></para>
+          url="http://www.dartlang.cc/polymer-dart/">Polymer.dart.</ulink></para>
         </listitem>
 
         <listitem>
@@ -818,7 +818,7 @@ import 'package:intl/intl.dart';</programlisting>
 
       <para>If you don’t have Dart Editor or want a different version of
       Dartium, you can get it separately from the <ulink
-      url="http://www.dartlang.org/downloads.html">Downloads page.</ulink> The
+      url="http://www.dartlang.cc/downloads.html">Downloads page.</ulink> The
       Dartium binary does expire after a while. When that happens, you’ll
       need to download a new copy if you want to continue using
       Dartium.</para>
@@ -1266,7 +1266,7 @@ if (navigator.userAgent.indexOf('(Dart)') == -1) {
     <para>You can use the <emphasis>dartanalyzer</emphasis> tool (<literal
     moreinfo="none">bin/dartanalyzer</literal>) to statically analyze your
     code at the command line, checking for errors and warnings that are
-    specified in the <ulink url="http://www.dartlang.org/docs/spec/">Dart
+    specified in the <ulink url="http://www.dartlang.cc/docs/spec/">Dart
     Language Specification.</ulink></para>
 
     <note>
@@ -1403,7 +1403,7 @@ if (navigator.userAgent.indexOf('(Dart)') == -1) {
 
     <para>To improve dartdoc’s output, provide documentation comments as
     described in <xref linkend="comments-doc" />. Also see the article <ulink
-    url="http://www.dartlang.org/articles/doc-comment-guidelines/">Guidelines
+    url="http://www.dartlang.cc/articles/doc-comment-guidelines/">Guidelines
     for Dart Doc <phrase
     role="keep-together">Comments</phrase>.</ulink></para>
 
