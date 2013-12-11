@@ -25,35 +25,25 @@
     <date>October 2012</date>
   </prefaceinfo>
 
-  <title>Foreword</title>
+  <title>前言</title>
 
-  <para>When we joined Google and entered the fascinating world of web browser
-  development more than six years ago, the web was a different place. It was
-  clear that a new breed of web apps was emerging, but the performance of the
-  underlying platform left much to be desired. Given our background in
-  designing and implementing virtual machines, building a high performance
-  JavaScript engine seemed like an interesting challenge. It was. We
-  implemented the V8 JavaScript engine from scratch and shipped it as part of
-  Google Chrome in 2008, and we are very proud of the positive performance
-  impact our work seems to have had on the entire browser industry.</para>
+  <para>当我们来到谷歌，WEB浏览器发展已经超过六年了，这是一个令人着迷的世界，而
+  且现在和以前大有不同。目前互联网应用大量涌现，但是其运行平台的性能不足以满足现
+  状。这就我们设计和实现虚拟机的背景，创建一个高性能的 JavaScript 引擎看起来是一
+  个有趣的挑战。 是的，从头做起我们开发了 V8 JavaScript 引擎，并且在2008年把它内
+  置到了Google Chrome中，我们非常自豪其带来的性能提升似乎影响了整个浏览器产业。</para>
 
-  <para>Even though recent performance gains in web browsers have shattered
-  most limits on how large and complex web apps can be, building large,
-  high-performance web apps remains hard. Without good abstraction mechanisms
-  and clean semantics, developers often end up with complex and convoluted
-  code. Naturally, this problem gets exacerbated as the codebase grows. We
-  designed the Dart programming language to solve this exact problem, and we
-  hope that programmers will be more productive as a result.</para>
+  <para>即使新的性能使得WEB浏览器突破了不能运行大型的和复杂的互联网应用的限制，
+  但是开发大型的、需要高性能的WEB应用仍然很困难。没有好的抽象化机制和清晰的语
+  义，开发者经常受代码结构复杂混乱的影响而走向失败。当代码基量越来越大这个问题
+  自然越来越严重。我们设计Dart编程语言来解决这个问题，我们希望使用Dart的开发者
+  将会更有创造力。</para>
 
-  <para>Over the past year, we have read and written a lot of Dart code, and
-  it is very satisfying to see how Dart inspires programmers to strive for
-  concise, elegant programs. There is something very enjoyable about
-  incrementally transforming prototypes into maintainable production software
-  through refactorings and adding type annotations—and it definitely feels
-  like Dart as a language scales well from small experiments to large projects
-  with lots of code.</para>
+  <para>过去的一年里，我们阅读和编写了大量的Dart代码，看到Dart开发者们创造出简
+  洁优美的程序，我们非常高兴。这里有一些非常让人愉快的改变，通过反射和添加类型
+  声明向可维护的软件开发过程中增加了改变原型--这使得Dart不再像是小的实验，而更
+  像是一个大型项目。</para>
 
-  <para><citetitle>Dart: Up and Running</citetitle> is a practical guide that
-  introduces the Dart programming language and teaches you how to build Dart
-  applications. We hope you will enjoy the book and Dart.</para>
+  <para><citetitle>Dart: 启动和运行</citetitle> 是一个实用的向导，它介绍了 
+  Dart 程序开发语言，并教你如何创建 Dart 应用程序。我们希望你喜欢 Dart 和这本书。</para>
 </preface>

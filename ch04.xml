@@ -2,143 +2,146 @@
 <!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
 "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
 <chapter id="ch04">
-  <title>Tools</title>
+  <title>工具</title>
 
-  <para>Dart provides several tools to help you write and deploy your web and
-  command-line apps:</para>
+  <para>Dart 提供了一些工具来帮助你编写和部署 web 应用和命令行
+  应用：</para>
 
   <variablelist>
     <varlistentry>
-      <term><link linkend="ch04-tools-pub">pub: The Dart package
-      manager</link></term>
+      <term><link linkend="ch04-tools-pub">pub: Dart 包
+      管理器</link></term>
 
       <listitem>
-        <para>Download and install packages of libraries.</para>
+        <para>下载和安装包中的库。</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
-      <term><link linkend="ch04-tools-editor">Dart Editor</link></term>
+      <term><link linkend="ch04-tools-editor">Dart 编辑器</link></term>
 
       <listitem>
-        <para>Edit, run, and debug web and command-line apps.</para>
+        <para>编辑、运行、调试 web 和 命令行 应用。</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
-      <term><link linkend="ch04-tools-dartium">Dartium: Chromium with the Dart
-      VM </link></term>
+      <term><link linkend="ch04-tools-dartium">Dartium: 带有 Dart
+      VM 的 Chromium 浏览器</link></term>
 
       <listitem>
-        <para>Run Dart web apps. This is a special build of Chromium (the
-        project behind Google Chrome).</para>
+        <para>运行 Dart web 应用。用带有 Dart VM 的 Chromium 
+        运行 web 应用。</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
-      <term><link linkend="ch04-tools-dart2js">dart2js: The Dart-to-JavaScript
+      <term><link linkend="ch04-tools-dart2js">dart2js: Dart-to-JavaScript
       compiler</link></term>
 
       <listitem>
-        <para>Convert your web app to JavaScript, so it can run in non-Dartium
-        browsers.</para>
+        <para>把你的 web 应用编译为 JavaScript 就可以在不包含 Dart VM
+        的浏览器中运行了。</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
-      <term><link linkend="ch04-tools-dart-vm">dart: The standalone Dart
+      <term><link linkend="ch04-tools-dart-vm">dart:独立的 Dart
       VM</link></term>
 
       <listitem>
-        <para>Run your command-line apps—server-side scripts, programs,
-        servers, and any other apps that don’t run in a browser.</para>
+        <para>运行命令行应用、服务器端脚本或者其他不能在
+        浏览器中运行的 Dart 应用。</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
-      <term><link linkend="ch04-tools-dart_analyzer">dartanalyzer: The Static
-      Analyzer</link></term>
+      <term><link linkend="ch04-tools-dart_analyzer">dartanalyzer: 静态
+      分析器</link></term>
 
       <listitem>
-        <para>Analyze your Dart source from the command line.</para>
+        <para>用命令行来分析 Dart 代码。</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
-      <term><link linkend="ch04-tools-dartdoc">dartdoc: The API Documentation
-      Generator</link></term>
+      <term><link linkend="ch04-tools-dartdoc">dartdoc: API 文档
+      生成器</link></term>
 
       <listitem>
-        <para>Generate documentation from your Dart source.</para>
+        <para>从 Dart 代码中生成文档。</para>
       </listitem>
     </varlistentry>
   </variablelist>
 
-  <para>All of these tools are in the Dart Editor bundle, since the editor
-  uses Dartium and the other tools. You can also download Dartium separately,
-  and you can download an SDK that includes pub, dart2js, dart, dartanalyzer,
-  and dartdoc. See the <ulink
-  url="http://www.dartlang.org/downloads.html">Downloads page</ulink> for
-  links and details.</para>
+  <para>以上工具都包含在下载的 Dart 编辑器包中。你也可以单独
+      下载 Dartium，也可以单独
+      下载包含 pub、 dart2js、 dart、 dartanalyzer、
+  和 dartdoc 的 SDK。参考 <ulink
+  url="http://www.dartlang.cc/tools/">下载界面</ulink>
+  。</para>
 
-  <para>The tools are in the <literal>dart-sdk/bin</literal> directory
-  of your Dart installation directory.
-  If you intend to use tools such as pub, dart2js, and dart from the command
-  line, add the <literal>bin</literal> directory to your path.
+  <para>这些工具位于下载的 Dart 安装目录中的 <literal>dart-sdk/bin</literal> 
+目录中。
+如果你想使用这些命令行工具，建议把
+ <literal>bin</literal> 目录添加到环境变量中去。
   </para>
 
   <sect1 id="ch04-tools-pub">
-    <title>pub: The Dart Package Manager</title>
+    <title>pub: Dart 包管理器</title>
 
-    <para>You can use the <emphasis>pub</emphasis> tool to
-    manage Dart packages. A Dart package is simply a directory containing any
-    number of Dart libraries and a list of the library dependencies. A package
-    can also contain resources for its libraries, such as documentation,
-    tests, and images. If your app uses one or more packages, then your app
-    itself must be a package.</para>
+    <para>你可以用 <emphasis>pub</emphasis> 来
+        管理 Dart 包。一个 Dart 包只是一个包含多个 Dart 库和其他资源的目录。
+        包还可以包含文档、测试、图片等资源。
+        应用使用其他包的前提条件是该应用
+        需要为一个包。
+    </para>
 
     <note>
-      <para>Dart Editor offers support for using pub, including creating,
-      installing, updating, and publishing packages.</para>
+      <para>Dart 编辑器支持 pub 的功能，包含 创建、安装
+          、更新、以及发布包等。
+      </para>
     </note>
 
-    <para>A package can live anywhere. For example, some packages are 
-    on GitHub. The Dart team publishes packages at <phrase
+    <para>包可以位于任何地方。例如，一些包可能在 GitHub 上。
+    Dart 团队在 <phrase
     role="keep-together"><ulink
-    url="http://pub.dartlang.org">pub.dartlang.org</ulink>,</phrase> and we
-    hope you will, too.</para>
+    url="http://pub.dartlang.org">pub.dartlang.org</ulink></phrase> 发布
+    包，我们也希望你在这里发布你的包。</para>
 
-    <para>To use a library that’s in a Dart package, you need to do the
-    following:</para>
+    <para>
+        要使用 Dart 包中的库，你需要安装如下
+        步骤操作：</para>
 
     <orderedlist continuation="restarts" inheritnum="ignore">
       <listitem>
-        <para>Create a pubspec (a file that lists package
-        dependencies and includes other metadata,
-        such as a name for your package).</para>
+        <para>创建一个 pubspec (该文件列出了
+            库的依赖关系和其他元数据，例如 你的包
+            的名字 等)。</para>
       </listitem>
 
       <listitem>
-        <para>Use pub to get your package's dependencies.</para>
+        <para>用 pub 获取你的应用所依赖的包。</para>
       </listitem>
 
       <listitem>
-        <para>Import the library.</para>
+        <para>导入要使用的库。</para>
       </listitem>
     </orderedlist>
 
     <sect2 id="ch04-tools-pub-pubspec">
-      <title>Creating a Pubspec</title>
+      <title>创建 Pubspec</title>
 
-      <para>To use a package, your application must define a pubspec that
-      lists dependencies and their download locations. The pubspec is a file
-      named <literal moreinfo="none">pubspec.yaml</literal>, and it must be in
-      the top directory of your application.</para>
+      <para>要使用其他包，你的应用必需创建一个 pubspec 文件并列出
+          所依赖的包和包的下载地址。 pubspec 文件的名字为
+        <literal moreinfo="none">pubspec.yaml</literal>，该文件必需
+        位于你项目的根目录中。
+</para>
 
-      <para>Here is an example of a pubspec that specifies the locations of
-      two packages. First, it points to the js package that’s hosted on
-      pub.dartlang.org, and then it points to the intl package in the Dart
-      SDK:</para>
+      <para>下面是一个示例 pubspec 文件，指定了两个包。
+          第一个使用了位于 pub.dartlang.org 的 js 包；
+          第二个使用了位于 Dart SDK 的 intl 包：
+ </para>
 
       <programlisting format="linespecific"><remark>lang-js
 </remark>name: my_app
@@ -147,183 +150,187 @@ dependencies:
   intl: any
     </programlisting>
 
-      <para>For details, see the <ulink
+      <para>详情请参考：<ulink
       url="http://pub.dartlang.org/doc/pubspec.html">pubspec
-      documentation</ulink> and the documentation for the packages you’re
-      interested in using.</para>
+      文档</ulink> ，这里还包含了你可以使用的第三方包的介绍。</para>
     </sect2>
 
     <sect2 id="ch04-tools-pub-install">
-      <title>Installing Packages</title>
+      <title>安装包</title>
 
-      <para>Once you have a pubspec, you can run <literal moreinfo="none">pub
-      get</literal> from the top directory of your application:</para>
+      <para>定义好 pubspec 文件后，就可以在项目根目录中运行 <literal moreinfo="none">pub
+      get</literal> 来下载这些包：</para>
 
       <screen format="linespecific"><remark>lang-sh
 </remark>cd <replaceable>my/app</replaceable>
 pub get</screen>
 
-      <para>This command determines which packages your app depends on, and
-      puts them in a central cache. For git dependencies, pub clones the git
-      repository. For hosted dependencies, pub downloads the package from
-      pub.dartlang.org. Transitive dependencies are included, too. For
-      example, if the js package is dependent on the unittest package, the pub
-      tool grabs both the js package and the unittest package.</para>
+      <para>该命令检测你的应用所依赖的包，并把这些包下载到一个中央缓存目录。
+          对于 git 包，pub 则会 clone 该库的 git 库。而对于托管到文件服务器的库，
+          pub 从 pub.dartlang.org 下载。 
+          同时还下载了应用使用的包所依赖的包。
+          例如，js 包依赖 unittest 包， 则 pub 会同时下载
+          js 和 unittest 包。
+      </para>
 
-      <para>Finally, pub creates a <literal moreinfo="none">packages</literal>
-      directory (under your app’s top directory) that has links to the
-      packages that your app depends on.</para>
+      <para>最后，pub 在你的应用根目录下创建一个 <literal moreinfo="none">packages</literal>
+      目录，该目录连接了你应用中需要使用的包。
+      </para>
     </sect2>
 
     <sect2 id="ch04-tools-pub-import">
-      <title>Importing Libraries from Packages</title>
+      <title>从包中导入库</title>
 
-      <para>To import libraries found in packages, use the <literal
-      moreinfo="none">package:</literal> prefix:</para>
+      <para>要使用包中的库，使用 <literal
+      moreinfo="none">package:</literal> 前缀导入库：</para>
 
       <programlisting format="linespecific"><remark>lang-dart
 </remark>import 'package:js/js.dart' as js;
 import 'package:intl/intl.dart';</programlisting>
 
-      <para>The Dart runtime takes everything after <literal
-      moreinfo="none">package:</literal> and looks it up within the <literal
-      moreinfo="none">packages</literal> directory for your app.</para>
+      <para>Dart 运行环境将负责解析<literal
+      moreinfo="none">package:</literal> 并从 <literal
+      moreinfo="none">packages</literal> 目录中加载需要的库。</para>
     </sect2>
 
     <sect2 id="ch04-tools-pub-more-options">
-      <title>More Information</title>
+      <title>其他信息</title>
 
-      <para>Run <literal
+      <para>运行 <literal
       moreinfo="none">pub
-      --help</literal> for a list of commands. For more information about pub,
-      including publishing your own packages, see the <ulink
-      url="http://pub.dartlang.org/doc">pub documentation.</ulink></para>
+      --help</literal> 来查询其他命令。关于 pub 的其他信息以及
+      如何发布你的包，请参考
+       <ulink
+      url="http://pub.dartlang.org/doc">pub 文档。</ulink></para>
     </sect2>
   </sect1>
 
   <sect1 id="ch04-tools-editor">
-    <title>Dart Editor</title>
+    <title>Dart 编辑器</title>
 
-    <para>We already introduced Dart Editor in <xref linkend="ch01-editor" />.
-    Here are some more tips on using Dart Editor, with information such as
-    <link linkend="ch04-editor-run-non-dartium">specifying a browser</link>
-    and <link linkend="ch04-editor-dart2js">compiling to JavaScript</link>. If
-    you run into a problem, see <ulink
-    url="http://www.dartlang.org/tools/editor/troubleshoot.html">Troubleshooting
-    Dart Editor.</ulink> Dart Editor is updated frequently, so it probably
-    looks different from what you see here. For the latest information, see
-    the <ulink url="http://www.dartlang.org/editor">Dart Editor
-    documentation.</ulink></para>
+    <para>在 <xref linkend="ch01-editor" /> 我们已经介绍了 Dart 编辑器了。
+        下面是使用 Dart 编辑器的一些有用的提示，例如
+    <link linkend="ch04-editor-run-non-dartium">如何指定浏览器</link>
+    和 <link linkend="ch04-editor-dart2js">编译为  JavaScript</link>。
+    如果你遇到了问题，请参考 <ulink
+    url="http://www.dartlang.cc/tools/editor/troubleshoot.html">
+    Dart 编辑器问题指南。</ulink> Dart 编辑器更新比较快，
+    所以这里的截图可能看起来不太一样。
+    最新的信息 ，请参考 <ulink url="http://www.dartlang.cc/editor">Dart 编辑器文档。</ulink></para>
 
     <sect2 id="ch04-editor-view-samples">
-      <title>Viewing Samples</title>
+      <title>查看示例项目</title>
 
-      <para>The Welcome page of Dart Editor (<xref
-      linkend="DartEditor-initial" />) displays a few samples. To open a
-      sample and look at its source code, click the sample’s image.</para>
+      <para>Dart 编辑器的欢迎界面 (<xref
+      linkend="DartEditor-initial" />) 显示了一些示例项目。
+      只需要点击示例项目图片就可以打开该项目并查看其
+      代码了。</para>
 
-      <para>If you don’t see the Welcome page, you probably closed it. Get it
-      back with <emphasis role="bold">Tools &gt; Welcome
-      Page</emphasis>.</para>
+      <para>如果你没有看到欢迎界面，很有可能是之前你关闭该页面了。
+      通过菜单 <emphasis role="bold">Tools &gt; Welcome
+      Page</emphasis> 可以打开该页面。</para>
     </sect2>
 
     <sect2 id="ch04-editor-apps">
-      <title>Managing the Files View</title>
+      <title>管理文件视图</title>
 
-      <para>The Files view shows the files that implement the libraries
-      included in Dart, installed packages,
-      as well as all the apps that you create or
-      open.</para>
+      <para>文件视图显示了 库的文件、安装的包的文件、和你的应用
+          创建的文件。
+      </para>
 
       <sect3 id="ch04-editor-apps-open">
-        <title>Adding apps</title>
+        <title>添加应用</title>
 
-        <para>Here’s how to open an app, which makes it appear in your Files
-        view:</para>
+        <para>下面是如何打开应用并在文件
+            视图中显示的步骤：
+	</para>
 
         <orderedlist continuation="restarts" inheritnum="ignore">
           <listitem>
-            <para>Go to the <emphasis role="bold">File</emphasis> menu, and
-            choose <emphasis role="bold">Open Existing Folder...</emphasis>.
-            Or use the keyboard shortcut (<phrase
+            <para>打开 <emphasis role="bold">File</emphasis> 菜单，然后选择
+              <emphasis role="bold">Open Existing Folder...</emphasis> ，
+              或者用快捷键
+             (<phrase
             role="keep-together"><emphasis
-            role="bold">Ctrl+O</emphasis></phrase> or, on Mac, <emphasis
-            role="bold">Cmd+O</emphasis>).</para>
+            role="bold">Ctrl+O</emphasis></phrase> 、在 Mac 系统用 <emphasis
+            role="bold">Cmd+O</emphasis>)。</para>
           </listitem>
 
           <listitem>
-            <para>Browse
-            to the directory that contains the app’s files.</para>
+            <para>找到
+                包含应用的目录。
+</para>
           </listitem>
 
           <listitem>
-            <para>Click <emphasis role="bold">Open</emphasis>.</para>
+            <para>点击 <emphasis role="bold">Open</emphasis>。</para>
           </listitem>
         </orderedlist>
 
-        <para>The directory and all its files appear in the Files view.</para>
+        <para>在文件视图中就可以看到该目录和其中的文件了。</para>
       </sect3>
 
       <sect3 id="ch04-editor-apps-remove">
-        <title>Removing apps</title>
+        <title>删除应用</title>
 
-        <para>You can remove an app from the Files view, either with or
-        without deleting its files.</para>
+        <para>你可以从文件视图中删除应用，可以同时删除磁盘上的文件也可以保留
+            文件。</para>
 
-        <para>Right-click (or Ctrl+click) the directory and choose <emphasis
-        role="bold">Delete</emphasis>. If you want to delete the app’s files
-        permanently, then in the dialog that comes up, choose <emphasis
-        role="bold">Delete project contents on disk</emphasis>.</para>
+        <para>右键 (或者 Ctrl+点击) 项目目录并选择 <emphasis
+        role="bold">Delete</emphasis>。
+        如果你想同时删除该项目在磁盘上的文件，则在删除对话框中选中
+<emphasis
+        role="bold">Delete project contents on disk</emphasis>。</para>
       </sect3>
     </sect2>
 
     <sect2 id="ch04-editor-create-app">
-      <title>Creating Apps</title>
+      <title>创建应用</title>
 
-      <para>It’s easy to create a simple web or command-line app from
-      scratch:</para>
+      <para>从头创建一个命令行应用或者 web 应用也是很简单的：</para>
 
       <orderedlist continuation="restarts" inheritnum="ignore">
         <listitem>
-          <para>Click the New Application button <inlinemediaobject>
+          <para>点击 New Application 按钮 <inlinemediaobject>
               <imageobject>
                 <imagedata fileref="figs/web/newapp.png" width="0.12in" />
               </imageobject>
-            </inlinemediaobject> (at the upper left of Dart Editor).
-          Alternatively, choose <emphasis role="bold">File &gt; New
-          Application</emphasis> from the Dart Editor menu. A dialog
-          appears.</para>
+            </inlinemediaobject> (在 Dart 编辑器的左上角)。
+            或者选择菜单
+          <emphasis role="bold">File &gt; New
+          Application</emphasis> 。然后出现一个对话框。
+          </para>
         </listitem>
 
         <listitem>
-          <para>Type in a name for your application—for example,
-          <code>hello_web</code>. If you don’t like the default parent
-          directory, type in a new location or browse to choose the
-          location.</para>
+          <para>输入应用的名字，比如
+          <code>hello_web</code>。如果你不想用默认的
+          目录存放该项目，你可以选择一个新的目录。
+          </para>
         </listitem>
 
         <listitem>
-          <para>Unless you really don’t want files to be automatically created
-          for you, make sure <emphasis role="bold">Generate sample
-          content</emphasis> is selected.</para>
+          <para>如果你真的不想让编辑器创建一些示例内容，则不要选中 <emphasis role="bold">Generate sample
+          content</emphasis> 。</para>
         </listitem>
 
         <listitem>
-          <para>Select the kind of application you’re writing, such as command
-          line, web, or web using <ulink
-          url="http://www.dartlang.org/polymer-dart/">Polymer.dart.</ulink></para>
+          <para>选择要创建的应用类型，例如 命令行应用、 web 或者使用 
+          <ulink
+          url="http://www.dartlang.cc/polymer-dart/">Polymer.dart</ulink> 的 web 应用。</para>
         </listitem>
 
         <listitem>
-          <para>Click <emphasis role="bold">Finish</emphasis> to create a
-          directory with initial files for the app.</para>
+          <para>点击 <emphasis role="bold">Finish</emphasis> 来
+              创建一个带有一些示例文件的项目。</para>
 
-          <para>A default Dart file appears in the Edit view, and its
-          directory appears in the Files view. Your Dart Editor window should
-          look something like <xref linkend="DartEditor-helloweb" />.</para>
+          <para>
+              在编辑视图中会打开默认的 Dart 文件，在 文件视图中会显示项目目录。
+              创建后的 Dart 编辑器看起来应该和下图类似：
+           <xref linkend="DartEditor-helloweb" />。</para>
 
           <figure float="0" id="DartEditor-helloweb">
-            <title>A new app, pre-filled with basic, runnable code</title>
+            <title>使用默认示例代码创建的新应用</title>
 
             <mediaobject>
               <imageobject role="web">
@@ -337,42 +344,44 @@ import 'package:intl/intl.dart';</programlisting>
     </sect2>
 
     <sect2 id="ch04-editor-edit">
-      <title>Editing Apps</title>
+      <title>编辑应用</title>
 
-      <para>Dart Editor provides the basic editing functionality you’d expect,
-      plus features such as Dart code completion, API browsing, support for
-      refactoring, and the ability to search multiple files.</para>
+      <para>Dart 编辑器提供了一些编辑功能，
+          例如 Dart 代码辅助、API 浏览、支持重构以及搜索文件等。
+      </para>
 
       <sect3 id="ch04-editor-edit-autocomplete">
-        <title>Using autocomplete</title>
+        <title>使用代码辅助</title>
 
-        <para>Autocomplete suggestions look something like <xref
-        linkend="helloweb-dotcomplete" />. They appear when you either:</para>
+        <para>代码辅助功能看起来如  <xref
+        linkend="helloweb-dotcomplete" /> 所示。当你输入如下代码的时候，提示出现：</para>
 
         <itemizedlist>
           <listitem>
-            <para>Type a class or variable name, and then type a
-            period.</para>
+            <para>输入一个类或者变量名字，然后再输入一个圆点。
+                </para>
 
-            <para>For example, type <code>document.</code> or
-            <code>DateTime.</code> and pause a moment. Once the suggestions
-            appear, continue typing to pare down the list.</para>
+            <para>例如  <code>document.</code> 或者
+            <code>DateTime.</code> 然后暂停一小会。
+            当代码建议面板出现后，在继续输入可以过滤建议的代码。
+            </para>
           </listitem>
 
           <listitem>
-            <para>Type <emphasis role="bold">Ctrl+Space</emphasis>.</para>
+            <para>按  <emphasis role="bold">Ctrl+Space</emphasis>。</para>
 
-            <para>For example, type <code>Dat</code>, then Ctrl+Space to see a
-            list of classes that start with <quote>Dat</quote>.</para>
+            <para>例如，输入  <code>Dat</code> 然后按 Ctrl+Space 来查看
+                以 <quote>Dat</quote> 开头的类。</para>
           </listitem>
         </itemizedlist>
 
-        <para>When the suggestions come up, you can click, type, or use the
-        arrow keys to select the one you want. Press Enter or Return to choose
-        a suggestion, or Esc to dismiss the panel.</para>
+        <para>当代码建议面板出现后，你可以点击、输入或者用上下箭头来选择你先要的建议。
+            按回车键（Enter）或者返回键（Return）选择代码建议，用
+            退出键（Esc） 来关闭代码建议面板。
+        </para>
 
         <figure float="none" id="helloweb-dotcomplete">
-          <title>Autocomplete suggestions</title>
+          <title>代码辅助建议</title>
 
           <mediaobject>
             <imageobject role="web">
@@ -383,59 +392,57 @@ import 'package:intl/intl.dart';</programlisting>
       </sect3>
 
       <sect3 id="ch04-editor-edit-browse-apis">
-        <title>Browsing APIs</title>
+        <title>浏览 APIs</title>
 
-        <para>With Dart Editor you can easily find where APIs are declared.
-        You can also outline the contents of a Dart file.</para>
+        <para>使用 Dart 编辑器可以很容易的查找 API 是在何处定义的。
+            同时还可以列出所选 Dart 文件的内容大纲视图。</para>
 
         <sect4 id="browse-api-declaration">
-          <title>Finding out more about an API</title>
+          <title>查看 API 的更多信息</title>
 
-          <para>To get more information about an API item-variable, method,
-            type, library, and so on-hover the mouse over the item in the
-            Edit view. Dart Editor displays a popup that provides more
-            information about that item.</para>
+          <para>要查看一个 API 的详细信息 -变量、函数、类型、
+              库、等等 - 只需要在 编辑视图上把鼠标放到 API 名字上即可。
+              Dart 编辑器会弹出一个面板来显示关于该 API 的更多信息。
+            </para>
             
-          <para>To go to the declaration of an API item, either within the
-          same .dart file or in another file:</para>
+          <para>不管该 API 是否在当前文件定义，都可以通过如下方式找到该 API 的定义位置：</para>
 
           <orderedlist continuation="restarts" inheritnum="ignore">
             <listitem>
-              <para>In the Edit view of a Dart file, click on
-                an API item. Dart Editor highlights the item and all other
-                occurrences of the item.</para>
+              <para>在 Dart 文件的编辑视图中，点击一个 API 。 Dart 编辑器会高亮当前文件
+                  所有使用该 API 的地方。</para>
             </listitem>
 
             <listitem>
-              <para>Right click.</para>
+              <para>然后在该 API 上右键。</para>
             </listitem>
 
             <listitem>
-              <para>Choose <emphasis role="bold">Open Declaration</emphasis>
-              in the menu.</para>
+              <para>选择菜单中的  <emphasis role="bold">Open Declaration</emphasis>
+              选项。</para>
 
-              <para>The editor displays the file that declares the item. For
-              example, if you open the declaration for querySelector, the file
-              that declares the <literal>querySelector()</literal> function
-              appears.</para>
+              <para>编辑器会打开该 API 的定义位置。
+                  例如，如果你查询 querySelector 的定义位置，则编辑器
+                  会打开定义   <literal>querySelector()</literal> 方法的文件。
+		</para>
             </listitem>
           </orderedlist>
         </sect4>
 
         <sect4 id="browse-api-outline">
-          <title>Outlining a file’s contents</title>
+          <title>浏览文件大概</title>
 
-          <para>Press <emphasis role="bold">Alt+O</emphasis> (<emphasis
-          role="bold">Option+O</emphasis> on Mac) or right-click and choose
-          <emphasis role="bold">Outline File</emphasis>.</para>
+          <para>通过快捷键 <emphasis role="bold">Alt+O</emphasis> (Mac 上为 <emphasis
+          role="bold">Option+O</emphasis> ) 或者 右键并选择 
+          <emphasis role="bold">Outline File</emphasis> 菜单。</para>
 
-          <para>A panel comes up displaying the classes, methods, and fields
-          declared in the current Dart file. For example, the outline for the
-          Sunflower sample’s <code>sunflower.dart</code> file looks something
-          like <xref linkend="sunflower-outline" />.</para>
+          <para>然后会弹出一个面板，在该面板中显示了当前文件定义的 类、函数、和变量。
+              例如，  Sunflower 示例中的  <code>sunflower.dart</code> 文件的大纲
+              面板如图所示：
+               <xref linkend="sunflower-outline" /></para>
 
           <figure float="0" id="sunflower-outline">
-            <title>The Outline panel for the Sunflower sample</title>
+            <title>Sunflower 示例的大纲面板</title>
 
             <mediaobject>
               <imageobject role="web">
@@ -444,176 +451,173 @@ import 'package:intl/intl.dart';</programlisting>
             </mediaobject>
           </figure>
 
-          <para>You can reduce the size of the list by typing one or more
-          characters. For example, if you type <emphasis
-          role="bold">c</emphasis>, only the <emphasis
-          role="bold">center</emphasis> and <emphasis
-          role="bold">context</emphasis> variables appear.</para>
+          <para>你可以输入字符来过滤显示的内容。例如
+              如果你输入
+          <emphasis
+          role="bold">c</emphasis>，则只会显示 <emphasis
+          role="bold">center</emphasis> 和 <emphasis
+          role="bold">context</emphasis> 变量。</para>
 
-          <para>If you choose an item from the list—for example, <emphasis
-          role="bold">centerX</emphasis>— the editor scrolls to its
-          declaration.</para>
+          <para>如果你选择了其中的一个条目，例如  <emphasis
+          role="bold">centerX</emphasis>— 编辑器会把文件滚动到该条目定义的地方显示。</para>
 
-          <para>Alternatively, add a more permanent outline view by choosing
-          <emphasis role="bold">Tools &gt; Outline</emphasis>.</para>
+          <para>另外，还有一个常驻的 大纲视图，通过菜单 
+          <emphasis role="bold">Tools &gt; Outline</emphasis>来打开。</para>
         </sect4>
       </sect3>
 
       <sect3 id="ch04-editor-edit-refactor">
-        <title>Refactoring</title>
+        <title>重构</title>
 
-        <para>To change the name of an item throughout your code, put the
-        cursor within (or double-click) the item’s name in the Edit view, and
-        right-click and choose <emphasis
-        role="bold">Rename...</emphasis>.</para>
+        <para>要修改代码的名字，在编辑文件视图中，可以把鼠标放到名字中间或者双击名字，然后右键选择菜单
+            中的 <emphasis
+        role="bold">Rename...</emphasis>选项。</para>
 
-        <para>You can rename almost anything—local variables, function
-        parameters, fields, methods, types, top-level functions, library
-        prefixes, top-level compilation units, and more. An example of
-        renaming a top-level compilation unit is changing the name of a file
-        that’s sourced by a library.</para>
+        <para>你几乎可以重命名任意内容，局部变量、方法参数、成员变量、函数、类型、顶级方法、库前缀
+            、等等。 </para>
       </sect3>
 
       <sect3 id="ch04-editor-edit-searching">
-        <title>Searching</title>
+        <title>搜索</title>
 
-        <para>The search field at the upper right of the Dart Editor window is
-        an easy way to go <phrase role="keep-together">directly
-        to:</phrase></para>
+        <para>
+            Dart 编辑器右上角的搜索输入框可以
+        <phrase role="keep-together">直接定位到
+        </phrase> 如下位置：</para>
 
         <itemizedlist>
           <listitem>
-            <para>Types</para>
+            <para>类型定义</para>
           </listitem>
 
           <listitem>
-            <para>Files</para>
+            <para>文件</para>
           </listitem>
 
           <listitem>
-            <para>Text inside of files</para>
+            <para>文件中的文本</para>
           </listitem>
         </itemizedlist>
 
-        <para>The scope of a text search is every file in your Files view.
-        Results for text searches come up in a Search view. Within that view,
-        double-click a file to see it in the Edit view. All occurrences of the
-        search string in the Edit view are highlighted.</para>
+        <para>
+            搜索的范围为当前文件视图中的所有文件。
+            在搜索视图中显示搜索结果。
+            在搜索视图中，双击一个文件可以在编辑视图中显示该文件。
+            在打开的文件中， 所有符合搜索的字符串都被高亮显示。
+        </para>
       </sect3>
     </sect2>
 
     <sect2 id="ch04-editor-run">
-      <title>Running Apps</title>
+      <title>运行应用</title>
 
-      <para>To run any Dart app, click Dart Editor’s Run button
+      <para>只需要选择该应用的文件并点击 Dart 编辑器的 Run 按钮
       <inlinemediaobject>
           <imageobject>
             <imagedata fileref="figs/web/run.png" width="0.12in" />
           </imageobject>
-        </inlinemediaobject> while a file in that app is selected. If you’re
-      working on a web app, Dart Editor brings up a browser window that
-      displays the app’s HTML page, with the app’s code running inside
-      it.</para>
+        </inlinemediaobject> 就可以运行该应用。
+      如果是 web 应用， Dart 编辑器会启动一个浏览器来运行该应用。
+</para>
 
-      <para>When you run a web application using Dart Editor, by default the
-      app uses the copy of Dartium that’s included in the Dart Editor
-      download, with the Dart code executing directly in the browser. If your
-      launch configuration specifies a browser, then Dart Editor uses <link
-      linkend="ch04-tools-dart2js">dart2js</link> to compile the Dart code to
-      JavaScript that executes in the browser.</para>
+      <para>当用 Dart 编辑器运行 web 应用的时候，默认 Dart 编辑器会启动
+          带有 Dart VM 的 Dartium 浏览器来直接运行 Dart 代码。
+          如果你指定了其他的浏览器，则 Dart 编辑器用
+       <link
+      linkend="ch04-tools-dart2js">dart2js</link>  来把 Dart 代码
+      编译为
+      JavaScript 在浏览器中运行。</para>
 
       <sect3 id="ch04-editor-run-manage-launch">
-        <title>Specifying launch configurations</title>
+        <title>设置启动配置</title>
 
-        <para>Use <emphasis role="bold">Run &gt; Manage Launches</emphasis> to
-        specify as many launch configurations as you like.</para>
+        <para>通过菜单 <emphasis role="bold">Run &gt; Manage Launches</emphasis> 
+            来设置多个启动配置。
+        </para>
 
-        <para>For web apps, you can specify the following:</para>
+        <para>对于 Web 应用，你可以设置如下内容：</para>
 
         <itemizedlist>
           <listitem>
-            <para>HTML file or URL to open</para>
+            <para>要打开的 HTML 文件或者 URL 地址</para>
           </listitem>
 
           <listitem>
-            <para>arguments to pass to the browser; for example, <literal
+            <para>传递给浏览器的参数。例如， <literal
             moreinfo="none">--allow-file-access-from-files</literal></para>
           </listitem>
 
           <listitem>
-            <para>checked mode (Dartium only)</para>
+            <para>检测模式(checked mode) (只支持 Dartium )</para>
           </listitem>
 
           <listitem>
-            <para>enable experimental features (Dartium only)</para>
+            <para>启用实验性功能  (只支持 Dartium)</para>
           </listitem>
 
           <listitem>
-            <para>whether to show the browser’s stdout and stderr output
-            (Dartium only; useful for diagnosing Dartium crashes)</para>
+            <para>在哪里显示浏览器的 stdout 和 stderr 输出内容
+            (只支持 Dartium ，可以帮助诊断  Dartium 崩溃问题)</para>
           </listitem>
         </itemizedlist>
 
-        <para>For example, a web app might have a launch configuration for
-        Dartium and several more configurations corresponding to additional
-        browsers you want to test.</para>
+        <para>例如，一个 web 应用可以有一个启动 
+        Dartium 的配置和启动其他浏览器的配置。</para>
 
-        <para>You can specify the following for command-line apps:</para>
+        <para>对于命令行应用，可以设置如下内容：</para>
 
         <itemizedlist>
           <listitem>
-            <para>.dart file to execute</para>
+            <para>执行的 .dart </para>
           </listitem>
 
           <listitem>
-            <para>working directory</para>
+            <para>工作目录</para>
           </listitem>
 
           <listitem>
-            <para>arguments to pass to the app</para>
+            <para>传递给应用的参数</para>
           </listitem>
 
           <listitem>
-            <para>checked mode</para>
+            <para>检测模式</para>
           </listitem>
         </itemizedlist>
       </sect3>
 
       <sect3 id="ch04-editor-run-production-mode">
-        <title>Running in production mode</title>
+        <title>在生产模式下运行</title>
 
-        <para>By default, apps run in checked mode. To run in production mode
-        instead, disable checked mode in your app’s launch
-        configuration:</para>
+        <para>默认情况下，应用在 检测模式 运行.如果要在生产模式下运行，则可以在启动
+            配置中禁用检测模式：</para>
 
         <orderedlist continuation="restarts" inheritnum="ignore">
           <listitem>
-            <para>Run your app at least once, so that it has a launch
-            configuration.</para>
+            <para>最少要运行一次该应用，这样就生成该启动配置项了。</para>
           </listitem>
 
           <listitem>
-            <para>Choose <emphasis role="bold">Run &gt; Manage
-            Launches</emphasis>, or click the little arrow to the right of the
+            <para>选择 <emphasis role="bold">Run &gt; Manage
+            Launches</emphasis>或者点击 Run 按钮
             Run button <inlinemediaobject>
                 <imageobject>
                   <imagedata fileref="figs/web/run.png" width="0.12in" />
                 </imageobject>
-              </inlinemediaobject> and choose <emphasis role="bold">Manage
-            Launches</emphasis>.</para>
+              </inlinemediaobject> 右边的三角形图标并选择 <emphasis role="bold">Manage
+            Launches</emphasis>。</para>
           </listitem>
 
           <listitem>
-            <para>In the Manage Launches dialog, find a launch configuration
-            for your app. Click it if it isn’t already selected.</para>
+            <para>在 Manage Launches 对话框中，找到你应用的启动配置。
+                如果已经存在了，则选中该配置。</para>
           </listitem>
 
           <listitem>
-            <para>Unselect <emphasis role="bold">Run in checked
-            mode</emphasis> (see <xref linkend="production-mode" />).</para>
+            <para>不要选中 <emphasis role="bold">Run in checked
+            mode</emphasis> (参考 <xref linkend="production-mode" />)。</para>
 
             <figure float="0" id="production-mode">
-              <title>To run in production mode, unselect checked mode</title>
+              <title>要在生产模式运行，不要选中 checked mode</title>
 
               <mediaobject>
                 <imageobject role="web">
@@ -624,80 +628,77 @@ import 'package:intl/intl.dart';</programlisting>
           </listitem>
 
           <listitem>
-            <para>Click <emphasis role="bold">Apply</emphasis> to save your
-            change, or <emphasis role="bold">Run</emphasis> to save it and run
-            your app.</para>
+            <para>点击 <emphasis role="bold">Apply</emphasis> 来保存
+                修改，或者点击 <emphasis role="bold">Run</emphasis> 来保存并
+                运行应用。</para>
           </listitem>
         </orderedlist>
 
-        <para>For details about checked mode and production mode, see <xref
-        linkend="ch02-runtime-modes" />.</para>
+        <para>关于检测模式和生产模式的更多信息，请参考 <xref
+        linkend="ch02-runtime-modes" />。</para>
       </sect3>
 
       <sect3 id="ch04-editor-run-non-dartium">
-        <title>Specifying a browser for JavaScript launches</title>
+        <title>设置运行 JavaScript 的浏览器</title>
 
-        <para>To specify the browser in which to run the JavaScript version
-        of your web apps:</para>
+        <para>要设置一个浏览器来运行你应用的 JavaScript 版本，安装如下步骤操作：</para>
 
         <orderedlist continuation="restarts" inheritnum="ignore">
           <listitem>
-            <para>Choose
+            <para>选择
             <emphasis role="bold">Dart Editor &gt; Preferences</emphasis>.
             </para>
           </listitem>
 
           <listitem>
-            <para>Click <emphasis role="bold">Run and Debug</emphasis>.</para>
+            <para>点击 <emphasis role="bold">Run and Debug</emphasis>.</para>
           </listitem>
 
           <listitem>
-            <para>Unless you want to use the default system browser,
-            unselect <emphasis role="bold">Use default <phrase
-            role="keep-together">system browser</phrase></emphasis> and
-            specify the location of the browser you want to use. <phrase
-            role="keep-together"><emphasis>Example:</emphasis>
+            <para>如果你不想用系统默认浏览器，则不要选中
+             <emphasis role="bold">Use default <phrase
+            role="keep-together">system browser</phrase></emphasis> ,并
+            设置你想使用的浏览器文件位置。 <phrase
+            role="keep-together"><emphasis>例如：</emphasis>
             /Applications/Firefox.app</phrase></para>
           </listitem>
 
           <listitem>
-            <para>Click <emphasis role="bold">OK</emphasis> to save your
-            changes.</para>
+            <para>点击  <emphasis role="bold">OK</emphasis> 保存
+                修改。</para>
           </listitem>
         </orderedlist>
 
-        <para>Now whenever you run an app as JavaScript,
-        Dart Editor will invoke your browser of choice.
+        <para>现在 只要你用 JavaScript 来运行你的应用， Dart
+            编辑器都会打开你选择的浏览器。
         </para>
-
-        Alternatively, you can run your app as JavaScript using
-        the default browser setting and then copy and paste the URL into
-        a different browser.
+	
+        你也可以用默认的配置打开 JavaScript 应用。然后把网址复制到你想测试的浏览器中即可。
       </sect3>
     </sect2>
 
     <sect2 id="ch04-editor-debug">
-      <title>Debugging Apps</title>
+      <title>调试应用</title>
 
-      <para>You can debug both command-line and web apps with Dart Editor.
-      Some tips:</para>
+      <para>在 Dart 编辑器中可以调试命令行应用和 web 应用。下面是一些提示：</para>
 
       <itemizedlist>
         <listitem>
-          <para>Set breakpoints by double-clicking in the left margin of the
-          Edit view.</para>
+          <para>
+              在编辑视图代码每行左边距区域双击可以添加断点。
+	</para>
         </listitem>
 
         <listitem>
-          <para>Use the Debugger view to view your app’s state and control its
-          execution. By default, the Debugger view is to the right of the Edit
-          view and appears when you first hit a breakpoint (<xref
+          <para>
+              用 调试器视图（Debugger view）来查看应用的状态和控制代码的执行。
+              默认情况下，调试器视图在编辑视图的右边，当你第一次执行到断点代码位置处时，调试器视图自动打开
+          (<xref
           linkend="debugger" />).</para>
         </listitem>
 
         <listitem>
-          <para>To see the value of a variable, mouse over it, look in the
-          Debugger view, or use an Expression <inlinemediaobject>
+          <para>要查看变量的只，把鼠标放到变量名字上，在 调试器视图 查看，或者用  Expression （表达式） 查看<inlinemediaobject>
               <imageobject>
                 <imagedata fileref="figs/web/watchlist_view.gif"
                            width="0.12in" />
@@ -706,15 +707,16 @@ import 'package:intl/intl.dart';</programlisting>
         </listitem>
 
         <listitem>
-          <para>To debug web apps, use Dart Editor with Dartium. While you’re
-          debugging, Dart Editor takes the place of the Dartium console. For
-          example, Dart Editor displays the output of<literal>
-          print()</literal> statements.</para>
+          <para>
+              要调试 web 应用，需要用 Dartium 配合 Dart 编辑器。
+              当调试的时候， 编辑器接管 Dartium 控制台。例如， 编辑器可以显示
+          <literal>
+          print()</literal> 语句打印的消息。</para>
         </listitem>
       </itemizedlist>
 
       <figure float="0" id="debugger">
-        <title>Using Dart Editor to debug the Sunflower sample app</title>
+        <title>用 Dart 编辑器调试 Sunflower 示例应用</title>
 
         <mediaobject>
           <imageobject role="web">
@@ -725,57 +727,58 @@ import 'package:intl/intl.dart';</programlisting>
     </sect2>
 
     <sect2 id="ch04-editor-dart2js">
-      <title>Compiling to JavaScript</title>
+      <title>编译为 JavaScript</title>
 
-      <para>You might not need to do anything to compile your code to
-      JavaScript. When you run an app using a launch configuration that <link
-      linkend="ch04-editor-run-non-dartium">specifies a browser</link>, Dart
-      Editor automatically compiles the app to JavaScript before executing it
-      in the browser.</para>
+      <para>要把你的代码编译为 
+      JavaScript 你无需做额外的工作。
+      当你在启动配置中
+       <link
+      linkend="ch04-editor-run-non-dartium">设置了其他浏览器</link>，则 Dart 编辑器
+      会在执行应用之前自动把 Dart 代码编译为 JavaScript。
+      </para>
 
-      <para>However, you can also compile Dart code to JavaScript without
-      running the app. Just choose <emphasis role="bold">Tools &gt; Generate
-      JavaScript</emphasis>. Another option is using dart2js from the command
-      line (see <xref linkend="ch04-tools-dart2js" />).</para>
+      <para>当然，你也可以不允许应用就可以把 Dart 代码编译为  JavaScript。
+          通过菜单 <emphasis role="bold">Tools &gt; Generate
+      JavaScript</emphasis>即可。另外还可以用命令行工具 dart2js
+      (参考 <xref linkend="ch04-tools-dart2js" />).</para>
     </sect2>
 
     <sect2 id="ch04-editor-more">
-      <title>Other Features</title>
+      <title>其他功能</title>
 
-      <para>Dart Editor has many additional features, including doc
-      generation, customization, and keyboard alternatives.</para>
+      <para>Dart 编辑器还有很多功能，例如 生成文档、自定义界面和快捷键等。</para>
 
       <sect3 id="ch04-editor-more-dartdoc">
-        <title>Generating documentation with dartdoc</title>
+        <title>用 dartdoc 生成文档</title>
 
-        <para>Use the <emphasis role="bold">Tools &gt; Generate
-        Dartdoc</emphasis> command to generate HTML documentation from Dart
-        code. For information on supplying text for the documentation, see
+        <para>用工具 <emphasis role="bold">Tools &gt; Generate
+        Dartdoc</emphasis> 菜单来生成 Dart 代码的 HTML 文档。
+        关于文档格式的更多信息，请参考
         <xref linkend="comments-doc" />.</para>
       </sect3>
 
       <sect3 id="ch04-editor-more-preferences">
-        <title>Customizing Dart Editor</title>
+        <title>自定义 Dart 编辑器</title>
 
-        <para>You can customize the editor’s font, margins, key bindings, and
-        more using the Preferences dialog. To bring up the dialog, choose
-        <emphasis role="bold">Tools &gt; Preferences</emphasis> (on Mac:
-        <emphasis role="bold">Dart Editor &gt; Preferences</emphasis>).</para>
+        <para>
+            在 Preferences 对话框中你可以自定义编辑器的字体、边距、快捷键和其他内容。通过菜单
+        <emphasis role="bold">Tools &gt; Preferences</emphasis> ( Mac:
+        <emphasis role="bold">Dart Editor &gt; Preferences</emphasis>) 来打开该对话框。</para>
 
-        <para>You can also customize which views you see in Dart Editor, as
-        well as their size and position. To add views, use the <emphasis
-        role="bold">Tools</emphasis> menu. To remove a view, click its
-        <emphasis role="bold">X</emphasis>. To move a view, drag its tab to a
-        different position, either within or outside of the Dart Editor
-        window. To resize a view, drag its edges.</para>
+        <para>
+            你还可以定制显示那些视图，和视图显示的位置和大小。通过 <emphasis
+        role="bold">Tools</emphasis> 菜单添加视图。通过视图的
+        <emphasis role="bold">X</emphasis> 图标来删除视图。
+        拖动视图 tab 来移动视图到另外一个位置，可以移动到 Dart 编辑器的其他地方，也可以移出 
+        Dart 编辑器。 拖动视图边缘可以放到缩小。</para>
       </sect3>
 
       <sect3 id="ch04-editor-more-keys">
-        <title>Keyboard alternatives</title>
+        <title>快捷键提示</title>
 
-        <para>To get a list of all keyboard alternatives, choose <emphasis
+        <para>通过菜单 <emphasis
         role="bold">Help &gt; Key Assist</emphasis> (<xref
-        linkend="key-assist" />).</para>
+        linkend="key-assist" />)可以查看可以使用的快捷键。</para>
 
         <figure float="0" id="key-assist">
           <title>Help &gt; Key Assist</title>
@@ -793,73 +796,73 @@ import 'package:intl/intl.dart';</programlisting>
   </sect1>
 
   <sect1 id="ch04-tools-dartium">
-    <title>Dartium: Chromium with the Dart VM</title>
+    <title>Dartium: 带有 Dart VM 的 Chromium</title>
 
-    <para>This section tells you how to get and use Dartium, a Chromium-based
-    browser that includes the Dart VM. This browser can execute Dart web apps
-    directly, so you don’t have to compile your code to JavaScript until
-    you’re ready to test on other browsers.</para>
+    <para>本节内容告诉你如何下载和使用 Dartium 浏览器。 
+        Dartium 直接运行 Dart
+        web 应用中的 Dart 代码， 这样你无需把 Dart 代码编译为 JavaScript 就可以
+        测试你的应用了。
+    </para>
 
     <warning>
-      <para>This browser is a technical preview, and it might have security
-      and stability issues. <emphasis role="bold">Do not use Dartium as your
-      primary browser!</emphasis></para>
+      <para>该浏览器目前还处于开发早期。 <emphasis role="bold">请不要用
+          Dartium 作为你的日常使用浏览器。</emphasis></para>
     </warning>
 
     <sect2 id="ch04-dartium-download">
-      <title>Downloading and Installing the Browser</title>
+      <title>下载安装 Dartium</title>
 
-      <para>If you have an up-to-date version of Dart Editor, you already have
+      <para>如果你已经下载了最新的 Dart 编辑器，则里面已经包含了 
       Dartium.</para>
 
-      <para>If you don’t have Dart Editor or want a different version of
-      Dartium, you can get it separately from the <ulink
-      url="http://www.dartlang.org/downloads.html">Downloads page.</ulink> The
-      Dartium binary does expire after a while. When that happens, you’ll
-      need to download a new copy if you want to continue using
-      Dartium.</para>
+      <para>
+          如果你还没有下载 Dart 编辑器或者你想下载一个其他版本的
+          Dartium ，你可以从
+      <ulink
+      url="http://www.dartlang.cc/downloads.html">下载页面下载。</ulink> 
+      Dartium 程序在一段时间以后就会失效。
+      所以当你的 Dartium 失效后，你需要从新下载一个。
+      </para>
 
-      <para>You don’t usually need to do anything special to install Dartium:
-      just unarchive the ZIP file. If you want Dart Editor to launch a
-      particular copy of Dartium, then put that copy in the same directory 
-      as the <literal
-      moreinfo="none">dart-sdk</literal> directory of your Dart installation
-      directory (see <xref linkend="ch01-editor-download" />), replacing the
-      original copy of Chromium.</para>
+      <para>
+          只需要解压下载的文件 就安装好 Dartium 了。
+	如果你想让 Dart 编辑器启动你下载的 Dartium，则需要把下载的文件复制到          
+       <literal
+      moreinfo="none">dart-sdk</literal> 目录中的 Dartium 目录下
+      (参考 <xref linkend="ch01-editor-download" />) ，并替换之前下载的  Chromium。</para>
     </sect2>
 
     <sect2 id="ch04-dartium-launch">
-      <title>Launching the Browser</title>
+      <title>启动 Dartium</title>
 
-      <para>To launch Dartium, navigate to its directory in your finder, and
-      double-click the Chromium executable file. Or use Dart Editor as
-      described in <xref linkend="ch04-editor-run" /> or the command line as
-      described in <xref linkend="ch04-dartium-command" />.</para>
+      <para>
+          要启动 Dartium， 只需要双击 Chromium 可执行文件即可。
+          或者按照 <xref linkend="ch04-editor-run" /> 描述的方式在 Dart 编辑器中启动，或者按照
+       <xref linkend="ch04-dartium-command" /> 描述的方式在命令行中启动。</para>
 
       <warning>
-        <para><emphasis>If you already use Chromium:</emphasis> If another
-        version of Chromium is open, then you could have a profile conflict.
-        To avoid this, you can open Dartium or Chromium from the command line
-        with the <phrase role="keep-together"><ulink
+        <para><emphasis>已经使用 Chromium 的用户请注意：</emphasis> 
+        如果另外一个 Chromium 在运行，当运行 Dartium 的时候可能会出现配置冲突的情况。
+        通过命令行  <phrase role="keep-together"><ulink
         url="http://www.chromium.org/user-experience/user-data-directory">--user-data-dir
-        flag.</ulink></phrase></para>
+        参数来启动 Dartium 可以避免该问题。</ulink></phrase></para>
       </warning>
     </sect2>
 
     <sect2 id="ch04-dartium-bug">
-      <title>Filing Bugs</title>
+      <title>提交 Bug</title>
 
-      <para>If you find a bug in Dartium, create an issue in the Dart project
-      and use the <ulink url="http://bit.ly/WO0U32">Dartium bug
-      template.</ulink></para>
+      <para>如果你发现了一个 Dartium 的 bug，可以按照
+       <ulink url="http://bit.ly/WO0U32">Dartium bug
+      模板</ulink> 来给 Dart 开发组提交 Bug。</para>
     </sect2>
 
     <sect2 id="ch04-dartium-linking">
-      <title>Linking to Dart Source</title>
+      <title>连接到 Dart 代码</title>
 
-      <para>Use a script tag with a type <literal
-      moreinfo="none">application/dart</literal> to link to your Dart source
-      file. Example:</para>
+      <para>用类型为 <literal
+      moreinfo="none">application/dart</literal> 的 script 来连接 Dart 代码。
+      例如：</para>
 
       <programlisting format="linespecific"><remark>lang-html
 </remark>&lt;!DOCTYPE html&gt;
@@ -873,18 +876,18 @@ import 'package:intl/intl.dart';</programlisting>
 &lt;/html&gt;</programlisting>
 
       <note>
-        <para>Dart Editor automatically adds both the <literal
-        moreinfo="none">application/dart</literal> script tag and the
-        <literal>dart.js</literal> script tag into the project’s main
-        HTML file.</para>
+        <para>Dart 编辑器自动在项目的启动 HTML 文件
+            中添加
+<literal
+        moreinfo="none">application/dart</literal> script 和
+        <literal>dart.js</literal> script 标签。</para>
       </note>
     </sect2>
 
     <sect2 id="ch04-dartium-detect">
-      <title>Detecting Dart Support</title>
+      <title>检测浏览器是否支持 Dart</title>
 
-      <para>You can check whether a browser supports Dart
-      with this JavaScript code:
+      <para>可以通过 JavaScript 代码检测浏览器是否支持 Dart：
       </para>
 
       <programlisting format="linespecific"><remark>lang-js
@@ -899,45 +902,46 @@ if (navigator.userAgent.indexOf('(Dart)') == -1) {
     </sect2>
 
     <sect2 id="ch04-dartium-command">
-      <title>Launching from the Command Line</title>
+      <title>从命令行启动 Dartium</title>
 
-      <para>Because Dartium is based on Chromium, all <ulink
+      <para>由于 Dartium 是基于  Chromium 的，所有 <ulink
       url="http://www.chromium.org/developers/how-tos/run-chromium-with-flags">Chromium
-      flags</ulink> should work. In some cases, you might want to specify
-      Dart-specific flags so that you can tweak the embedded Dart VM’s
-      behavior. For example, while developing your web app, you might want the
-      VM to verify type annotations and check assertions. To achieve that,
-      you can enable checked mode (the VM’s <literal>--checked</literal>
-      flag).</para>
+      标记( flag )</ulink> 都应该可以使用。有些情况下，你可能想使用 Dart 相关的标记来设置 Dart VM 的行为。
+      例如，在开发 web 应用的时候，你想让 VM 检查类型声明和断言（assertions），
+      启用 检测模式 即可启用该功能 (VM 的 <literal>--checked</literal>
+      标记)。
+      </para>
 
-      <para>On Linux, you can specify flags by starting Dartium as
-      follows:</para>
+      <para>在 Linux，可以通过如下方式启动
+          Dartium：
+		</para>
 
       <screen format="linespecific"><remark>lang-sh
 </remark>DART_FLAGS='--checked' <replaceable>path</replaceable>/chrome</screen>
 
-      <para>On Mac:</para>
+      <para> Mac 系统:</para>
 
       <screen format="linespecific"><remark>lang-sh
 </remark>DART_FLAGS='--checked'              \
   <replaceable>path</replaceable>/Chromium.app/Contents/MacOS/Chromium</screen>
 
-      <para>Or (also on Mac):</para>
+      <para>Mac 系统也可以这样 :</para>
 
       <screen format="linespecific"><remark>lang-sh
 </remark>DART_FLAGS='--checked'              \
    open <replaceable>path</replaceable>/Chromium.app</screen>
 
       <note>
-        <para>You can see the command-line flags and executable path of your
-        current Chromium-based browser by going to <literal
-        moreinfo="none">chrome://version</literal>.</para>
+        <para>
+            通过  <literal
+        moreinfo="none">chrome://version</literal> 你可以查看当前
+        使用的命令行标记和执行文件路径。</para>
       </note>
     </sect2>
   </sect1>
 
   <sect1 id="ch04-tools-dart2js">
-    <title>dart2js: The Dart-to-JavaScript Compiler</title>
+    <title>dart2js: Dart-to-JavaScript 编译器</title>
 
     <para>You can use the <emphasis>dart2js</emphasis> tool to compile Dart
     code to JavaScript. <link linkend="ch04-editor-dart2js">Dart Editor</link>
@@ -1262,7 +1266,7 @@ if (navigator.userAgent.indexOf('(Dart)') == -1) {
     <para>You can use the <emphasis>dartanalyzer</emphasis> tool (<literal
     moreinfo="none">bin/dartanalyzer</literal>) to statically analyze your
     code at the command line, checking for errors and warnings that are
-    specified in the <ulink url="http://www.dartlang.org/docs/spec/">Dart
+    specified in the <ulink url="http://www.dartlang.cc/docs/spec/">Dart
     Language Specification.</ulink></para>
 
     <note>
@@ -1399,7 +1403,7 @@ if (navigator.userAgent.indexOf('(Dart)') == -1) {
 
     <para>To improve dartdoc’s output, provide documentation comments as
     described in <xref linkend="comments-doc" />. Also see the article <ulink
-    url="http://www.dartlang.org/articles/doc-comment-guidelines/">Guidelines
+    url="http://www.dartlang.cc/articles/doc-comment-guidelines/">Guidelines
     for Dart Doc <phrase
     role="keep-together">Comments</phrase>.</ulink></para>
 
