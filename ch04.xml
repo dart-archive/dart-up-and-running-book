@@ -796,73 +796,73 @@ import 'package:intl/intl.dart';</programlisting>
   </sect1>
 
   <sect1 id="ch04-tools-dartium">
-    <title>Dartium: Chromium with the Dart VM</title>
+    <title>Dartium: 带有 Dart VM 的 Chromium</title>
 
-    <para>This section tells you how to get and use Dartium, a Chromium-based
-    browser that includes the Dart VM. This browser can execute Dart web apps
-    directly, so you don’t have to compile your code to JavaScript until
-    you’re ready to test on other browsers.</para>
+    <para>本节内容告诉你如何下载和使用 Dartium 浏览器。 
+        Dartium 直接运行 Dart
+        web 应用中的 Dart 代码， 这样你无需把 Dart 代码编译为 JavaScript 就可以
+        测试你的应用了。
+    </para>
 
     <warning>
-      <para>This browser is a technical preview, and it might have security
-      and stability issues. <emphasis role="bold">Do not use Dartium as your
-      primary browser!</emphasis></para>
+      <para>该浏览器目前还处于开发早期。 <emphasis role="bold">请不要用
+          Dartium 作为你的日常使用浏览器。</emphasis></para>
     </warning>
 
     <sect2 id="ch04-dartium-download">
-      <title>Downloading and Installing the Browser</title>
+      <title>下载安装 Dartium</title>
 
-      <para>If you have an up-to-date version of Dart Editor, you already have
+      <para>如果你已经下载了最新的 Dart 编辑器，则里面已经包含了 
       Dartium.</para>
 
-      <para>If you don’t have Dart Editor or want a different version of
-      Dartium, you can get it separately from the <ulink
-      url="http://www.dartlang.cc/downloads.html">Downloads page.</ulink> The
-      Dartium binary does expire after a while. When that happens, you’ll
-      need to download a new copy if you want to continue using
-      Dartium.</para>
+      <para>
+          如果你还没有下载 Dart 编辑器或者你想下载一个其他版本的
+          Dartium ，你可以从
+      <ulink
+      url="http://www.dartlang.cc/downloads.html">下载页面下载。</ulink> 
+      Dartium 程序在一段时间以后就会失效。
+      所以当你的 Dartium 失效后，你需要从新下载一个。
+      </para>
 
-      <para>You don’t usually need to do anything special to install Dartium:
-      just unarchive the ZIP file. If you want Dart Editor to launch a
-      particular copy of Dartium, then put that copy in the same directory 
-      as the <literal
-      moreinfo="none">dart-sdk</literal> directory of your Dart installation
-      directory (see <xref linkend="ch01-editor-download" />), replacing the
-      original copy of Chromium.</para>
+      <para>
+          只需要解压下载的文件 就安装好 Dartium 了。
+	如果你想让 Dart 编辑器启动你下载的 Dartium，则需要把下载的文件复制到          
+       <literal
+      moreinfo="none">dart-sdk</literal> 目录中的 Dartium 目录下
+      (参考 <xref linkend="ch01-editor-download" />) ，并替换之前下载的  Chromium。</para>
     </sect2>
 
     <sect2 id="ch04-dartium-launch">
-      <title>Launching the Browser</title>
+      <title>启动 Dartium</title>
 
-      <para>To launch Dartium, navigate to its directory in your finder, and
-      double-click the Chromium executable file. Or use Dart Editor as
-      described in <xref linkend="ch04-editor-run" /> or the command line as
-      described in <xref linkend="ch04-dartium-command" />.</para>
+      <para>
+          要启动 Dartium， 只需要双击 Chromium 可执行文件即可。
+          或者按照 <xref linkend="ch04-editor-run" /> 描述的方式在 Dart 编辑器中启动，或者按照
+       <xref linkend="ch04-dartium-command" /> 描述的方式在命令行中启动。</para>
 
       <warning>
-        <para><emphasis>If you already use Chromium:</emphasis> If another
-        version of Chromium is open, then you could have a profile conflict.
-        To avoid this, you can open Dartium or Chromium from the command line
-        with the <phrase role="keep-together"><ulink
+        <para><emphasis>已经使用 Chromium 的用户请注意：</emphasis> 
+        如果另外一个 Chromium 在运行，当运行 Dartium 的时候可能会出现配置冲突的情况。
+        通过命令行  <phrase role="keep-together"><ulink
         url="http://www.chromium.org/user-experience/user-data-directory">--user-data-dir
-        flag.</ulink></phrase></para>
+        参数来启动 Dartium 可以避免该问题。</ulink></phrase></para>
       </warning>
     </sect2>
 
     <sect2 id="ch04-dartium-bug">
-      <title>Filing Bugs</title>
+      <title>提交 Bug</title>
 
-      <para>If you find a bug in Dartium, create an issue in the Dart project
-      and use the <ulink url="http://bit.ly/WO0U32">Dartium bug
-      template.</ulink></para>
+      <para>如果你发现了一个 Dartium 的 bug，可以按照
+       <ulink url="http://bit.ly/WO0U32">Dartium bug
+      模板</ulink> 来给 Dart 开发组提交 Bug。</para>
     </sect2>
 
     <sect2 id="ch04-dartium-linking">
-      <title>Linking to Dart Source</title>
+      <title>连接到 Dart 代码</title>
 
-      <para>Use a script tag with a type <literal
-      moreinfo="none">application/dart</literal> to link to your Dart source
-      file. Example:</para>
+      <para>用类型为 <literal
+      moreinfo="none">application/dart</literal> 的 script 来连接 Dart 代码。
+      例如：</para>
 
       <programlisting format="linespecific"><remark>lang-html
 </remark>&lt;!DOCTYPE html&gt;
@@ -876,18 +876,18 @@ import 'package:intl/intl.dart';</programlisting>
 &lt;/html&gt;</programlisting>
 
       <note>
-        <para>Dart Editor automatically adds both the <literal
-        moreinfo="none">application/dart</literal> script tag and the
-        <literal>dart.js</literal> script tag into the project’s main
-        HTML file.</para>
+        <para>Dart 编辑器自动在项目的启动 HTML 文件
+            中添加
+<literal
+        moreinfo="none">application/dart</literal> script 和
+        <literal>dart.js</literal> script 标签。</para>
       </note>
     </sect2>
 
     <sect2 id="ch04-dartium-detect">
-      <title>Detecting Dart Support</title>
+      <title>检测浏览器是否支持 Dart</title>
 
-      <para>You can check whether a browser supports Dart
-      with this JavaScript code:
+      <para>可以通过 JavaScript 代码检测浏览器是否支持 Dart：
       </para>
 
       <programlisting format="linespecific"><remark>lang-js
@@ -902,45 +902,46 @@ if (navigator.userAgent.indexOf('(Dart)') == -1) {
     </sect2>
 
     <sect2 id="ch04-dartium-command">
-      <title>Launching from the Command Line</title>
+      <title>从命令行启动 Dartium</title>
 
-      <para>Because Dartium is based on Chromium, all <ulink
+      <para>由于 Dartium 是基于  Chromium 的，所有 <ulink
       url="http://www.chromium.org/developers/how-tos/run-chromium-with-flags">Chromium
-      flags</ulink> should work. In some cases, you might want to specify
-      Dart-specific flags so that you can tweak the embedded Dart VM’s
-      behavior. For example, while developing your web app, you might want the
-      VM to verify type annotations and check assertions. To achieve that,
-      you can enable checked mode (the VM’s <literal>--checked</literal>
-      flag).</para>
+      标记( flag )</ulink> 都应该可以使用。有些情况下，你可能想使用 Dart 相关的标记来设置 Dart VM 的行为。
+      例如，在开发 web 应用的时候，你想让 VM 检查类型声明和断言（assertions），
+      启用 检测模式 即可启用该功能 (VM 的 <literal>--checked</literal>
+      标记)。
+      </para>
 
-      <para>On Linux, you can specify flags by starting Dartium as
-      follows:</para>
+      <para>在 Linux，可以通过如下方式启动
+          Dartium：
+		</para>
 
       <screen format="linespecific"><remark>lang-sh
 </remark>DART_FLAGS='--checked' <replaceable>path</replaceable>/chrome</screen>
 
-      <para>On Mac:</para>
+      <para> Mac 系统:</para>
 
       <screen format="linespecific"><remark>lang-sh
 </remark>DART_FLAGS='--checked'              \
   <replaceable>path</replaceable>/Chromium.app/Contents/MacOS/Chromium</screen>
 
-      <para>Or (also on Mac):</para>
+      <para>Mac 系统也可以这样 :</para>
 
       <screen format="linespecific"><remark>lang-sh
 </remark>DART_FLAGS='--checked'              \
    open <replaceable>path</replaceable>/Chromium.app</screen>
 
       <note>
-        <para>You can see the command-line flags and executable path of your
-        current Chromium-based browser by going to <literal
-        moreinfo="none">chrome://version</literal>.</para>
+        <para>
+            通过  <literal
+        moreinfo="none">chrome://version</literal> 你可以查看当前
+        使用的命令行标记和执行文件路径。</para>
       </note>
     </sect2>
   </sect1>
 
   <sect1 id="ch04-tools-dart2js">
-    <title>dart2js: The Dart-to-JavaScript Compiler</title>
+    <title>dart2js: Dart-to-JavaScript 编译器</title>
 
     <para>You can use the <emphasis>dart2js</emphasis> tool to compile Dart
     code to JavaScript. <link linkend="ch04-editor-dart2js">Dart Editor</link>
