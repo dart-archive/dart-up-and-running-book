@@ -44,11 +44,12 @@ reflectFromInstance() {
 }
 
 showConstructors(ClassMirror mirror) {
-  var methods = mirror.declarations.values.where((m) => m is MethodMirror);
-  var constructors = methods.where((m) => m.isConstructor);
+  var constructors = mirror.declarations.values
+      .where((m) => m is MethodMirror && m.isConstructor);
   
   constructors.forEach((m) {
-    print('The constructor ${m.simpleName} has ${m.parameters.length} parameters.');
+    print('The constructor ${m.simpleName} has '
+          '${m.parameters.length} parameters.');
   });
 }
 
@@ -60,8 +61,8 @@ showFields(ClassMirror mirror) {
     var privateStatus = m.isPrivate ? 'private' : 'not private';
     var typeAnnotation = m.type.simpleName;
 
-    print('The field ${m.simpleName} is $privateStatus and $finalStatus and is annotated '
-          'as $typeAnnotation');
+    print('The field ${m.simpleName} is $privateStatus and $finalStatus '
+          'and is annotated as $typeAnnotation.');
   });
 }
 

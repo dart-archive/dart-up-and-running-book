@@ -2447,7 +2447,7 @@ main() {
 
     <para>The dart:mirrors library provides basic reflection abilities to
     Dart. Use mirrors to query the structure of your program and to
-    dynamically invoke functions or methods at runtime. </para>
+    dynamically invoke functions or methods at runtime.</para>
 
     <para>The dart:mirrors library works in both web apps and command-line
     apps. To use it, import dart:mirrors.</para>
@@ -2460,8 +2460,8 @@ main() {
       annotation before the import of dart:mirrors. For details, see the
       <ulink
       url="http://api.dartlang.org/dart_mirrors/MirrorsUsed.html">MirrorsUsed</ulink>
-      API documentation. This workaround might change, as the dart:mirrors
-      library is still under development.</para>
+      API documentation. This workaround is very likely to change, as the
+      dart:mirrors library is still under development.</para>
     </warning>
 
     <sect2 id="ch03-mirrors-symbols">
@@ -2470,8 +2470,8 @@ main() {
       <para>The mirror system represents the names of Dart declarations
       (classes, fields, and so on) by instances of the class <ulink
       url="http://api.dartlang.org/dart_core/Symbol.html">Symbol</ulink>.
-      Symbols help compilers like dart2js produce efficient output, even when
-      minified.</para>
+      Symbols work even in code where names have changed due to
+      minification.</para>
 
       <para>When you know the name of the symbol ahead of time, use a symbol
       literal. This way, repeated uses of the same symbol can use the same
@@ -2559,11 +2559,12 @@ assert('Person' == MirrorSystem.getName(mirror.simpleName));</screen>
         <screen format="linespecific"><remark>lang-dart
 ch03/mirrors.dart
 </remark>showConstructors(ClassMirror mirror) {
-  var methods = mirror.declarations.values.where((m) =&gt; m is MethodMirror);
-  var constructors = methods.where((m) =&gt; m.isConstructor);
+  var constructors = mirror.declarations.values
+      .where((m) =&gt; m is MethodMirror &amp;&amp; m.isConstructor);
   
   constructors.forEach((m) {
-    print('The constructor ${m.simpleName} has ${m.parameters.length} parameters.');
+    print('The constructor ${m.simpleName} has '
+          '${m.parameters.length} parameters.');
   });
 }</screen>
 
@@ -2580,8 +2581,8 @@ ch03/mirrors.dart
     var privateStatus = m.isPrivate ? 'private' : 'not private';
     var typeAnnotation = m.type.simpleName;
 
-    print('The field ${m.simpleName} is $privateStatus and $finalStatus and is annotated '
-          'as $typeAnnotation');
+    print('The field ${m.simpleName} is $privateStatus and $finalStatus '
+          'and is annotated as $typeAnnotation.');
   });
 }</screen>
 
@@ -2636,7 +2637,7 @@ mirror.invoke(#greet, ['Shailen']);</screen>
       </sect3>
 
       <sect3 id="ch03-mirrors-getset-fields">
-        <title>Get and Set Properties</title>
+        <title>Invoke Getters and Setters</title>
 
         <para>Use InstanceMirror's <literal>getField()</literal> and
         <literal>setField()</literal> methods to get and set properties of an
