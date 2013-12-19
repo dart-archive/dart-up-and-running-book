@@ -1239,7 +1239,7 @@ assert(double.parse(sinOf30degrees.toStringAsPrecision(2)) == 0.5);</screen>
     <sect2 id="ch03-maximum-and-minimum">
       <title>Maximum and Minimum</title>
 
-      <para>The Math library provides optimized <literal>max()</literal> and
+      <para>The Math library provides <literal>max()</literal> and
       <literal>min()</literal> methods:</para>
 
       <screen format="linespecific"><remark>lang-dart
@@ -1315,7 +1315,7 @@ random.nextBool();  // true or false</screen>
     cover. Only web apps can use dart:html, not command-line apps.</para>
 
     <note>
-      <para>For scalable, higher level approaches to web app UIs, see <ulink
+      <para>For higher level approaches to web app UIs, see <ulink
       url="http://www.dartlang.org/polymer-dart/">Polymer.dart</ulink> and
       <ulink
       url="http://pub.dartlang.org/packages/angular">AngularDart</ulink>.</para>
@@ -1342,11 +1342,10 @@ random.nextBool();  // true or false</screen>
       <para>A <ulink
       url="http://api.dartlang.org/html/Window.html">Window</ulink> object
       represents the actual window of the web browser. Each Window has a
-      <literal moreinfo="none">document</literal> property (a Document
-      object), which points to the document currently loaded. The Window
-      object also has accessors to various APIs such as IndexedDB (for storing
-      data), <literal>requestAnimationFrame()</literal> (for animations), and
-      more. In tabbed browsers, each tab has its own Window object.</para>
+      Document object, which points to the document that's currently loaded.
+      The Window object also has accessors to various APIs such as IndexedDB
+      (for storing data), requestAnimationFrame (for animations), and more. In
+      tabbed browsers, each tab has its own Window object.</para>
 
       <para>With the <ulink
       url="http://api.dartlang.org/html/Document.html">Document</ulink>
@@ -1509,8 +1508,10 @@ elem.text = 'Creating is easy!';</screen>
         <para>Recall that elements are just a kind of node. You can find all
         the children of a node using the <literal
         moreinfo="none">nodes</literal> property of Node, which returns a
-        List&lt;Node&gt;. Once you have this list, you can use the usual List
-        methods and operators to manipulate the children of the node.</para>
+        List&lt;Node&gt; (as opposed to <literal>children</literal>, which
+        omits non-Element nodes). Once you have this list, you can use the
+        usual List methods and operators to manipulate the children of the
+        node.</para>
 
         <para>To add a node as the last child of its parent, use the List
         <literal>add()</literal> method:</para>
