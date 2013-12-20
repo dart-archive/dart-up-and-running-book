@@ -865,7 +865,7 @@ main() {
         <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03/map-keys.dart
 </remark>class Person {
-  String firstName, lastName;
+  final String firstName, lastName;
 
   Person(this.firstName, this.lastName);
 
