@@ -148,7 +148,7 @@ main() {
         <para>Specifying static types (such as <literal
         moreinfo="none">num</literal> in the preceding example) clarifies your
         intent and enables static checking by tools, but it’s optional. (You
-        might notice when you’re debugging your code that objects with no
+        might notice when you’re debugging your code that variables with no
         specified type get a special type: <literal
         moreinfo="none">dynamic</literal>.)</para>
       </listitem>
@@ -197,11 +197,11 @@ main() {
       </listitem>
 
       <listitem>
-        <para>Dart tools can report two kinds of errors: warnings and errors.
-        Warnings are just hints that your code might not work, but they don’t
-        prevent your program from executing. Errors can be either compile-time
-        or run-time. A compile-time error prevents the code from executing at
-        all; a run-time error results in an <link
+        <para>Dart tools can report two kinds of problems: warnings and
+        errors. Warnings are just indications that your code might not work,
+        but they don’t prevent your program from executing. Errors can be
+        either compile-time or run-time. A compile-time error prevents the
+        code from executing at all; a run-time error results in an <link
         linkend="exceptions">exception</link> being raised while the code
         executes.</para>
       </listitem>
@@ -415,7 +415,7 @@ assert(lineCount == null);
 
       <para>Adding types is a way to clearly express your intent. Tools such
       as compilers and editors can use these types to help you, by providing
-      early warnings for bugs and code <phrase
+      code completion and early warnings for bugs and code <phrase
       role="keep-together">completion</phrase>.</para>
 
       <note>
@@ -619,8 +619,8 @@ assert('That deserves all caps. ${s.toUpperCase()} is very handy!' ==
 
       <note>
         <para>The <literal moreinfo="none">==</literal> operator tests whether
-        two objects are equivalent. Two strings are equivalent if they have
-        the same characters.</para>
+        two objects are equivalent. Two strings are equivalent if they contain
+        the same sequence of code units.</para>
       </note>
 
       <para>You can concatenate strings using adjacent string literals or the
@@ -1039,8 +1039,13 @@ assert(say('Bob', 'Howdy') == 'Bob says Howdy with a carrier pigeon');</programl
     ..onClick.listen(reverseText);
 }</programlisting>
 
-      <para>Here's an example of the <literal>main()</literal> function for a
-      command-line app that takes arguments:</para>
+      <para><note>
+          <para>The <literal>..</literal> operator in the preceding code is a
+          cascade operator, which allows you to perform multiple operations on
+          the members of a single object. You'll find out more in <xref
+          linkend="classes" />.</para>
+        </note>Here's an example of the <literal>main()</literal> function for
+      a command-line app that takes arguments:</para>
 
       <programlisting format="linespecific"><remark>lang-dart
 ch02/args.dart
@@ -2249,7 +2254,8 @@ assert(urlString.startsWith('https')); // Make sure this is an HTTPS URL.</progr
       moreinfo="none">assert</literal>, you can put any expression that
       resolves to a boolean value or to a function. If the expression’s value
       or function’s return value is true, the assertion succeeds and execution
-      continues. Otherwise, the assertion fails and an exception (an <ulink
+      continues. If it's false, the assertion fails and an exception (an
+      <ulink
       url="http://api.dartlang.org/dart_core/AssertionError.html">AssertionError</ulink>)
       is thrown.</para>
     </sect2>
@@ -2370,10 +2376,13 @@ assert(urlString.startsWith('https')); // Make sure this is an HTTPS URL.</progr
   <sect1 id="classes">
     <title>Classes</title>
 
-    <para>Dart is an object-oriented language with classes and single
+    <para>Dart is an object-oriented language with classes and mixin-based
     inheritance. Every object is an instance of a class, and all classes
     descend from <ulink
-    url="http://api.dartlang.org/dart_core/Object.html">Object.</ulink></para>
+    url="http://api.dartlang.org/dart_core/Object.html">Object.</ulink>
+    Mixin-based inheritance means that although every class (except for
+    Object) has exactly one superclass, a class body can be reused in multiple
+    class hierarchies.</para>
 
     <para>To create an object, you can use the <literal
     moreinfo="none">new</literal> keyword with a
@@ -3098,8 +3107,8 @@ class A {
     <sect2 id="ch02-mixins">
       <title>Adding Features to a Class: Mixins</title>
 
-      <para>Mixins are a way to inject behavior into classes without relying
-      on inheritance.</para>
+      <para>Mixins are a way of reusing a class's code in multiple class
+      hierarchies.</para>
 
       <para>To use a mixin, use the <literal>with</literal> keyword followed
       by one or more mixin names. The following example shows two classes that
@@ -3695,11 +3704,10 @@ void doSomething() {
 
     <para>Metadata can appear before a library, class, typedef, type
     parameter, constructor, factory, function, field, parameter, or variable
-    declaration and before an import or export directive. In the future,
-    you’ll be able to retrieve metadata at runtime using reflection.<remark>
-    Status: <ulink
+    declaration and before an import or export directive. If <ulink
     url="https://code.google.com/p/dart/issues/detail?id=6614">issue
-    #6614</ulink>.</remark></para>
+    #6614</ulink> is fixed by the time you read this, you can retrieve
+    metadata at runtime using reflection.</para>
   </sect1>
 
   <sect1 id="comments">
