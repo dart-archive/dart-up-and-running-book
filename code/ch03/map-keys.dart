@@ -11,15 +11,19 @@ class Person {
     return result;
   }
 
-  // Always implement operator== if you override hashCode.
+  // You should generally implement operator== if you override hashCode.
   bool operator==(other) {
-    if (identical(other, this)) return true;
-    return (other.firstName == firstName && other.lastName == lastName);
+    if (other is! Person) return false;
+    Person person = other;
+    return (person.firstName == firstName && person.lastName == lastName);
   }
 }
 
 main() {
   var p1 = new Person('bob', 'smith');
   var p2 = new Person('bob', 'smith');
+  var p3 = 'not a person';
   assert(p1.hashCode == p2.hashCode);
+  assert(p1 == p2);
+  assert(p1 != p3);
 }

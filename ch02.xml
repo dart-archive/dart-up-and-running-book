@@ -2380,9 +2380,9 @@ assert(urlString.startsWith('https')); // Make sure this is an HTTPS URL.</progr
     inheritance. Every object is an instance of a class, and all classes
     descend from <ulink
     url="http://api.dartlang.org/dart_core/Object.html">Object.</ulink>
-    Mixin-based inheritance means that although every class (except for
-    Object) has exactly one superclass, a class body can be reused in multiple
-    class hierarchies.</para>
+    <emphasis>Mixin-based inheritance</emphasis> means that although every
+    class (except for Object) has exactly one superclass, a class body can be
+    reused in multiple class hierarchies.</para>
 
     <para>To create an object, you can use the <literal
     moreinfo="none">new</literal> keyword with a

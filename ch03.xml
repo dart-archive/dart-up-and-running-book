@@ -858,8 +858,9 @@ main() {
         distributed.</para>
 
         <remark>Note: There’s disagreement over whether to include identical()
-        in the == implementation. It might improve speed. They don’t do
-        identical() automatically because, by convention, NaN != NaN.</remark>
+        in the == implementation. It might improve speed, at least when you
+        need to compare many fields. They don’t do identical() automatically
+        because, by convention, NaN != NaN.</remark>
 
         <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03/map-keys.dart
@@ -878,15 +879,19 @@ main() {
 
   // You should generally implement operator== if you override hashCode.
   bool operator==(other) {
-    if (identical(other, this)) return true;
-    return (other.firstName == firstName &amp;&amp; other.lastName == lastName);
+    if (other is! Person) return false;
+    Person person = other;
+    return (person.firstName == firstName &amp;&amp; person.lastName == lastName);
   }
 }
 
 main() {
   var p1 = new Person('bob', 'smith');
   var p2 = new Person('bob', 'smith');
+  var p3 = 'not a person';
   assert(p1.hashCode == p2.hashCode);
+  assert(p1 == p2);
+  assert(p1 != p3);
 }</screen>
       </sect3>
 
@@ -1025,7 +1030,7 @@ main() {
   // Should handle errors here</screen>
 
         <para>Use <literal>catchError()</literal> to handle any errors or
-        exceptions that a Future object might throw. </para>
+        exceptions that a Future object might throw.</para>
 
         <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03/ch03_4_async/web/ch03_4_async.dart
