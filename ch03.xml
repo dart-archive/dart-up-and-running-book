@@ -34,7 +34,16 @@
 assert(int.parse('0x42') == 66);
 assert(double.parse('0.50') == 0.5);</screen>
 
-      <para>To specify the base, add a <literal>radix</literal>
+      <para>Or use the parse() method of num, which creates an integer if
+      possible and otherwise a double:</para>
+
+      <screen format="linespecific"><remark>lang-dart
+</remark><remark>ch03/number-tests.dart
+</remark>assert(num.parse('42') is int);
+assert(num.parse('0x42') is int);
+assert(num.parse('0.50') is double);</screen>
+
+      <para>To specify the base of an integer, add a <literal>radix</literal>
       parameter:</para>
 
       <screen format="linespecific"><remark>lang-dart
@@ -112,8 +121,10 @@ assert('Never odd or even'.indexOf('odd') == 6);</screen>
       <sect3 id="ch03-extracting-data-from-a-string">
         <title>Extracting data from a string</title>
 
-        <para>You can get the individual characters or UTF-16 code units from
-        a string as Strings or ints, respectively.</para>
+        <para>You can get the individual characters from a string as Strings
+        or ints, respectively. To be precise, you actually get individual
+        UTF-16 code units; high-numbered characters such as the treble clef
+        symbol ('\u{1D11E}') are two code units apiece.</para>
 
         <para>You can also extract a substring or split a string into a list
         of substrings:</para>
@@ -128,17 +139,16 @@ var parts = 'structured web apps'.split(' ');
 assert(parts.length == 3);
 assert(parts[0] == 'structured');
 
-// Get a character (as a string) by index.
+// Get a UTF-16 code unit (as a string) by index.
 assert('Never odd or even'[0] == 'N');
 
 // Use split() with an empty string parameter to get a list of
-// all characters (as Strings); good for iterating.
+// all code units (as Strings); good for iterating.
 for (var char in 'hello'.split('')) {
   print(char);
 }
 
-// Get all the characters in the string as a list of UTF-16 code units.
-// Some characters might require two code units.
+// Get all the UTF-16 code units in the string.
 var codeUnitList = 'Never odd or even'.codeUnits.toList();
 assert(codeUnitList[0] == 78);</screen>
       </sect3>
@@ -207,14 +217,16 @@ assert(greeting != greetingTemplate); // greetingTemplate didn't change.</screen
 
         <para>To programmatically generate a string, you can use StringBuffer.
         A StringBuffer doesn’t generate a new String object until
-        <literal>toString()</literal> is called.</para>
+        <literal>toString()</literal> is called. The
+        <literal>writeAll()</literal> method has an optional second parameter
+        that lets you specify a separator—in this case, a space.</para>
 
         <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03/string-tests.dart
 </remark>var sb = new StringBuffer();
 
 sb..write('Use a StringBuffer ')
-  ..writeAll(['for ', 'efficient ', 'string ', 'creation'])
+  ..writeAll(['for', 'efficient', 'string', 'creation'], ' ')
   ..write('.');
 
 var fullString = sb.toString();
@@ -333,7 +345,7 @@ assert(fruits[0] == 'apples');
 // Find an item in a list.
 assert(fruits.indexOf('apples') == 0);</screen>
 
-        <para>Sort a list using the <literal>sort()</literal> method. You must
+        <para>Sort a list using the <literal>sort()</literal> method. You can
         provide a sorting function that compares two objects. This sorting
         function must return &lt; 0 for <emphasis>smaller</emphasis>, 0 for
         the <emphasis>same</emphasis>, and &gt; 0 for
@@ -455,8 +467,7 @@ var nobleGases = new Map&lt;int, String&gt;();</screen>
 
         <para>You add, get, and set map items using the bracket syntax. Use
         <literal>remove()</literal> to remove a key and its value from a
-        map.<remark> [PENDING: It’s questionable that this example uses
-        containsKey before containsKey is discussed.]</remark></para>
+        map.</para>
 
         <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03/map-1.dart
@@ -489,10 +500,10 @@ var keys = hawaiianBeaches.keys;
 assert(keys.length == 3);
 assert(new Set.from(keys).contains('oahu'));
 
-// Get all the values as an unordered collection (an Iterable of Iterables).
+// Get all the values as an unordered collection (an Iterable of Lists).
 var values = hawaiianBeaches.values;
 assert(values.length == 3);
-assert(values.any((v) =&gt; v.indexOf('waikiki') != -1));</screen>
+assert(values.any((v) =&gt; v.contains('waikiki')));</screen>
 
         <para>To check whether a map contains a key, use
         <literal>containsKey()</literal>. Because map values can be null, you
@@ -560,14 +571,13 @@ teas.forEach((tea) =&gt; print('I drink $tea'));</screen>
 
         <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03/map-1.dart
-</remark>// NOTE: Do not depend on iteration order.
-hawaiianBeaches.forEach((k,v) {
+</remark>hawaiianBeaches.forEach((k, v) {
   print('I want to visit $k and swim at $v');
   // I want to visit oahu and swim at [waikiki, kailua, waimanalo], etc.
 });</screen>
 
-        <para>An alternative for Iterables is the <literal>map()</literal>
-        method, which gives you all the results in a single object:</para>
+        <para>Iterables provide the <literal>map()</literal> method, which
+        gives you all the results in a single object:</para>
 
         <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03/collection-apply-function.dart
@@ -593,7 +603,9 @@ loudTeas.forEach(print);</screen>
         <para>Use Iterable’s <literal>where()</literal> method to get all the
         items that match a condition. Use Iterable’s <literal>any()</literal>
         and <literal>every()</literal> methods to check whether some or all
-        items match a condition.</para>
+        items match a condition. <remark>{PENDING: if time permits, change
+        example as suggested by floitsch to have (maybe) cities instead of
+        isDecaffeinated.}</remark></para>
 
         <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03/collection-any-every.dart
@@ -630,7 +642,9 @@ assert(!teas.every(isDecaffeinated));</screen>
       functions handle characters that are special for URIs, such as <literal
       moreinfo="none">&amp;</literal> and <literal
       moreinfo="none">=</literal>. The Uri class also parses and exposes the
-      components of a URI—host, port, scheme, and so on.</para>
+      components of a URI—host, port, scheme, and so on.<remark> {PENDING:
+      show constructors: Uri.http, Uri.https, Uri.file, per floitsch's
+      suggestion}</remark></para>
 
       <sect3 id="ch03-uri-fully-qualified">
         <title>Encoding and Decoding Fully Qualified URIs</title>
@@ -788,7 +802,11 @@ assert(december2000.month == 12);
 var duration = y2001.difference(y2k);
 assert(duration.inDays == 366); // y2k was a leap year.</screen>
 
-      <para>Refer to the API docs for <ulink
+      <para><warning>
+          <para>Using a Duration to shift a DateTime by days can be
+          problematic, due to clock shifts (to daylight saving time, for
+          example). Use UTC dates if you must shift days.</para>
+        </warning>Refer to the API docs for <ulink
       url="http://api.dartlang.org/dart_core/DateTime.html">DateTime</ulink>
       and <ulink
       url="http://api.dartlang.org/dart_core/Duration.html">Duration</ulink>
@@ -833,10 +851,10 @@ main() {
         <para>Each object in Dart automatically provides an integer hash code,
         and thus can be used as a key in a map. However, you can override the
         <literal>hashCode</literal> getter to generate a custom hash code. If
-        you do, be sure to override the <literal moreinfo="none">==</literal>
-        operator, as well. Objects that are equal (via <literal
-        moreinfo="none">==</literal>) must have identical hash codes. A hash
-        code doesn’t have to be unique, but it should be well
+        you do, you might also want to override the <literal
+        moreinfo="none">==</literal> operator. Objects that are equal (via
+        <literal moreinfo="none">==</literal>) must have identical hash codes.
+        A hash code doesn’t have to be unique, but it should be well
         distributed.</para>
 
         <remark>Note: There’s disagreement over whether to include identical()
@@ -858,7 +876,7 @@ main() {
     return result;
   }
 
-  // Always implement operator== if you override hashCode.
+  // You should generally implement operator== if you override hashCode.
   bool operator==(other) {
     if (identical(other, this)) return true;
     return (other.firstName == firstName &amp;&amp; other.lastName == lastName);
@@ -898,8 +916,8 @@ class ProcessIterator implements Iterator&lt;Process&gt; {
 }
 
 // A mythical class that lets you iterate through all processes.
-// Extends an Iterable subclass.
-class Processes extends DoubleLinkedQueue&lt;Process&gt; {
+// Extends a subclass of Iterable.
+class Processes extends IterableBase&lt;Process&gt; {
   final Iterator&lt;Process&gt; iterator = new ProcessIterator();
 }
 
@@ -1007,11 +1025,7 @@ main() {
   // Should handle errors here</screen>
 
         <para>Use <literal>catchError()</literal> to handle any errors or
-        exceptions that a Future object might throw. Be sure to invoke
-        <literal>catchError()</literal> on the result of
-        <literal>then()</literal>—not on the result of the original Future.
-        <remark>{PENDING: What are the symptoms when you do it
-        wrong?}</remark></para>
+        exceptions that a Future object might throw. </para>
 
         <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03/ch03_4_async/web/ch03_4_async.dart
@@ -1025,6 +1039,14 @@ main() {
         <para>The <literal>then().catchError()</literal> pattern is the
         asynchronous version of
         <literal>try</literal>-<literal>catch</literal>.</para>
+
+        <note>
+          <para>Be sure to invoke <literal>catchError()</literal> on the
+          result of <literal>then()</literal>—not on the result of the
+          original Future. Otherwise, the <literal>catchError()</literal> can
+          handle errors only from the original Future's computation, but not
+          from the handler registered by <literal>then()</literal>.</para>
+        </note>
       </sect3>
 
       <sect3 id="ch03-chaining-multiple-async-methods">
@@ -1033,9 +1055,9 @@ main() {
         <para>The <literal>then()</literal> method returns a Future, providing
         a useful way to run multiple asynchronous functions in a certain
         order. If the callback registered with <literal>then()</literal>
-        returns a Future, then it is simply returned as-is by
-        <literal>then()</literal>. If the callback returns a value of any
-        other type, a new Future instance is created and is completed with the
+        returns a Future, <literal>then()</literal> returns an equivalent
+        Future. If the callback returns a value of any other type,
+        <literal>then()</literal> creates a new Future that completes with the
         value.</para>
 
         <screen format="linespecific"><remark>lang-dart
@@ -1144,13 +1166,12 @@ inputStream
     (String line) {...} ...);</screen>
 
         <para>This example uses two transformers. First it uses UTF8.decoder
-        to transform the <literal>Stream&lt;List&lt;int&gt;&gt;</literal> into
-        a <literal>Stream&lt;String&gt;</literal>. Then it uses a LineSplitter
-        to transform the <literal>Stream&lt;String&gt;</literal> into a
-        <literal>Stream&lt;List&lt;String&gt;&gt;</literal>. These
-        transformers are from the dart:convert library (see <xref
-        linkend="ch03-dart-convert" />).<remark> PENDING: add onDone and
-        onError. (See "Streaming file contents".)</remark></para>
+        to transform the stream of integers into a stream of strings. Then it
+        uses a LineSplitter to transform the stream of strings into a stream
+        of separate lines. These transformers are from the dart:convert
+        library (see <xref linkend="ch03-dart-convert" />).<remark> {PENDING:
+        add onDone and onError. (See "Streaming file
+        contents".)}</remark></para>
       </sect3>
     </sect2>
 
@@ -1964,14 +1985,14 @@ github.com/dart-lang/dart-samples/.../web/html5/websockets/basics/websocket_samp
 
     <para>The <ulink url="http://api.dartlang.org/io.html">dart:io
     library</ulink> provides APIs to deal with files, directories, processes,
-    sockets, and HTTP connections. Only command-line apps can use dart:io—not
-    web apps.</para>
+    sockets, WebSockets, and HTTP clients and servers. Only command-line apps
+    can use dart:io—not web apps.</para>
 
     <para>In general, the dart:io library implements and promotes an
-    asynchronous API. Synchronous methods can easily block the event loop,
-    making it difficult to scale server applications. Therefore, most
-    operations return results via callbacks or Future objects, a pattern
-    common with modern server platforms such as Node.js.</para>
+    asynchronous API. Synchronous methods can easily block an application,
+    making it difficult to scale. Therefore, most operations return results
+    via Future or Stream objects, a pattern common with modern server
+    platforms such as Node.js.</para>
 
     <para>The few synchronous methods in the dart:io library are clearly
     marked with a Sync suffix on the method name. We don’t cover them
@@ -1996,11 +2017,12 @@ github.com/dart-lang/dart-samples/.../web/html5/websockets/basics/websocket_samp
       <sect3 id="ch03-reading-a-file-as-text">
         <title>Reading a file as text</title>
 
-        <para>When reading a text file, you can read the entire file contents
-        with <literal>readAsString()</literal>. When the individual lines are
-        important, you can use <literal>readAsLines()</literal>. In both
-        cases, a Future object is returned that provides the contents of the
-        file as one or more strings.</para>
+        <para>When reading a text file encoded using UTF-8, you can read the
+        entire file contents with <literal>readAsString()</literal>. When the
+        individual lines are important, you can use
+        <literal>readAsLines()</literal>. In both cases, a Future object is
+        returned that provides the contents of the file as one or more
+        strings.</para>
 
         <screen format="linespecific"><remark>lang-dart
 ch03/textRead.dart
@@ -2045,8 +2067,8 @@ main() {
       <sect3 id="ch03-handling-errors">
         <title>Handling errors</title>
 
-        <para>To capture errors so they don't result in exceptions, you can
-        register a <literal moreinfo="none">catchError</literal>
+        <para>To capture errors so they don't result in uncaught exceptions,
+        you can register a <literal moreinfo="none">catchError</literal>
         handler:</para>
 
         <screen format="linespecific"><remark>lang-dart
@@ -2087,7 +2109,7 @@ main() {
     .transform(new LineSplitter())
     .listen(
       (String line) { 
-        print('Read ${line.length} bytes from stream');
+        print('Got ${line.length} characters from stream');
       },
       onDone: () { print('file is now closed'); },
       onError: (e) { print(e.toString()); });
@@ -2100,9 +2122,9 @@ main() {
         <para>You can use an <ulink
         url="http://api.dartlang.org/dart_io/IOSink.html">IOSink</ulink> to
         write data to a file. Use the File <literal>openWrite()</literal>
-        method to declare a mode and get an IOSink that you can write to. The
-        default mode, <literal moreinfo="none">FileMode.WRITE</literal>,
-        completely overwrites existing data in the file.</para>
+        method to get an IOSink that you can write to. The default mode,
+        <literal moreinfo="none">FileMode.WRITE</literal>, completely
+        overwrites existing data in the file.</para>
 
         <programlisting role="keep-together"><remark>lang-dart
 </remark><remark>ch03/writeFile.dart
@@ -2217,35 +2239,30 @@ main() {
 
 main() {
   dartHandler(HttpRequest request) {
-    print('New request');
+    request.response.headers.contentType = new ContentType('text', 'plain');
     request.response.write('Dart is optionally typed');
     request.response.close();
   };
 
   HttpServer.bind('127.0.0.1', 8888).then((HttpServer server) {
     server.listen((request) { 
-      print("got request");
+      print('Got request for ${request.uri.path}');
       if (request.uri.path == '/languages/dart') {
         dartHandler(request);
       } else {
         request.response.write('Not found');
-        request.response.statusCode = HttpStatus.NOT_FOUND;
         request.response.close();
       }
     });
   });
 }</screen>
 
-        <para>For a more comprehensive HTTP server, see the <ulink
-        url="https://code.google.com/p/dart/source/browse/branches/bleeding_edge/dart/samples/dartiverse_search/">dartiverse_search</ulink>
-        example, which uses additional packages such as <ulink
+        <para>For a more comprehensive HTTP server, see <xref
+        linkend="ch05" />. It features the Dartiverse Search sample, which
+        implements a web server using dart:io and packages such as <ulink
         url="https://pub.dartlang.org/packages/http_server">http_server</ulink>
         and <ulink
-        url="http://pub.dartlang.org/packages/route">route</ulink>.<remark>
-        {PENDING: point to the <ulink
-        url="http://www.dartlang.org/samples/">Dart Code Samples</ulink>
-        instead? Need to come up with a good way of pointing to
-        samples.}</remark></para>
+        url="http://pub.dartlang.org/packages/route">route</ulink>.</para>
       </sect3>
 
       <sect3 id="_http_client">
@@ -2386,12 +2403,13 @@ ch03/decodeUtf8.dart
 
 main() {
   var string = UTF8.decode([0xc3, 0x8e, 0xc3, 0xb1, 0xc5, 0xa3, 0xc3, 0xa9,
-                           0x72, 0xc3, 0xb1, 0xc3, 0xa5, 0xc5, 0xa3, 0xc3,
-                           0xae, 0xc3, 0xb6, 0xc3, 0xb1, 0xc3, 0xa5, 0xc4,
-                           0xbc, 0xc3, 0xae, 0xc5, 0xbe, 0xc3, 0xa5, 0xc5,
-                           0xa3, 0xc3, 0xae, 0xe1, 0xbb, 0x9d, 0xc3, 0xb1]);
+                            0x72, 0xc3, 0xb1, 0xc3, 0xa5, 0xc5, 0xa3, 0xc3,
+                            0xae, 0xc3, 0xb6, 0xc3, 0xb1, 0xc3, 0xa5, 0xc4,
+                            0xbc, 0xc3, 0xae, 0xc5, 0xbe, 0xc3, 0xa5, 0xc5,
+                            0xa3, 0xc3, 0xae, 0xe1, 0xbb, 0x9d, 0xc3, 0xb1]);
   print(string); // 'Îñţérñåţîöñåļîžåţîờñ'
-}</screen>
+}
+</screen>
 
       <para>To convert a stream of UTF-8 characters into a Dart string,
       specify <literal>UTF8.decoder</literal> to the Stream
@@ -2436,8 +2454,8 @@ main() {
     <sect2 id="ch03-utf-other">
       <title>Other Functionality</title>
 
-      <para>The dart:convert library also has converters for ASCII and ISO
-      Latin 1. For details, see the <ulink
+      <para>The dart:convert library also has converters for ASCII and
+      ISO-8859-1 (Latin1). For details, see the <ulink
       url="http://api.dartlang.org/dart_convert.html">API docs for the
       dart:convert library.</ulink></para>
     </sect2>

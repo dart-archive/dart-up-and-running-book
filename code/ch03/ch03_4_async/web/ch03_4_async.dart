@@ -15,15 +15,18 @@ void handleClick(MouseEvent event) {
 void printRobots() {
   HttpRequest.getString(url)
     .then((String result) {
-      print(result); });
+      print(result);
+    });
     // Should handle errors here
 }
 
 void printRobotsAndHandleErrors() {
   HttpRequest.getString(url)
     .then((String result) {
-      print(result); })
+      print(result);
+    })
     .catchError((e) {
       print('Oops, couldn\'t get humans.txt:');
-      print(e); });
+      print(e);
+    });
 }

@@ -3,6 +3,10 @@ main() {
   assert(int.parse('0x42') == 66);
   assert(double.parse('0.50') == 0.5);
   
+  assert(num.parse('42') is int);
+  assert(num.parse('0x42') is int);
+  assert(num.parse('0.50') is double);
+  
   // Specify the base.
   assert(int.parse('42', radix: 16) == 66);
   

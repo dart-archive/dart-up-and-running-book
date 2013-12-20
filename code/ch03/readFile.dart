@@ -11,7 +11,7 @@ main() {
     .transform(new LineSplitter())
     .listen(
       (String line) { 
-        print('Read ${line.length} bytes from stream');
+        print('Got ${line.length} characters from stream');
       },
       onDone: () { print('file is now closed'); },
       onError: (e) { print(e.toString()); });

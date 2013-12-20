@@ -44,16 +44,16 @@ getMapValues() {
     'kauai' : ['hanalei', 'poipu']
   };
   
-  // Get all the keys as an unordered collection (a list).
+  // Get all the keys as an unordered collection (an Iterable).
   var keys = hawaiianBeaches.keys;
 
   assert(keys.length == 3);
   assert(new Set.from(keys).contains('oahu'));
 
-  // Get all the values as an unordered collection (a list of lists).
+  // Get all the values as an unordered collection (an Iterable of Lists).
   var values = hawaiianBeaches.values;
   assert(values.length == 3);
-  assert(values.any((v) => v.indexOf('waikiki') != -1));
+  assert(values.any((v) => v.contains('waikiki')));
 }
   
 iterateThroughPairs() {
@@ -64,7 +64,7 @@ iterateThroughPairs() {
   };
   
   // NOTE: Do not depend on iteration order.
-  hawaiianBeaches.forEach((k,v) {
+  hawaiianBeaches.forEach((k, v) {
     print('I want to visit $k and swim at $v');
     // I want to visit oahu and swim at [waikiki, kailua, waimanalo], etc.
   });
@@ -85,7 +85,7 @@ callPutIfAbsent() {
   var teamAssignments = {};
   teamAssignments.putIfAbsent('Catcher', () => pickToughestKid());
   assert(teamAssignments['Catcher'] != null);
-  teamAssignments.forEach((k,v) {
+  teamAssignments.forEach((k, v) {
     print('$k: $v');
   });  
 }

@@ -12,8 +12,8 @@ class ProcessIterator implements Iterator<Process> {
 }
 
 // A mythical class that lets you iterate through all processes.
-// Extends an Iterable subclass.
-class Processes extends DoubleLinkedQueue<Process> {
+// Extends a subclass of Iterable.
+class Processes extends IterableBase<Process> {
   final Iterator<Process> iterator = new ProcessIterator();
 }
 

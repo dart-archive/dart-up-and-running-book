@@ -22,7 +22,7 @@ main() {
   assert(parts.length == 3);
   assert(parts[0] == 'structured');
 
-  // Get a character (as a string) by index.
+  // Get a UTF-16 code unit (as a string) by index.
   assert('Never odd or even'[0] == 'N');
 
   // Use split() with an empty string parameter to get a list of
@@ -31,8 +31,7 @@ main() {
     print(char);
   }
 
-  // Get all the characters in the string as a list of UTF-16 code units.
-  // Some characters might require two code units.
+  // Get all the UTF-16 code units in the string.
   var codeUnitList = 'Never odd or even'.codeUnits.toList();
   assert(codeUnitList[0] == 78);
 
@@ -80,7 +79,7 @@ buildingAString() {
   //BEGIN
   var sb = new StringBuffer();
   sb..write('Use a StringBuffer ')
-    ..writeAll(['for ', 'efficient ', 'string ', 'creation'])
+    ..writeAll(['for', 'efficient', 'string', 'creation'], ' ')
     ..write('.');
 
   var fullString = sb.toString();

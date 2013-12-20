@@ -2929,10 +2929,12 @@ main() {
   assert((v-w).x == 0 &amp;&amp; (v-w).y == 1); // v-w == (0,1)
 }</programlisting>
 
-        <para>For an example of overriding <literal
-        moreinfo="none">==</literal>, see <xref
-        linkend="ch03-implementing-map-keys" />. For more information on
-        overriding, in general, see <xref
+        <para>If you override ==, you should also override Object's
+        <literal>hashCode</literal> getter. For an example of overriding
+        <literal moreinfo="none">==</literal> and <literal>hashCode</literal>,
+        see <xref linkend="ch03-implementing-map-keys" />.</para>
+
+        <para>For more information on overriding, in general, see <xref
         linkend="ch02-class-extend" />.</para>
       </sect3>
     </sect2>
