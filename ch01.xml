@@ -16,13 +16,6 @@
   compiler to JavaScript. Dart aims to be a more productive way to build the
   high-performance, modern apps that users demand.</para>
 
-  <warning>
-    <para>Dart is still changing! This book was produced in March 2013, just
-    after the Milestone 3 release, which means the language is stable, but the
-    libraries are not. Wherever possible, this book tells you what we expect
-    to change.</para>
-  </warning>
-
   <sect1 id="ch01-why-dart">
     <title>Why Google Created Dart</title>
 
@@ -200,8 +193,7 @@ main() {
     debug and can lead to deadlocks. Dart’s isolates, inspired by Erlang,
     provide an easier to understand model for running isolated, but
     concurrent, portions of your code. Spawning new isolates is cheap and
-    fast, and no state is shared. In web apps, isolates even compile to Web
-    workers.</para>
+    fast, and no state is shared.</para>
 
     <para><emphasis>Dart supports code sharing.</emphasis> Traditional web
     programming workflows can’t integrate third-party libraries from arbitrary
@@ -246,10 +238,10 @@ main() {
         </listitem>
 
         <listitem>
-          <para>Unzip the file you downloaded. The resulting directory, which
-          we’ll call your <emphasis>Dart installation directory</emphasis>,
-          contains the <code>DartEditor</code> executable file and several
-          subdirectories, including a <code>samples</code> directory.</para>
+          <para>Unarchive the file you downloaded. The resulting directory,
+          which we’ll call your <emphasis>Dart installation
+          directory</emphasis>, contains the <code>DartEditor</code>
+          executable and several subdirectories.</para>
         </listitem>
 
         <listitem>
@@ -263,8 +255,8 @@ main() {
       <title>Step 2: Launch the Editor</title>
 
       <para>Go to your Dart installation directory, and double-click the
-      <emphasis role="bold">DartEditor</emphasis> executable <phrase
-      role="keep-together">file <inlinemediaobject>
+      <emphasis role="bold">DartEditor</emphasis> executable<phrase
+      role="keep-together"> <inlinemediaobject>
           <imageobject>
             <imagedata fileref="figs/web/Dart_Logo_21.png" format="PNG"
                        width="0.12in" />
@@ -279,14 +271,71 @@ main() {
 
         <mediaobject>
           <imageobject role="web">
-            <imagedata fileref="figs/web/daur_0102.png" format="PNG" />
+            <imagedata fileref="figs/web/daur_0102.png" format="PNG"
+                       scale="30%" />
           </imageobject>
         </mediaobject>
       </figure>
     </sect2>
 
+    <sect2 id="ch01-editor-sample">
+      <title>Step 3: Open and Run a Demo</title>
+
+      <para>The Dart Editor bundle comes with several demos and samples. In
+      this step, you’ll open a web app and run it in Dartium.</para>
+
+      <orderedlist continuation="restarts" inheritnum="ignore">
+        <listitem>
+          <para>Click the <emphasis role="bold">Welcome</emphasis> tab. Or
+          choose <emphasis role="bold">Welcome Page</emphasis> from the
+          <emphasis role="bold">Tools</emphasis> menu.</para>
+        </listitem>
+
+        <listitem>
+          <para>In the Welcome tab, click the image labeled <emphasis
+          role="bold">Sunflower</emphasis>. Dart Editor creates a copy of the
+          <ulink
+          url="http://code.google.com/p/dart/source/browse/trunk/dart/samples/sunflower/">Sunflower
+          app’s directory,</ulink> and the Editor view displays the contents
+          of <emphasis>web/sunflower.dart</emphasis>.</para>
+        </listitem>
+
+        <listitem>
+          <para>Click the Run button <inlinemediaobject>
+              <imageobject>
+                <imagedata fileref="figs/web/run.png" width="0.12in" />
+              </imageobject>
+            </inlinemediaobject>. Dart Editor launches Dartium, which displays
+          <phrase
+          role="keep-together"><emphasis>sunflower.html</emphasis></phrase>.</para>
+
+          <warning>
+            <para>Dartium is a technical preview, and it might have security
+            and stability issues.<emphasis> Do not use Dartium as your primary
+            browser!</emphasis></para>
+          </warning>
+        </listitem>
+
+        <listitem>
+          <para>Move the slider to change the sunflower's display, as shown in
+          <xref linkend="sunflower" />.</para>
+
+          <figure float="none" id="sunflower">
+            <title>The Sunflower sample running in Dartium</title>
+
+            <mediaobject>
+              <imageobject role="web">
+                <imagedata fileref="figs/web/daur_0105.png" format="PNG"
+                           scale="30%" />
+              </imageobject>
+            </mediaobject>
+          </figure>
+        </listitem>
+      </orderedlist>
+    </sect2>
+
     <sect2 id="ch01-editor-code">
-      <title>Step 3: Create and Run an App</title>
+      <title>Step 4: Create and Run an App</title>
 
       <para>It’s easy to create a simple web or command-line app from scratch.
       This step walks you through creating and running a command-line
@@ -300,7 +349,7 @@ main() {
               </imageobject>
             </inlinemediaobject> (at the upper left of Dart Editor).
           Alternatively, choose <emphasis role="bold">File &gt; New
-          Application...</emphasis> from the Dart Editor menu, or click the
+          Application</emphasis> from the Dart Editor menu, or click the
           <emphasis role="bold">Create an Application…</emphasis> button in
           the Welcome page. A dialog appears (see <xref
           linkend="DartEditor-newapp" />).</para>
@@ -324,7 +373,8 @@ main() {
 
             <mediaobject>
               <imageobject role="web">
-                <imagedata fileref="figs/web/daur_0103.png" format="PNG" />
+                <imagedata fileref="figs/web/daur_0103.png" format="PNG"
+                           scale="30%" />
               </imageobject>
             </mediaobject>
           </figure>
@@ -338,7 +388,8 @@ main() {
 
             <mediaobject>
               <imageobject role="web">
-                <imagedata fileref="figs/web/daur_0104.png" format="PNG" />
+                <imagedata fileref="figs/web/daur_0104.png" format="PNG"
+                           scale="30%" />
               </imageobject>
             </mediaobject>
           </figure>
@@ -358,73 +409,28 @@ main() {
       </orderedlist>
     </sect2>
 
-    <sect2 id="ch01-editor-sample">
-      <title>Step 4: Open and Run a Sample</title>
-
-      <para>The Dart Editor bundle comes with several samples. In this step,
-      you’ll open a sample web app and run it in Dartium.</para>
-
-      <orderedlist continuation="restarts" inheritnum="ignore">
-        <listitem>
-          <para>Click the <emphasis role="bold">Welcome</emphasis> tab. Or
-          choose <emphasis role="bold">Welcome Page</emphasis> from the
-          <emphasis role="bold">Tools</emphasis> menu.</para>
-        </listitem>
-
-        <listitem>
-          <para>In the Welcome tab, click the image labeled <emphasis
-          role="bold">Sunflower</emphasis>. Dart Editor creates a copy of the
-          <ulink
-          url="http://code.google.com/p/dart/source/browse/trunk/dart/samples/sunflower/">Sunflower
-          app’s directory,</ulink> and the Editor view displays the contents
-          of <emphasis>web/sunflower.html</emphasis>.</para>
-        </listitem>
-
-        <listitem>
-          <para>Click the Run button <inlinemediaobject>
-              <imageobject>
-                <imagedata fileref="figs/web/run.png" width="0.12in" />
-              </imageobject>
-            </inlinemediaobject>. Dart Editor launches Dartium, which displays
-          <phrase
-          role="keep-together"><emphasis>sunflower.html</emphasis></phrase>.</para>
-
-          <warning>
-            <para>Dartium is a technical preview, and it might have security
-            and stability issues.<emphasis> Do not use Dartium as your primary
-            browser!</emphasis></para>
-          </warning>
-        </listitem>
-
-        <listitem>
-          <para>Move the slider to display the sunflower, as shown in <xref
-          linkend="sunflower" />.</para>
-
-          <figure float="none" id="sunflower">
-            <title>The Sunflower sample running in Dartium</title>
-
-            <mediaobject>
-              <imageobject role="web">
-                <imagedata fileref="figs/web/daur_0105.png" format="PNG" />
-              </imageobject>
-            </mediaobject>
-          </figure>
-        </listitem>
-      </orderedlist>
-    </sect2>
-
     <sect2 id="ch01-editor-next">
       <title>What Next?</title>
 
       <para>Now that you know the basics, you can learn more about Dart Editor
       and help <phrase role="keep-together">improve it</phrase>.</para>
 
-      <sect3 id="ch01-editor-tutorial">
-        <title>Follow a tutorial</title>
+      <sect3 id="ch01-editor-codelab">
+        <title>Follow a code lab</title>
 
-        <para>Try the Dart web programming tutorials at <ulink
-        url="http://www.dartlang.org/docs/tutorials/">A Game of Darts,</ulink>
-        which feature Dart Editor.</para>
+        <para>Go to <ulink url="dartlang.org/codelabs"></ulink> to find the
+        latest step-by-step instructions for writing an app. The first code
+        lab, <ulink url="https://www.dartlang.org/codelabs/darrrt/">Try
+        Dart,</ulink> guides you through using Dart Editor to build and run a
+        pirate name badge generator.</para>
+      </sect3>
+
+      <sect3 id="ch01-editor-tutorial">
+        <title>Read tutorials</title>
+
+        <para><ulink url="http://www.dartlang.org/docs/tutorials/">The Dart
+        Tutorials</ulink> teach you how to build web applications using the
+        Dart language, tools, and APIs.</para>
       </sect3>
 
       <sect3 id="ch01-editor-learn-more">
