@@ -376,9 +376,7 @@
         </listitem>
 
         <listitem>
-          <para>Command-line arguments for many tools have changed. For
-          example, the dartdoc <literal>--pkg</literal> command-line option
-          changed to <literal>--package-root</literal>.</para>
+          <para>Command-line arguments for many tools have changed.</para>
         </listitem>
 
         <listitem>
@@ -389,6 +387,11 @@
 
         <listitem>
           <para>We fleshed out the dart2js docs.</para>
+        </listitem>
+
+        <listitem>
+          <para>We removed the dartdoc coverage from the book, since we expect
+          the interface to change significantly.</para>
         </listitem>
       </itemizedlist>
 
@@ -706,11 +709,6 @@
         <listitem>
           <para>The dart_analyzer tool (see <xref
           linkend="ch04-tools-dart_analyzer" />)</para>
-        </listitem>
-
-        <listitem>
-          <para>The dartdoc tool (see <xref
-          linkend="ch04-tools-dartdoc" />)</para>
         </listitem>
       </itemizedlist>
 

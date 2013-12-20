@@ -2663,8 +2663,7 @@ mirror.invoke(#greet, ['Shailen']);</screen>
         object.</para>
 
         <screen><remark>lang-dart
-ch03/mirrors.dart
-</remark>
+ch03/mirrors.dart</remark>
 var p = new Person('Bob', 'Smith', 42);
 InstanceMirror mirror = reflect(p);
 

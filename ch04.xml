@@ -5,7 +5,7 @@
   <title>Tools</title>
 
   <para>Dart provides several tools to help you write and deploy your web and
-  command-line apps:</para>
+  command-line apps. These tools include:</para>
 
   <variablelist>
     <varlistentry>
@@ -63,47 +63,36 @@
         <para>Analyze your Dart source from the command line.</para>
       </listitem>
     </varlistentry>
-
-    <varlistentry>
-      <term><link linkend="ch04-tools-dartdoc">dartdoc: The API Documentation
-      Generator</link></term>
-
-      <listitem>
-        <para>Generate documentation from your Dart source.</para>
-      </listitem>
-    </varlistentry>
   </variablelist>
 
   <para>All of these tools are in the Dart Editor bundle, since the editor
-  uses Dartium and the other tools. You can also download Dartium separately,
-  and you can download an SDK that includes pub, dart2js, dart, dartanalyzer,
-  and dartdoc. See the <ulink
-  url="http://www.dartlang.org/downloads.html">Downloads page</ulink> for
-  links and details.</para>
+  uses them. You can also download Dartium separately, and you can download an
+  SDK that includes pub, dart2js, dart, dartanalyzer, and more. See the <ulink
+  url="http://www.dartlang.org/tools/">Tools page</ulink> for links and
+  details.</para>
 
-  <para>The tools are in the <literal>dart-sdk/bin</literal> directory
-  of your Dart installation directory.
-  If you intend to use tools such as pub, dart2js, and dart from the command
-  line, add the <literal>bin</literal> directory to your path.
-  </para>
+  <para>The tools are in the <literal>dart-sdk/bin</literal> directory of your
+  Dart installation directory. If you intend to use tools such as pub,
+  dart2js, and dart from the command line, add the <literal>bin</literal>
+  directory to your path.</para>
 
   <sect1 id="ch04-tools-pub">
     <title>pub: The Dart Package Manager</title>
 
-    <para>You can use the <emphasis>pub</emphasis> tool to
-    manage Dart packages. A Dart package is simply a directory containing any
-    number of Dart libraries and a list of the library dependencies. A package
-    can also contain resources for its libraries, such as documentation,
-    tests, and images. If your app uses one or more packages, then your app
-    itself must be a package.</para>
+    <para>You can use the <emphasis>pub</emphasis> tool to manage Dart
+    packages. A Dart package is simply a directory containing any number of
+    Dart libraries and a list of the library dependencies. A package can also
+    contain resources for its libraries, such as documentation, tests, and
+    images. If your app uses one or more packages, then your app itself must
+    be a package.</para>
 
     <note>
       <para>Dart Editor offers support for using pub, including creating,
       installing, updating, and publishing packages.</para>
     </note>
 
-    <para>A package can live anywhere. For example, some packages are 
-    on GitHub. The Dart team publishes packages at <phrase
+    <para>A package can live anywhere. For example, some packages are on
+    GitHub. The Dart team publishes packages at <phrase
     role="keep-together"><ulink
     url="http://pub.dartlang.org">pub.dartlang.org</ulink>,</phrase> and we
     hope you will, too.</para>
@@ -113,9 +102,8 @@
 
     <orderedlist continuation="restarts" inheritnum="ignore">
       <listitem>
-        <para>Create a pubspec (a file that lists package
-        dependencies and includes other metadata,
-        such as a name for your package).</para>
+        <para>Create a pubspec (a file that lists package dependencies and
+        includes other metadata, such as a name for your package).</para>
       </listitem>
 
       <listitem>
@@ -144,8 +132,7 @@
 </remark>name: my_app
 dependencies:
   js: any
-  intl: any
-    </programlisting>
+  intl: any</programlisting>
 
       <para>For details, see the <ulink
       url="http://pub.dartlang.org/doc/pubspec.html">pubspec
@@ -160,15 +147,15 @@ dependencies:
       get</literal> from the top directory of your application:</para>
 
       <screen format="linespecific"><remark>lang-sh
-</remark>cd <replaceable>my/app</replaceable>
+</remark>cd <replaceable>path/to/my_app</replaceable>
 pub get</screen>
 
       <para>This command determines which packages your app depends on, and
       puts them in a central cache. For git dependencies, pub clones the git
       repository. For hosted dependencies, pub downloads the package from
       pub.dartlang.org. Transitive dependencies are included, too. For
-      example, if the js package is dependent on the unittest package, the pub
-      tool grabs both the js package and the unittest package.</para>
+      example, if the js package depends on the unittest package, the pub tool
+      grabs both the js package and the unittest package.</para>
 
       <para>Finally, pub creates a <literal moreinfo="none">packages</literal>
       directory (under your app’s top directory) that has links to the
@@ -193,10 +180,15 @@ import 'package:intl/intl.dart';</programlisting>
     <sect2 id="ch04-tools-pub-more-options">
       <title>More Information</title>
 
-      <para>Run <literal
-      moreinfo="none">pub
-      --help</literal> for a list of commands. For more information about pub,
-      including publishing your own packages, see the <ulink
+      <para>Pub has support for building web apps. If your web app's directory
+      structure follows pub's <ulink
+      url="http://pub.dartlang.org/doc/package-layout.html">package layout
+      conventions,</ulink> you can use the pub development server
+      (<literal>pub serve</literal>) to continuously build and serve the app's
+      assets. Once you're ready to deploy the web app, use <literal>pub
+      build</literal> to generate the final files.</para>
+
+      <para>For more information about pub, see the <ulink
       url="http://pub.dartlang.org/doc">pub documentation.</ulink></para>
     </sect2>
   </sect1>
@@ -231,9 +223,8 @@ import 'package:intl/intl.dart';</programlisting>
       <title>Managing the Files View</title>
 
       <para>The Files view shows the files that implement the libraries
-      included in Dart, installed packages,
-      as well as all the apps that you create or
-      open.</para>
+      included in Dart, installed packages, as well as all the apps that you
+      create or open.</para>
 
       <sect3 id="ch04-editor-apps-open">
         <title>Adding apps</title>
@@ -252,8 +243,8 @@ import 'package:intl/intl.dart';</programlisting>
           </listitem>
 
           <listitem>
-            <para>Browse
-            to the directory that contains the app’s files.</para>
+            <para>Browse to the directory that contains the app’s
+            files.</para>
           </listitem>
 
           <listitem>
@@ -392,18 +383,18 @@ import 'package:intl/intl.dart';</programlisting>
           <title>Finding out more about an API</title>
 
           <para>To get more information about an API item-variable, method,
-            type, library, and so on-hover the mouse over the item in the
-            Edit view. Dart Editor displays a popup that provides more
-            information about that item.</para>
-            
+          type, library, and so on-hover the mouse over the item in the Edit
+          view. Dart Editor displays a popup that provides more information
+          about that item.</para>
+
           <para>To go to the declaration of an API item, either within the
           same .dart file or in another file:</para>
 
           <orderedlist continuation="restarts" inheritnum="ignore">
             <listitem>
-              <para>In the Edit view of a Dart file, click on
-                an API item. Dart Editor highlights the item and all other
-                occurrences of the item.</para>
+              <para>In the Edit view of a Dart file, click on an API item.
+              Dart Editor highlights the item and all other occurrences of the
+              item.</para>
             </listitem>
 
             <listitem>
@@ -637,14 +628,13 @@ import 'package:intl/intl.dart';</programlisting>
       <sect3 id="ch04-editor-run-non-dartium">
         <title>Specifying a browser for JavaScript launches</title>
 
-        <para>To specify the browser in which to run the JavaScript version
-        of your web apps:</para>
+        <para>To specify the browser in which to run the JavaScript version of
+        your web apps:</para>
 
         <orderedlist continuation="restarts" inheritnum="ignore">
           <listitem>
-            <para>Choose
-            <emphasis role="bold">Dart Editor &gt; Preferences</emphasis>.
-            </para>
+            <para>Choose <emphasis role="bold">Dart Editor &gt;
+            Preferences</emphasis>.</para>
           </listitem>
 
           <listitem>
@@ -652,8 +642,8 @@ import 'package:intl/intl.dart';</programlisting>
           </listitem>
 
           <listitem>
-            <para>Unless you want to use the default system browser,
-            unselect <emphasis role="bold">Use default <phrase
+            <para>Unless you want to use the default system browser, unselect
+            <emphasis role="bold">Use default <phrase
             role="keep-together">system browser</phrase></emphasis> and
             specify the location of the browser you want to use. <phrase
             role="keep-together"><emphasis>Example:</emphasis>
@@ -666,13 +656,12 @@ import 'package:intl/intl.dart';</programlisting>
           </listitem>
         </orderedlist>
 
-        <para>Now whenever you run an app as JavaScript,
-        Dart Editor will invoke your browser of choice.
-        </para>
+        <para>Now whenever you run an app as JavaScript, Dart Editor invokes
+        your browser of choice.</para>
 
-        Alternatively, you can run your app as JavaScript using
-        the default browser setting and then copy and paste the URL into
-        a different browser.
+        <para>Alternatively, you can run your app as JavaScript using the
+        default browser setting and then copy and paste the URL into a
+        different browser.</para>
       </sect3>
     </sect2>
 
@@ -803,7 +792,8 @@ import 'package:intl/intl.dart';</programlisting>
     <warning>
       <para>This browser is a technical preview, and it might have security
       and stability issues. <emphasis role="bold">Do not use Dartium as your
-      primary browser!</emphasis></para>
+      primary browser, and do not distribute Dartium to
+      users!</emphasis></para>
     </warning>
 
     <sect2 id="ch04-dartium-download">
@@ -814,18 +804,22 @@ import 'package:intl/intl.dart';</programlisting>
 
       <para>If you don’t have Dart Editor or want a different version of
       Dartium, you can get it separately from the <ulink
-      url="http://www.dartlang.org/downloads.html">Downloads page.</ulink> The
-      Dartium binary does expire after a while. When that happens, you’ll
-      need to download a new copy if you want to continue using
-      Dartium.</para>
+      url="http://www.dartlang.org/downloads.html">Dartium
+      page.</ulink></para>
 
       <para>You don’t usually need to do anything special to install Dartium:
       just unarchive the ZIP file. If you want Dart Editor to launch a
-      particular copy of Dartium, then put that copy in the same directory 
-      as the <literal
-      moreinfo="none">dart-sdk</literal> directory of your Dart installation
-      directory (see <xref linkend="ch01-editor-download" />), replacing the
-      original copy of Chromium.</para>
+      particular copy of Dartium, then put that copy in the same directory as
+      the <literal moreinfo="none">dart-sdk</literal> directory of your Dart
+      installation directory (see <xref linkend="ch01-editor-download" />),
+      replacing the original copy of Chromium.</para>
+
+      <note>
+        <para>The Dartium binary expires after a couple of months. When that
+        happens, you’ll need to download a new binary unless you're using the
+        Dartium binary that comes with Dart Editor. (Dart Editor automatically
+        updates its Dartium binary.)</para>
+      </note>
     </sect2>
 
     <sect2 id="ch04-dartium-launch">
@@ -875,17 +869,21 @@ import 'package:intl/intl.dart';</programlisting>
       <note>
         <para>Dart Editor automatically adds both the <literal
         moreinfo="none">application/dart</literal> script tag and the
-        <literal>dart.js</literal> script tag into the project’s main
-        HTML file.</para>
+        <literal>dart.js</literal> script tag into the project’s main HTML
+        file.</para>
       </note>
+
+      <para>For more information on linking to source code, see the article
+      <ulink
+      url="https://www.dartlang.org/articles/embedding-in-html/">Embedding
+      Dart in HTML.</ulink></para>
     </sect2>
 
     <sect2 id="ch04-dartium-detect">
       <title>Detecting Dart Support</title>
 
-      <para>You can check whether a browser supports Dart
-      with this JavaScript code:
-      </para>
+      <para>You can check whether a browser supports Dart with this JavaScript
+      code:</para>
 
       <programlisting format="linespecific"><remark>lang-js
 </remark>// In JavaScript code:
@@ -906,8 +904,8 @@ if (navigator.userAgent.indexOf('(Dart)') == -1) {
       flags</ulink> should work. In some cases, you might want to specify
       Dart-specific flags so that you can tweak the embedded Dart VM’s
       behavior. For example, while developing your web app, you might want the
-      VM to verify type annotations and check assertions. To achieve that,
-      you can enable checked mode (the VM’s <literal>--checked</literal>
+      VM to verify type annotations and check assertions. To achieve that, you
+      can enable checked mode (the VM’s <literal>--checked</literal>
       flag).</para>
 
       <para>On Linux, you can specify flags by starting Dartium as
@@ -929,8 +927,8 @@ if (navigator.userAgent.indexOf('(Dart)') == -1) {
    open <replaceable>path</replaceable>/Chromium.app</screen>
 
       <note>
-        <para>You can see the command-line flags and executable path of your
-        current Chromium-based browser by going to <literal
+        <para>You can see the command-line flags and executable path of any
+        Chromium-based browser by going to <literal
         moreinfo="none">chrome://version</literal>.</para>
       </note>
     </sect2>
@@ -939,12 +937,19 @@ if (navigator.userAgent.indexOf('(Dart)') == -1) {
   <sect1 id="ch04-tools-dart2js">
     <title>dart2js: The Dart-to-JavaScript Compiler</title>
 
-    <para>You can use the <emphasis>dart2js</emphasis> tool to compile Dart
-    code to JavaScript. <link linkend="ch04-editor-dart2js">Dart Editor</link>
-    uses dart2js behind the scenes whenever Dart Editor compiles to
-    JavaScript. This section tells you how to use dart2js on the command line.
-    It also give tips on debugging the JavaScript that dart2js
-    generates.</para>
+    <para>Use the <emphasis>dart2js</emphasis> tool to compile Dart code to
+    JavaScript. <link linkend="ch04-editor-dart2js">Dart Editor</link> uses
+    dart2js behind the scenes whenever Dart Editor compiles to JavaScript. The
+    pub tool's <literal>serve</literal> and <literal>build</literal> options
+    also use dart2js.</para>
+
+    <para>The dart2js tool provides hints for improving your Dart code and
+    removing unused code. You can get these hints for all kinds of code—even
+    command-line apps. Also see dartanalyzer, which performs a similar
+    analysis but, as of 1.0, has a different implementation.</para>
+
+    <para>This section tells you how to use dart2js on the command line. It
+    also give tips on debugging the JavaScript that dart2js generates.</para>
 
     <sect2 id="ch04-tools-dart2js-basic-usage">
       <title>Basic Usage</title>
@@ -952,7 +957,7 @@ if (navigator.userAgent.indexOf('(Dart)') == -1) {
       <para>Here’s an example of compiling a Dart file to JavaScript:</para>
 
       <screen format="linespecific"><remark>lang-sh
-</remark>dart2js --out=test.js <replaceable>test.dart</replaceable></screen>
+</remark>dart2js --out=test.js test.dart</screen>
 
       <para>This command produces a file that contains the JavaScript
       equivalent of your Dart code. It also produces a source map, which can
@@ -966,8 +971,8 @@ if (navigator.userAgent.indexOf('(Dart)') == -1) {
 
       <variablelist role="keep-together">
         <varlistentry>
-          <term role="plain"><literal moreinfo="none">
-          -o<replaceable>&lt;file&gt;</replaceable></literal><emphasis> or
+          <term role="plain"><literal moreinfo="none">-o
+          <replaceable>&lt;file&gt;</replaceable></literal><emphasis> or
           </emphasis><literal>--out=<replaceable>&lt;file&gt;</replaceable></literal></term>
 
           <listitem>
@@ -979,7 +984,7 @@ if (navigator.userAgent.indexOf('(Dart)') == -1) {
         </varlistentry>
 
         <varlistentry>
-          <term role="plain"><literal moreinfo="none"> -c</literal><emphasis>
+          <term role="plain"><literal moreinfo="none">-c</literal><emphasis>
           or </emphasis><literal>--checked</literal></term>
 
           <listitem>
@@ -989,8 +994,8 @@ if (navigator.userAgent.indexOf('(Dart)') == -1) {
         </varlistentry>
 
         <varlistentry>
-          <term role="plain"><literal moreinfo="none">
-          --minify</literal></term>
+          <term role="plain"><literal moreinfo="none">-m</literal><emphasis>
+          or </emphasis><literal>--minify</literal></term>
 
           <listitem>
             <para>Generate minified output.</para>
@@ -998,7 +1003,7 @@ if (navigator.userAgent.indexOf('(Dart)') == -1) {
         </varlistentry>
 
         <varlistentry>
-          <term role="plain"><literal moreinfo="none"> -h</literal><emphasis>
+          <term role="plain"><literal moreinfo="none">-h</literal><emphasis>
           or </emphasis><literal>--help</literal></term>
 
           <listitem>
@@ -1006,15 +1011,132 @@ if (navigator.userAgent.indexOf('(Dart)') == -1) {
             for information about all options.)</para>
           </listitem>
         </varlistentry>
+      </variablelist>
 
+      <para>Some other handy options include: <remark>{NOTE:
+      --output-type=dart is intentionally undocumented because ahe says it's
+      not working that well. Also, the following flags are in dart2js.dart but
+      not the help and are intentionally undocumented: --build-id, force-strip
+      (used in tests/compiler/dart2js/dart_backend_test.dart),
+      disable-diagnostic-colors, --trust-type-annotations,
+      disable-type-inference, --disallow-unsafe-eval.}</remark></para>
+
+      <variablelist role="keep-together">
         <varlistentry>
-          <term role="plain"><literal moreinfo="none">
-          --output-type=dart</literal></term>
+          <term role="plain"><literal
+          moreinfo="none">-p<replaceable>&lt;path&gt;</replaceable></literal><emphasis>
+          or
+          </emphasis><literal>--package-root=<replaceable>&lt;path&gt;</replaceable></literal></term>
 
           <listitem>
-            <para>Output Dart code instead of JavaScript. This option is
-            useful when deploying your app, because it generates a single file
-            containing everything the app needs.</para>
+            <para>Specify where to find "package:" imports.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term role="plain"><literal
+          moreinfo="none">-D<replaceable>&lt;flag&gt;</replaceable>=<replaceable>&lt;value&gt;</replaceable></literal></term>
+
+          <listitem>
+            <para>Define an environment variable.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term role="plain"><literal
+          moreinfo="none">--version</literal></term>
+
+          <listitem>
+            <para>Display version information for dart2js.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para>The following options help you control the output of
+      dart2js:</para>
+
+      <variablelist role="keep-together">
+        <varlistentry>
+          <term role="plain"><literal
+          moreinfo="none">--suppress-warnings</literal></term>
+
+          <listitem>
+            <para>Don't display warnings.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term role="plain"><literal
+          moreinfo="none">--suppress-hints</literal></term>
+
+          <listitem>
+            <para>Don't display hints.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term role="plain"><literal moreinfo="none">--terse</literal></term>
+
+          <listitem>
+            <para>Emit diagnostics, but don't suggest how to get rid of the
+            diagnosed problems.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term role="plain"><literal moreinfo="none">-v</literal><emphasis>
+          or </emphasis><literal>--verbose</literal></term>
+
+          <listitem>
+            <para>Display lots of information.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para>The following options control the analysis that dart2js performs
+      on Dart code:</para>
+
+      <variablelist role="keep-together">
+        <varlistentry>
+          <term role="plain"><literal
+          moreinfo="none">--analyze-all</literal></term>
+
+          <listitem>
+            <para>Analyze even the code that isn't reachable from
+            <literal>main()</literal>. This option is useful for finding
+            errors in libraries, but using it can result in bigger and slower
+            output.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term role="plain"><literal
+          moreinfo="none">--analyze-only</literal></term>
+
+          <listitem>
+            <para>Analyze the code, but don't generate code.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term role="plain"><literal
+          moreinfo="none">--analyze-signatures-only</literal></term>
+
+          <listitem>
+            <para>Like <literal>--analyze-only</literal>, but skip analysis of
+            method bodies and field initializers.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term role="plain"><literal
+          moreinfo="none">--categories=Server</literal></term>
+
+          <listitem>
+            <para>Use with <literal>--analyze-only</literal> to analyze a
+            command-line app. The default category is
+            <literal>Client</literal>, which tells dart2js to expect a web
+            app.</para>
           </listitem>
         </varlistentry>
       </variablelist>
@@ -1033,17 +1155,16 @@ if (navigator.userAgent.indexOf('(Dart)') == -1) {
         </listitem>
 
         <listitem>
-          <para>Once you’re ready to deploy your app, use the dart2js --minify
-          option to reduce code size.</para>
+          <para>Once you’re ready to deploy your app, use the dart2js
+          <literal>--minify</literal> option to reduce code size.</para>
         </listitem>
       </itemizedlist>
 
       <note>
-        <para>Don’t worry about the size of your app’s included libraries.
-        Thanks to a feature called <emphasis>tree shaking,</emphasis> dart2js
-        omits unused classes, functions, methods, and so on. Just import the
-        libraries you need, and let dart2js get rid of what you don’t
-        need.</para>
+        <para>Don’t worry about the size of your app’s included libraries. The
+        dart2js tool performs tree shaking to omit unused classes, functions,
+        methods, and so on. Just import the libraries you need, and let
+        dart2js get rid of what you don’t need.</para>
       </note>
 
       <para>Follow these practices to help dart2js do better type inference,
@@ -1051,11 +1172,21 @@ if (navigator.userAgent.indexOf('(Dart)') == -1) {
 
       <itemizedlist>
         <listitem>
-          <para>Avoid setting variables to null.</para>
+          <para>Avoid using the dart:mirrors library, directly or indirectly.
+          If you must use it, provide <literal>@MirrorsUsed</literal>
+          annotations.</para>
         </listitem>
 
         <listitem>
-          <para>Use const or final variables wherever possible.</para>
+          <para>Don't use <literal>Function.apply()</literal>.</para>
+        </listitem>
+
+        <listitem>
+          <para>Don't override <literal>noSuchMethod()</literal>.</para>
+        </listitem>
+
+        <listitem>
+          <para>Avoid setting variables to null.</para>
         </listitem>
 
         <listitem>
@@ -1085,9 +1216,9 @@ if (navigator.userAgent.indexOf('(Dart)') == -1) {
 
         <orderedlist>
           <listitem>
-            <para>Open the Developer Tools window, as described in <ulink
-            url="https://developers.google.com/chrome-developer-tools/docs/overview">How
-            to Access the Developer Tools.</ulink></para>
+            <para>Open the Developer Tools window, as described in the <ulink
+            url="https://developers.google.com/chrome-developer-tools/docs/overview">Chrome
+            DevTools documentation.</ulink></para>
           </listitem>
 
           <listitem>
@@ -1099,9 +1230,7 @@ if (navigator.userAgent.indexOf('(Dart)') == -1) {
             <para>Enable debugging, either on all exceptions or only on
             uncaught exceptions, <phrase role="">as described in <ulink
             url="https://developers.google.com/chrome-developer-tools/docs/scripts-breakpoints#pause-on-exceptions">Pause
-            on Exceptions</ulink> </phrase>and <ulink
-            url="https://developers.google.com/chrome-developer-tools/docs/scripts-breakpoints#pause-on-uncaught-exceptions">Pause
-            on Uncaught Exceptions,</ulink> respectively.</para>
+            on JavaScript exceptions</ulink></phrase>.</para>
           </listitem>
 
           <listitem>
@@ -1191,7 +1320,7 @@ if (navigator.userAgent.indexOf('(Dart)') == -1) {
       line:</para>
 
       <screen format="linespecific"><remark>lang-sh
-</remark>dart <replaceable>test.dart</replaceable></screen>
+</remark>dart test.dart</screen>
     </sect2>
 
     <sect2 id="ch04-tools-dart-vm-options">
@@ -1200,11 +1329,9 @@ if (navigator.userAgent.indexOf('(Dart)') == -1) {
       <para>Common command-line options for dart include:</para>
 
       <variablelist>
-
         <varlistentry>
-          <term role="plain"><literal moreinfo="none">
-          --enable-checked-mode</literal><emphasis> or
-          </emphasis><literal>--checked</literal></term>
+          <term role="plain"><literal moreinfo="none">-c</literal><emphasis>
+          or </emphasis><literal>--checked</literal></term>
 
           <listitem>
             <para>Enable <emphasis>both</emphasis> assertions and type checks
@@ -1213,8 +1340,9 @@ if (navigator.userAgent.indexOf('(Dart)') == -1) {
         </varlistentry>
 
         <varlistentry>
-          <term role="plain"><literal moreinfo="none">
-          </literal><literal>--package-root=</literal><replaceable>&lt;path&gt;</replaceable></term>
+          <term
+          role="plain"><literal>-p<replaceable>&lt;path&gt;</replaceable> or
+          -package-root=<replaceable>&lt;path&gt;</replaceable></literal></term>
 
           <listitem>
             <para>Specify where to find imported libraries.</para>
@@ -1222,11 +1350,40 @@ if (navigator.userAgent.indexOf('(Dart)') == -1) {
         </varlistentry>
 
         <varlistentry>
-          <term role="plain"><literal moreinfo="none">
-          --print-flags</literal></term>
+          <term role="plain"><literal
+          moreinfo="none">--version</literal></term>
 
           <listitem>
-            <para>Print all the command-line options.</para>
+            <para>Display VM version information.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term role="plain"><literal moreinfo="none">-h</literal><emphasis>
+          or </emphasis><literal>--help</literal></term>
+
+          <listitem>
+            <para>Display help. (Add <literal moreinfo="none">-v</literal> for
+            information about all options.)</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para>You can also generate snapshots: <remark>{PENDING: Omitted --debug
+      because John says it's not generally useful. The verbose help also says
+      the following are supported, but I haven't documented them: break-at,
+      print-script, --enable-vm-service.}</remark></para>
+
+      <variablelist>
+        <varlistentry>
+          <term role="plain"><literal moreinfo="none">
+          --snapshot=<replaceable>&lt;filename&gt;</replaceable></literal></term>
+
+          <listitem>
+            <para>Generate a snapshot in the specified file. For information
+            on generating and running snapshots, see the article <ulink
+            url="https://www.dartlang.org/articles/snapshots/">Snapshots in
+            Dart.</ulink></para>
           </listitem>
         </varlistentry>
       </variablelist>
@@ -1240,8 +1397,8 @@ if (navigator.userAgent.indexOf('(Dart)') == -1) {
       enable checked mode for development and testing.</para>
 
       <para>In checked mode, assignments are dynamically checked, and certain
-      violations of the type system raise exceptions at runtime. In
-      production mode, static type annotations have no effect.</para>
+      violations of the type system raise exceptions at runtime. In production
+      mode, static type annotations have no effect.</para>
 
       <para>Assert statements are also enabled in checked mode. An <link
       linkend="assert">assert statement</link> checks a boolean condition,
@@ -1266,10 +1423,9 @@ if (navigator.userAgent.indexOf('(Dart)') == -1) {
     Language Specification.</ulink></para>
 
     <note>
-      <para>Dart Editor performs the same analysis that dartanalyzer does, but
-      with additional checks for common mistakes. A previous static analyzer,
-      called <emphasis>dart_analyzer</emphasis>, is no longer
-      supported.</para>
+      <para>Dart Editor performs the same analysis that dartanalyzer does. A
+      previous static analyzer, called <emphasis>dart_analyzer</emphasis>, is
+      no longer supported.</para>
     </note>
 
     <sect2 id="ch04-tools-dart_analyzer-basic-usage">
@@ -1278,7 +1434,7 @@ if (navigator.userAgent.indexOf('(Dart)') == -1) {
       <para>Here’s an example of testing a Dart file:</para>
 
       <screen format="linespecific"><remark>lang-sh
-</remark>dartanalyzer --package-root <replaceable>code/packages</replaceable> <replaceable>test.dart</replaceable></screen>
+</remark>dartanalyzer --package-root=code/packages test.dart</screen>
 
       <para>As <xref linkend="ch04-dartanalyzer-exit" /> shows, the exit code
       of dartanalyzer tells you whether the code passed analysis.</para>
@@ -1321,26 +1477,31 @@ if (navigator.userAgent.indexOf('(Dart)') == -1) {
     <sect2 id="ch04-tools-dart_analyzer-options">
       <title>Options</title>
 
-      <para>You can use the following command-line options with
-      dartanalyzer:</para>
+      <para>You can use the following command-line options with dartanalyzer:
+      <remark>{NOTE: I'm still not documenting --perf. It's displayed by
+      --help but seems of limited use to most developers. I'm also not
+      documenting the following, which I got from sdk/bin/dartanalyzer or
+      pkg/analyzer/lib/options.dart but aren't displayed by help:
+      -batch|--batch|-b (though -b doesn't seem to be treated specially by the
+      script), --ignore-unrecognized-flags (doesn't seem to change the
+      output), --fatal-warnings, --warnings (only for SDK developers?),
+      --show-sdk-warnings (deprecated)}</remark></para>
 
       <variablelist>
-
         <varlistentry>
-          <term role="plain"><literal moreinfo="none">
-          </literal><literal>--dart-sdk
-          <replaceable>&lt;path&gt;</replaceable></literal></term>
+          <term
+          role="plain"><literal>--dart-sdk=<replaceable>&lt;path&gt;</replaceable></literal></term>
 
           <listitem>
             <para>Specify the directory that contains the Dart SDK.</para>
           </listitem>
-
         </varlistentry>
 
         <varlistentry>
-          <term role="plain"><literal moreinfo="none">
-          </literal><literal>--package-root
-          <replaceable>&lt;path&gt;</replaceable></literal></term>
+          <term
+          role="plain"><literal>-p<replaceable>&lt;path&gt;</replaceable></literal><emphasis>
+          or
+          </emphasis><literal>--package-root=<replaceable>&lt;path&gt;</replaceable></literal></term>
 
           <listitem>
             <para>Specify the directory to search for any libraries that are
@@ -1349,8 +1510,7 @@ if (navigator.userAgent.indexOf('(Dart)') == -1) {
         </varlistentry>
 
         <varlistentry>
-          <term role="plain"><literal moreinfo="none">
-          </literal><literal>--show-package-warnings</literal></term>
+          <term role="plain"><literal>--package-warnings</literal></term>
 
           <listitem>
             <para>Show warnings not only for code in the specified .dart file
@@ -1360,8 +1520,7 @@ if (navigator.userAgent.indexOf('(Dart)') == -1) {
         </varlistentry>
 
         <varlistentry>
-          <term role="plain"><literal moreinfo="none">
-          </literal><literal>--machine</literal></term>
+          <term role="plain"><literal>--format=machine</literal></term>
 
           <listitem>
             <para>Produce output in a format suitable for parsing.</para>
@@ -1369,8 +1528,15 @@ if (navigator.userAgent.indexOf('(Dart)') == -1) {
         </varlistentry>
 
         <varlistentry>
-          <term role="plain"><literal moreinfo="none">
-          </literal><literal>--version</literal></term>
+          <term role="plain"><literal>--no-hints</literal></term>
+
+          <listitem>
+            <para>Don't show hints for improving the code.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term role="plain"><literal>--version</literal></term>
 
           <listitem>
             <para>Show the analyzer version.</para>
@@ -1378,135 +1544,11 @@ if (navigator.userAgent.indexOf('(Dart)') == -1) {
         </varlistentry>
 
         <varlistentry>
-          <term role="plain"><literal moreinfo="none">
-          </literal><literal>--help</literal></term>
+          <term role="plain"><literal moreinfo="none">-h</literal><emphasis>
+          or </emphasis><literal>--help</literal></term>
 
           <listitem>
             <para>Show all the command-line options.</para>
-          </listitem>
-        </varlistentry>
-      </variablelist>
-    </sect2>
-  </sect1>
-
-  <sect1 id="ch04-tools-dartdoc">
-    <title>dartdoc: The API Documentation Generator</title>
-
-    <para>You can use the <emphasis>dartdoc</emphasis> tool (<literal
-    moreinfo="none">bin/dartdoc</literal>) to generate documentation from your
-    Dart code. By default, dartdoc parses and creates documentation for the
-    .dart files that you pass to it, plus the libraries they import.</para>
-
-    <para>To improve dartdoc’s output, provide documentation comments as
-    described in <xref linkend="comments-doc" />. Also see the article <ulink
-    url="http://www.dartlang.org/articles/doc-comment-guidelines/">Guidelines
-    for Dart Doc <phrase
-    role="keep-together">Comments</phrase>.</ulink></para>
-
-    <sect2 id="ch04-tools-dartdoc-basic-usage">
-      <title>Basic Usage</title>
-
-      <para>Here’s an example of generating documentation from a Dart
-      file.</para>
-
-      <screen format="linespecific"><remark>lang-sh
-</remark>dartdoc --out=/docs/mylib <replaceable>mylib.dart</replaceable></screen>
-
-      <para>By default, the generated documentation appears in a directory
-      named <literal>docs/</literal>.</para>
-    </sect2>
-
-    <sect2 id="ch04-tools-dartdoc-options">
-      <title>Options</title>
-
-      <para>Common command-line options for dartdoc include:</para>
-
-      <variablelist>
-        <varlistentry>
-          <term role="plain"><literal moreinfo="none">
-          </literal><literal>--out=<replaceable>&lt;absolute_path&gt;</replaceable></literal></term>
-
-          <listitem>
-            <para>Put the documentation in the specified directory. If the
-            directory doesn’t already exist, it’s created.</para>
-          </listitem>
-        </varlistentry>
-      </variablelist>
-
-      <variablelist>
-        <varlistentry>
-          <term role="plain"><literal moreinfo="none">
-          </literal><literal>--no-code</literal></term>
-
-          <listitem>
-            <para>Don’t include source code in the generated
-            documentation.</para>
-          </listitem>
-        </varlistentry>
-      </variablelist>
-
-      <variablelist>
-        <varlistentry>
-          <term role="plain"><literal moreinfo="none">
-          </literal><literal>--exclude-lib=<replaceable>&lt;identifier&gt;</replaceable></literal></term>
-
-          <listitem>
-            <para>Don’t generate documentation for the specified
-            library.</para>
-
-            <para><phrase role="keep-together"><emphasis>Example:</emphasis>
-            <literal>--exclude-lib=metadata</literal></phrase></para>
-          </listitem>
-        </varlistentry>
-      </variablelist>
-
-      <variablelist>
-        <varlistentry>
-          <term role="plain"><literal moreinfo="none">
-          </literal><literal>--omit-generation-time</literal></term>
-
-          <listitem>
-            <para>Don’t put a timestamp at the bottom of every page.</para>
-          </listitem>
-        </varlistentry>
-      </variablelist>
-
-      <variablelist>
-        <varlistentry>
-          <term role="plain"><literal moreinfo="none">
-          </literal><literal>--mode=static</literal></term>
-
-          <listitem>
-            <para>Use static HTML navigation. The resulting files can be much
-            larger than the default, but previewing docs locally is
-            easier.</para>
-          </listitem>
-        </varlistentry>
-      </variablelist>
-
-      <variablelist>
-        <varlistentry>
-          <term role="plain"><literal moreinfo="none">
-          </literal><literal>--package-root=<replaceable>&lt;path&gt;</replaceable></literal></term>
-
-          <listitem>
-            <para>Specify where to find imported libraries. You might need to
-            use this option if dartdoc can’t find a library because your
-            directory structure doesn’t match <ulink
-            url="http://pub.dartlang.org/doc/package-layout.html">pub’s
-            package layout conventions.</ulink> <emphasis>Example:</emphasis>
-            <literal>--package-root=foo/packages/</literal></para>
-          </listitem>
-        </varlistentry>
-      </variablelist>
-
-      <variablelist>
-        <varlistentry>
-          <term role="plain"><literal moreinfo="none">
-          </literal><literal>--help</literal></term>
-
-          <listitem>
-            <para>Print all the command-line options.</para>
           </listitem>
         </varlistentry>
       </variablelist>
