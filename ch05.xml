@@ -24,7 +24,7 @@
     </mediaobject>
   </figure>
 
-  <sect1>
+  <sect1 id="ch05-how-to-run">
     <title>How to Run Dartiverse Search</title>
 
     <para>You can use Dart Editor to get and run Dartiverse Search.</para>
@@ -60,7 +60,7 @@
     </orderedlist>
   </sect1>
 
-  <sect1>
+  <sect1 id="ch05-how-it-works">
     <title>How Dartiverse Search Works</title>
 
     <para>The search server is an HTTP server that provides a WebSocket
@@ -105,7 +105,7 @@
     JavaScript code.</para>
   </sect1>
 
-  <sect1>
+  <sect1 id="ch05-client-html">
     <title>The Client's HTML Code</title>
 
     <para>The client's UI is simple. It has a search field, implemented as an
@@ -141,7 +141,7 @@
     code into its JavaScript equivalent.</para>
   </sect1>
 
-  <sect1>
+  <sect1 id="ch05-client-dart">
     <title>The Client's Dart Code</title>
 
     <para>Dart code (<literal>web/client.dart</literal>) provides the client’s
@@ -149,7 +149,7 @@
     client’s Dart code uses the DOM to find the div where the client displays
     messages.</para>
 
-    <sect2>
+    <sect2 id="ch05-client-dart-find-elements">
       <title>Finding DOM Elements</title>
 
       <para>The client app uses dart:html’s top-level
@@ -176,7 +176,7 @@ DivElement resultsElement = querySelector('#results');</programlisting>
       </note>
     </sect2>
 
-    <sect2>
+    <sect2 id="ch05-client-dart-handle-events">
       <title>Handling Events</title>
 
       <para>The client app uses <literal>onChange.listen()</literal> to
@@ -189,7 +189,7 @@ DivElement resultsElement = querySelector('#results');</programlisting>
 });</programlisting>
     </sect2>
 
-    <sect2>
+    <sect2 id="ch05-client-dart-properties">
       <title>Getting and Setting Properties</title>
 
       <para>The change event handler gets and sets the text in the search
@@ -199,7 +199,7 @@ DivElement resultsElement = querySelector('#results');</programlisting>
 searchElement.value = '';</programlisting>
     </sect2>
 
-    <sect2>
+    <sect2 id="ch05-client-dart-add-elements">
       <title>Adding DOM Elements</title>
 
       <para>Every time the search client receives a result on the WebSocket,
@@ -222,7 +222,7 @@ searchElement.value = '';</programlisting>
       temporarily hold the new HeadingElement and AnchorElement.</para>
     </sect2>
 
-    <sect2>
+    <sect2 id="ch05-client-dart-json">
       <title>Encoding and Decoding Messages</title>
 
       <para>The dart:convert library's global <literal>JSON</literal> object
@@ -259,7 +259,7 @@ switch (response) {
       linkend="ch03-dart-convert" />.</para>
     </sect2>
 
-    <sect2>
+    <sect2 id="ch05-client-dart-web-sockets">
       <title>Communicating with WebSockets</title>
 
       <para>The search client connects to the WebSocket by calling the
@@ -328,7 +328,7 @@ switch (response) {
     </sect2>
   </sect1>
 
-  <sect1>
+  <sect1 id="ch05-server">
     <title>The Server's Code</title>
 
     <para>The main code for the search server is under the
@@ -340,7 +340,7 @@ switch (response) {
     search_engine, that's implemented in files under the
     <literal>lib</literal> directory.</para>
 
-    <sect2>
+    <sect2 id="ch05-server-static">
       <title>Serving Static Files</title>
 
       <para>The search server uses HttpServer (from dart:io), Platform (also
@@ -392,7 +392,7 @@ HttpServer.bind(InternetAddress.LOOPBACK_IP_V4, port).then((server) {
       include WebSocket connection requests.</para>
     </sect2>
 
-    <sect2>
+    <sect2 id="ch05-server-web-socket">
       <title>Managing WebSocket Connections</title>
 
       <para>The search server uses the Router class from the <ulink
@@ -459,7 +459,7 @@ HttpServer.bind(InternetAddress.LOOPBACK_IP_V4, port).then((server) {
       sends a 'searchDone' message to the client.</para>
     </sect2>
 
-    <sect2>
+    <sect2 id="ch05-server-web-apis">
       <title>Using Web APIs</title>
 
       <para>The GitHub and StackOverflow searches are implemented in
@@ -527,7 +527,7 @@ Stream&lt;SearchResult&gt; search(String input) {
       handler executes.</para>
     </sect2>
 
-    <sect2>
+    <sect2 id="ch05-server-library">
       <title>Implementing a Library</title>
 
       <para>The search server implements a library, named search_engine, that
@@ -602,7 +602,7 @@ part of search_engine;
       <para>The bulk of the code is in the SearchEngine subclasses.</para>
     </sect2>
 
-    <sect2>
+    <sect2 id="ch05-server-logging">
       <title>Logging Messages</title>
 
       <para>The search server uses the <ulink
@@ -656,7 +656,7 @@ void main() {
     </sect2>
   </sect1>
 
-  <sect1>
+  <sect1 id="ch05-what-next">
     <title>What Next?</title>
 
     <para>You’ve seen how the Dartiverse Search sample uses both server-side
