@@ -1299,7 +1299,7 @@ print(math.SQRT2); // 1.4142135623730951</screen>
       <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03/math-tests.dart
 </remark>var random = new math.Random();
-random.nextDouble(); // Between 0.0 and 1.0: [0, 1)
+random.nextDouble(); // Between 0.0 and 1.0: [0, 1]
 random.nextInt(10);  // Between 0 and 9.</screen>
 
       <para>You can even generate random booleans:</para>
