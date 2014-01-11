@@ -518,7 +518,9 @@ const atm = 1.01325 * bar; // Standard atmosphere</programlisting>
           <literal moreinfo="none">int</literal> </ulink></term>
 
           <listitem>
-            <para>Integers of arbitrary size</para>
+            <para>Integer values, which generally should be in the range
+            -2<superscript>53</superscript> to 2<superscript>53</superscript>
+            </para>
           </listitem>
         </varlistentry>
 
@@ -543,10 +545,16 @@ const atm = 1.01325 * bar; // Standard atmosphere</programlisting>
       <literal>floor()</literal>, among other methods. If num and its subtypes
       don’t have what you’re looking for, the <ulink
       url="http://api.dartlang.org/dart_math.html">Math</ulink> library might.
-      (In JavaScript produced from Dart code, <ulink
-      url="http://dartbug.com/1533">big integers currently behave
-      differently</ulink> than they do when the same Dart code runs in the
-      Dart VM.)</para>
+      </para>
+
+      <warning>
+        <para>Integers outside of the -2<superscript>53</superscript> to
+        2<superscript>53</superscript> range currently behave differently in
+        JavaScript produced from Dart code than they do when the same Dart
+        code runs in the Dart VM. The reason is that Dart is specified to have
+        arbitrary-precision integers, but JavaScript isn't. See <ulink
+        url="http://dartbug.com/1533">issue 1533</ulink> for details.</para>
+      </warning>
 
       <para>Integers are numbers without a decimal point. Here are some
       examples of defining integer literals:</para>
