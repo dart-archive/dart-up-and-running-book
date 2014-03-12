@@ -79,9 +79,9 @@
       </varlistentry>
     </variablelist>
 
-    <tip>
+    <note>
       <para>This icon signifies a tip, suggestion, or general note.</para>
-    </tip>
+    </note>
 
     <caution>
       <para>This icon indicates a warning or caution.</para>
@@ -91,22 +91,26 @@
   <sect1 id="preface-examples">
     <title>Using Code Examples</title>
 
-    <para>This book is here to help you get your job done. In general, you may
-    use the code in this book in your programs and documentation. You do not
-    need to contact us for permission unless you’re reproducing a significant
-    portion of the code. For example, writing a program that uses several
-    chunks of code from this book does not require permission. Selling or
-    distributing a CD-ROM of examples from O’Reilly books does require
-    permission. Answering a question by citing this book and quoting example
-    code does not require permission. Incorporating a significant amount of
-    example code from this book into your product’s documentation does require
-    permission.</para>
+    <para>Supplemental material (code examples, exercises, etc.) is available
+    for download at <ulink role="orm:hideurl"
+    url="https://github.com/oreillymedia/dart_up_and_running"><emphasis>https://github.com/oreillymedia/dart_up_and_running</emphasis></ulink>.</para>
+
+    <para>This book is here to help you get your job done. In general, if
+    example code is offered with this book, you may use it in your programs
+    and documentation. You do not need to contact us for permission unless
+    you’re reproducing a significant portion of the code. For example, writing
+    a program that uses several chunks of code from this book does not require
+    permission. Selling or distributing a CD-ROM of examples from O’Reilly
+    books does require permission. Answering a question by citing this book
+    and quoting example code does not require permission. Incorporating a
+    significiant amount of example code from this book into your product’s
+    documentation does require permission.</para>
 
     <para>We appreciate, but do not require, attribution. An attribution
     usually includes the <phrase role="keep-together">title, author,</phrase>
-    publisher, and ISBN. For example: “<emphasis>Dart:Up and
+    publisher, and ISBN. For example: “<emphasis>Dart: Up and
     Running</emphasis> by Kathy <phrase role="keep-together">Walrath
-    and</phrase> Seth Ladd (O’Reilly). Copyright 2013 Kathy Walrath and Seth
+    and</phrase> Seth Ladd (O’Reilly). Copyright 2014 Kathy Walrath and Seth
     Ladd, 978-1-449-33089-7.”</para>
 
     <para>If you feel your use of code examples falls outside fair use or the
@@ -198,24 +202,26 @@
   <sect1 id="preface-updates">
     <title>Content Updates</title>
 
-    <para>This section gives details about how the book has changed since its
-    first and second printings.</para>
+    <para>This section gives details about how the book has changed between
+    each of its three printings.</para>
 
     <sect2 id="preface-updates-v3">
-      <title>Changes After the Second Printing</title>
+      <title>Changes in the Third Printing: February 19, 2014</title>
 
       <para>We've changed the text and examples to reflect these language
       changes:</para>
 
       <itemizedlist>
         <listitem>
-          <para>Instance variables can no longer be <literal>const</literal>.
-          Use <literal>static const</literal> variables instead.</para>
+          <para>Instance variables can no longer be <literal
+          moreinfo="none">const</literal>. Use <literal moreinfo="none">static
+          const</literal> variables instead.</para>
         </listitem>
 
         <listitem>
-          <para>The <literal>?</literal> operator for testing whether an
-          optional parameter has been set is no longer in the language.</para>
+          <para>The <literal moreinfo="none">?</literal> operator for testing
+          whether an optional parameter has been set is no longer in the
+          language.</para>
         </listitem>
 
         <listitem>
@@ -223,14 +229,14 @@
         </listitem>
 
         <listitem>
-          <para>Dart now has Symbols and symbol literals
-          (<literal>#<replaceable>identifier</replaceable></literal>): <xref
-          linkend="ch02-symbols" />.</para>
+          <para>Dart now has Symbols and symbol literals (<literal
+          moreinfo="none">#<replaceable>identifier</replaceable></literal>):
+          <xref linkend="ch02symbols" />.</para>
         </listitem>
 
         <listitem>
           <para>Function equality testing is easier: <xref
-          linkend="ch02-function-equality" />.</para>
+          linkend="ch02functionequality" />.</para>
         </listitem>
 
         <listitem>
@@ -244,9 +250,11 @@
 
       <itemizedlist>
         <listitem>
-          <para>Set’s <literal>isSubsetOf()</literal> method is gone. Instead,
-          use the Set <literal>containsAll()</literal> method. You can convert
-          any Iterable to a Set using <literal>toSet()</literal>.</para>
+          <para>Set’s <literal moreinfo="none">isSubsetOf()</literal> method
+          is gone. Instead, use the Set <literal
+          moreinfo="none">containsAll()</literal> method. You can convert any
+          Iterable to a Set using <literal
+          moreinfo="none">toSet()</literal>.</para>
         </listitem>
 
         <listitem>
@@ -258,20 +266,22 @@
 
         <listitem>
           <para>The functionality in the former dart:uri library is now in the
-          Uri class in dart:core. The top-level functions
-          <literal>encodeUri()</literal>,
-          <literal>encodeUriComponent()</literal>,
-          <literal>decodeUri()</literal>, and
-          <literal>decodeUriComponent()</literal> are now static methods in
-          Uri named (respectively) <literal>encodeFull()</literal>,
-          <literal>encodeComponent()</literal>,
-          <literal>decodeFull()</literal>, and
-          <literal>decodeComponent()</literal>. To create a Uri from a string,
-          you now use the static <literal>parse()</literal> method. Uri now
-          has a single constructor, which takes the arguments that the
-          <literal>Uri.fromComponents()</literal> constructor used to take.
-          Finally, the <literal>domain</literal> field is now named
-          <literal>host</literal>.</para>
+          Uri class in dart:core. The top-level functions <literal
+          moreinfo="none">encodeUri()</literal>, <literal
+          moreinfo="none">encodeUriComponent()</literal>, <literal
+          moreinfo="none">decodeUri()</literal>, and <literal
+          moreinfo="none">decodeUriComponent()</literal> are now static
+          methods in Uri named (respectively) <literal
+          moreinfo="none">encodeFull()</literal>, <literal
+          moreinfo="none">encodeComponent()</literal>, <literal
+          moreinfo="none">decodeFull()</literal>, and <literal
+          moreinfo="none">decodeComponent()</literal>. To create a Uri from a
+          string, you now use the static <literal
+          moreinfo="none">parse()</literal> method. Uri now has a single
+          constructor, which takes the arguments that the <literal
+          moreinfo="none">Uri.fromComponents()</literal> constructor used to
+          take. Finally, the <literal moreinfo="none">domain</literal> field
+          is now named <literal moreinfo="none">host</literal>.</para>
         </listitem>
 
         <listitem>
@@ -284,26 +294,28 @@
 
       <itemizedlist>
         <listitem>
-          <para>File’s <literal>openWrite()</literal> method now has no
-          required parameters but two optional named parameters. The
-          <literal>mode</literal> parameter has a default value of
-          <literal>FileMode.WRITE</literal>.</para>
+          <para>File’s <literal moreinfo="none">openWrite()</literal> method
+          now has no required parameters but two optional named parameters.
+          The <literal moreinfo="none">mode</literal> parameter has a default
+          value of <literal moreinfo="none">FileMode.WRITE</literal>.</para>
         </listitem>
 
         <listitem>
-          <para>File’s <literal>readAsString()</literal> and
-          <literal>readAsLines()</literal> methods no longer require a
-          parameter. Instead, they have an optional named parameter
-          (<literal>encoding</literal>), with a default value of
-          <literal>Encoding.UTF_8</literal>.</para>
+          <para>File’s <literal moreinfo="none">readAsString()</literal> and
+          <literal moreinfo="none">readAsLines()</literal> methods no longer
+          require a parameter. Instead, they have an optional named parameter
+          (<literal moreinfo="none">encoding</literal>), with a default value
+          of <literal moreinfo="none">Encoding.UTF_8</literal>.</para>
         </listitem>
 
         <listitem>
           <para>IOSink’s methods for writing data have changed. To write
-          string data, instead of <literal>addString()</literal> use
-          <literal>write()</literal>. The method for writing binary data was
-          temporarily renamed to <literal>writeBytes()</literal>, but reverted
-          back to <literal>add()</literal>.</para>
+          string data, instead of <literal
+          moreinfo="none">addString()</literal> use <literal
+          moreinfo="none">write()</literal>. The method for writing binary
+          data was temporarily renamed to <literal
+          moreinfo="none">writeBytes()</literal>, but reverted back to
+          <literal moreinfo="none">add()</literal>.</para>
         </listitem>
       </itemizedlist>
 
@@ -311,9 +323,9 @@
 
       <itemizedlist>
         <listitem>
-          <para>Instead of a StringDecoder, use
-          <literal>UTF8.decoder</literal> to convert UTF-8 characters into a
-          Dart string.</para>
+          <para>Instead of a StringDecoder, use <literal
+          moreinfo="none">UTF8.decoder</literal> to convert UTF-8 characters
+          into a Dart string.</para>
         </listitem>
 
         <listitem>
@@ -322,17 +334,19 @@
         </listitem>
 
         <listitem>
-          <para>Where you used to use dart:json's top-level
-          <literal>parse()</literal> and <literal>stringify()</literal>
-          functions, use <literal>JSON.decode()</literal> and
-          <literal>JSON.encode()</literal>, respectively.</para>
+          <para>Where you used to use dart:json's top-level <literal
+          moreinfo="none">parse()</literal> and <literal
+          moreinfo="none">stringify()</literal> functions, use <literal
+          moreinfo="none">JSON.decode()</literal> and <literal
+          moreinfo="none">JSON.encode()</literal>, respectively.</para>
         </listitem>
 
         <listitem>
-          <para>Where you used to use dart:uri's top-level
-          <literal>decodeUri()</literal> and <literal>encodeUri()</literal>
-          functions, use <literal>UTF8.decode()</literal> and
-          <literal>UTF8.encode()</literal>, respectively.</para>
+          <para>Where you used to use dart:uri's top-level <literal
+          moreinfo="none">decodeUri()</literal> and <literal
+          moreinfo="none">encodeUri()</literal> functions, use <literal
+          moreinfo="none">UTF8.decode()</literal> and <literal
+          moreinfo="none">UTF8.encode()</literal>, respectively.</para>
         </listitem>
       </itemizedlist>
 
@@ -340,10 +354,10 @@
 
       <itemizedlist>
         <listitem>
-          <para>In dart:html, the <literal>query()</literal> and
-          <literal>queryAll()</literal> methods changed to
-          <literal>querySelector()</literal> and
-          <literal>querySelectorAll()</literal>, respectively.</para>
+          <para>In dart:html, the <literal moreinfo="none">query()</literal>
+          and <literal moreinfo="none">queryAll()</literal> methods changed to
+          <literal moreinfo="none">querySelector()</literal> and <literal
+          moreinfo="none">querySelectorAll()</literal>, respectively.</para>
         </listitem>
 
         <listitem>
@@ -443,8 +457,8 @@
         </listitem>
 
         <listitem>
-          <para>Removed the incorrect <literal>new</literal> from the example
-          of using Future.wait().</para>
+          <para>Removed the incorrect <literal moreinfo="none">new</literal>
+          from the example of using Future.wait().</para>
         </listitem>
 
         <listitem>
@@ -458,6 +472,9 @@
       </itemizedlist>
 
       <para>Throughout the book, we updated links to related topics.</para>
+
+      <para>Finally, we completely rewrote <xref linkend="ch05" /> to feature
+      a new example (Dartiverse Search).</para>
     </sect2>
 
     <sect2 id="preface-updates-v2">
@@ -725,10 +742,11 @@
 
     <para>The following Dart engineers and managers gave us prompt, helpful
     reviews and information for the sections corresponding to their areas of
-    responsibility: Mads Ager, Peter von der Ahé, Justin Fagnani, Dan Grove,
-    Florian Loitsch, Sam McCall, Vijay Menon, John Messerly, Anton Muhin,
-    Lasse R.H. Nielsen, Bob Nystrom, Ivan Posva, Jaime Wren, Matthias Hausner,
-    Keerti Parthasarathy, and Konstantin Scheglov.</para>
+    responsibility: Mads Ager, Peter von der Ahé, Justin Fagnani, Emily
+    Fortuna, Søren Gjesse, Dan Grove, Matthias Hausner, Florian Loitsch, Ryan
+    Macnak, Sam McCall, John McCutchan, Vijay Menon, John Messerly, Anton
+    Muhin, Lasse R.H. Nielsen, Bob Nystrom, Keerti Parthasarathy, Ivan Posva,
+    Konstantin Scheglov, Brian Wilkerson, and Jaime Wren.</para>
 
     <para>We’d especially like to thank the people who reviewed even bigger
     swaths of the book or contributed in other, large ways:</para>
@@ -736,9 +754,9 @@
     <itemizedlist>
       <listitem>
         <para>JJ Behrens, whose careful look at the first draft of the book
-        helped us catch errors and inconsistencies, as well as rework Chapter
-        5 to be more interesting, and less of a laundry list. He also created
-        a system for testing our samples.</para>
+        helped us catch errors and inconsistencies, as well as rework <xref
+        linkend="ch05" /> to be more interesting, and less of a laundry list.
+        He also created a system for testing our samples.</para>
       </listitem>
 
       <listitem>
@@ -749,7 +767,8 @@
       <listitem>
         <para>Mary Campione, whose stream-of-consciousness review of the
         entire book, performed while she was first learning the language,
-        helped us find and fix many confusing spots, as well as some errors.
+        helped us find and fix many <phrase
+        role="keep-together">confusing</phrase> spots, as well as some errors.
         Later she reviewed and updated our samples, and she implemented
         continuous build testing for our samples on drone.io.</para>
       </listitem>
@@ -772,21 +791,26 @@
         making all the corners of the language understandable to all Dart
         programmers.</para>
       </listitem>
+
+      <listitem>
+        <para>Anders Johnsen, who wrote the Dartiverse Search app and reviewed
+        <xref linkend="ch05" />’s walkthrough of that app.</para>
+      </listitem>
     </itemizedlist>
 
-    <para>Other Googlers helped, as well. Vivian Li, the head of Chrome
+    <para>Other Googlers helped, as well. Vivian Cromwell, the head of Chrome
     Developer Relations, supported our work on this book. Andres Ferrate, the
     Google Press liaison to O’Reilly, helped simplify the process of getting
     the book published. Myisha Harris gave us excellent legal advice.</para>
 
     <para>The people at O’Reilly were extremely helpful. Meghan Blanchette,
     our editor, kept everything going smoothly, monitoring our progress in the
-    nicest possible way. Christopher Hearse and Marisa LaFleur checked our
-    work and helped us make some last-minute fixes that improved the final
-    result. We’d also like to thank the good people who manage the author
-    workflow and make working on an O’Reilly book such a pleasure. We
-    personally worked with Sarah Schneider, Jessica Hosman, and Rachel
-    James.</para>
+    nicest possible way. Christopher Hearse, Marisa LaFleur, and Melanie
+    Yarbrough checked our work and helped us make some last-minute fixes that
+    improved the final result. We’d also like to thank the good people who
+    manage the author workflow and make working on an O’Reilly book such a
+    pleasure. We personally worked with Sarah Schneider, Jessica Hosman, and
+    Rachel James.</para>
 
     <para>Finally, we thank Lars Bak and Kasper Lund for writing the foreword,
     and most of all for creating Dart.</para>

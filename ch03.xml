@@ -782,7 +782,7 @@ var unixEpoch = new DateTime.utc(1970); // 1/1/1970, UTC
 assert(unixEpoch.millisecondsSinceEpoch == 0);</screen>
 
       <para>Use the Duration class to calculate the difference between two
-      dates and to shift a date forward or backwards:</para>
+      dates and to shift a date forward or backward:</para>
 
       <screen format="linespecific"><remark>lang-dart
 </remark><remark>ch03/date.dart
@@ -1074,7 +1074,7 @@ return result.then((value) =&gt; expensiveWork())
              .then((value) =&gt; print('done!'))
              .catchError((exception) =&gt; print('DOH!'));</screen>
 
-        <para>In the above example, the methods run in the following
+        <para>In the preceding example, the methods run in the following
         order:</para>
 
         <orderedlist continuation="restarts" inheritnum="ignore"
@@ -1186,13 +1186,13 @@ inputStream
       <para>For some examples of using Future and Stream in command-line apps,
       see <xref
       linkend="ch03-dartio---file-and-socket-io-for-command-line-apps" />.
-      Also see these articles:</para>
+      Also see these articles and tutorials:</para>
 
       <itemizedlist>
         <listitem>
           <para><ulink
-          url="http://www.dartlang.org/articles/using-future-based-apis/">Using
-          Future Based APIs</ulink></para>
+          url="https://www.dartlang.org/docs/tutorials/futures/">Use
+          Future-Based APIs</ulink></para>
         </listitem>
 
         <listitem>
@@ -1208,8 +1208,8 @@ inputStream
 
         <listitem>
           <para><ulink
-          url="http://www.dartlang.org/articles/feet-wet-streams/">Getting
-          Your Feet Wet with Streams</ulink></para>
+          url="https://www.dartlang.org/docs/tutorials/streams/">Use Streams
+          for Data</ulink></para>
         </listitem>
 
         <listitem>
@@ -1920,12 +1920,10 @@ github.com/dart-lang/dart-samples/.../web/html5/websockets/basics/websocket_samp
       <sect3 id="ch03-handling-websocket-events">
         <title>Handling WebSocket events</title>
 
-        <para><ulink
-        url="http://api.dartlang.org/html/WebSocketEvents.html">WebSocketEvents</ulink>
-        defines the WebSocket events your app can handle: open, close, error,
-        and (as shown above) message. Here’s an example of a method that
-        creates a WebSocket object and registers handlers for open, close,
-        error, and message events:</para>
+        <para>Your app can handle the following WebSocket events: open, close,
+        error, and (as shown earlier) message. Here’s an example of a method
+        that creates a WebSocket object and registers handlers for open,
+        close, error, and message events:</para>
 
         <screen format="linespecific"><remark>lang-dart
 <remark>github.com/dart-lang/dart-samples/.../web/html5/websockets/basics/websocket_sample.dart
@@ -1937,7 +1935,8 @@ github.com/dart-lang/dart-samples/.../web/html5/websockets/basics/websocket_samp
 
   void scheduleReconnect() {
     if (!reconnectScheduled) {
-      new Timer(new Duration(milliseconds: 1000 * retrySeconds), () =&gt; initWebSocket(retrySeconds * 2));
+      new Timer(new Duration(milliseconds: 1000 * retrySeconds), 
+                () =&gt; initWebSocket(retrySeconds * 2));
     }
     reconnectScheduled = true;
   }

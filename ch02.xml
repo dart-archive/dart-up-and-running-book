@@ -3813,10 +3813,11 @@ class Llama {
       Food class.</para>
 
       <para>To parse Dart code and generate HTML documentation, you can use
-      Dart Editor, which in turn uses the SDK’s dartdoc package. For an
-      example of generated documentation, see the <ulink
-      url="http://api.dartlang.org">Dart API documentation.</ulink> For advice
-      on how to structure your comments, see <ulink
+      the SDK’s
+      <ulink url="http://www.dartlang.org/tools/docgen/">documentation generation tool.</ulink> For an example of generated
+      documentation, see the <ulink url="http://api.dartlang.org">Dart API
+      documentation.</ulink> For advice on how to structure your comments, see
+      <ulink
       url="http://www.dartlang.org/articles/doc-comment-guidelines/">Guidelines
       for Dart Doc Comments.</ulink></para>
     </sect2>
@@ -3826,8 +3827,7 @@ class Llama {
     <title>Summary</title>
 
     <para>This chapter summarized the commonly used features in the Dart
-    language. More features are being implemented<ulink
-    url="http://www.dartlang.org/articles/mixins/">,</ulink> but we expect
+    language. More features are being implemented, but we expect
     that they won’t break existing code. For more information, see the <ulink
     url="http://www.dartlang.org/docs/spec/">Dart Language
     Specification</ulink> and <ulink

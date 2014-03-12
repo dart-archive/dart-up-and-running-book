@@ -418,7 +418,9 @@ main() {
       <sect3 id="ch01-editor-codelab">
         <title>Follow a code lab</title>
 
-        <para>Go to <ulink url="dartlang.org/codelabs"></ulink> to find the
+        <para>Go to <ulink
+        url="https://www.dartlang.org/codelabs/">dartlang.org/codelabs</ulink>
+        to find the
         latest step-by-step instructions for writing an app. The first code
         lab, <ulink url="https://www.dartlang.org/codelabs/darrrt/">Try
         Dart,</ulink> guides you through using Dart Editor to build and run a

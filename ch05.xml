@@ -39,7 +39,12 @@
       <listitem>
         <para>In the demo section, click <emphasis role="bold">Dartiverse
         Search</emphasis> to create a copy of the dartiverse_search
-        package.</para>
+        package.<footnote>
+            <para>If you aren’t using Dart Editor, you can find the Dartiverse
+            Search source code in the <ulink
+            url="http://code.google.com/p/dart">Dart project</ulink> under
+            <filename>samples/dartiverse_search</filename>.</para>
+          </footnote></para>
       </listitem>
 
       <listitem>
