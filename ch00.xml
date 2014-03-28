@@ -231,12 +231,12 @@
         <listitem>
           <para>Dart now has Symbols and symbol literals (<literal
           moreinfo="none">#<replaceable>identifier</replaceable></literal>):
-          <xref linkend="ch02symbols" />.</para>
+          <xref linkend="ch02-symbols" />.</para>
         </listitem>
 
         <listitem>
           <para>Function equality testing is easier: <xref
-          linkend="ch02functionequality" />.</para>
+          linkend="ch02-function-equality" />.</para>
         </listitem>
 
         <listitem>
