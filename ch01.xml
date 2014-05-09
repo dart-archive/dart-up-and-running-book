@@ -4,43 +4,26 @@
 <chapter id="ch01">
   <?dbhtml stop-chunking?>
 
-  <title>Quick Start</title>
+  <title>Быстрый старт</title>
 
-  <para>Welcome to Dart, an open-source, batteries-included developer platform
-  for building structured HTML5 web apps. This chapter tells you why Google
-  created Dart, what’s cool about Dart, and how to write and run your first
-  Dart app.</para>
+  <para>Добро пожаловать в Dart, где с open-source платформой для разработки структурированных HTML5 веб-приложений, батарейки идут в комплекте. В этой главе рассказывается почему компания Google создала Dart, что крутого в Dart, и как написать и запустить свое первое Dart приложение.</para>
 
-  <para>Dart provides not only a new language, but libraries, an editor, a
-  virtual machine (VM), a browser that can run Dart apps natively, and a
-  compiler to JavaScript. Dart aims to be a more productive way to build the
-  high-performance, modern apps that users demand.</para>
+  <para>Dart обеспечивает не только новый язык, но и библиотеки, а так же редактор кода, и виртуальную машину (VM), и еще браузер (именуемый Dartium) который может запускать код Dart приложений нативно, и компилятор Dart кода в JavaScript для тех браузеров которые не поддерживают Dart. Dart стремится быть более продуктивным средством в разработке высокопроизводительных, современных приложений, которые требуют пользователи.</para>
 
   <sect1 id="ch01-why-dart">
-    <title>Why Google Created Dart</title>
+    <title>Почему Google создал Dart</title>
 
-    <para>Google cares a lot about helping to make the web great. We write a
-    lot of web apps, many of them quite sophisticated—think Gmail, Google
-    Calendar, Google+, and more. We want web apps to load quickly, run
-    smoothly, and present engaging and fun experiences to users. We want
-    developers of all backgrounds to be able to build great experiences for
-    the browser.</para>
+    <para>Google сильно старается помочь в том что бы сделать веб удобным. Мы пишем много веб-приложений, многие из них довольно сложные - такие как Gmail, Календарь Google, Google +, и многое другое. Мы хотим что бы веб-приложения загружались быстро, работали плавно и вызывали необычные и забавные эмоции у пользователей. Мы хотим, чтобы разработчики с любым багажом знаний, имели возможность построить приложение с которым будет удобно взаимодействовать с помощью браузера.</para>
 
-    <para>As an example of Google’s commitment to the web, consider the Google
-    Chrome browser. Google created it to spur competition at a time when the
-    web platform seemed to be stagnating. It worked. As <xref
-    linkend="BrowserChart" /> shows, browser speed has increased immensely
-    since Chrome’s introduction in 2008.</para>
+    <para>В качестве примера приверженности компании Google к сети, рассмотрим браузер Google Chrome. Google создал его для стимулирования конкуренции в то время, когда веб-платформа, казалось, находится в состоянии стагнации. Это сработало. <xref
+    linkend="BrowserChart" /> показывает, с появлением Chrome в 2008 году, скорость браузеров возросла чрезвычайно.</para>
 
     <note>
-      <para>The JavaScript engine known as <firstterm>V8</firstterm> is
-      responsible for much of Chrome’s speed. Many of the V8 engineers are now
-      working on the Dart project.</para>
+      <para>За большую часть скорости бразуера Chrome отвечает механизм JavaScript известный как <firstterm>V8</firstterm>. Многие инженеры V8 теперь работают над Dart.</para>
     </note>
 
     <figure float="0" id="BrowserChart">
-      <title>Browser speed (V8 benchmark suite v7; higher numbers are
-      better)</title>
+      <title>Скорость браузеров (V8 набор тестов v7; Чем выше показатели, тем лучше)</title>
 
       <mediaobject>
         <imageobject role="web">
@@ -49,45 +32,27 @@
       </mediaobject>
     </figure>
 
-    <para>The number of new features in browsers has also increased, with APIs
-    such as WebGL, FileSystem, Web workers, and WebSockets. Browsers now have
-    automatic update capabilities, frequently delivering new features and
-    fixes directly to the user. Mobile devices such as tablets and phones also
-    have modern browsers with many HTML5 features.</para>
+    <para>Количество новых возможностей браузеров увеличилось, вместе с новыми API: WebGL, FileSystem, Web workers, и WebSockets. Появилась возможность автоматического обновления, обеспечивая быстрое внедрение новых возможностей и исправлений. Мобильные устройства, такие как телефоны и планшеты так же поддерживают много новых возможностей HTML5 в своих браузерах.</para>
 
-    <para>Despite these improvements in the web platform, the developer
-    experience hasn’t improved as much as we’d like. We believe it should be
-    easier to build larger, more complex web apps. It’s taken far too long for
-    productive tools to emerge, and they still don’t match the capabilities
-    offered by other developer platforms. You shouldn’t have to be intimately
-    familiar with web programming to start building great apps for the modern
-    web. And even though JavaScript engines are getting faster, web apps still
-    start up much too slowly.</para>
+    <para>Несмотря на эти улучшения, в плане упрощения работы разработчикам ситуация не улучшилась на столько, на сколько хотелось бы. Мы верим в то, что разработка крупных и сложных веб-приложений должна быть проще. Время для появления продуктивных инструментов на других платформах слишком затянулось, и они все еще не соответствуют ожиданиям. Вы не должны досконально изучать веб-программирование, что бы начать создавать сложные современные веб-приложения. И хотя системы JavaScript становятся все быстрее, разрабатывать веб-приложения по-прежнему сложно.</para>
 
-    <para>We expect Dart to help in two main ways:</para>
+    <para>Мы считаем Dart поможет в двух основных вещях:</para>
 
     <itemizedlist>
       <listitem>
-        <para><emphasis>Better performance:</emphasis> As VM engineers, the
-        designers of Dart know how to build a language for performance. A more
-        structured language is easier to optimize, and a fresh VM enables
-        improvements such as faster startup.</para>
+        <para><emphasis>Более высокая производительность:</emphasis> Как VM инженеры, разработчики Dart знают как создать производительный язык. Структурированный язык легче оптимизировать, а новая VM обеспечивает более быстрый запуск.</para>
       </listitem>
 
       <listitem>
-        <para><emphasis>Better productivity:</emphasis> Support for libraries
-        and packages helps you work with other developers and easily reuse
-        code from other projects. Types can make APIs clearer and easier to
-        use. Tools help you refactor, navigate, and debug code.</para>
+        <para><emphasis>Более высокая продуктивность:</emphasis> Поддержка библиотек и пакетов (packages) помогает взаимодействивать с другими разработчиками и легко повторно использовать код в других проектах. Типы помогут сделать API яснее и проще. Инструменты окажут помощь при рефакторинге кода, при перемещении по нему и его отладке. </para>
       </listitem>
     </itemizedlist>
   </sect1>
 
   <sect1 id="ch01-quick-look">
-    <title>A Quick Look at the Dart Language</title>
+    <title>Не большой обзор языка Dart</title>
 
-    <para>It’s hard to talk about a language without seeing it. Here’s a peek
-    at a small Dart program:</para>
+    <para>Трудно говорить о языке, не видя его. Вот пример небольшой программы на Dart:</para>
 
     <programlisting format="linespecific" role="keep-together"><remark>lang-dart
 </remark>import 'dart:math';
@@ -108,8 +73,8 @@ main() {
   print('distance from p to q = ${p.distanceTo(q)}');
 }</programlisting>
 
-    <para>Of course, Dart’s main use case is building modern web apps.
-    Programming the browser is easy:</para>
+    <para>Конечно основное предназначение Dart’а состоит в разработке современных веб-приложений.
+    Простая работа с браузером:</para>
 
     <programlisting format="linespecific"><remark>lang-dart
 </remark>import 'dart:html';
