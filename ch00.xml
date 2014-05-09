@@ -4,18 +4,13 @@
 <preface id="preface">
   <?dbhtml stop-chunking?>
 
-  <title>Preface</title>
+  <title>Вступление</title>
 
-  <para>You don’t need to be an expert web developer to build web apps. With
-  Dart, you can be productive as you build high-performance apps for the
-  modern web.</para>
+  <para>Вам не нужно быть экспертом в веб-разработке для создания веб-приложений. С помощью Dart, вы можете с успехом, создавать высокопроизводительные, современные веб-приложения.</para>
 
-  <para>Our aim for this book is to be a useful introduction to the Dart
-  language, libraries, and tools. Because this book is short and Dart is
-  young, you might also need to refer to the Dart website at <ulink
-  url="http://dartlang.org"></ulink>—both for details and for updates. For the
-  latest news, keep an eye on the <ulink
-  url="http://google.com/+dartlang">Dart page</ulink> on Google+.</para>
+  <para>Цель этой книги, обеспечить наилучшее введение в основы языка Dart, его библиотек и инструментов. Эта книга не большая т.к. Dart новый язык. На сайте Dart <ulink
+  url="http://dartlang.org"></ulink> можно найти информацию о деталях и обновлениях. Для получения последних новостей, подписывайтесь на <ulink
+  url="http://google.com/+dartlang">страницу Dart</ulink> в Google+.</para>
 
   <para>Another important website is this book’s <ulink
   url="https://github.com/dart-lang/dart-up-and-running-book">GitHub
@@ -28,15 +23,15 @@
   subdirectory.</ulink> Downloading the sample code from GitHub is much easier
   than copying it from the book.</para>
 
-  <para>If you find an error in the sample code or text, please <ulink
+  <para>Если Вы обнаружили ошибку в коде или тексте, пожалуйста <ulink
   url="https://github.com/dart-lang/dart-up-and-running-book/issues/new">create
   an issue.</ulink></para>
 
   <sect1 id="preface-conventions">
-    <title>Conventions Used in This Book</title>
+    <title>Соглашения, используемые в этой книге</title>
 
-    <para>The following typographical conventions are used in this
-    book:</para>
+    <para>Следующие условные обозначения используемые в этой
+     книге:</para>
 
     <variablelist>
       <varlistentry>
