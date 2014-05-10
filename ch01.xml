@@ -8,12 +8,12 @@
 
   <para>Добро пожаловать в Dart, где с open-source платформой для разработки структурированных HTML5 веб-приложений, батарейки идут в комплекте. В этой главе рассказывается почему компания Google создала Dart, что крутого в Dart, и как написать и запустить свое первое Dart приложение.</para>
 
-  <para>Dart обеспечивает не только новый язык, но и библиотеки, а так же редактор кода, и виртуальную машину (VM), и еще браузер (именуемый Dartium) который может запускать код Dart приложений нативно, и компилятор Dart кода в JavaScript для тех браузеров которые не поддерживают Dart. Dart стремится быть более продуктивным средством в разработке высокопроизводительных, современных приложений, которые требуют пользователи.</para>
+  <para>Dart обеспечивает не только новый язык, но и библиотеки, а так же редактор кода, и виртуальную машину (VM), и еще браузер который может запускать код Dart приложений нативно, и компилятор Dart кода в JavaScript для тех браузеров которые не поддерживают Dart. Dart стремится быть более продуктивным средством в разработке высокопроизводительных, современных приложений, которые требуют пользователи.</para>
 
   <sect1 id="ch01-why-dart">
     <title>Почему Google создал Dart</title>
 
-    <para>Google сильно старается помочь в том что бы сделать веб удобным. Мы пишем много веб-приложений, многие из них довольно сложные - такие как Gmail, Календарь Google, Google +, и многое другое. Мы хотим что бы веб-приложения загружались быстро, работали плавно и вызывали необычные и забавные эмоции у пользователей. Мы хотим, чтобы разработчики с любым багажом знаний, имели возможность построить приложение с которым будет удобно взаимодействовать с помощью браузера.</para>
+    <para>Google сильно старается помочь в создании идеального интернет-пространства. Мы пишем много веб-приложений, многие из них довольно сложные - такие как Gmail, Календарь Google, Google +, и многое другое. Мы хотим что бы веб-приложения загружались быстро, работали плавно и вызывали необычные и забавные эмоции у пользователей. Мы хотим, чтобы разработчики с любым багажом знаний, имели возможность построить приложение с которым будет удобно взаимодействовать с помощью браузера.</para>
 
     <para>В качестве примера приверженности компании Google к сети, рассмотрим браузер Google Chrome. Google создал его для стимулирования конкуренции в то время, когда веб-платформа, казалось, находится в состоянии стагнации. Это сработало. <xref
     linkend="BrowserChart" /> показывает, с появлением Chrome в 2008 году, скорость браузеров возросла чрезвычайно.</para>
@@ -32,9 +32,9 @@
       </mediaobject>
     </figure>
 
-    <para>Количество новых возможностей браузеров увеличилось, вместе с новыми API: WebGL, FileSystem, Web workers, и WebSockets. Появилась возможность автоматического обновления, обеспечивая быстрое внедрение новых возможностей и исправлений. Мобильные устройства, такие как телефоны и планшеты так же поддерживают много новых возможностей HTML5 в своих браузерах.</para>
+    <para>Количество новых возможностей браузеров увеличилось, вместе с новыми API: WebGL, FileSystem, Web workers, и WebSockets. Появилась возможность автоматического обновления, обеспечивая быстрое внедрение новых возможностей и исправлений. Мобильные устройства, такие как телефоны и планшеты поддерживают много новых возможностей HTML5 уже сейчас.</para>
 
-    <para>Несмотря на эти улучшения, в плане упрощения работы разработчикам ситуация не улучшилась на столько, на сколько хотелось бы. Мы верим в то, что разработка крупных и сложных веб-приложений должна быть проще. Время для появления продуктивных инструментов на других платформах слишком затянулось, и они все еще не соответствуют ожиданиям. Вы не должны досконально изучать веб-программирование, что бы начать создавать сложные современные веб-приложения. И хотя системы JavaScript становятся все быстрее, разрабатывать веб-приложения по-прежнему сложно.</para>
+    <para>Несмотря на эти улучшения, в плане упрощения работы разработчикам ситуация не улучшилась на столько, на сколько хотелось бы. Мы верим в то, что разработка крупных и сложных веб-приложений должна быть проще. Время для появления продуктивных инструментов на других платформах слишком затянулось, и они все еще не соответствуют ожиданиям. Вы не должны досконально изучать веб-программирование, что бы начать создавать сложные современные веб-приложения. И хотя системы JavaScript становятся все быстрее, разработка веб-приложений на них ведется медленнее.</para>
 
     <para>Мы считаем Dart поможет в двух основных вещях:</para>
 
@@ -73,7 +73,7 @@ main() {
   print('distance from p to q = ${p.distanceTo(q)}');
 }</programlisting>
 
-    <para>Конечно основное предназначение Dart’а состоит в разработке современных веб-приложений.
+    <para>Конечно, основное предназначение Dart’а состоит в разработке современных веб-приложений.
     Простая работа с браузером:</para>
 
     <programlisting format="linespecific"><remark>lang-dart
@@ -88,139 +88,79 @@ main() {
   querySelector('#registration').children.add(button);
 }</programlisting>
 
-    <para>You’ll learn about the Dart language and libraries in Chapters <xref
-    linkend="ch02" xrefstyle="select: labelnumber" /> and <xref linkend="ch03"
-    xrefstyle="select: labelnumber" /> respectively.</para>
+    <para>Вы узнаете подробнее о языке Dart и его библиотеках в <xref
+    linkend="ch02" xrefstyle="select: labelnumber" /> и <xref linkend="ch03"
+    xrefstyle="select: labelnumber" /> соответственно.</para>
   </sect1>
 
   <sect1 id="ch01-whats-cool">
-    <title>What’s Cool About Dart</title>
+    <title>Что еще крутого на счет Dart</title>
 
-    <para>Dart may look familiar, but don’t let that fool you. Dart has lots
-    of cool features to help give you a productive and fun experience building
-    the next generation of awesome web apps.</para>
+    <para>Dart выглядит знакомо, но пусть это Вас не обманывает. У Dart много новых возможностей которые помогут Вам создавать понастоящему удивительные веб-приложения нового покаления.</para>
 
-    <para><emphasis>Dart is easy to learn.</emphasis> A wide range of
-    developers can learn Dart quickly. It’s an object-oriented language with
-    classes, single inheritance, lexical scope, top-level functions, and a
-    familiar syntax. Most developers are up and running with Dart in just a
-    few hours.</para>
+    <para><emphasis>Dart прост в изучении.</emphasis> Многие разработчики имеющие опыт, способны освоить Dart очень быстро. Dart это объектно-ориентированный язык с классовым наследованием, с одиночным наследованием, лексической областью видимости, функциями верхнего уровня, и знакомым синтаксисом.</para>
 
-    <para><emphasis>Dart compiles to JavaScript.</emphasis> Dart has been
-    designed from the start to compile to JavaScript, so that Dart apps can
-    run across the entire modern web. Every feature considered for the
-    language must somehow be translated to performant and logical JavaScript
-    before it is added. Dart draws a line in the sand and doesn’t support
-    older, legacy browsers.</para>
+    <para><emphasis>Dart компилируется в JavaScript.</emphasis> Dart изначально был спроектирован с учетом возможности его компиляции в JavaScript, благодаря этому, приложения написанные на языке Dart могут работать эффективно со всеми платформами в сети. Каждая функция написанная на языке Dart переводится на логический и производительный код JavaScript. Dart проводит черту, и не поддерживает древние браузеры.</para>
 
-    <para><emphasis>Dart runs in the client and on the server.</emphasis> The
-    Dart virtual machine (VM) can be integrated into a web browser, but it can
-    also run standalone on the command line. With built-in library support for
-    files, directories, sockets, and even web servers, you can use Dart for
-    full end-to-end apps.</para>
+    <para><emphasis>Dart готов работать как на стороне сервера, так и на клиенте.</emphasis>Виртуальная машина Dart может быть интегрированна в браузер, но она так же может запускать код и из командной строки. С помощью встроенных библиотек для работы с файлами, директориями, сокетами и даже веб-серверами, Вы можете использовать Dart на всех этапах разработки приложений, от начала и до конца.</para>
 
-    <para><emphasis>Dart comes with a lightweight editor.</emphasis> You can
-    use Dart Editor to write, launch, and debug Dart apps. The editor can help
-    you with code completion, detecting potential bugs, debugging both
-    command-line and web apps, and even refactoring. Dart Editor isn’t
-    required for writing Dart; it’s just a tool that can help you write better
-    code faster.</para>
+    <para><emphasis>Dart поставляется вместе с простым редактором кода.</emphasis> Вы можете использовать Dart Editor для написания, запуска, и отладки Dart приложений. Редактор поможет вычислить потенциальные ошибки, провести отладку, как для консольных приложений так и для приложений написанных для браузера, и даже провести рефакторинг кода, если это будет нужно. Использование редактора Dart не входит в обязательные условия при написании кода, это просто инструмент, который может помочь писать код лучше и быстрее.</para>
 
-    <para><emphasis>Dart supports types, without requiring them.</emphasis>
-    You can omit types when you want to move very quickly, aren’t sure what
-    structure to take, or simply want to express something you can’t with the
-    type system. You can add types as your program matures, the structure
-    becomes more evident, and more developers join the project. Dart’s
-    optional types are static type annotations that act as documentation,
-    clearly expressing your intent. Using types means that fewer comments are
-    required to document the code, and tools can give better warnings and
-    error messages.</para>
+    <para><emphasis>Dart поддерживает типы, но не требует их.</emphasis>
+Вы можете не использовать типы, если Вам нужно сделать что-то быстро, или Вы еще не приняли решения по структуре приложения, или Вы просто хотите выразить то, чего не выразить системой типов. Dart не станет требовать от вас определения типов, Вы сможете сделать это когда ваше приложение обретет, наконец, понятную структуру. Статичные аннотации типов, которые используются в качестве документации способны четко обозначать Ваши намерения. Используя типы нет необходимости писать большие коментарии и подробно документировать код.</para>
 
-    <para><emphasis>Dart scales from small scripts to large, complex
-    apps.</emphasis> Web development is very much an iterative process. With
-    the reload button acting as your compiler, building the seed of a web app
-    is often a fun experience of writing a few functions just to experiment.
-    As the idea grows, you can add more code and structure. Thanks to Dart’s
-    support for top-level functions, optional types, classes, and libraries,
-    your Dart programs can start small and grow over time. Tools such as Dart
-    Editor help you refactor and navigate your code as it evolves.</para>
+    <para><emphasis>Dart маштабируется от небольших скриптов до больших сложных приложений.</emphasis>Веб разработка это очень итерационный процесс. Начиная с написания простых функций в качестве эксперемента, просто перезагружая компилятор для просмотра результата, Вы можете развивать свою идею и добавлять больше кода и структуры вашему приложению. Благодаря поддержки Dart функций верхнего уровня, необязательного типизирования, классов и библиотек, Ваша программа может расти с течением времени. Редактор Dart поможет реогранизовать код по мере необходимости.</para>
 
-    <para><emphasis>Dart has a wide array of built-in libraries.</emphasis>
-    The core library supports built-in types and other fundamental features
-    such as collections, dates, and regular expressions. Web apps can use the
-    HTML library—think DOM programming, but optimized for Dart. Command-line
-    apps can use the I/O library to work with files, directories, sockets, and
-    servers. Other libraries include URI, UTF, Crypto, Math, and Unit
-    test.</para>
+    <para><emphasis>Dart имеет множество встроенных библиотек.</emphasis>
+Основаня библиотека (ядро) поддерживает встроенные типы и другие фундаментальные функции, такие как коллекции, даты и регулярные выражения.
+Веб-приложения могут использовать HTML библиотеки - для работы с DOM, но оптимизированные для Dart. Консольные приложения могут использовать библиотеки ввода / вывода ( I/O ) для работы с фалами, каталогами, сокетами и серверами. Остальные библиотеки включают в себя URI, UTF, Crypto, Math, и Unit тестирование.</para>
 
-    <para><emphasis>Dart supports safe, simple concurrency with
-    isolates.</emphasis> Traditional shared-memory threads are difficult to
-    debug and can lead to deadlocks. Dart’s isolates, inspired by Erlang,
-    provide an easier to understand model for running isolated, but
-    concurrent, portions of your code. Spawning new isolates is cheap and
-    fast, and no state is shared.</para>
+    <para><emphasis>Dart поддерживает безопасный, простой параллелизм вместе с изоляторами.</emphasis> Традиционное разделение памяти трудно отлаживать и может привести к тупиковым ситуациям. В Dart, изоляторы вдохновленные Erlang обеспечивают более легкую для понимания модель работы. Процесс создания нового изолятора прост и быстр, и позволяет частям Вашего кода выполняться в отдельном процессе.</para>
 
-    <para><emphasis>Dart supports code sharing.</emphasis> Traditional web
-    programming workflows can’t integrate third-party libraries from arbitrary
-    sources or frameworks. With the Dart package manager (pub) and language
-    features such as libraries, you can easily discover, install, and
-    integrate code from across the web and enterprise.</para>
+    <para><emphasis>Dart поддерживат совместное использование кода.</emphasis> Обычно, рабочие процессы веб-разработки не распологают средствами для интеграций сторонних библиотек из произвольных источников. С помощью Dart package manager (pub) и языковых возможностей, таких как библиотеки, Вы можете легко найти, установить и интегрировать подготовленные другми разработчиками библиотеки.</para>
 
-    <para><emphasis>Dart is open source.</emphasis> Dart was born for the web,
-    and it’s available under a BSD-style license. You can find the project’s
-    <ulink url="http://dart.googlecode.com">issue tracker and source
-    repository</ulink> online. Maybe you’ll submit the next patch?</para>
+    <para><emphasis>Dart имеет открытый исходный код.</emphasis> Dart создан для интернета, и доступен под лицензией схожей с BSD (BSD-style license). Вы можете
+    <ulink url="http://dart.googlecode.com">отслеживать проблемы и просматривать исходный код</ulink>. Может быть, вы представить следующий патч?</para>
   </sect1>
 
   <sect1 id="ch01-editor">
     <title>Up and Running</title>
 
-    <para>Now that you know something about Dart, get ready to code! These
-    instructions feature the open-source Dart Editor tool. When you download
-    Dart, you not only get Dart Editor, but also tools such as the
-    Dart-to-JavaScript compiler and a version of Chromium (nicknamed
-    <emphasis>Dartium</emphasis>) that includes the Dart VM.</para>
+    <para>Теперь, когда вы знаете немного о Dart, будьте готовы к коду! Эта инструкция поможет Вам установить редактор Dart Editor. При загрузке Dart, вы получаете не только Dart Editor, но так же и инструменты компиляции Dart-to-JavaScript и особую версию Chromium (именуемую <emphasis>Dartium</emphasis>) с интегрированной Dart VM.</para>
 
     <note>
-      <para>If you run into trouble installing and using Dart Editor, see
+      <para>Если вы столкнетесь с проблемами установки и использования Dart Editor см.
       <ulink
       url="http://www.dartlang.org/tools/editor/troubleshoot.html">Troubleshooting
       Dart Editor.</ulink></para>
     </note>
 
     <sect2 id="ch01-editor-download">
-      <title>Step 1: Download and Install the Software</title>
+      <title>Шаг 1: Скачать и установить программное обеспечение</title>
 
-      <para>In this step, you’ll install Dart Editor and, if necessary, a Java
-      runtime environment. (To avoid having to modify the PATH environment
-      variable, you can install the JRE under your Dart installation
-      directory, in a subdirectory named <code>jre</code>.)</para>
+      <para>На этом этапе, Вы установите Dart Editor и, при необходимости, среду выполнения Java. (Чтобы избежать необходимости изменять окружение PATH вы можете установить JRE в том же каталоге с Dart, во вложенную папку с именем <code>jre</code>.)</para>
 
       <orderedlist continuation="restarts" inheritnum="ignore">
         <listitem>
-          <para><ulink url="http://dartlang.org/#get-started">Download
+          <para><ulink url="http://dartlang.org/#get-started">Загрузить
           Dart</ulink>.</para>
         </listitem>
 
         <listitem>
-          <para>Unarchive the file you downloaded. The resulting directory,
-          which we’ll call your <emphasis>Dart installation
-          directory</emphasis>, contains the <code>DartEditor</code>
-          executable and several subdirectories.</para>
+          <para>Нужно разархивировать загруженный файл. Полученный каталог, который мы назовем <emphasis>установочный каталог Dart</emphasis>, содержит исполняемый файл <code>DartEditor</code> и еще несколько директорий.</para>
         </listitem>
 
         <listitem>
-          <para>If you don’t already have a Java runtime, download and install
-          it. Dart Editor requires Java version 6 or higher.</para>
+          <para>Если у вам еще нет Java runtime, самое время скачать и установить эту вещь. Dart Editor необходима Java версии 6 или выше.</para>
         </listitem>
       </orderedlist>
     </sect2>
 
     <sect2 id="ch01-editor-launch">
-      <title>Step 2: Launch the Editor</title>
+      <title>Шаг 2: Запуск редактора</title>
 
-      <para>Go to your Dart installation directory, and double-click the
-      <emphasis role="bold">DartEditor</emphasis> executable<phrase
+      <para>Перейдите в установочный каталог Dart, и дважды кликните
+      <emphasis role="bold">DartEditor</emphasis><phrase
       role="keep-together"> <inlinemediaobject>
           <imageobject>
             <imagedata fileref="figs/web/Dart_Logo_21.png" format="PNG"
@@ -228,11 +168,10 @@ main() {
           </imageobject>
         </inlinemediaobject>.</phrase></para>
 
-      <para>You should see the Dart Editor application window appear, looking
-      something like <xref linkend="DartEditor-initial" />.</para>
+      <para>Вы увидите окно редактора Dart похожее на <xref linkend="DartEditor-initial" />.</para>
 
       <figure float="0" id="DartEditor-initial">
-        <title>Dart Editor and its Welcome page</title>
+        <title>Окно приветствия Dart Editor</title>
 
         <mediaobject>
           <imageobject role="web">
@@ -244,49 +183,44 @@ main() {
     </sect2>
 
     <sect2 id="ch01-editor-sample">
-      <title>Step 3: Open and Run a Demo</title>
+      <title>Шаг 3: Открыть и запустить демонстрационные примеры</title>
 
-      <para>The Dart Editor bundle comes with several demos and samples. In
-      this step, you’ll open a web app and run it in Dartium.</para>
+      <para>Dart Editor поставляется с несколькими демонстрационными примерами. На этом этапе, Вы поймете как открывать веб-приложения и запускать их в Dartium.</para>
 
       <orderedlist continuation="restarts" inheritnum="ignore">
         <listitem>
-          <para>Click the <emphasis role="bold">Welcome</emphasis> tab. Or
-          choose <emphasis role="bold">Welcome Page</emphasis> from the
-          <emphasis role="bold">Tools</emphasis> menu.</para>
+          <para>Выбираем <emphasis role="bold">Welcome</emphasis> закладку. или выбираем <emphasis role="bold">Welcome Page</emphasis> из
+          <emphasis role="bold">Tools</emphasis> меню.</para>
         </listitem>
 
         <listitem>
-          <para>In the Welcome tab, click the image labeled <emphasis
-          role="bold">Sunflower</emphasis>. Dart Editor creates a copy of the
+          <para>На вкладке Welcome, нажмите на изображение с надписью <emphasis
+          role="bold">Sunflower</emphasis>. Dart Editor создаст копию
           <ulink
           url="http://code.google.com/p/dart/source/browse/trunk/dart/samples/sunflower/">Sunflower
-          app’s directory,</ulink> and the Editor view displays the contents
-          of <emphasis>web/sunflower.dart</emphasis>.</para>
+          app’s directory,</ulink> и окно редактора отобразит содержимое проекта <emphasis>web/sunflower.dart</emphasis>.</para>
         </listitem>
 
         <listitem>
-          <para>Click the Run button <inlinemediaobject>
+          <para>Выберите Run button <inlinemediaobject>
               <imageobject>
                 <imagedata fileref="figs/web/run.png" width="0.12in" />
               </imageobject>
-            </inlinemediaobject>. Dart Editor launches Dartium, which displays
+            </inlinemediaobject>. Dart Editor запустит Dartium, который отобразит
           <phrase
           role="keep-together"><emphasis>sunflower.html</emphasis></phrase>.</para>
 
           <warning>
-            <para>Dartium is a technical preview, and it might have security
-            and stability issues.<emphasis> Do not use Dartium as your primary
-            browser!</emphasis></para>
+            <para>Dartium используется в основном для просмотра результата выполнения кода, на данный момент он имеет проблемы с безопасностью и стабильностью.<emphasis> Не используйте Dartium как основной браузер!</emphasis></para>
           </warning>
         </listitem>
 
         <listitem>
-          <para>Move the slider to change the sunflower's display, as shown in
+          <para>Переместите ползунок для изменения индикации, как показано на
           <xref linkend="sunflower" />.</para>
 
           <figure float="none" id="sunflower">
-            <title>The Sunflower sample running in Dartium</title>
+            <title>Пример работы Sunflower в Dartium</title>
 
             <mediaobject>
               <imageobject role="web">
@@ -300,41 +234,36 @@ main() {
     </sect2>
 
     <sect2 id="ch01-editor-code">
-      <title>Step 4: Create and Run an App</title>
+      <title>Шаг 4: Создание и запуск приложения</title>
 
-      <para>It’s easy to create a simple web or command-line app from scratch.
-      This step walks you through creating and running a command-line
-      app.</para>
+      <para>Создавать консольные приложения так же просто как и приложения для веб. Этот шаг опишет процесс создания и запуска консольных приложений.</para>
 
       <orderedlist continuation="restarts" inheritnum="ignore">
         <listitem>
-          <para>Click the New Application button <inlinemediaobject>
+          <para>Выберите New Application <inlinemediaobject>
               <imageobject>
                 <imagedata fileref="figs/web/newapp.png" width="0.12in" />
               </imageobject>
-            </inlinemediaobject> (at the upper left of Dart Editor).
-          Alternatively, choose <emphasis role="bold">File &gt; New
-          Application</emphasis> from the Dart Editor menu, or click the
-          <emphasis role="bold">Create an Application…</emphasis> button in
-          the Welcome page. A dialog appears (see <xref
+            </inlinemediaobject> (в левом верхнем углу Dart Editor).
+          Также можно выбрать <emphasis role="bold">File &gt; New
+          Application</emphasis> из меню редактора, или выбрать
+          <emphasis role="bold">Create an Application…</emphasis> кнопку в Welcome page. Появится диалоговое (см <xref
           linkend="DartEditor-newapp" />).</para>
         </listitem>
 
         <listitem>
-          <para>Type in a name for your application—for example,
-          <code>hello_world</code>. If you don’t like the default directory,
-          type in a new location or browse to choose the location.</para>
+          <para>Введите имя для Вашего приложения, например,
+          <code>hello_world</code>. Если вам не нравится каталог по умолчанию, введите новое местоположение или выберите из меню.</para>
         </listitem>
 
         <listitem>
-          <para>Make sure <emphasis role="bold">Generate sample
-          content</emphasis> and <emphasis role="bold">Command-line
-          application</emphasis> are selected. Then click <emphasis
-          role="bold">Finish</emphasis> to create the initial files for the
-          app.</para>
+          <para>Убедитесь <emphasis role="bold">Generate sample
+          content</emphasis> и <emphasis role="bold">Command-line
+          application</emphasis> выбранны. Затем выберите <emphasis
+          role="bold">Finish</emphasis> для создания необходимых файлов для этого приложения.</para>
 
           <figure float="0" id="DartEditor-newapp">
-            <title>Create command-line or web apps with Dart Editor</title>
+            <title>Создание веб или консольного приложения в Dart Editor</title>
 
             <mediaobject>
               <imageobject role="web">
@@ -344,12 +273,10 @@ main() {
             </mediaobject>
           </figure>
 
-          <para>A default Dart file appears in the Edit view, and its
-          directory appears in the Files view. Your Dart Editor window should
-          look something like <xref linkend="DartEditor-helloworld" />.</para>
+          <para>По умолчанию отобразятся область редактирования кода (Edit view)и область навигации (Files view). Ваш Dart Editor должен выглядеть примерно как <xref linkend="DartEditor-helloworld" />.</para>
 
           <figure float="0" id="DartEditor-helloworld">
-            <title>Dart Editor displaying a new app’s files</title>
+            <title>Dart Editor отображения файлов нового приложения</title>
 
             <mediaobject>
               <imageobject role="web">
@@ -361,61 +288,52 @@ main() {
         </listitem>
 
         <listitem>
-          <para>Click the Run button <inlinemediaobject>
+          <para>Выберите Run button <inlinemediaobject>
               <imageobject>
                 <imagedata fileref="figs/web/run.png" width="0.12in" />
               </imageobject>
-            </inlinemediaobject> to run your new app.</para>
+            </inlinemediaobject> для запуска Вашего приложения.</para>
 
-          <para>For command-line apps, the output of
-          <literal>print()</literal> appears at the bottom right, in a new tab
-          next to the Problems tab.</para>
+          <para>Для консольных приложений, вывод
+          <literal>print()</literal> появляется в правом нижнем углу, в новой вкладке рядом с вкладкой ошибок.</para>
         </listitem>
       </orderedlist>
     </sect2>
 
     <sect2 id="ch01-editor-next">
-      <title>What Next?</title>
+      <title>Что дальше?</title>
 
-      <para>Now that you know the basics, you can learn more about Dart Editor
-      and help <phrase role="keep-together">improve it</phrase>.</para>
+      <para>Теперь, когда вы знаете основы, вы можете узнать больше о Dart Editor и помочь <phrase role="keep-together">улучшить его</phrase>.</para>
 
       <sect3 id="ch01-editor-codelab">
-        <title>Follow a code lab</title>
+        <title>Следите за примерами разработки</title>
 
-        <para>Go to <ulink
-        url="https://www.dartlang.org/codelabs/">dartlang.org/codelabs</ulink>
-        to find the
-        latest step-by-step instructions for writing an app. The first code
-        lab, <ulink url="https://www.dartlang.org/codelabs/darrrt/">Try
-        Dart,</ulink> guides you through using Dart Editor to build and run a
-        pirate name badge generator.</para>
+        <para>Для того что бы найти остальные пошаговые инструкции для написания приложения можно воспользоваться ссылкой: <ulink
+        url="https://www.dartlang.org/codelabs/">dartlang.org/codelabs</ulink>. Первый пример, <ulink url="https://www.dartlang.org/codelabs/darrrt/">Try
+        Dart,</ulink> руководство ознакомит Вас с разработкой и запуском генератора пиратских имен.</para>
       </sect3>
 
       <sect3 id="ch01-editor-tutorial">
-        <title>Read tutorials</title>
+        <title>Изучайте уроки</title>
 
         <para><ulink url="http://www.dartlang.org/docs/tutorials/">The Dart
-        Tutorials</ulink> teach you how to build web applications using the
-        Dart language, tools, and APIs.</para>
+        Tutorials</ulink> научит вас, как создавать веб-приложения с помощью
+         Языка Dart, инструментов и API.</para>
       </sect3>
 
       <sect3 id="ch01-editor-learn-more">
-        <title>Become a power user</title>
+        <title>Набирайтесь опыта</title>
 
-        <para>Visit the <ulink url="http://www.dartlang.org/editor/">Dart
-        Editor homepage</ulink> for help on using Dart Editor’s expanding
-        feature set.</para>
+        <para>Посетите <ulink url="http://www.dartlang.org/editor/">домашнюю страницу Dart
+        Editor</ulink> для помощи в использовании расширенного рабора функций редактора Dart</para>
       </sect3>
 
       <sect3 id="ch01-editor-feedback">
-        <title>Send feedback</title>
+        <title>Оставляйте отзывы</title>
 
-        <para>Click the <emphasis role="bold">SEND FEEDBACK</emphasis> link
-        (at the upper right of the Dart Editor window) whenever you notice a
-        problem or have an idea for improving Dart Editor. We’ll open a new
-        issue for you, if appropriate, without disclosing your sensitive or
-        personally identifiable information.</para>
+        <para>Жмите <emphasis role="bold">SEND FEEDBACK</emphasis> кнопку
+        (в правом верхнем углу окна редактора Dart) всегда когда вы заметите проблему или появляются идею и предложения по улучшению редактора. Мы откроем новый запрос для Вас, если это будет необходимо, не раскрывая вашу конфиденциальную или личную информацию.
+        </para>
       </sect3>
     </sect2>
   </sect1>
