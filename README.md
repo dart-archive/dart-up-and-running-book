@@ -4,7 +4,8 @@ Dart: Up and Running
 [![Build Status](https://drone.io/github.com/dart-lang/dart-up-and-running-book/status.png)](https://drone.io/github.com/dart-lang/dart-up-and-running-book/latest)
 
 Это книга _Dart: Up and Running_ создана Kathy Walrath and Seth Ladd.
-Больше информации: http://shop.oreilly.com/product/0636920025719.do
+
+Информация: http://shop.oreilly.com/product/0636920025719.do
 
 HTML версия этой книги в сети:
 http://www.dartlang.org/docs/dart-up-and-running/
