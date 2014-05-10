@@ -3,17 +3,17 @@ Dart: Up and Running
 
 [![Build Status](https://drone.io/github.com/dart-lang/dart-up-and-running-book/status.png)](https://drone.io/github.com/dart-lang/dart-up-and-running-book/latest)
 
-This is the book _Dart: Up and Running_ by Kathy Walrath and Seth Ladd.
-More info: http://shop.oreilly.com/product/0636920025719.do
+Это книга _Dart: Up and Running_ создана Kathy Walrath and Seth Ladd.
 
-An HTML version of this book is online:
+Информация: http://shop.oreilly.com/product/0636920025719.do
+
+HTML версия этой книги в сети:
 http://www.dartlang.org/docs/dart-up-and-running/
 
 
-Repo and testing info
+Репозиторий и информация о тестировании
 -----------
-As of February 2013, this is our primary repository for the book. We copy the .xml files to the private
-O'Reilly repo from time to time; we expect them to publish from their repo every few months.
+По состоянию на февраль 2013 года, это наше основное хранилище для книги. Время от времени мы копируем .xml файлы из частного репозитория O'Reilly; Мы ожидаем обновления их репозитория каждые несколько месяцев.
 
 Currently, drone.io tests only whether the .dart files under **code/** pass static analysis (dart_analyzer).
 We could do real unit testing, and we could do better with HTML samples.
@@ -40,9 +40,9 @@ Project structure
 **README.md:**
 	This file.
 
-**\*.xml:** 
+**\*.xml:**
 	Book contents. **book.xml** is the entry point for the book, from an
 	XML point of view.
-	
+
 **runtests.sh:**
        BASH script that runs dart_analyzer on all Dart source files in the code directory.
