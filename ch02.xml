@@ -437,7 +437,7 @@ assert(lineCount == null);
       can be set only once; a const variable is a compile-time
       constant.</para>
 
-      <para>A local, top-level, or class variable that’s declared as <literal
+      <para>A top-level or class variable that’s declared as <literal
       moreinfo="none">final</literal> is initialized the first time it’s
       used:</para>
 
@@ -519,8 +519,8 @@ const atm = 1.01325 * bar; // Standard atmosphere</programlisting>
 
           <listitem>
             <para>Integer values, which generally should be in the range
-            -2<superscript>53</superscript> to 2<superscript>53</superscript>
-            </para>
+            -2<superscript>53</superscript> to
+            2<superscript>53</superscript></para>
           </listitem>
         </varlistentry>
 
@@ -544,8 +544,8 @@ const atm = 1.01325 * bar; // Standard atmosphere</programlisting>
       <literal>abs()</literal>,<literal> ceil()</literal>, and
       <literal>floor()</literal>, among other methods. If num and its subtypes
       don’t have what you’re looking for, the <ulink
-      url="http://api.dartlang.org/dart_math.html">Math</ulink> library might.
-      </para>
+      url="http://api.dartlang.org/dart_math.html">Math</ulink> library
+      might.</para>
 
       <warning>
         <para>Integers outside of the -2<superscript>53</superscript> to
@@ -2297,7 +2297,7 @@ assert(urlString.startsWith('https')); // Make sure this is an HTTPS URL.</progr
       exception:</para>
 
       <programlisting format="linespecific"><remark>lang-dart
-</remark>throw new ExpectException('Value must be greater than zero');</programlisting>
+</remark>throw new FormatException('expected at least one section');</programlisting>
 
       <para>You can also throw arbitrary objects:</para>
 
@@ -3813,11 +3813,11 @@ class Llama {
       Food class.</para>
 
       <para>To parse Dart code and generate HTML documentation, you can use
-      the SDK’s
-      <ulink url="http://www.dartlang.org/tools/docgen/">documentation generation tool.</ulink> For an example of generated
-      documentation, see the <ulink url="http://api.dartlang.org">Dart API
-      documentation.</ulink> For advice on how to structure your comments, see
-      <ulink
+      the SDK’s <ulink
+      url="http://www.dartlang.org/tools/docgen/">documentation generation
+      tool.</ulink> For an example of generated documentation, see the <ulink
+      url="http://api.dartlang.org">Dart API documentation.</ulink> For advice
+      on how to structure your comments, see <ulink
       url="http://www.dartlang.org/articles/doc-comment-guidelines/">Guidelines
       for Dart Doc Comments.</ulink></para>
     </sect2>
@@ -3827,8 +3827,8 @@ class Llama {
     <title>Summary</title>
 
     <para>This chapter summarized the commonly used features in the Dart
-    language. More features are being implemented, but we expect
-    that they won’t break existing code. For more information, see the <ulink
+    language. More features are being implemented, but we expect that they
+    won’t break existing code. For more information, see the <ulink
     url="http://www.dartlang.org/docs/spec/">Dart Language
     Specification</ulink> and <ulink
     url="http://www.dartlang.org/articles/">articles</ulink> such as <ulink

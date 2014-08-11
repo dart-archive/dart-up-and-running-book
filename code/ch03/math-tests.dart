@@ -16,9 +16,7 @@ trig() {
   var radians = degrees * (math.PI / 180);
   // radians is now 0.52359.
   var sinOf30degrees = math.sin(radians);
-  
-  // Truncate the decimal places to 2.
-  assert(double.parse(sinOf30degrees.toStringAsPrecision(2)) == 0.5);
+  assert((sinOf30degrees - 0.5).abs() < 0.01); // sin 30° = 0.5
 }
 
 minmax() {

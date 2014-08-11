@@ -1253,9 +1253,7 @@ var degrees = 30;
 var radians = degrees * (math.PI / 180);
 // radians is now 0.52359.
 var sinOf30degrees = math.sin(radians);
-
-// Truncate the decimal places to 2.
-assert(double.parse(sinOf30degrees.toStringAsPrecision(2)) == 0.5);</screen>
+assert((sinOf30degrees - 0.5).abs() &lt; 0.01); // sin 30° = 0.5</screen>
 
       <note>
         <para>These functions use radians, not degrees!</para>
@@ -1463,19 +1461,22 @@ List&lt;Element&gt; elems3 = querySelectorAll('#id p.class');</screen>
 </remark><remark>ch03_html/ch03_html.dart
 </remark>&lt;!-- In HTML: --&gt;
 &lt;p&gt;
-  &lt;span class="os linux"&gt;Words for Linux&lt;/span&gt;
-  &lt;span class="os mac"&gt;Words for Mac&lt;/span&gt;
-  &lt;span class="os win"&gt;Words for Windows&lt;/span&gt;
+  &lt;span class="linux"&gt;Words for Linux&lt;/span&gt;
+  &lt;span class="macos"&gt;Words for Mac&lt;/span&gt;
+  &lt;span class="windows"&gt;Words for Windows&lt;/span&gt;
 &lt;/p&gt;
 <remark>
 </remark>// In Dart:
-final osList = ['mac', 'win', 'linux'];
+final osList = ['macos', 'windows', 'linux'];
 
 var userOs = 'linux'; // In real code you'd programmatically determine this.
 
 for (var os in osList) {            // For each possible OS...
   bool shouldShow = (os == userOs); // Does this OS match the user's OS?
-  for (var elem in querySelectorAll('.$os')) { // Find all elements for this OS.
+
+  // Find all elements with class=os. For example, if os == 'windows', call
+  // querySelectorAll('.windows') to find all elements with the class "windows".
+  for (var elem in querySelectorAll('.$os')) { // String interpolation ($os)
     elem.hidden = !shouldShow;      // Show or hide each element.
   }
 }</screen>
