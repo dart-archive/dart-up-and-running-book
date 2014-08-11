@@ -203,7 +203,44 @@
     <title>Content Updates</title>
 
     <para>This section gives details about how the book has changed between
-    each of its three printings.</para>
+    each of its printings, and how the online content has changed after the
+    most recent printing.</para>
+
+    <sect2>
+      <title>Changes After the Third Printing</title>
+
+      <para>We've fixed a few bugs:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Deleted the dart-vm section, pointing to new docs at <ulink
+          url="http://www.dartlang.org/tools/dart-vm/"></ulink>.</para>
+        </listitem>
+
+        <listitem>
+          <para>Stopped saying that local variables are lazily
+          initialized.</para>
+        </listitem>
+
+        <listitem>
+          <para>Improved the code for the sin() example.</para>
+        </listitem>
+
+        <listitem>
+          <para>Improved the comments and code for the hide elements
+          example.</para>
+        </listitem>
+
+        <listitem>
+          <para>Changed an example to use FormatException instead of the
+          non-existent ExpectException.</para>
+        </listitem>
+
+        <listitem>
+          <para>Updated a few links.</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
 
     <sect2 id="preface-updates-v3">
       <title>Changes in the Third Printing: February 19, 2014</title>
