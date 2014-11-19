@@ -8,5 +8,4 @@ bar() {
   print('bar');
 }
 
-class Element {
-}
+class Element {}

@@ -3,8 +3,8 @@ class Television {
     _illuminateDisplay();
     _activateIrSensor();
   }
-  void _illuminateDisplay () { }
-  void _activateIrSensor () { }
+  void _illuminateDisplay() {}
+  void _activateIrSensor() {}
 }
 
 class SmartTelevision extends Television {
@@ -14,7 +14,7 @@ class SmartTelevision extends Television {
     _initializeMemory();
     _upgradeApps();
   }
-  void _bootNetworkInterface() { }
-  void _initializeMemory() { }
-  void _upgradeApps() { }
+  void _bootNetworkInterface() {}
+  void _initializeMemory() {}
+  void _upgradeApps() {}
 }

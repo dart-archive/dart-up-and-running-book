@@ -1,10 +1,10 @@
 class Person {
-  bringRainCoat() { }
-  wearJacket() { }
+  bringRainCoat() {}
+  wearJacket() {}
 }
 
 class Vehicle {
-  putTopDown() { }
+  putTopDown() {}
 }
 
 bool isRaining() {

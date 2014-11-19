@@ -1,10 +1,10 @@
-doSomething() { }
-printLine() { print('Hi'); }
-bool isDone() { return true; }
-bool atEndOfPage() { return true; }
+doSomething() {}
+printLine() => print('Hi');
+bool isDone() => true;
+bool atEndOfPage() => true;
 
 main() {
-  while(!isDone()) {
+  while (!isDone()) {
     doSomething();
   }
 

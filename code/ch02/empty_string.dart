@@ -13,7 +13,7 @@ main() {
   assert(unicorn == null);
 
   // Check for NaN.
-  var iMeantToDoThis = 0/0;
+  var iMeantToDoThis = 0 / 0;
   assert(iMeantToDoThis.isNaN);
   // END(empty_string)
 }

@@ -12,7 +12,7 @@ class Person {
   }
 
   // You should generally implement operator== if you override hashCode.
-  bool operator==(other) {
+  bool operator ==(other) {
     if (other is! Person) return false;
     Person person = other;
     return (person.firstName == firstName && person.lastName == lastName);

@@ -14,8 +14,7 @@ abstract class Cache<T> {
   setByKey(String key, T value);
 }
 
-class View {
-}
+class View {}
 
 main() {
   whyUseGenerics();
@@ -30,13 +29,14 @@ whyUseGenerics() {
   // ...
   /*names.add(42);*/ // Fails in checked mode (succeeds in production mode).
 }
-  
+
 usingCollectionLiterals() {
   var names = <String>['Seth', 'Kathy', 'Lars'];
   var pages = <String, String>{
-      'index.html':'Homepage',
-      'robots.txt':'Hints for web robots',
-      'humans.txt':'We are people, not machines' };
+    'index.html': 'Homepage',
+    'robots.txt': 'Hints for web robots',
+    'humans.txt': 'We are people, not machines'
+  };
 }
 
 usingConstructors() {

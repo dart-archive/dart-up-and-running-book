@@ -1,18 +1,14 @@
 //BEGIN
-/**
- * A domesticated South American camelid (Lama glama).
- * 
- * Andean cultures have used llamas as meat and pack animals
- * since pre-Hispanic times.
- */
+/// A domesticated South American camelid (Lama glama).
+///
+/// Andean cultures have used llamas as meat and pack animals
+/// since pre-Hispanic times.
 class Llama {
   String name;
 
-  /**
-   * Feeds your llama [Food].
-   * 
-   * The typical llama eats one bale of hay per week.
-   */
+  /// Feeds your llama [Food].
+  ///
+  /// The typical llama eats one bale of hay per week.
   void feed(Food food) {
     // ...
   }
@@ -25,8 +21,6 @@ class Llama {
 }
 //END
 
-class Food {
-}
+class Food {}
 
-class Activity {
-}
+class Activity {}

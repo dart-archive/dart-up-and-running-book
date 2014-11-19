@@ -87,7 +87,7 @@ buildingAString() {
   assert(fullString ==
       'Use a StringBuffer for efficient string creation.');
   //END
-  
+
 //  clear() is gone. For now, at least.
 //  sb.clear();  // All gone!
 //  assert(sb.toString() == '');
@@ -122,5 +122,4 @@ regularExpressions2() {
   for (var match in numbers.allMatches(someDigits)) {
     print(match.group(0)); // 15, then 20
   }
-
 }
