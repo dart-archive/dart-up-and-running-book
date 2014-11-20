@@ -15,7 +15,7 @@ main() {
   HttpRequest.getString(jsonUri)
       .then(processString)
       .catchError(handleError);
-  
+
   // Read an XML file.
   HttpRequest.request(xmlUri)
       .then(processRequest)
@@ -31,17 +31,17 @@ processRequest(HttpRequest request) {
   try {
     var license = xmlDoc.querySelector('license').text;
     print('License: $license');
-  } catch(e) {
+  } catch (e) {
     print('$xmlUri doesn\'t have correct XML formatting.');
   }
 }
 
 parseText(String jsonText) {
   var response;
-  
+
   try {
     response = JSON.decode(jsonText);
-  } on FormatException catch(e) {
+  } on FormatException catch (e) {
     print('$jsonUri doesn\'t have correct JSON formatting.');
     print(e.message);
     return;
@@ -52,9 +52,8 @@ parseText(String jsonText) {
   print('The $name project uses the $license license.');
 }
 
-// PENDING: We should do more explicit error handling, once it's available. 
+// PENDING: We should do more explicit error handling, once it's available.
 handleError(error) {
   print('Uh oh, there was an error.');
   print(error.toString());
 }
-

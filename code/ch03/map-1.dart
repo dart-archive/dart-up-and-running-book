@@ -8,7 +8,7 @@ main() {
 }
 
 buildMaps() {
-  // Maps often use strings or integers as keys.
+  // Maps often use strings as keys.
   var hawaiianBeaches = {
     'oahu'      : ['waikiki', 'kailua', 'waimanalo'],
     'big island': ['wailea bay', 'pololu beach'],
