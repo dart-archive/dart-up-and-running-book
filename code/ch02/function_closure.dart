@@ -9,8 +9,7 @@ main() {
 
   assert(add2(3) == 5);
   assert(add4(3) == 7);
-  
+
   print(add2(3)); // 5
   print(add4(3)); // 7
 }
-
