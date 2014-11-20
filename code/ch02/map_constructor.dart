@@ -4,7 +4,7 @@ main() {
   gifts['first'] = 'partridge';
   gifts['second'] = 'turtledoves';
   gifts['fifth'] = 'golden rings';
-  
+
   var nobleGases = new Map();
   nobleGases[2] = 'helium';
   nobleGases[10] = 'neon';

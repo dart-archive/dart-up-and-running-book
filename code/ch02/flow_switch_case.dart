@@ -1,9 +1,3 @@
-var CLOSED = 1;
-var PENDING = 2;
-var APPROVED = 1;
-var DENIED = 1;
-var OPEN = 1;
-
 executeClosed() {}
 executePending() {}
 executeApproved() {}

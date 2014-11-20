@@ -4,10 +4,10 @@ main() {
 //  namedIntArguments[#d] = 4;
 //  namedIntArguments[#e] = 5;
 //  assert(Function.apply(foo, [1,2,3], namedIntArguments)
-  assert(Function.apply(foo, [1,2,3], {#d: 4, #e: 5})
-      == foo(1, 2, 3, d: 4, e: 5));
-  Function.apply(foo, [1,2,3]);
-  
+  assert(Function.apply(foo, [1, 2, 3], {#d: 4, #e: 5}) ==
+         foo(1, 2, 3, d: 4, e: 5));
+  Function.apply(foo, [1, 2, 3]);
+
   var a = new A();
   a.bar();
 //  a.baz();
@@ -22,7 +22,7 @@ int foo(int a, int b, int c, {int d: 0, int e: 0}) {
 
 class A {
   var b = new B();
-  
+
   void noSuchMethod(Invocation invocation) {
     if (invocation.memberName == #bar) {
       print('A responding to bar() by calling b.baz()');

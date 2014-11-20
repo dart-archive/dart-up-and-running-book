@@ -2,7 +2,7 @@ abstract class Musical {
   bool canPlayPiano = false;
   bool canCompose = false;
   bool canConduct = false;
-  
+
   void entertainMe() {
     if (canPlayPiano) {
       print('Playing piano');
@@ -44,9 +44,9 @@ class Maestro extends Person with Musical, Aggressive, Demented {
 
 main() {
   var director = new Maestro('Allen');
-  director.entertainMe();  // Waving hands
-  
+  director.entertainMe(); // Waving hands
+
   var musician = new Musician('Kathy');
   musician.canPlayPiano = true;
-  musician.entertainMe();  // Playing piano
+  musician.entertainMe(); // Playing piano
 }
