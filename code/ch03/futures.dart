@@ -30,7 +30,6 @@ Future costlyQuery() {
   return new Future.value(true);
 }
 
-
 Future deleteLotsOfFiles() {
   return new Future.value(true);
 }
@@ -54,9 +53,11 @@ Future longExpensiveSearch() {
 Future runSearch() {
   var future = longExpensiveSearch(); // Returns immediately.
 
-  return future.then((results) { print('Here are the results: $results'); })
-    .catchError((e) {
-      print("Oops! Encountered $e"); });
+  return future.then((results) {
+    print('Here are the results: $results');
+  }).catchError((e) {
+    print("Oops! Encountered $e");
+  });
 }
 
 Future runQuery() {
@@ -78,10 +79,11 @@ Future wait() {
   });
 }
 
-main() {  
+main() {
   Future<int> future = getFuture();
-  future.then((value) => handleValue(value))
-        .catchError((error) => handleError(error));
+  future
+      .then((value) => handleValue(value))
+      .catchError((error) => handleError(error));
 
   runSearch();
   runQuery();
