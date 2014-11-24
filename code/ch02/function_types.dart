@@ -1,5 +1,6 @@
 // BEGIN(function_types)
-printNumber(num number) => print('The number is $number.'); // Including types is OK.
+void printNumber(num number) =>
+  print('The number is $number.');
 // END(function_types)
 
 main() {}

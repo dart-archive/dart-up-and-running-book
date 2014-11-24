@@ -1,9 +1,9 @@
-bool shutDownRequested() { return true; }
-processIncomingRequests() { }
+bool shutDownRequested() => true;
+processIncomingRequests() {}
 
 class Candidate {
   var yearsExperience = 2;
-  interview() { }
+  interview() {}
 }
 
 main() {
@@ -12,7 +12,7 @@ main() {
     processIncomingRequests();
   }
 
-  var candidates = [ new Candidate(), new Candidate(), new Candidate() ];
+  var candidates = [new Candidate(), new Candidate(), new Candidate()];
 
   for (int i = 0; i < candidates.length; i++) {
     var candidate = candidates[i];

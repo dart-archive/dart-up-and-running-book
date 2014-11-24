@@ -11,5 +11,5 @@ int sort(int a, int b) => a - b;
 main() {
   SortedCollection collection = new SortedCollection(sort);
   assert(collection.compare is Function);
-  assert(sort is Compare);  // True!
+  assert(sort is Compare); // True!
 }

@@ -1,6 +1,6 @@
 class Television {
   /// _Deprecated: Use [turnOn] instead._
-  @deprecated      // Metadata; makes Dart Editor warn about using activate().
+  @deprecated // Metadata; makes Dart Editor warn about using activate().
   void activate() {
     turnOn();
   }
@@ -9,7 +9,7 @@ class Television {
   void turnOn() {
     print('on!');
   }
-} 
+}
 
 main() {
   var tv = new Television();

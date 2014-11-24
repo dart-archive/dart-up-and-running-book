@@ -6,7 +6,7 @@ class Person {
   String firstName;
   String lastName;
   int age;
-  
+
   Person(this.firstName, this.lastName, this.age);
 
   String get fullName => '$firstName $lastName';
@@ -46,7 +46,7 @@ reflectFromInstance() {
 showConstructors(ClassMirror mirror) {
   var constructors = mirror.declarations.values
       .where((m) => m is MethodMirror && m.isConstructor);
-  
+
   constructors.forEach((m) {
     print('The constructor ${m.simpleName} has '
           '${m.parameters.length} parameters.');
@@ -80,7 +80,7 @@ reflectOnInstance() {
   // Get the value of a property.
   var fullName = mirror.getField(#fullName).reflectee;
   assert(fullName == 'Bob Smith');
-  
+
   // Set the value of a property.
   mirror.setField(#firstName, 'Mary');
   assert(p.firstName == 'Mary');

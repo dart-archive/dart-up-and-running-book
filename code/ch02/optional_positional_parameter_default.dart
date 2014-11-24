@@ -1,5 +1,5 @@
 String say(String from, String msg,
-  [String device='carrier pigeon', String mood]) {
+    [String device = 'carrier pigeon', String mood]) {
   var result = '$from says $msg';
   if (device != null) {
     result = '$result with a $device';

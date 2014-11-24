@@ -7,8 +7,4 @@ out
 /code/ch03/log.txt
 /code/ch03/betterLog.txt
 /code/ch03/copyOfIcon.ico
-/code/ch02/libraries/lib1/pubspec.lock
-/code/ch02/libraries/lib2/pubspec.lock
-/code/ch02/libraries/mylib/pubspec.lock
-/code/ch02/libraries/pubspec.lock
-/code/ch02/libraries/utils/pubspec.lock
+pubspec.lock

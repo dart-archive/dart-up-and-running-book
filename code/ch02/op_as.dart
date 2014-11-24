@@ -1,6 +1,6 @@
 class Person {
   String firstName;
-  
+
   Person.fromJson(Map data) {
     print('in Person');
   }
@@ -20,7 +20,7 @@ main() {
   // Prints:
   // in Person
   // in Employee
-  if (emp is Person) {               // Type check
+  if (emp is Person) { // Type check
     emp.firstName = 'Bob';
   }
   (emp as Person).firstName = 'Bob';

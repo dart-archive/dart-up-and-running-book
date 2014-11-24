@@ -10,7 +10,7 @@ doFor() {
 
 doClosures() {
   print('do closures right: 0 1');
-  
+
   //BEGIN
   var callbacks = [];
   for (var i = 0; i < 2; i++) {
@@ -22,7 +22,7 @@ doClosures() {
 
 doCollection() {
   print('do collection');
-  
+
   //BEGIN
   var collection = [0, 1, 2];
   for (var x in collection) {
@@ -32,11 +32,15 @@ doCollection() {
 }
 
 class Candidate {
-  interview () { }
+  interview() {}
 }
 
 doForIn() {
-  List<Candidate> candidates = [ new Candidate(), new Candidate(), new Candidate() ];
+  List<Candidate> candidates = [
+    new Candidate(),
+    new Candidate(),
+    new Candidate()
+  ];
 
   //BEGIN
   candidates.forEach((candidate) => candidate.interview());

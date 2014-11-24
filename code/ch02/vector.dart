@@ -13,10 +13,10 @@ class Vector {
 }
 
 main() {
-  final v = new Vector(2,3);
-  final w = new Vector(2,2);
+  final v = new Vector(2, 3);
+  final w = new Vector(2, 2);
 
-  assert(v.x == 2 && v.y == 3);         // v   == (2,3)
-  assert((v+w).x == 4 && (v+w).y == 5); // v+w == (4,5)
-  assert((v-w).x == 0 && (v-w).y == 1); // v-w == (0,1)
+  assert(v.x == 2 && v.y == 3);             // v   == (2,3)
+  assert((v + w).x == 4 && (v + w).y == 5); // v+w == (4,5)
+  assert((v - w).x == 0 && (v - w).y == 1); // v-w == (0,1)
 }

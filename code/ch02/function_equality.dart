@@ -8,7 +8,7 @@ main() {
 testStaticMethodClosure() {
   var closure1 = A.init;
   var closure2 = A.init;
-  
+
   assert(A.init == A.init);
   assert(closure1 == closure2);
 }
@@ -22,7 +22,7 @@ class A {
 testTopLevelFunctionClosure() {
   var closure1 = doSomething;
   var closure2 = doSomething;
-  
+
   assert(doSomething == doSomething);
   assert(closure1 == closure2);
 }
@@ -36,7 +36,7 @@ testInstanceMethodClosure() {
   var s = 'some string';       // Create a String object.
   var splitClosure1 = s.split; // Get a reference to its split() method.
   var splitClosure2 = s.split; // Get another reference to its split() method.
-  
+
   // s.split == s.split, and splitClosure1 == splitClosure2.
   assert(s.split == s.split);
   assert(splitClosure1 == splitClosure2);
@@ -47,7 +47,7 @@ testInstanceMethodClosure() {
   splitClosure2 = splitClosure1;
   assert(splitClosure1 == splitClosure2);
   // END
-  
+
   // An example of using the closure.
   var words = splitClosure1(' ');
   assert(words[0] == 'some');
@@ -60,7 +60,7 @@ testInnerFunctionClosure() {
 
   var addByTwo = adder(2); // addByTwo closes over adder function.
   var addTwo = adder(2);   // So does addTwo.
-  
+
   assert(adder == adder);
   assert(addByTwo != addTwo);
 }

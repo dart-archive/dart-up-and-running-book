@@ -10,7 +10,7 @@ main() {
 trig() {
   // Cosine
   assert(math.cos(math.PI) == -1.0);
-  
+
   // Sine
   var degrees = 30;
   var radians = degrees * (math.PI / 180);
@@ -33,14 +33,14 @@ constants() {
 
 random() {
   var random = new math.Random();
-  
+
   var nextDouble = random.nextDouble();
   assert(nextDouble >= 0.0 && nextDouble < 1.0); // [0, 1)
 
   var nextInt = random.nextInt(10);
-  assert(nextInt >= 0 && nextInt < 10);          // [0 .. 9]
-  
-  var nextBool = random.nextBool();              // true or false
-  
+  assert(nextInt >= 0 && nextInt < 10); // [0 .. 9]
+
+  var nextBool = random.nextBool();     // true or false
+
   print('$nextDouble, $nextInt, $nextBool');
 }

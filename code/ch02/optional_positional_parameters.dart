@@ -10,6 +10,6 @@ main() {
   assert(say('Bob', 'Howdy') == 'Bob says Howdy');
   print(say('Bob', 'Howdy'));
   assert(say('Bob', 'Howdy', 'smoke signal') ==
-  'Bob says Howdy with a smoke signal');
+      'Bob says Howdy with a smoke signal');
   print(say('Bob', 'Howdy', 'smoke signal'));
 }
