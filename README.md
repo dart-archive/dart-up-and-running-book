@@ -25,7 +25,11 @@ The command for that would be something like this:
 Updating the dartlang.org copy of this book
 ------------------
 Basically, you get the dartlang.org project, and you run `make book`.
-See https://github.com/dart-lang/dartlang.org#readme for details.
+See https://github.com/dart-lang/www.dartlang.org#readme for details.
+
+Issues and suggestions
+----------------------
+If you'd like to notify us about an issue in the book or if you'd like to sugguest changes please use the [www.dartlang.org issue tracker](https://github.com/dart-lang/www.dartlang.org).
 
 Project structure
 ---------------------
