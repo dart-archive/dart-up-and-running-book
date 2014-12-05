@@ -22,7 +22,7 @@ We could do real unit testing, and we could do better with HTML samples.
 
 Issues and suggestions
 ----------------------
-If you'd like to notify us about an issue in the book or if you'd like to sugguest changes please use the [www.dartlang.org issue tracker](https://github.com/dart-lang/www.dartlang.org/labels/UpAndRunning).
+If you'd like to notify us about an issue in the book or if you'd like to suggest changes please use the [www.dartlang.org issue tracker](https://github.com/dart-lang/www.dartlang.org/labels/UpAndRunning).
 
 Project structure
 ---------------------
