@@ -13,7 +13,8 @@ main() {
   List<Color> colors = Color.values;
   assert(colors[2] == Color.blue);
   
-  // NOTE: aColor must be explicitly typed for the switch case to check for coverage.
+  // NOTE: aColor must be explicitly typed for the analyzer
+  // to check for complete coverage in the switch statement.
   Color aColor = Color.blue;
   
   switch (aColor) {
