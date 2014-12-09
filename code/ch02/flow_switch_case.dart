@@ -41,7 +41,7 @@ switcheroo() {
   switch (command) {
     case 'OPEN':
       executeOpen();
-      // ERROR: Missing break causes an exception to be thrown!!
+      // ERROR: Missing break causes an exception!!
       // NOTE: Added break so sample passes dart_analyzer
       break;
 
