@@ -1,15 +1,24 @@
 import 'dart:async';
 
 const expectedVersion = '1.0.0';
+const dev = true;
 
 String lookUpVersionSync() => '1.0.0';
-Future<String> lookUpVersion() async => '1.0.0';
+Future<String> lookUpVersionAsync() async => '1.0.0';
 
+lookUpVersion() async {
+  if (dev) return 'dev-' + await loadFromServer();
+  return '1.0.0';
+}
+
+loadFromServer() async => '1.0.0';
+    
 checkVersion() async {
-  if (await lookUpVersion() == expectedVersion) {
+  var version = await lookUpVersion();
+  if (version == expectedVersion) {
     print(expectedVersion);
   } else {
-    print('unexpected version');
+    print('Unexpected version: $version');
   }
 }
 
