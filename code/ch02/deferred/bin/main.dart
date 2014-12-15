@@ -1,9 +1,8 @@
 import 'package:deferred/hello.dart' deferred as hello;
 
 greet() async {
-  if (await hello.loadLibrary()) {
-    hello.printGreeting();
-  }
+  await hello.loadLibrary();
+  hello.printGreeting();
 }
 
 main() {
