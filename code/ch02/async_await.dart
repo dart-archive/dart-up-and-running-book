@@ -12,7 +12,7 @@ lookUpVersion() async {
 }
 
 loadFromServer() async => '1.0.0';
-    
+
 checkVersion() async {
   var version = await lookUpVersion();
   if (version == expectedVersion) {

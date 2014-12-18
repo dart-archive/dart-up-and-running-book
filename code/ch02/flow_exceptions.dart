@@ -9,13 +9,15 @@ class Point {}
 main() {
   var numberOfLlamas = 1;
   if (numberOfLlamas <= 0) {
-    throw new StateError('Value must be greater than zero');
+    throw new StateError(
+        'Value must be greater than zero');
   }
   if (numberOfLlamas <= 0) {
     throw 'Out of llamas!';
   }
 
-  distanceTo(Point other) => throw new UnimplementedError();
+  distanceTo(Point other) =>
+      throw new UnimplementedError();
 
   try {
     breedMoreLlamas();
@@ -25,11 +27,14 @@ main() {
 
   try {
     breedMoreLlamas();
-  } on OutOfLlamasException { // A specific exception
+  } on OutOfLlamasException {
+    // A specific exception
     buyMoreLlamas();
-  } on Exception catch (e) {  // Anything else that is an exception
+  } on Exception catch (e) {
+    // Anything else that is an exception
     print('Unknown exception: $e');
-  } catch (e) {               // No specified type, handles all
+  } catch (e) {
+    // No specified type, handles all
     print('Something really unknown: $e');
   }
 
