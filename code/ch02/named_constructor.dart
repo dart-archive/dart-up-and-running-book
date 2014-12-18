@@ -10,4 +10,3 @@ class Point {
     y = json['y'];
   }
 }
-

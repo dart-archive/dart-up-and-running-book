@@ -26,20 +26,29 @@ class ImmutablePoint {
   final num x;
   final num y;
   const ImmutablePoint(this.x, this.y);
-  static final ImmutablePoint origin = const ImmutablePoint(0, 0);
+  static final ImmutablePoint origin =
+      const ImmutablePoint(0, 0);
 }
 
 main() {
   var jsonData = JSON.decode('{"x":1, "y":2}');
 
-  var p1 = new Point(2, 2);              // Create a Point using Point().
-  var p2 = new Point.fromJson(jsonData); // Create a Point using Point.fromJson().
+  // Create a Point using Point().
+  var p1 = new Point(2, 2);
+  
+  // Create a Point using Point.fromJson().
+  var p2 = new Point.fromJson(jsonData);
+  
   var p = new Point(2, 2);
 
-  p.y = 3;          // Set the value of the instance variable y.
-  assert(p.y == 3); // Get the value of y.
+  // Set the value of the instance variable y.
+  p.y = 3;
+  
+  // Get the value of y.
+  assert(p.y == 3);
 
-  num distance = p.distanceTo(new Point(4, 4)); // Invoke distanceTo() on p.
+  // Invoke distanceTo() on p.
+  num distance = p.distanceTo(new Point(4, 4));
 
 /*
  * TODO: make this testable
