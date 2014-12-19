@@ -12,5 +12,6 @@ String say(String from, String msg,
 
 main() {
   print(say('Bob', 'Howdy'));
-  assert(say('Bob', 'Howdy') == 'Bob says Howdy with a carrier pigeon');
+  assert(say('Bob', 'Howdy') ==
+      'Bob says Howdy with a carrier pigeon');
 }
