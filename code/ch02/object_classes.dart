@@ -5,7 +5,8 @@ class Point {
   num x;
   num y;
 
-  // Syntactic sugar for setting x and y before the constructor body runs.
+  // Syntactic sugar for setting x and y
+  // before the constructor body runs.
   Point(this.x, this.y);
 
   // Initializer list sets instance variables before the constructor body runs.

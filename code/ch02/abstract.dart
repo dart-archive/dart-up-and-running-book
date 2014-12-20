@@ -1,4 +1,5 @@
-// This class is declared abstract and thus can't be instantiated.
+// This class is declared abstract and thus
+// can't be instantiated.
 abstract class AbstractContainer {
   // ...Define constructors, fields, methods...
 

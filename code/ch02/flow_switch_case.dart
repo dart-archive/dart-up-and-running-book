@@ -67,7 +67,8 @@ switchItUp() {
   switch (command) {
     case 'CLOSED':
       executeClosed();
-      continue nowClosed; // Continues executing at the nowClosed label.
+      continue nowClosed;
+      // Continues executing at the nowClosed label.
 
   nowClosed:
     case 'NOW_CLOSED':

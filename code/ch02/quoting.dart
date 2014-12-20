@@ -6,6 +6,6 @@ var s4 = "It's even easier to use the other delimiter.";
 // END(quoting)
 
 main() {
-  print(
-      'Unicode escapes work: \u2665'); // Unicode escapes work: [heart]
+  // Unicode escapes work: [heart]
+  print('Unicode escapes work: \u2665');
 }

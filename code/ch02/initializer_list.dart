@@ -4,7 +4,8 @@ class Point {
 
   Point(this.x, this.y);
 
-  // Initializer list sets instance variables before the constructor body runs.
+  // Initializer list sets instance variables before
+  // the constructor body runs.
   Point.fromJson(Map json)
       : x = json['x'],
         y = json['y'] {

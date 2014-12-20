@@ -1,8 +1,8 @@
 //BEGIN
 /// A domesticated South American camelid (Lama glama).
 ///
-/// Andean cultures have used llamas as meat and pack animals
-/// since pre-Hispanic times.
+/// Andean cultures have used llamas as meat and pack
+/// animals since pre-Hispanic times.
 class Llama {
   String name;
 

@@ -6,8 +6,8 @@ void main() {
 
 //BEGIN
 class A {
-  // Unless you override noSuchMethod, using a non-existent member
-  // results in a NoSuchMethodError.
+  // Unless you override noSuchMethod, using a
+  // non-existent member results in a NoSuchMethodError.
   void noSuchMethod(Invocation mirror) {
     print('You tried to use a non-existent member:' +
           '${mirror.memberName}');
