@@ -14,7 +14,8 @@ class ProcessIterator implements Iterator<Process> {
 // A mythical class that lets you iterate through all processes.
 // Extends a subclass of Iterable.
 class Processes extends IterableBase<Process> {
-  final Iterator<Process> iterator = new ProcessIterator();
+  final Iterator<Process> iterator =
+      new ProcessIterator();
 }
 
 main() {
@@ -23,4 +24,3 @@ main() {
     // Do something with the process.
   }
 }
-

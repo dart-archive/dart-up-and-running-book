@@ -17,8 +17,8 @@ appendToFile() {
 writeBinary() {
   var binaryFile = new File('copyOfIcon.ico');
   var sink = binaryFile.openWrite();
-  var icoFile = new File('icon.ico');
-  var data = icoFile.openSync().readSync(icoFile.lengthSync());
+  var icoFile = new File('icon.ico');  // UNUSED in CH03
+  var data = icoFile.openSync().readSync(icoFile.lengthSync()); //UNUSED in CH03
   sink.add(data);
   sink.close();
 }

@@ -16,7 +16,8 @@ trig() {
   var radians = degrees * (math.PI / 180);
   // radians is now 0.52359.
   var sinOf30degrees = math.sin(radians);
-  assert((sinOf30degrees - 0.5).abs() < 0.01); // sin 30° = 0.5
+  // sin 30° = 0.5
+  assert((sinOf30degrees - 0.5).abs() < 0.01);
 }
 
 minmax() {
@@ -40,7 +41,7 @@ random() {
   var nextInt = random.nextInt(10);
   assert(nextInt >= 0 && nextInt < 10); // [0 .. 9]
 
-  var nextBool = random.nextBool();     // true or false
+  var nextBool = random.nextBool(); // true or false
 
   print('$nextDouble, $nextInt, $nextBool');
 }

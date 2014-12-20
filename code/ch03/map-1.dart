@@ -18,8 +18,8 @@ buildMaps() {
   // Maps can be built from a constructor.
   var searchTerms = new Map();
 
-  // Maps are parameterized types; you can specify what types
-  // the key and value should be.
+  // Maps are parameterized types; you can specify what
+  // types the key and value should be.
   var nobleGases = new Map<int, String>();
 }
 
@@ -44,13 +44,15 @@ getMapValues() {
     'kauai'     : ['hanalei', 'poipu']
   };
 
-  // Get all the keys as an unordered collection (an Iterable).
+  // Get all the keys as an unordered collection
+  // (an Iterable).
   var keys = hawaiianBeaches.keys;
 
   assert(keys.length == 3);
   assert(new Set.from(keys).contains('oahu'));
 
-  // Get all the values as an unordered collection (an Iterable of Lists).
+  // Get all the values as an unordered collection
+  // (an Iterable of Lists).
   var values = hawaiianBeaches.values;
   assert(values.length == 3);
   assert(values.any((v) => v.contains('waikiki')));
@@ -66,7 +68,8 @@ iterateThroughPairs() {
   // NOTE: Do not depend on iteration order.
   hawaiianBeaches.forEach((k, v) {
     print('I want to visit $k and swim at $v');
-    // I want to visit oahu and swim at [waikiki, kailua, waimanalo], etc.
+    // I want to visit oahu and swim at
+    // [waikiki, kailua, waimanalo], etc.
   });
 }
 
@@ -83,7 +86,8 @@ checkForKey() {
 
 callPutIfAbsent() {
   var teamAssignments = {};
-  teamAssignments.putIfAbsent('Catcher', () => pickToughestKid());
+  teamAssignments.putIfAbsent(
+      'Catcher', () => pickToughestKid());
   assert(teamAssignments['Catcher'] != null);
   teamAssignments.forEach((k, v) {
     print('$k: $v');

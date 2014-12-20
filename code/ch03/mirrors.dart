@@ -29,7 +29,8 @@ main() {
   assert('MyClass' == MirrorSystem.getName(#MyClass));
 
   ClassMirror mirror = reflectClass(Person);
-  assert('Person' == MirrorSystem.getName(mirror.simpleName));
+  assert('Person' ==
+      MirrorSystem.getName(mirror.simpleName));
 
   reflectFromInstance();
   showConstructors(mirror);
@@ -40,7 +41,8 @@ main() {
 reflectFromInstance() {
   var person = new Person('Bob', 'Smith', 33);
   ClassMirror mirror = reflectClass(person.runtimeType);
-  assert('Person' == MirrorSystem.getName(mirror.simpleName));
+  assert('Person' ==
+      MirrorSystem.getName(mirror.simpleName));
 }
 
 showConstructors(ClassMirror mirror) {
@@ -54,15 +56,18 @@ showConstructors(ClassMirror mirror) {
 }
 
 showFields(ClassMirror mirror) {
-  var fields = mirror.declarations.values.where((m) => m is VariableMirror);
+  var fields = mirror.declarations.values
+      .where((m) => m is VariableMirror);
 
   fields.forEach((VariableMirror m) {
     var finalStatus = m.isFinal ? 'final' : 'not final';
-    var privateStatus = m.isPrivate ? 'private' : 'not private';
+    var privateStatus = m.isPrivate ?
+        'private' : 'not private';
     var typeAnnotation = m.type.simpleName;
 
-    print('The field ${m.simpleName} is $privateStatus and $finalStatus '
-          'and is annotated as $typeAnnotation.');
+    print('The field ${m.simpleName} is $privateStatus ' +
+          'and $finalStatus and is annotated as ' +
+          '$typeAnnotation.');
   });
 }
 
