@@ -41,7 +41,8 @@ main() {
   try {
     breedMoreLlamas();
   } finally {
-    cleanLlamaStalls(); // Always clean up, even if an exception is thrown.
+    // Always clean up, even if an exception is thrown.
+    cleanLlamaStalls();
   }
 
   try {
@@ -50,5 +51,11 @@ main() {
     print('Error: $e'); // Handle the exception first.
   } finally {
     cleanLlamaStalls(); // Then clean up.
+  }
+  
+  try {
+    throw new FormatException('Expected at least 1 section');
+  } on FormatException catch (e) {
+    print(e);
   }
 }
