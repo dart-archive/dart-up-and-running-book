@@ -7,6 +7,8 @@ main() {
   assert(loudTeas.any((tea) => tea == 'GREEN'));
   loudTeas.forEach(print);
 
-  var loudTeaList = teas.map((tea) => tea.toUpperCase()).toList();
+  var loudTeaList = teas
+      .map((tea) => tea.toUpperCase())
+      .toList();
   loudTeaList.forEach(print);
 }

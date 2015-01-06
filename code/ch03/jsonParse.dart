@@ -1,8 +1,9 @@
 import 'dart:convert' show JSON;
 
 main() {
-  // NOTE: Be sure to use double quotes ("), not single quotes ('),
-  // inside the JSON string. This string is JSON, not Dart.
+  // NOTE: Be sure to use double quotes ("),
+  // not single quotes ('), inside the JSON string.
+  // This string is JSON, not Dart.
   var jsonString = '''
   [
     {"score": 40},

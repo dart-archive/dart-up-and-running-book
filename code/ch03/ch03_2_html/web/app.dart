@@ -2,11 +2,11 @@ import 'dart:html';
 import 'dart:async';
 import 'dart:convert' show JSON;
 
-// A JSON-formatted file in the same location as this page.
+// A JSON-formatted file next to this page.
 var jsonUri = 'data.json';
 // Besides 'data.json', also try 'nodata.json' and 'nofile.json'.
 
-// An XML-formatted file in the same location as this page.
+// An XML-formatted file next to this page.
 var xmlUri = 'data.xml';
 // Besides 'data.xml', also try 'nodata.xml' and 'nofile.xml'.
 
@@ -32,7 +32,7 @@ processRequest(HttpRequest request) {
     var license = xmlDoc.querySelector('license').text;
     print('License: $license');
   } catch (e) {
-    print('$xmlUri doesn\'t have correct XML formatting.');
+    print("$xmlUri doesn't have correct XML formatting.");
   }
 }
 
@@ -42,7 +42,7 @@ parseText(String jsonText) {
   try {
     response = JSON.decode(jsonText);
   } on FormatException catch (e) {
-    print('$jsonUri doesn\'t have correct JSON formatting.');
+    print("$jsonUri doesn't have correct JSON formatting.");
     print(e.message);
     return;
   }

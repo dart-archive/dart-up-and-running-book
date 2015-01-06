@@ -1,5 +1,8 @@
 // BEGIN(function_shorthand)
-printNumber(number) => print('The number is $number.');
+void printNumber(num number) =>
+    print('The number is $number.');
 // END(function_shorthand)
 
-main() {}
+main() {
+  printNumber(88888888);
+}

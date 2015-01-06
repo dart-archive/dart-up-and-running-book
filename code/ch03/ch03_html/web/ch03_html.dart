@@ -31,7 +31,8 @@ void findElements() {
   List<Element> elems1 = querySelectorAll('div');
 
   // Find all text inputs.
-  List<Element> elems2 = querySelectorAll('input[type="text"]');
+  List<Element> elems2 =
+      querySelectorAll('input[type="text"]');
 
   // Find all elements with the CSS class 'class'
   // inside of a <p> that is inside an element with
@@ -46,15 +47,20 @@ void replaceElement() {
 
 void displayConditionally() {
   // In Dart:
-  final osList = ['mac', 'win', 'linux'];
+  final osList = ['macos', 'windows', 'linux'];
 
-  var userOs = 'linux'; // In real code you'd programmatically determine this.
+  // In real code you'd programmatically determine userOs.
+  var userOs = 'linux';
 
   for (var os in osList) { // For each possible OS...
-    bool shouldShow = (os == userOs); // Does this OS match the user's OS?
-    for (var elem in querySelectorAll(
-        '.$os')) { // Find all elements for this OS.
-      elem.hidden = !shouldShow; // Show or hide each element.
+    bool shouldShow = (os == userOs); // Matches user OS?
+
+    // Find all elements with class=os. For example, if
+    // os == 'windows', call querySelectorAll('.windows')
+    // to find all elements with the class "windows".
+    // Note that '.$os' uses string interpolation.
+    for (var elem in querySelectorAll('.$os')) {
+      elem.hidden = !shouldShow; // Show or hide.
     }
   }
 }
@@ -74,7 +80,8 @@ void createElements() {
   elem.text = 'Creating is easy!';
   document.body.children.add(elem);
 
-  var elem2 = new Element.html('<p>Creating <em>is</em> easy!</p>');
+  var elem2 =
+      new Element.html('<p>Creating <em>is</em> easy!</p>');
   document.body.children.add(elem2);
 }
 

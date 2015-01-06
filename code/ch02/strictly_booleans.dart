@@ -3,7 +3,8 @@ main() {
     // BEGIN(strictly_booleans)
     var name = 'Bob';
     if (name) {
-      print('You have a name!'); // Prints in JavaScript, not in Dart.
+      // Prints in JavaScript, not in Dart.
+      print('You have a name!');
     }
     // END(strictly_booleans)
   */

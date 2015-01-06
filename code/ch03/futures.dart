@@ -74,9 +74,10 @@ Future wait() {
   Future copyDone = copyLotsOfFiles();
   Future checksumDone = checksumLotsOfOtherFiles();
 
-  Future.wait([deleteDone, copyDone, checksumDone]).then((List values) {
-    print('Done with all the long steps');
-  });
+  Future.wait([deleteDone, copyDone, checksumDone])
+      .then((List values) {
+        print('Done with all the long steps');
+      });
 }
 
 main() {

@@ -25,8 +25,9 @@ main() {
   // Get a UTF-16 code unit (as a string) by index.
   assert('Never odd or even'[0] == 'N');
 
-  // Use split() with an empty string parameter to get a list of
-  // all characters (as Strings); good for iterating.
+  // Use split() with an empty string parameter to get
+  // a list of all characters (as Strings); good for
+  // iterating.
   for (var char in 'hello'.split('')) {
     print(char);
   }
@@ -34,19 +35,22 @@ main() {
   // Get all the UTF-16 code units in the string.
   var codeUnitList = 'Never odd or even'.codeUnits.toList();
   assert(codeUnitList[0] == 78);
+//END
 
-  // Get all the characters in the string as a Runes object, which
-  // contains one item per character.
+  // UNUSED.
+  // Get all the characters in the string as a Runes object,
+  // which contains one item per character.
   var runes = 'Never odd or even'.runes;
   assert(runes.length == 17);
-//END
 
   //BEGIN
   // Convert to uppercase.
-  assert('structured web apps'.toUpperCase() == 'STRUCTURED WEB APPS');
+  assert('structured web apps'.toUpperCase() ==
+      'STRUCTURED WEB APPS');
 
   // Convert to lowercase.
-  assert('STRUCTURED WEB APPS'.toLowerCase() == 'structured web apps');
+  assert('STRUCTURED WEB APPS'.toLowerCase() ==
+      'structured web apps');
   //END
 
   //BEGIN
@@ -62,9 +66,11 @@ main() {
 
   //BEGIN
   var greetingTemplate = 'Hello, NAME!';
-  var greeting = greetingTemplate.replaceAll(new RegExp('NAME'), 'Bob');
+  var greeting = greetingTemplate
+      .replaceAll(new RegExp('NAME'), 'Bob');
 
-  assert(greeting != greetingTemplate); // greetingTemplate didn't change.
+  assert(greeting !=
+      greetingTemplate); // greetingTemplate didn't change.
   //END
 
   buildingAString();
@@ -78,8 +84,8 @@ buildingAString() {
   //and clear() was removed.
   //BEGIN
   var sb = new StringBuffer();
-  sb..write('Use a StringBuffer ')
-    ..writeAll(['for', 'efficient', 'string', 'creation'], ' ')
+  sb..write('Use a StringBuffer for ')
+    ..writeAll(['efficient', 'string', 'creation'], ' ')
     ..write('.');
 
   var fullString = sb.toString();

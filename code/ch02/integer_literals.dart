@@ -1,7 +1,9 @@
 // BEGIN(integer_literals)
 var x = 1;
 var hex = 0xDEADBEEF;
-var bigInt = 346534658346524376592384765923749587398457294759347029438709349347;
+var bigInt = 34653465834652437659238476592374958739845729;
 // END(integer_literals)
 
-main() {}
+main() {
+  print('x: $x; hex: $hex; bigInt: $bigInt');
+}

@@ -9,4 +9,3 @@ main() {
   var long = const Line(100);
   assert(short.compareTo(long) < 0);
 }
-

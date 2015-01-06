@@ -1,6 +1,6 @@
 class Television {
   /// _Deprecated: Use [turnOn] instead._
-  @deprecated // Metadata; makes Dart Editor warn about using activate().
+  @deprecated
   void activate() {
     turnOn();
   }

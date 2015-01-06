@@ -4,13 +4,14 @@ import 'dart:html';
 
 String encodeMap(Map data) {
   return data.keys.map((k) {
-    return '${Uri.encodeComponent(k)}=${Uri.encodeComponent(data[k])}';
+    return '${Uri.encodeComponent(k)}=' +
+           '${Uri.encodeComponent(data[k])}';
   }).join('&');
 }
 
 loadEnd(HttpRequest request) {
   if (request.status != 200) {
-    print('Uh oh, there was an error of ${request.status}');
+    print('Uh oh, error: ${request.status}');
     return;
   } else {
     print('Data has been posted');
@@ -24,8 +25,10 @@ main() {
 
   var httpRequest = new HttpRequest();
   httpRequest.open('POST', dataUrl);
-  httpRequest.setRequestHeader('Content-type',
-                               'application/x-www-form-urlencoded');
-  httpRequest.onLoadEnd.listen((e) => loadEnd(httpRequest));
+  httpRequest.setRequestHeader(
+      'Content-type',
+      'application/x-www-form-urlencoded');
+  httpRequest.onLoadEnd
+      .listen((e) => loadEnd(httpRequest));
   httpRequest.send(encodedData);
 }

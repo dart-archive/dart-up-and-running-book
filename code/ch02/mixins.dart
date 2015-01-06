@@ -35,7 +35,8 @@ abstract class Performer {
 class Musician extends Performer with Musical {
   Musician(String name) : super(name);
 }
-class Maestro extends Person with Musical, Aggressive, Demented {
+class Maestro extends Person
+    with Musical, Aggressive, Demented {
   Maestro(String maestroName) {
     name = maestroName;
     canConduct = true;

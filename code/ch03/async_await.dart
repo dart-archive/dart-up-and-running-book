@@ -22,13 +22,13 @@ flushThenExit(exitCode) async {
 // to complete.
 runBroken() {
   var args = ['runBroken'];
-  
+
   // Here's where the trouble starts.
   var entrypoint = findEntrypoint();
-  
+
   // entrypoint is a Future, not the real entrypoint.
   var exitCode = runExecutable(entrypoint, args);
-  
+
   // exitCode is a Future, not the real exit code.
   flushThenExit(exitCode);
 }
@@ -36,7 +36,7 @@ runBroken() {
 //Future runUsingAsyncAwait() async { // return type of async is Future
 runUsingAsyncAwait() async {
   var args = ['runUsingAsyncAwait'];
-  
+
   var entrypoint = await findEntrypoint();
   var exitCode = await runExecutable(entrypoint, args);
   await flushThenExit(exitCode);
@@ -45,7 +45,7 @@ runUsingAsyncAwait() async {
 //void runUsingFuture() {
 runUsingFuture() {
   var args = ['runUsingFuture'];
-  
+
   findEntrypoint().then((entrypoint) {
     return runExecutable(entrypoint, args);
   }).then(flushThenExit);

@@ -11,4 +11,3 @@ class Point {
     return sqrt(dx * dx + dy * dy);
   }
 }
-

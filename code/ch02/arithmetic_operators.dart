@@ -6,5 +6,5 @@ main() {
   assert(5 ~/ 2 == 2);    // Result is an integer
   assert(5 % 2 == 1);     // Remainder
 
-  print('5/2 = ${5~/2} remainder ${5%2}'); // 5/2 = 2 remainder 1
+  print('5/2 = ${5~/2} r ${5%2}'); // 5/2 = 2 r 1
 }
