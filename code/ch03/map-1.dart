@@ -68,7 +68,7 @@ iterateThroughPairs() {
   // NOTE: Do not depend on iteration order.
   hawaiianBeaches.forEach((k, v) {
     print('I want to visit $k and swim at $v');
-    // I want to visit oahu and swim at
+    // I want to visit Oahu and swim at
     // [Waikiki, Kailua, Waimanalo], etc.
   });
 }
