@@ -10,9 +10,9 @@ main() {
 buildMaps() {
   // Maps often use strings as keys.
   var hawaiianBeaches = {
-    'oahu'      : ['waikiki', 'kailua', 'waimanalo'],
-    'big island': ['wailea bay', 'pololu beach'],
-    'kauai'     : ['hanalei', 'poipu']
+    'Oahu'      : ['Waikiki', 'Kailua', 'Waimanalo'],
+    'Big Island': ['Wailea Bay', 'Pololu Beach'],
+    'Kauai'     : ['Hanalei', 'Poipu']
   };
 
   // Maps can be built from a constructor.
@@ -39,9 +39,9 @@ addGetSetItems() {
 
 getMapValues() {
   var hawaiianBeaches = {
-    'oahu'      : ['waikiki', 'kailua', 'waimanalo'],
-    'big island': ['wailea bay', 'pololu beach'],
-    'kauai'     : ['hanalei', 'poipu']
+    'Oahu'      : ['Waikiki', 'Kailua', 'Waimanalo'],
+    'Big Island': ['Wailea Bay', 'Pololu Beach'],
+    'Kauai'     : ['Hanalei', 'Poipu']
   };
 
   // Get all the keys as an unordered collection
@@ -49,39 +49,39 @@ getMapValues() {
   var keys = hawaiianBeaches.keys;
 
   assert(keys.length == 3);
-  assert(new Set.from(keys).contains('oahu'));
+  assert(new Set.from(keys).contains('Oahu'));
 
   // Get all the values as an unordered collection
   // (an Iterable of Lists).
   var values = hawaiianBeaches.values;
   assert(values.length == 3);
-  assert(values.any((v) => v.contains('waikiki')));
+  assert(values.any((v) => v.contains('Waikiki')));
 }
 
 iterateThroughPairs() {
   var hawaiianBeaches = {
-    'oahu'      : ['waikiki', 'kailua', 'waimanalo'],
-    'big island': ['wailea bay', 'pololu beach'],
-    'kauai'     : ['hanalei', 'poipu']
+    'Oahu'      : ['Waikiki', 'Kailua', 'Waimanalo'],
+    'Big Island': ['Wailea Bay', 'Pololu Beach'],
+    'Kauai'     : ['Hanalei', 'Poipu']
   };
 
   // NOTE: Do not depend on iteration order.
   hawaiianBeaches.forEach((k, v) {
     print('I want to visit $k and swim at $v');
     // I want to visit oahu and swim at
-    // [waikiki, kailua, waimanalo], etc.
+    // [Waikiki, Kailua, Waimanalo], etc.
   });
 }
 
 checkForKey() {
   var hawaiianBeaches = {
-    'oahu'      : ['waikiki', 'kailua', 'waimanalo'],
-    'big island': ['wailea bay', 'pololu beach'],
-    'kauai'     : ['hanalei', 'poipu']
+    'Oahu'      : ['Waikiki', 'Kailua', 'Waimanalo'],
+    'Big Island': ['Wailea Bay', 'Pololu Beach'],
+    'Kauai'     : ['Hanalei', 'Poipu']
   };
 
-  assert(hawaiianBeaches.containsKey('oahu'));
-  assert(!hawaiianBeaches.containsKey('florida'));
+  assert(hawaiianBeaches.containsKey('Oahu'));
+  assert(!hawaiianBeaches.containsKey('Florida'));
 }
 
 callPutIfAbsent() {
