@@ -1,10 +1,11 @@
 import 'dart:io';
 
-main() {
+main() async {
   var config = new File('config.txt');
-  config.readAsString().then((String contents) {
+  try {
+    var contents = await config.readAsString();
     print(contents);
-  }).catchError((e) {
+  } catch (e) {
     print(e);
-  });
+  }
 }

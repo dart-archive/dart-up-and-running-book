@@ -1,6 +1,6 @@
 import 'dart:html';
 
-var url = '/ch03/ch03_4_async/web/humans.txt';
+var url = 'humans.txt';
 
 void main() {
   printRobots();
@@ -12,19 +12,18 @@ void handleClick(MouseEvent event) {
   print('click!');
 }
 
-void printRobots() {
-  HttpRequest.getString(url).then((String result) {
-    print(result);
-  });
+printRobots() async {
+  var result = await HttpRequest.getString(url);
+  print(result);
   // Should handle errors here.
 }
 
-void printRobotsAndHandleErrors() {
-  HttpRequest.getString(url).then((String result) {
+printRobotsAndHandleErrors() async {
+  try {
+    var result = await HttpRequest.getString(url);
     print(result);
-  }).catchError((e) {
+  } catch (e) {
     // Handle or ignore the error.
-    print('Oops, couldn\'t get humans.txt:');
-    print(e);
-  });
+    print('Oops, couldn\'t get $url: $e');
+  }
 }

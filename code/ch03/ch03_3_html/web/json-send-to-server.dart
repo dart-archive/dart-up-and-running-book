@@ -1,4 +1,5 @@
 // XXX: Dart Editor thinks this is OK, but I haven't run it.
+// XXX: Now that it's converted to async-await, we really should run this.
 
 import 'dart:html';
 
@@ -18,7 +19,7 @@ loadEnd(HttpRequest request) {
   }
 }
 
-main() {
+main() async {
   var dataUrl = '/registrations/create';
   var data = {'dart': 'fun', 'editor': 'productive'};
   var encodedData = encodeMap(data);
@@ -28,7 +29,7 @@ main() {
   httpRequest.setRequestHeader(
       'Content-type',
       'application/x-www-form-urlencoded');
-  httpRequest.onLoadEnd
-      .listen((e) => loadEnd(httpRequest));
   httpRequest.send(encodedData);
+  await httpRequest.onLoadEnd.first;
+  loadEnd(httpRequest);
 }

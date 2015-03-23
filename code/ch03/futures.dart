@@ -2,8 +2,8 @@ import 'dart:async';
 
 // fake methods to make the below examples work
 
-Future getFuture() {
-  return new Future.value(true);
+Future getFuture() async {
+  return true;
 }
 
 handleValue(value) {
@@ -14,32 +14,34 @@ handleError(error) {
   print('error is $error');
 }
 
-Future dbQuery(query) {
-  return new Future.value(true);
+Future dbQuery(query) async {
+  return true;
 }
 
-Future expensiveWork() {
-  return new Future.value(true);
+Future expensiveWork() async {
+  return true;
 }
 
-Future lengthyComputation() {
-  return new Future.value(true);
+Future lengthyComputation() async {
+  return true;
 }
 
-Future costlyQuery() {
-  return new Future.value(true);
+Future costlyQuery() async {
+  // Uncomment the throw and comment the return to see error handling.
+//  throw 'costlyQuery failed!!!';
+  return true;
 }
 
-Future deleteLotsOfFiles() {
-  return new Future.value(true);
+Future deleteLotsOfFiles() async {
+  return true;
 }
 
-Future copyLotsOfFiles() {
-  return new Future.value(true);
+Future copyLotsOfFiles() async {
+  return true;
 }
 
-Future checksumLotsOfOtherFiles() {
-  return new Future.value(true);
+Future checksumLotsOfOtherFiles() async {
+  return true;
 }
 
 // end fake methods
@@ -50,41 +52,43 @@ Future longExpensiveSearch() {
   return dbQuery('select * from table');
 }
 
-Future runSearch() {
-  var future = longExpensiveSearch(); // Returns immediately.
-
-  return future.then((results) {
+Future runSearch() async {
+  try {
+    var results = await longExpensiveSearch();
     print('Here are the results: $results');
-  }).catchError((e) {
+  } catch (e) {
     print("Oops! Encountered $e");
-  });
+  }
 }
 
-Future runQuery() {
-  Future result = costlyQuery();
-
-  return result.then((value) => expensiveWork())
-               .then((value) => lengthyComputation())
-               .then((value) => print('done!'))
-               .catchError((exception) => print('DOH!'));
+Future runQuery() async {
+  try {
+    await costlyQuery();
+    await expensiveWork();
+    await lengthyComputation();
+    await print('done!');
+  } catch (_) {
+    print('DOH!');
+  }
 }
 
-Future wait() {
+Future wait() async {
   Future deleteDone = deleteLotsOfFiles();
   Future copyDone = copyLotsOfFiles();
   Future checksumDone = checksumLotsOfOtherFiles();
 
-  Future.wait([deleteDone, copyDone, checksumDone])
-      .then((List values) {
-        print('Done with all the long steps');
-      });
+  await Future.wait([deleteDone, copyDone, checksumDone]);
+  print('Done with all the long steps');
 }
 
-main() {
+main() async {
   Future<int> future = getFuture();
-  future
-      .then((value) => handleValue(value))
-      .catchError((error) => handleError(error));
+  var value = await future;
+  try {
+    handleValue(value);
+  } catch (e) {
+    handleError(e);
+  }
 
   runSearch();
   runQuery();
