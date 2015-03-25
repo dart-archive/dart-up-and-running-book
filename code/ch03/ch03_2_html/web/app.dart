@@ -10,16 +10,24 @@ var jsonUri = 'data.json';
 var xmlUri = 'data.xml';
 // Besides 'data.xml', also try 'nodata.xml' and 'nofile.xml'.
 
-main() {
+main() async {
+  var data;
+  
   // Read a JSON file.
-  HttpRequest.getString(jsonUri)
-      .then(processString)
-      .catchError(handleError);
+  try {
+    data = await HttpRequest.getString(jsonUri);
+    processString(data);
+  } catch (e) {
+    handleError(e);
+  }
 
   // Read an XML file.
-  HttpRequest.request(xmlUri)
-      .then(processRequest)
-      .catchError(handleError);
+  try {
+    data = await HttpRequest.request(xmlUri);
+    processRequest(data);
+  } catch (e) {
+    handleError(e);
+  }
 }
 
 processString(String jsonText) {

@@ -1,17 +1,14 @@
 import 'dart:io';
 
-main() {
+main() async {
   var config = new File('config.txt');
+  var contents;
 
   // Put the whole file in a single string.
-  config.readAsString().then((String contents) {
-    print('The entire file is ${contents.length} ' +
-          'characters long');
-  });
+  contents = await config.readAsString();
+  print('The entire file is ${contents.length} characters long.');
 
   // Put each line of the file into its own string.
-  config.readAsLines().then((List<String> lines) {
-    print('The entire file is ${lines.length} ' +
-          'lines long');
-  });
+  contents = await config.readAsLines();
+  print('The entire file is ${contents.length} lines long.');
 }

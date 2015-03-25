@@ -5,10 +5,9 @@ greet() async {
   hello.printGreeting();
 }
 
-main() {
-  hello.loadLibrary().then((_) {
-    hello.printGreeting();
-  });
+main() async {
+  await hello.loadLibrary();
+  hello.printGreeting();
   // OR...
   greet();
   greet();

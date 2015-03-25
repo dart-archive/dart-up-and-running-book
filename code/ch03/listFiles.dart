@@ -1,16 +1,18 @@
 import 'dart:io';
-import 'dart:async';
 
-main() {
+main() async {
   var dir = new Directory('/tmp');
-  var contentsStream = dir.list(recursive: true);
-  contentsStream.listen((FileSystemEntity f) {
-    if (f is File) {
-      print('Found file ${f.path}');
-    } else if (f is Directory) {
-      print('Found dir ${f.path}');
+  
+  try {
+    var dirList = dir.list();
+    await for (FileSystemEntity f in dirList) {
+      if (f is File) {
+        print('Found file ${f.path}');
+      } else if (f is Directory) {
+        print('Found dir ${f.path}');
+      }
     }
-  }, onError: (e) {
+  } catch (e) {
     print(e.toString());
-  });
+  }
 }
