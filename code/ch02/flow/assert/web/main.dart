@@ -11,4 +11,8 @@ main() {
 
   // Make sure this is an https URL.
   assert(urlString.startsWith('https'));
+
+  print('About to call assert(false).');
+  assert(false);
+  print('Oops, you weren\'t running in checked mode.');
 }

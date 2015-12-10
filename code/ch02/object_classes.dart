@@ -64,4 +64,6 @@ main() {
   var b = const ImmutablePoint(1, 1);
 
   assert(identical(a, b)); // They are the same instance!
+
+  print('The type of a is ${a.runtimeType}');
 }
