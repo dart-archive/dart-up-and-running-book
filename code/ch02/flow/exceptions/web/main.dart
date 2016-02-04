@@ -1,23 +1,30 @@
 class OutOfLlamasException {}
 
 breedMoreLlamas() {}
-buyMoreLlamas() {}
+buyMoreLlamas() {
+  print('bought more llamas');
+}
+
 cleanLlamaStalls() {}
+
+breedYetMoreLlamas() {
+  throw new OutOfLlamasException();
+//  throw new Exception('No more llamas!');
+//  throw 'Not even an exception';
+}
 
 class Point {}
 
 main() {
   var numberOfLlamas = 1;
   if (numberOfLlamas <= 0) {
-    throw new StateError(
-        'Value must be greater than zero');
+    throw new StateError('Value must be greater than zero');
   }
   if (numberOfLlamas <= 0) {
     throw 'Out of llamas!';
   }
 
-  distanceTo(Point other) =>
-      throw new UnimplementedError();
+  distanceTo(Point other) => throw new UnimplementedError();
 
   try {
     breedMoreLlamas();
@@ -52,10 +59,22 @@ main() {
   } finally {
     cleanLlamaStalls(); // Then clean up.
   }
-  
+
   try {
     throw new FormatException('Expected at least 1 section');
   } on FormatException catch (e) {
     print(e);
+  }
+
+  try {
+    print('About to breed too many llamas.');
+    breedYetMoreLlamas();
+  } on OutOfLlamasException {
+    buyMoreLlamas();
+  } on Exception catch (e) {
+    print('Exception details:\n $e');
+  } catch (e, s) {
+    print('Exception details:\n $e');
+    print('Stack trace:\n $s');
   }
 }

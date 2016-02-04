@@ -1,0 +1,7 @@
+name: assert
+description: ch02 assert example
+dependencies:
+  browser: any
+
+gist: https://gist.github.com/kwalrath/dab00eb68704900f70ba
+dartpad: https://dartpad.dartlang.org/dab00eb68704900f70ba

@@ -1,0 +1,6 @@
+name: assert
+description: ch02 assert example
+dependencies:
+  browser: any
+
+homepage: http://gist.github.com/kwalrath/bb5c060b6d9d050419c8
