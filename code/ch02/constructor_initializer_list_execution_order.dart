@@ -1,10 +1,13 @@
-// This code shows that when using the default (no-arg) constructor of
-// a class and its superclass, and an initializer list on the class,
-// things happen in this order:
+// This code shows that when a constructor doesn't explicitly call its
+// superclass's constructor, the superclass's no-argument
+// constructor is called. Here's the order:
 //
 // 1. initializer list executes
 // 2. superclass's no-arg constructor is called
 // 3. main class's no-arg constructor is called
+//
+// This example doesn't make a lot of sense, but it's not used
+// publicly - it's a proof of concept.
 //
 int numPeople = 0;
 
