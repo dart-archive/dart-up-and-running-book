@@ -1,5 +1,5 @@
 class WannabeFunction {
-  call(String a, String b, String c) => a + ' ' + b + ' ' + c + '!';
+  call(String a, String b, String c) => '$a $b $c!';
 }
 
 main() {
