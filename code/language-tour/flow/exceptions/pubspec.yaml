@@ -1,5 +1,5 @@
-name: assert
-description: ch02 assert example
+name: assert_example
+description: language-tour assert example
 dependencies:
   browser: any
 
