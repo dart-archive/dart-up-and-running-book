@@ -1,10 +1,10 @@
 class Person {
-  bringRainCoat() {}
-  wearJacket() {}
+  void bringRainCoat() {}
+  void wearJacket() {}
 }
 
 class Vehicle {
-  putTopDown() {}
+  void putTopDown() {}
 }
 
 bool isRaining() {
@@ -15,7 +15,7 @@ bool isSnowing() {
   return false;
 }
 
-main() {
+void main() {
   var you = new Person();
   var car = new Vehicle();
 

@@ -13,7 +13,7 @@ http://www.dartlang.org/docs/dart-up-and-running/
 Repo and testing info
 -----------
 The text in this repo is old; the latest text is in the
-dart-lang/www.dartlang.org repo under
+dart-lang/site-www.org repo under
 [/src/_guides/language/language-tour](https://github.com/dart-lang/site-www/blob/master/src/_guides/language/language-tour.md) and
 [/src/_guides/libraries/library-tour](https://github.com/dart-lang/site-www/blob/master/src/_guides/libraries/library-tour.md).
 

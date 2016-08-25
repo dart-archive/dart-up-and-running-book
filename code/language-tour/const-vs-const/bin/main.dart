@@ -1,7 +1,7 @@
 void main() {
   // Note: [] creates an empty list.
   // const [] creates an empty, immutable list (EIA).
-  var foo = const [];   // foo is currently an EIA.
+  var foo = const []; // foo is currently an EIA.
   final bar = const []; // bar will always be an EIA.
   const baz = const []; // baz is a compile-time constant EIA.
 

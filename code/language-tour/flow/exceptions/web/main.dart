@@ -1,13 +1,13 @@
-class OutOfLlamasException {}
+class OutOfLlamasException extends Error {}
 
-breedMoreLlamas() {}
-buyMoreLlamas() {
+void breedMoreLlamas() {}
+void buyMoreLlamas() {
   print('bought more llamas');
 }
 
-cleanLlamaStalls() {}
+void cleanLlamaStalls() {}
 
-breedYetMoreLlamas() {
+void breedYetMoreLlamas() {
   throw new OutOfLlamasException();
 //  throw new Exception('No more llamas!');
 //  throw 'Not even an exception';
@@ -15,16 +15,16 @@ breedYetMoreLlamas() {
 
 class Point {}
 
-main() {
+void main() {
   var numberOfLlamas = 1;
   if (numberOfLlamas <= 0) {
     throw new StateError('Value must be greater than zero');
   }
   if (numberOfLlamas <= 0) {
-    throw 'Out of llamas!';
+    throw new StateError('Out of llamas!');
   }
 
-  distanceTo(Point other) => throw new UnimplementedError();
+  void distanceTo(Point other) => throw new UnimplementedError();
 
   try {
     breedMoreLlamas();

@@ -1,4 +1,4 @@
-main() {
+void main() {
   // BEGIN(list_indexing)
   var list = [1, 2, 3];
   assert(list.length == 3);

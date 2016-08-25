@@ -11,8 +11,8 @@ class Television {
   }
 }
 
-main() {
+void main() {
   var tv = new Television();
-  tv.activate();
+  //tv.activate();
   tv.turnOn();
 }

@@ -1,11 +1,12 @@
+import 'dart:async';
 import 'package:deferred/hello.dart' deferred as hello;
 
-greet() async {
+Future greet() async {
   await hello.loadLibrary();
   hello.printGreeting();
 }
 
-main() async {
+Future main() async {
   await hello.loadLibrary();
   hello.printGreeting();
   // OR...

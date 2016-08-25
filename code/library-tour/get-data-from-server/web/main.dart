@@ -3,16 +3,16 @@ import 'dart:async';
 import 'dart:convert' show JSON;
 
 // A JSON-formatted file next to this page.
-var jsonUri = 'data.json';
+String jsonUri = 'data.json';
 // Besides 'data.json', also try 'nodata.json' and 'nofile.json'.
 
 // An XML-formatted file next to this page.
-var xmlUri = 'data.xml';
+String xmlUri = 'data.xml';
 // Besides 'data.xml', also try 'nodata.xml' and 'nofile.xml'.
 
-main() async {
+Future main() async {
   var data;
-  
+
   // Read a JSON file.
   try {
     data = await HttpRequest.getString(jsonUri);
@@ -30,11 +30,11 @@ main() async {
   }
 }
 
-processString(String jsonText) {
+void processString(String jsonText) {
   parseText(jsonText);
 }
 
-processRequest(HttpRequest request) {
+void processRequest(HttpRequest request) {
   var xmlDoc = request.responseXml;
   try {
     var license = xmlDoc.querySelector('license').text;
@@ -44,7 +44,7 @@ processRequest(HttpRequest request) {
   }
 }
 
-parseText(String jsonText) {
+void parseText(String jsonText) {
   var response;
 
   try {
@@ -61,7 +61,7 @@ parseText(String jsonText) {
 }
 
 // PENDING: We should do more explicit error handling, once it's available.
-handleError(error) {
+void handleError(int error) {
   print('Uh oh, there was an error.');
   print(error.toString());
 }

@@ -1,6 +1,6 @@
 import 'dart:mirrors';
 
-askUserForNameOfFunction() => 'foo';
+String askUserForNameOfFunction() => 'foo';
 
 class Person {
   String firstName;
@@ -16,7 +16,7 @@ class Person {
   }
 }
 
-main() {
+void main() {
   // If the symbol name is known at compile time.
   const className = #MyClass;
 
@@ -29,8 +29,7 @@ main() {
   assert('MyClass' == MirrorSystem.getName(#MyClass));
 
   ClassMirror mirror = reflectClass(Person);
-  assert('Person' ==
-      MirrorSystem.getName(mirror.simpleName));
+  assert('Person' == MirrorSystem.getName(mirror.simpleName));
 
   reflectFromInstance();
   showConstructors(mirror);
@@ -38,40 +37,39 @@ main() {
   reflectOnInstance();
 }
 
-reflectFromInstance() {
+void reflectFromInstance() {
   var person = new Person('Bob', 'Smith', 33);
   ClassMirror mirror = reflectClass(person.runtimeType);
-  assert('Person' ==
-      MirrorSystem.getName(mirror.simpleName));
+  assert('Person' == MirrorSystem.getName(mirror.simpleName));
 }
 
-showConstructors(ClassMirror mirror) {
+void showConstructors(ClassMirror mirror) {
   var constructors = mirror.declarations.values
       .where((m) => m is MethodMirror && m.isConstructor);
 
   constructors.forEach((m) {
-    print('The constructor ${m.simpleName} has '
-          '${m.parameters.length} parameters.');
+    MethodMirror mm = m as MethodMirror;
+    print('The constructor ${mm.simpleName} has '
+        '${mm.parameters.length} parameters.');
   });
 }
 
-showFields(ClassMirror mirror) {
-  var fields = mirror.declarations.values
-      .where((m) => m is VariableMirror);
+void showFields(ClassMirror mirror) {
+  var fields = mirror.declarations.values.where((m) => m is VariableMirror);
 
-  fields.forEach((VariableMirror m) {
-    var finalStatus = m.isFinal ? 'final' : 'not final';
-    var privateStatus = m.isPrivate ?
-        'private' : 'not private';
-    var typeAnnotation = m.type.simpleName;
+  fields.forEach((m) {
+    VariableMirror v = m as VariableMirror;
+    var finalStatus = v.isFinal ? 'final' : 'not final';
+    var privateStatus = v.isPrivate ? 'private' : 'not private';
+    var typeAnnotation = v.type.simpleName;
 
-    print('The field ${m.simpleName} is $privateStatus ' +
-          'and $finalStatus and is annotated as ' +
-          '$typeAnnotation.');
+    print('The field ${v.simpleName} is $privateStatus ' +
+        'and $finalStatus and is annotated as ' +
+        '$typeAnnotation.');
   });
 }
 
-reflectOnInstance() {
+void reflectOnInstance() {
   var p = new Person('Bob', 'Smith', 42);
   InstanceMirror mirror = reflect(p);
 

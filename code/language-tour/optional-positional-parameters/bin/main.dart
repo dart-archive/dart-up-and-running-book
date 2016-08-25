@@ -6,7 +6,7 @@ String say(String from, String msg, [String device]) {
   return result;
 }
 
-main() {
+void main() {
   assert(say('Bob', 'Howdy') == 'Bob says Howdy');
   print(say('Bob', 'Howdy'));
   assert(say('Bob', 'Howdy', 'smoke signal') ==

@@ -1,9 +1,9 @@
 import 'dart:io';
 import 'dart:convert';
+import 'dart:async';
 
-main() async {
-  var url = Uri.parse(
-      'http://127.0.0.1:8888/languages/dart');
+Future main() async {
+  var url = Uri.parse('http://127.0.0.1:8888/languages/dart');
   var httpClient = new HttpClient();
   var request = await httpClient.getUrl(url);
   print('have request');

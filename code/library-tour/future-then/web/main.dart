@@ -11,7 +11,7 @@ void main() {
   handleEvents();
 }
 
-void DELETEME(Event event) {
+void deleteMe(Event event) {
   var text = querySelector("#sample_text_id").text;
   var buffer = new StringBuffer();
   for (int i = text.length - 1; i >= 0; i--) {
@@ -31,8 +31,7 @@ void findElements() {
   List<Element> elems1 = querySelectorAll('div');
 
   // Find all text inputs.
-  List<Element> elems2 =
-      querySelectorAll('input[type="text"]');
+  List<Element> elems2 = querySelectorAll('input[type="text"]');
 
   // Find all elements with the CSS class 'class'
   // inside of a <p> that is inside an element with
@@ -52,7 +51,8 @@ void displayConditionally() {
   // In real code you'd programmatically determine userOs.
   var userOs = 'linux';
 
-  for (var os in osList) { // For each possible OS...
+  for (var os in osList) {
+    // For each possible OS...
     bool shouldShow = (os == userOs); // Matches user OS?
 
     // Find all elements with class=os. For example, if
@@ -80,8 +80,7 @@ void createElements() {
   elem.text = 'Creating is easy!';
   document.body.children.add(elem);
 
-  var elem2 =
-      new Element.html('<p>Creating <em>is</em> easy!</p>');
+  var elem2 = new Element.html('<p>Creating <em>is</em> easy!</p>');
   document.body.children.add(elem2);
 }
 
@@ -107,12 +106,12 @@ void funWithCss() {
 //  message.text = 'Please subscribe to the Dart mailing list.';
 
   var message = new DivElement()
-      ..id = 'message2'
-      ..text = 'Please subscribe to the Dart mailing list.';
+    ..id = 'message2'
+    ..text = 'Please subscribe to the Dart mailing list.';
 
   message.style
-      ..fontWeight = 'bold'
-      ..fontSize = '2em';
+    ..fontWeight = 'bold'
+    ..fontSize = '2em';
 
   querySelector("#fun-with-css").children.add(message);
 }
@@ -125,7 +124,7 @@ void handleEvents() {
   });
 
   document.body.onClick.listen((e) {
-    var clickedElement = e.target;
+    var clickedElement = e.target as ButtonElement;
     var id = clickedElement.id;
     var description;
 

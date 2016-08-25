@@ -1,19 +1,19 @@
-executeClosed() {}
-executePending() {}
-executeApproved() {}
-executeDenied() {}
-executeOpen() {}
-executeUnknown() {}
-executeNowClosed() {}
+void executeClosed() {}
+void executePending() {}
+void executeApproved() {}
+void executeDenied() {}
+void executeOpen() {}
+void executeUnknown() {}
+void executeNowClosed() {}
 
-main() {
+void main() {
   switcher();
   switcheroo();
   switcherooni();
   switchItUp();
 }
 
-switcher() {
+void switcher() {
   var command = 'OPEN';
   switch (command) {
     case 'CLOSED':
@@ -36,7 +36,7 @@ switcher() {
   }
 }
 
-switcheroo() {
+void switcheroo() {
   var command = 'OPEN';
   switch (command) {
     case 'OPEN':
@@ -51,7 +51,7 @@ switcheroo() {
   }
 }
 
-switcherooni() {
+void switcherooni() {
   var command = 'CLOSED';
   switch (command) {
     case 'CLOSED': // Empty case falls through.
@@ -62,16 +62,15 @@ switcherooni() {
   }
 }
 
-switchItUp() {
+void switchItUp() {
   var command = 'CLOSED';
   switch (command) {
     case 'CLOSED':
       executeClosed();
       continue nowClosed;
-      // Continues executing at the nowClosed label.
+    // Continues executing at the nowClosed label.
 
-  nowClosed:
-    case 'NOW_CLOSED':
+    nowClosed: case 'NOW_CLOSED':
       // Runs for both CLOSED and NOW_CLOSED.
       executeNowClosed();
       break;

@@ -1,10 +1,10 @@
-main() {
+void main() {
   // Get the current date and time.
   var now = new DateTime.now();
   print(now);
 
   // Create a new DateTime with the local time zone.
-  var y2k = new DateTime(2000);   // January 1, 2000
+  var y2k = new DateTime(2000); // January 1, 2000
   print(y2k);
 
   // Specify the month and day.
@@ -12,12 +12,11 @@ main() {
   print(y2k);
 
   // Specify the date as a UTC time.
-  y2k = new DateTime.utc(2000);   // 1/1/2000, UTC
+  y2k = new DateTime.utc(2000); // 1/1/2000, UTC
   print(y2k);
 
   // Specify a date and time in ms since the Unix epoch.
-  y2k = new DateTime.fromMillisecondsSinceEpoch(
-      946684800000, isUtc: true);
+  y2k = new DateTime.fromMillisecondsSinceEpoch(946684800000, isUtc: true);
   print(y2k);
 
   // Parse an ISO 8601 date.
@@ -37,8 +36,7 @@ main() {
   assert(y2001.year == 2001);
 
   // Subtract 30 days.
-  var december2000 = y2001.subtract(
-      const Duration(days: 30));
+  var december2000 = y2001.subtract(const Duration(days: 30));
   assert(december2000.year == 2000);
   assert(december2000.month == 12);
 

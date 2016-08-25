@@ -1,4 +1,4 @@
-main() {
+void main() {
 // Change if (true) to if (1) to really test this code.
   if (true) {
     // BEGIN(if_one)

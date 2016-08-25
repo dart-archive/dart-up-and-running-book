@@ -1,4 +1,4 @@
-main() {
+void main() {
   // BEGIN(map_add_item)
   var gifts = {'first': 'partridge'};
   gifts['fourth'] = 'calling birds'; // Add a key-value pair

@@ -1,8 +1,9 @@
+import 'dart:async';
 import 'dart:io';
 
-main() async {
+Future main() async {
   var dir = new Directory('/tmp');
-  
+
   try {
     var dirList = dir.list();
     await for (FileSystemEntity f in dirList) {

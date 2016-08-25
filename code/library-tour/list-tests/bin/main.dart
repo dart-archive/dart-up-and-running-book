@@ -1,11 +1,11 @@
-main() {
+void main() {
   createLists();
   findItem();
   sortList();
   useTypes();
 }
 
-useTypes() {
+void useTypes() {
   // This list should contain only strings.
   var fruits = new List<String>();
 
@@ -22,7 +22,7 @@ useTypes() {
   }
 }
 
-sortList() {
+void sortList() {
   var fruits = ['bananas', 'apples', 'oranges'];
 
   // Sort a list.
@@ -30,7 +30,7 @@ sortList() {
   assert(fruits[0] == 'apples');
 }
 
-findItem() {
+void findItem() {
   var fruits = ['apples', 'oranges'];
 
   // Access a list item by index.
@@ -40,7 +40,7 @@ findItem() {
   assert(fruits.indexOf('apples') == 0);
 }
 
-createLists() {
+void createLists() {
   // Use a List constructor.
   var vegetables = new List();
 

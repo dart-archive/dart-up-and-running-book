@@ -1,5 +1,4 @@
-name: flow_for_loops
-description: ch02 assert example
+name: for_loops
 dependencies:
   browser: any
 

@@ -1,12 +1,12 @@
 bool shutDownRequested() => true;
-processIncomingRequests() {}
+void processIncomingRequests() {}
 
 class Candidate {
-  var yearsExperience = 2;
-  interview() {}
+  int yearsExperience = 2;
+  void interview() {}
 }
 
-main() {
+void main() {
   while (true) {
     if (shutDownRequested()) break;
     processIncomingRequests();
@@ -22,6 +22,5 @@ main() {
     candidate.interview();
   }
 
-  candidates.where((c) => c.yearsExperience >= 5)
-            .forEach((c) => c.interview());
+  candidates.where((c) => c.yearsExperience >= 5).forEach((c) => c.interview());
 }

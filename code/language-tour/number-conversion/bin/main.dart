@@ -1,4 +1,4 @@
-main() {
+void main() {
   // BEGIN(number_conversion)
   // String -> int
   var one = int.parse('1');

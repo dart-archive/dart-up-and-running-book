@@ -1,10 +1,10 @@
-main() {
+void main() {
   getAndPutItems();
   checkForItems();
   intersectAndSuperset();
 }
 
-getAndPutItems() {
+void getAndPutItems() {
   var ingredients = new Set();
   ingredients.addAll(['gold', 'titanium', 'xenon']);
   assert(ingredients.length == 3);
@@ -18,7 +18,7 @@ getAndPutItems() {
   assert(ingredients.length == 2);
 }
 
-checkForItems() {
+void checkForItems() {
   var ingredients = new Set();
   ingredients.addAll(['gold', 'titanium', 'xenon']);
 
@@ -29,7 +29,7 @@ checkForItems() {
   assert(ingredients.containsAll(['titanium', 'xenon']));
 }
 
-intersectAndSuperset() {
+void intersectAndSuperset() {
   var ingredients = new Set();
   ingredients.addAll(['gold', 'titanium', 'xenon']);
 
@@ -40,7 +40,14 @@ intersectAndSuperset() {
   assert(intersection.contains('xenon'));
 
   // Check whether one set is a superset of another collection.
-  var allElements = ['hydrogen', 'helium', 'lithium', 'beryllium',
-                     'gold', 'titanium', 'xenon' /* all the rest */];
+  var allElements = [
+    'hydrogen',
+    'helium',
+    'lithium',
+    'beryllium',
+    'gold',
+    'titanium',
+    'xenon' /* all the rest */
+  ];
   assert(allElements.toSet().containsAll(ingredients));
 }

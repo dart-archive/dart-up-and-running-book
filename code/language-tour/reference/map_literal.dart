@@ -16,11 +16,7 @@ var nobleGases = {
 
 main() {
   // BEGIN(map_const_literal)
-  final constantMap = const {
-    2: 'helium',
-    10: 'neon',
-    18: 'argon',
-  };
+  final constantMap = const {2: 'helium', 10: 'neon', 18: 'argon',};
 
   // constantMap[2] = 'Helium'; // Uncommenting this causes an error.
   // END(map_const_literal)

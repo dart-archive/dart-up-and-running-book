@@ -1,6 +1,6 @@
 // Unicode emoji: http://unicode.org/emoji/charts/full-emoji-list.html
 
-main() {
+void main() {
   var clapping = '\u{1f44f}';
   print(clapping);
   print(clapping.codeUnits);

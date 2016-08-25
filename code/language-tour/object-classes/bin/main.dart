@@ -27,24 +27,23 @@ class ImmutablePoint {
   final num x;
   final num y;
   const ImmutablePoint(this.x, this.y);
-  static final ImmutablePoint origin =
-      const ImmutablePoint(0, 0);
+  static final ImmutablePoint origin = const ImmutablePoint(0, 0);
 }
 
-main() {
+void main() {
   var jsonData = JSON.decode('{"x":1, "y":2}');
 
   // Create a Point using Point().
   var p1 = new Point(2, 2);
-  
+
   // Create a Point using Point.fromJson().
   var p2 = new Point.fromJson(jsonData);
-  
+
   var p = new Point(2, 2);
 
   // Set the value of the instance variable y.
   p.y = 3;
-  
+
   // Get the value of y.
   assert(p.y == 3);
 
@@ -59,7 +58,7 @@ main() {
       ..onClick.add((e) => window.alert('Confirmed!'));  // and methods.
  */
 
-  /* var */ p = const ImmutablePoint(2, 2);
+  /* var */ p = const ImmutablePoint(2, 2) as Point;
   var a = const ImmutablePoint(1, 1);
   var b = const ImmutablePoint(1, 1);
 

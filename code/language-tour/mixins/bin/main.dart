@@ -24,26 +24,27 @@ abstract class Demented {
 
 class Person {
   String name;
-  Person.withName(this.name);
   Person();
+  Person.withName(this.name);
 }
 
 abstract class Performer {
   Performer(String name);
   String name;
 }
+
 class Musician extends Performer with Musical {
   Musician(String name) : super(name);
 }
-class Maestro extends Person
-    with Musical, Aggressive, Demented {
+
+class Maestro extends Person with Musical, Aggressive, Demented {
   Maestro(String maestroName) {
     name = maestroName;
     canConduct = true;
   }
 }
 
-main() {
+void main() {
   var director = new Maestro('Allen');
   director.entertainMe(); // Waving hands
 

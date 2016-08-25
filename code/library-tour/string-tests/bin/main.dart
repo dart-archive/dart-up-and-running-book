@@ -1,4 +1,4 @@
-main() {
+void main() {
   //BEGIN
   // Check whether a string contains another string.
   assert('Never odd or even'.contains('odd'));
@@ -45,12 +45,10 @@ main() {
 
   //BEGIN
   // Convert to uppercase.
-  assert('structured web apps'.toUpperCase() ==
-      'STRUCTURED WEB APPS');
+  assert('structured web apps'.toUpperCase() == 'STRUCTURED WEB APPS');
 
   // Convert to lowercase.
-  assert('STRUCTURED WEB APPS'.toLowerCase() ==
-      'structured web apps');
+  assert('STRUCTURED WEB APPS'.toLowerCase() == 'structured web apps');
   //END
 
   //BEGIN
@@ -61,16 +59,14 @@ main() {
   assert(''.isEmpty);
 
   // Strings with only white space are not empty.
-  assert(!'  '.isEmpty);
+  assert('  '.isNotEmpty);
   //END
 
   //BEGIN
   var greetingTemplate = 'Hello, NAME!';
-  var greeting = greetingTemplate
-      .replaceAll(new RegExp('NAME'), 'Bob');
+  var greeting = greetingTemplate.replaceAll(new RegExp('NAME'), 'Bob');
 
-  assert(greeting !=
-      greetingTemplate); // greetingTemplate didn't change.
+  assert(greeting != greetingTemplate); // greetingTemplate didn't change.
   //END
 
   buildingAString();
@@ -78,20 +74,20 @@ main() {
   regularExpressions2();
 }
 
-buildingAString() {
+void buildingAString() {
   //NOTE: DID NOT USE A METHOD CASCADE. BROKE due to add return type changing.
   //Then add and addAll were deprecated in favor of write and writeAll,
   //and clear() was removed.
   //BEGIN
   var sb = new StringBuffer();
-  sb..write('Use a StringBuffer for ')
+  sb
+    ..write('Use a StringBuffer for ')
     ..writeAll(['efficient', 'string', 'creation'], ' ')
     ..write('.');
 
   var fullString = sb.toString();
 
-  assert(fullString ==
-      'Use a StringBuffer for efficient string creation.');
+  assert(fullString == 'Use a StringBuffer for efficient string creation.');
   //END
 
 //  clear() is gone. For now, at least.
@@ -99,7 +95,7 @@ buildingAString() {
 //  assert(sb.toString() == '');
 }
 
-regularExpressions() {
+void regularExpressions() {
   // Here's a regular expression for one or more digits.
   var numbers = new RegExp(r'\d+');
   //NOTE: WAS: var numbers = const RegExp(r'\d+');
@@ -116,7 +112,7 @@ regularExpressions() {
   assert(exedOut == 'llamas live XX to XX years');
 }
 
-regularExpressions2() {
+void regularExpressions2() {
   var numbers = new RegExp(r'\d+');
   //NOTE: WAS: var numbers = const RegExp(r'\d+');
   var someDigits = 'llamas live 15 to 20 years';

@@ -6,10 +6,10 @@ class SortedCollection {
   SortedCollection(this.compare);
 }
 
- // Initial, broken implementation.
- int sort(Object a, Object b) => 0;
+// Initial, broken implementation.
+int sort(Object a, Object b) => 0;
 
-main() {
+void main() {
   SortedCollection coll = new SortedCollection(sort);
   assert(coll.compare is Function);
   assert(coll.compare is Compare);

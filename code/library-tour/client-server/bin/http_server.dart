@@ -1,9 +1,9 @@
 import 'dart:io';
+import 'dart:async';
 
-main() async {
-  dartHandler(HttpRequest request) {
-    request.response.headers.contentType =
-        new ContentType('text', 'plain');
+Future main() async {
+  void dartHandler(HttpRequest request) {
+    request.response.headers.contentType = new ContentType('text', 'plain');
     request.response.write('Dart is optionally typed');
     request.response.close();
   }

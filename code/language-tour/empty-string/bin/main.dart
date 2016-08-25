@@ -1,4 +1,4 @@
-main() {
+void main() {
   // BEGIN(empty_string)
   // Check for an empty string.
   var fullName = '';

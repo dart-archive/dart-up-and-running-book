@@ -1,14 +1,14 @@
 class Candidate {
-  Candidate(String this.name, num this.yearsExperience);
+  Candidate(this.name, this.yearsExperience);
 
   String name;
   num yearsExperience;
   void interview() => print("interviewed $name");
 }
 
-var candidates = new List();
+List candidates = new List();
 
-main() {
+void main() {
   candidates.add(new Candidate("Pam", 10));
   candidates.add(new Candidate("Bob", 4));
 

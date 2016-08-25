@@ -1,4 +1,4 @@
-//import 'dart:async';
+import 'dart:async';
 
 // I deleted types from functions so that runBroken would run.
 
@@ -6,7 +6,7 @@
 findEntrypoint() async => 'entrypoint';
 
 //Future<int> runExecutable(String entrypoint, List<String> args) async {
-runExecutable(entrypoint, args) async {
+Future<int> runExecutable(entrypoint, args) async {
   print('runExecutable($entrypoint, $args)');
   return 0;
 }
@@ -51,7 +51,7 @@ runUsingFuture() {
   }).then(flushThenExit);
 }
 
-main() {
+void main() {
   runBroken();
   runUsingFuture();
   runUsingAsyncAwait();

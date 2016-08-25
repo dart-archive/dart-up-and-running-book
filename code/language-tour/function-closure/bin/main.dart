@@ -4,7 +4,7 @@ Function makeAdder(num addBy) {
   return (num i) => addBy + i;
 }
 
-main() {
+void main() {
   // Create a function that adds 2.
   var add2 = makeAdder(2);
 

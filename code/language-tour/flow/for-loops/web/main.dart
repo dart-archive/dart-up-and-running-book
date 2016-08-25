@@ -1,4 +1,4 @@
-doFor() {
+void doFor() {
   //BEGIN
   var message = new StringBuffer("Dart is fun");
   for (var i = 0; i < 5; i++) {
@@ -8,7 +8,7 @@ doFor() {
   print(message);
 }
 
-doClosures() {
+void doClosures() {
   print('do closures right: 0 1');
 
   //BEGIN
@@ -20,7 +20,7 @@ doClosures() {
   //END
 }
 
-doCollection() {
+void doCollection() {
   print('do collection');
 
   //BEGIN
@@ -32,10 +32,10 @@ doCollection() {
 }
 
 class Candidate {
-  interview() {}
+  void interview() {}
 }
 
-doForIn() {
+void doForIn() {
   List<Candidate> candidates = [
     new Candidate(),
     new Candidate(),
@@ -47,7 +47,7 @@ doForIn() {
   //END
 }
 
-main() {
+void main() {
   doFor();
   doClosures();
   doCollection();

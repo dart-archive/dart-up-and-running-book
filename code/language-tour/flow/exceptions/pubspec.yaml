@@ -1,5 +1,4 @@
-name: assert_example
-description: language-tour assert example
+name: exceptions
 dependencies:
   browser: any
 

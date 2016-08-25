@@ -3,6 +3,7 @@ class Person {
   String lastName;
   String nickname;
 
+  @override
   String toString() => '$firstName $lastName';
   String toTmiString() => '$firstName "$nickname" $lastName';
   String toBondianString() => '$lastName, ${toString()}';

@@ -1,5 +1,5 @@
 library deferred.hello;
 
-printGreeting() {
+void printGreeting() {
   print('Hello World, from the deferred library!');
 }

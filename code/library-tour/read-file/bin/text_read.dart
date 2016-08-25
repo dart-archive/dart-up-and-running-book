@@ -1,6 +1,7 @@
+import 'dart:async';
 import 'dart:io';
 
-main() async {
+Future main() async {
   var config = new File('config.txt');
   var contents;
 

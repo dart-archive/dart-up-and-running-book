@@ -1,4 +1,4 @@
-main() {
+void main() {
   buildMaps();
   addGetSetItems();
   getMapValues();
@@ -7,12 +7,12 @@ main() {
   callPutIfAbsent();
 }
 
-buildMaps() {
+void buildMaps() {
   // Maps often use strings as keys.
   var hawaiianBeaches = {
-    'Oahu'      : ['Waikiki', 'Kailua', 'Waimanalo'],
+    'Oahu': ['Waikiki', 'Kailua', 'Waimanalo'],
     'Big Island': ['Wailea Bay', 'Pololu Beach'],
-    'Kauai'     : ['Hanalei', 'Poipu']
+    'Kauai': ['Hanalei', 'Poipu']
   };
 
   // Maps can be built from a constructor.
@@ -23,7 +23,7 @@ buildMaps() {
   var nobleGases = new Map<int, String>();
 }
 
-addGetSetItems() {
+void addGetSetItems() {
   var nobleGases = {54: 'xenon'};
 
   // Retrieve a value with a key.
@@ -37,11 +37,11 @@ addGetSetItems() {
   assert(!nobleGases.containsKey(54));
 }
 
-getMapValues() {
+void getMapValues() {
   var hawaiianBeaches = {
-    'Oahu'      : ['Waikiki', 'Kailua', 'Waimanalo'],
+    'Oahu': ['Waikiki', 'Kailua', 'Waimanalo'],
     'Big Island': ['Wailea Bay', 'Pololu Beach'],
-    'Kauai'     : ['Hanalei', 'Poipu']
+    'Kauai': ['Hanalei', 'Poipu']
   };
 
   // Get all the keys as an unordered collection
@@ -58,11 +58,11 @@ getMapValues() {
   assert(values.any((v) => v.contains('Waikiki')));
 }
 
-iterateThroughPairs() {
+void iterateThroughPairs() {
   var hawaiianBeaches = {
-    'Oahu'      : ['Waikiki', 'Kailua', 'Waimanalo'],
+    'Oahu': ['Waikiki', 'Kailua', 'Waimanalo'],
     'Big Island': ['Wailea Bay', 'Pololu Beach'],
-    'Kauai'     : ['Hanalei', 'Poipu']
+    'Kauai': ['Hanalei', 'Poipu']
   };
 
   // NOTE: Do not depend on iteration order.
@@ -73,25 +73,24 @@ iterateThroughPairs() {
   });
 }
 
-checkForKey() {
+void checkForKey() {
   var hawaiianBeaches = {
-    'Oahu'      : ['Waikiki', 'Kailua', 'Waimanalo'],
+    'Oahu': ['Waikiki', 'Kailua', 'Waimanalo'],
     'Big Island': ['Wailea Bay', 'Pololu Beach'],
-    'Kauai'     : ['Hanalei', 'Poipu']
+    'Kauai': ['Hanalei', 'Poipu']
   };
 
   assert(hawaiianBeaches.containsKey('Oahu'));
   assert(!hawaiianBeaches.containsKey('Florida'));
 }
 
-callPutIfAbsent() {
+String pickToughestKid() => "Cosmo";
+
+void callPutIfAbsent() {
   var teamAssignments = {};
-  teamAssignments.putIfAbsent(
-      'Catcher', () => pickToughestKid());
+  teamAssignments.putIfAbsent('Catcher', () => pickToughestKid());
   assert(teamAssignments['Catcher'] != null);
   teamAssignments.forEach((k, v) {
     print('$k: $v');
   });
 }
-
-String pickToughestKid() => "Cosmo";

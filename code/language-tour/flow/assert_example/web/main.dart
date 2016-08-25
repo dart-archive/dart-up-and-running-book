@@ -1,4 +1,4 @@
-main() {
+void main() {
   var text = 'Hi';
   var number = 99;
   var urlString = 'https://github.com/';

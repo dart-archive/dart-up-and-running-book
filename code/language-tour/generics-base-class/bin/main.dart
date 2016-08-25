@@ -3,7 +3,8 @@ class SomeBaseClass {}
 // T must be SomeBaseClass or one of its descendants.
 class Foo<T extends SomeBaseClass> {
   // Implementation goes here.
-  toString() => 'Foo<$T>';
+  @override
+  String toString() => 'Foo<$T>';
 }
 
 class Extender extends SomeBaseClass {

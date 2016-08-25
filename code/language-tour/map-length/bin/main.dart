@@ -1,4 +1,4 @@
-main() {
+void main() {
   // BEGIN(map_length)
   var gifts = {'first': 'partridge'};
   gifts['fourth'] = 'calling birds';

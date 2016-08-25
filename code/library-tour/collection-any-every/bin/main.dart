@@ -1,15 +1,13 @@
-main() {
+void main() {
   // BEGIN(collection-any-every)
   var teas = ['green', 'black', 'chamomile', 'earl grey'];
 
   // Chamomile is not caffeinated.
-  bool isDecaffeinated(String teaName) =>
-      teaName == 'chamomile';
+  bool isDecaffeinated(String teaName) => teaName == 'chamomile';
 
   // Use where() to find only the items that return true
   // from the provided function.
-  var decaffeinatedTeas = teas
-      .where((tea) => isDecaffeinated(tea));
+  var decaffeinatedTeas = teas.where((tea) => isDecaffeinated(tea));
   // or teas.where(isDecaffeinated)
 
   // Use any() to check whether at least one item in the

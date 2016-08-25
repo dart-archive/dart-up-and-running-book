@@ -14,7 +14,7 @@ bool isNoble(int atomicNumber) {
 }
 // END(function_example)
 
-main() {
+void main() {
   print('Noble gases');
   print('-----------');
   for (int i = 0; i < 100; i++) {

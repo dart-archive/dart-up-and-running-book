@@ -1,11 +1,11 @@
 // BEGIN(triple_quotes)
-var s1 = '''
+String s1 = '''
 You can create
 multi-line strings like this one.
 ''';
 
-var s2 = """This is also a
+String s2 = """This is also a
 multi-line string.""";
 // END(triple_quotes)
 
-main() {}
+void main() {}

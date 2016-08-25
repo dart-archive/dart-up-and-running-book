@@ -5,7 +5,9 @@ class Process {
 }
 
 class ProcessIterator implements Iterator<Process> {
+  @override
   Process current;
+  @override
   bool moveNext() {
     return false;
   }
@@ -14,11 +16,11 @@ class ProcessIterator implements Iterator<Process> {
 // A mythical class that lets you iterate through all
 // processes. Extends a subclass of Iterable.
 class Processes extends IterableBase<Process> {
-  final Iterator<Process> iterator =
-      new ProcessIterator();
+  @override
+  final Iterator<Process> iterator = new ProcessIterator();
 }
 
-main() {
+void main() {
   // Iterable objects can be used with for-in.
   for (var process in new Processes()) {
     // Do something with the process.

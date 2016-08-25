@@ -14,13 +14,13 @@ class Vector {
   }
 }
 
-main() {
+void main() {
   final v = new Vector(2, 3);
   final w = new Vector(2, 2);
 
   // v == (2, 3)
   assert(v.x == 2 && v.y == 3);
-  
+
   // v + w == (4, 5)
   assert((v + w).x == 4 && (v + w).y == 5);
 

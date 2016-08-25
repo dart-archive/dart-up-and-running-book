@@ -5,8 +5,7 @@ class Logger {
 
   // _cache is library-private, thanks to the _ in front
   // of its name.
-  static final Map<String, Logger> _cache =
-      <String, Logger>{};
+  static final Map<String, Logger> _cache = <String, Logger>{};
 
   factory Logger(String name) {
     if (_cache.containsKey(name)) {
@@ -28,20 +27,20 @@ class Logger {
 }
 // END(factory_constructor)
 
-main() {
+void main() {
   //BEGIN
   var logger = new Logger('UI');
   logger.log('Button clicked');
   //END
 
   var l1 = new Logger('log1');
-  var l1_2 = new Logger('log1');
-  var l2 = new Logger('log2');
+  var l2 = new Logger('log1');
+  var l3 = new Logger('log2');
 
-  assert(identical(l1, l1_2));
-  assert(l1 != l2);
+  assert(identical(l1, l2));
+  assert(l1 != l3);
 
   l1.log('${l1.name}: This is l1.');
-  l1_2.log('${l1_2.name}: This is l1_2.');
-  l2.log('${l2.name}: This is l2.');
+  l2.log('${l2.name}: This is l1_2.');
+  l3.log('${l3.name}: This is l2.');
 }

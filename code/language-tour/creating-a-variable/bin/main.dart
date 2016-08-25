@@ -1,5 +1,5 @@
 // BEGIN(creating_a_variable)
-var name = 'Bob';
+String name = 'Bob';
 // END(creating_a_variable)
 
-main() {}
+void main() {}

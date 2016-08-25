@@ -1,8 +1,8 @@
 library todo;
 
-class todo {
+class Todo {
   final String who;
   final String what;
 
-  const todo(this.who, this.what);
+  const Todo(this.who, this.what);
 }

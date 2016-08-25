@@ -1,4 +1,4 @@
-main() {
+void main() {
   // BEGIN(map_constructor)
   var gifts = new Map();
   gifts['first'] = 'partridge';

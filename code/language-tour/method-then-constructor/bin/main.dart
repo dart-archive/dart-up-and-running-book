@@ -1,18 +1,18 @@
 class Person {
   Map data;
-  Person.fromJson(Map this.data) {}
+  Person.fromJson(this.data);
 }
 
 class Employee extends Person {
-  static Map findDefaultData() => {'employeeData': 'none'};
-
-  Employee.fromJson(Map data) : super.fromJson(data);
   Employee() : super.fromJson(findDefaultData());
+  Employee.fromJson(Map data) : super.fromJson(data);
+
+  static Map findDefaultData() => {'employeeData': 'none'};
 }
 
-main() {
+void main() {
   var emp = new Employee.fromJson({});
-  print(emp.data);      // {}
+  print(emp.data); // {}
 
   emp = new Employee(); // {employeeData: none}
   print(emp.data);

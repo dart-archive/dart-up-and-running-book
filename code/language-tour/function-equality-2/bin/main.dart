@@ -1,11 +1,11 @@
-foo() {}               // A top-level function
+void foo() {} // A top-level function
 
 class A {
   static void bar() {} // A static method
-  void baz() {}        // An instance method
+  void baz() {} // An instance method
 }
 
-main() {
+void main() {
   var x;
 
   // Comparing top-level functions.

@@ -1,12 +1,12 @@
-var topLevel = true;
+bool topLevel = true;
 
-main() {
+void main() {
   var insideMain = true;
 
-  myFunction() {
+  void myFunction() {
     var insideFunction = true;
 
-    nestedFunction() {
+    void nestedFunction() {
       var insideNestedFunction = true;
 
       assert(topLevel);

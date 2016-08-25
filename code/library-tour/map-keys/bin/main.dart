@@ -5,6 +5,7 @@ class Person {
 
   // Override hashCode using strategy from Effective Java,
   // Chapter 11.
+  @override
   int get hashCode {
     int result = 17;
     result = 37 * result + firstName.hashCode;
@@ -14,15 +15,15 @@ class Person {
 
   // You should generally implement operator == if you
   // override hashCode.
-  bool operator ==(other) {
+  @override
+  bool operator ==(dynamic other) {
     if (other is! Person) return false;
     Person person = other;
-    return (person.firstName == firstName &&
-        person.lastName == lastName);
+    return (person.firstName == firstName && person.lastName == lastName);
   }
 }
 
-main() {
+void main() {
   var p1 = new Person('bob', 'smith');
   var p2 = new Person('bob', 'smith');
   var p3 = 'not a person';

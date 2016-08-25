@@ -12,7 +12,7 @@ var _nobleGases = {
 bool isNoble(int atomicNumber) => _nobleGases[atomicNumber] != null;
 // END(function_shorthand)
 
-main() {
+void main() {
   print('Noble gases');
   print('-----------');
   for (int i = 0; i < 100; i++) {

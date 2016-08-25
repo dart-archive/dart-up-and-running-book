@@ -2,19 +2,19 @@ import 'dart:async';
 
 // fake methods to make the below examples work
 
-Future getFuture() async {
-  return true;
+Future<int> getFuture() async {
+  return 0;
 }
 
-handleValue(value) {
+void handleValue(int value) {
   print('value is $value');
 }
 
-handleError(error) {
+void handleError(int error) {
   print('error is $error');
 }
 
-Future dbQuery(query) async {
+Future dbQuery(String query) async {
   return true;
 }
 
@@ -66,7 +66,7 @@ Future runQuery() async {
     await costlyQuery();
     await expensiveWork();
     await lengthyComputation();
-    await print('done!');
+    print('done!');
   } catch (_) {
     print('DOH!');
   }
@@ -81,7 +81,7 @@ Future wait() async {
   print('Done with all the long steps');
 }
 
-main() async {
+Future main() async {
   Future<int> future = getFuture();
   var value = await future;
   try {

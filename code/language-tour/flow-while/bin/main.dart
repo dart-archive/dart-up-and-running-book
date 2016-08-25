@@ -1,9 +1,9 @@
-doSomething() {}
-printLine() => print('Hi');
+void doSomething() {}
+void printLine() => print('Hi');
 bool isDone() => true;
 bool atEndOfPage() => true;
 
-main() {
+void main() {
   while (!isDone()) {
     doSomething();
   }

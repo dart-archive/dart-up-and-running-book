@@ -1,10 +1,10 @@
 library lib2.dart;
 
-foo() {
+void foo() {
   print('FOO');
 }
 
-bar() {
+void bar() {
   print('BAR');
 }
 

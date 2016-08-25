@@ -1,11 +1,11 @@
 // BEGIN(basic_dart_program)
 // Define a function.
-printNumber(num aNumber) {
+void printNumber(num aNumber) {
   print('The number is $aNumber.'); // Print to console.
 }
 
 // This is where the app starts executing.
-main() {
+void main() {
   var number = 42; // Declare and initialize a variable.
   printNumber(number); // Call a function.
 }

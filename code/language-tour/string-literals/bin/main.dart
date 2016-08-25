@@ -1,4 +1,4 @@
-main() {
+void main() {
   // BEGIN(string_const_literals)
   // These work in a const string.
   const aConstNum = 0;

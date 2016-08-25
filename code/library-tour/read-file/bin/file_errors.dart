@@ -1,6 +1,7 @@
 import 'dart:io';
+import 'dart:async';
 
-main() async {
+Future main() async {
   var config = new File('config.txt');
   try {
     var contents = await config.readAsString();

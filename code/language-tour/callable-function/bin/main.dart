@@ -1,9 +1,9 @@
 class WannabeFunction {
-  call(String a, String b, String c) => a + ' ' + b + ' ' + c + '!';
+  void call(String a, String b, String c) => a + ' ' + b + ' ' + c + '!';
 }
 
-main() {
+void main() {
   var wf = new WannabeFunction();
-  var out = wf("Hi","there,","gang");
+  var out = wf("Hi", "there,", "gang");
   print('$out');
 }

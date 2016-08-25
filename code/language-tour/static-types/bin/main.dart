@@ -2,4 +2,4 @@
 String name = 'Bob';
 // END(static_types)
 
-main() {}
+void main() {}

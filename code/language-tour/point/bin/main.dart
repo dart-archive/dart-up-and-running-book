@@ -12,7 +12,7 @@ class Point {
   }
 }
 
-main() {
+void main() {
   var a = new Point(2, 2);
   var b = new Point(4, 4);
   var distance = Point.distanceBetween(a, b);

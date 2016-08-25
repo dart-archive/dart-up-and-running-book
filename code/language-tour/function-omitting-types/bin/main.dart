@@ -9,12 +9,12 @@ var _nobleGases = {
 };
 
 // BEGIN(function_omitting_types)
-isNoble(atomicNumber) {
+bool isNoble(int atomicNumber) {
   return _nobleGases[atomicNumber] != null;
 }
 // END(function_omitting_types)
 
-main() {
+void main() {
   print('Noble gases');
   print('-----------');
   for (int i = 0; i < 100; i++) {

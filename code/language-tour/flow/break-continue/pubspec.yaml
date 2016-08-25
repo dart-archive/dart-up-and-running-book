@@ -1,5 +1,4 @@
-name: assert
-description: ch02 assert example
+name: break_continue
 dependencies:
   browser: any
 

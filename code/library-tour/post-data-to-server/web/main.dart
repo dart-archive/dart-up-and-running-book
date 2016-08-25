@@ -1,15 +1,15 @@
 // XXX: Now that it's converted to async-await, we really should run this.
 
+import 'dart:async';
 import 'dart:html';
 
 String encodeMap(Map data) {
   return data.keys.map((k) {
-    return '${Uri.encodeComponent(k)}=' +
-           '${Uri.encodeComponent(data[k])}';
+    return '${Uri.encodeComponent(k)}=' + '${Uri.encodeComponent(data[k])}';
   }).join('&');
 }
 
-loadEnd(HttpRequest request) {
+void loadEnd(HttpRequest request) {
   if (request.status != 200) {
     print('Uh oh, error: ${request.status}');
     return;
@@ -18,7 +18,7 @@ loadEnd(HttpRequest request) {
   }
 }
 
-main() async {
+Future main() async {
   var dataUrl = '/registrations/create';
   var data = {'dart': 'fun', 'editor': 'productive'};
   var encodedData = encodeMap(data);
@@ -26,8 +26,7 @@ main() async {
   var httpRequest = new HttpRequest();
   httpRequest.open('POST', dataUrl);
   httpRequest.setRequestHeader(
-      'Content-type',
-      'application/x-www-form-urlencoded');
+      'Content-type', 'application/x-www-form-urlencoded');
   httpRequest.send(encodedData);
   await httpRequest.onLoadEnd.first;
   loadEnd(httpRequest);

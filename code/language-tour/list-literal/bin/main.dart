@@ -1,8 +1,8 @@
 // BEGIN(list_literal)
-var list = [1, 2, 3];
+List<int> list = [1, 2, 3];
 // END(list_literal)
 
-main() {
+void main() {
   // BEGIN(list_const_literal)
   var constantList = const [1, 2, 3];
   // constantList[1] = 1; // Uncommenting this causes an error.

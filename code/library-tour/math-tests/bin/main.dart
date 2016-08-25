@@ -1,13 +1,13 @@
 import 'dart:math' as math;
 
-main() {
+void main() {
   trig();
   minmax();
   constants();
   random();
 }
 
-trig() {
+void trig() {
   // Cosine
   assert(math.cos(math.PI) == -1.0);
 
@@ -20,19 +20,19 @@ trig() {
   assert((sinOf30degrees - 0.5).abs() < 0.01);
 }
 
-minmax() {
+void minmax() {
   assert(math.max(1, 1000) == 1000);
   assert(math.min(1, -1000) == -1000);
 }
 
-constants() {
+void constants() {
   // See the Math library for additional constants.
-  print(math.E);     // 2.718281828459045
-  print(math.PI);    // 3.141592653589793
+  print(math.E); // 2.718281828459045
+  print(math.PI); // 3.141592653589793
   print(math.SQRT2); // 1.4142135623730951
 }
 
-random() {
+void random() {
   var random = new math.Random();
 
   var nextDouble = random.nextDouble();

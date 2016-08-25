@@ -1,4 +1,4 @@
-main() {
+void main() {
   /*
    * This is a lot of work. Consider raising chickens.
 

@@ -6,10 +6,10 @@ class SortedCollection {
   }
 }
 
- // Initial, broken implementation.
- int sort(Object a, Object b) => 0;
+// Initial, broken implementation.
+int sort(Object a, Object b) => 0;
 
-main() {
+void main() {
   SortedCollection coll = new SortedCollection(sort);
 
   // All we know is that compare is a function,

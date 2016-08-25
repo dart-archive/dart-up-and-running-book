@@ -1,6 +1,6 @@
 import 'dart:convert' show JSON;
 
-main() {
+void main() {
   var scores = [
     {'score': 40},
     {'score': 80},
@@ -8,7 +8,8 @@ main() {
   ];
 
   var jsonText = JSON.encode(scores);
-  assert(jsonText == '[{"score":40},{"score":80},'
-                     '{"score":100,"overtime":true,'
-                     '"special_guest":null}]');
+  assert(jsonText ==
+      '[{"score":40},{"score":80},'
+      '{"score":100,"overtime":true,'
+      '"special_guest":null}]');
 }

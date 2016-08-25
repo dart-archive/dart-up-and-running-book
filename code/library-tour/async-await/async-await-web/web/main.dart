@@ -1,6 +1,7 @@
+import 'dart:async';
 import 'dart:html';
 
-var url = 'humans.txt';
+String url = 'humans.txt';
 
 void main() {
   printRobots();
@@ -12,13 +13,13 @@ void handleClick(MouseEvent event) {
   print('click!');
 }
 
-printRobots() async {
+Future printRobots() async {
   var result = await HttpRequest.getString(url);
   print(result);
   // Should handle errors here.
 }
 
-printRobotsAndHandleErrors() async {
+Future printRobotsAndHandleErrors() async {
   try {
     var result = await HttpRequest.getString(url);
     print(result);
