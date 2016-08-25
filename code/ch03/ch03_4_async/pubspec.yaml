@@ -1,4 +1,0 @@
-name: ch03_4_async
-description: A sample web application
-dependencies:
-  browser: any
