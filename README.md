@@ -6,16 +6,16 @@ Dart: Up and Running
 This is the book _Dart: Up and Running_ by Kathy Walrath and Seth Ladd.
 More info: http://shop.oreilly.com/product/0636920025719.do
 
-An HTML version of this book is online:
-http://www.dartlang.org/docs/dart-up-and-running/
-
-
 Repo and testing info
 -----------
 The text in this repo is old; the latest text is in the
 dart-lang/site-www.org repo under
 [/src/_guides/language/language-tour](https://github.com/dart-lang/site-www/blob/master/src/_guides/language/language-tour.md) and
 [/src/_guides/libraries/library-tour](https://github.com/dart-lang/site-www/blob/master/src/_guides/libraries/library-tour.md).
+To see the **generated version** of these docs, see the
+[Language Tour](https://www.dartlang.org/guides/language/language-tour)
+and [Library Tour](https://www.dartlang.org/guides/libraries/library-tour)
+on [dartlang.org](https://www.dartlang.org/).
 
 **This repo still contains the latest code.**
 
