@@ -15,8 +15,7 @@ void main() {
     assert(urlString.startsWith('https'));
   } else {
     assert(urlString.startsWith('https'),
-        'URL should start with "https"; instead it'
-        'starts with "${urlString.substring(0,5)}".');
+        'URL ($urlString) should start with "https".');
   }
 
   print('About to call assert(false).');
