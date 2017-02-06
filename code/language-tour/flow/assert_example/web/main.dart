@@ -1,7 +1,8 @@
 void main() {
   var text = 'Hi';
   var number = 99;
-  var urlString = 'https://github.com/';
+  String urlString = 'https://github.com/';
+  bool showMessage = true;
 
   // Make sure the variable has a non-null value.
   assert(text != null);
@@ -10,7 +11,12 @@ void main() {
   assert(number < 100);
 
   // Make sure this is an https URL.
-  assert(urlString.startsWith('https'));
+  if (!showMessage) {
+    assert(urlString.startsWith('https'));
+  } else {
+    assert(urlString.startsWith('https'),
+        'URL ($urlString) should start with "https".');
+  }
 
   print('About to call assert(false).');
   assert(false);
